@@ -1,7 +1,7 @@
 import React from 'react';
 import Particles from 'particles.js';
 import "./WelcomePage.css"
-// import LoginForm from '../LoginForm/LoginForm';
+import LoginForm from '../LoginForm/LoginForm';
 // import Registration from '../Registration/Registration'
 
 class WelcomePage extends React.Component {
@@ -36,6 +36,7 @@ class WelcomePage extends React.Component {
                 <div id="particles-js"></div>
                     <div className="welcome-page__action-form">
                         {/* {this.renderContent()} */}
+                        { <LoginForm/> }
                     </div>
                 <div className="welcome-page__footer">Created by Patryk Bura</div>
             </div>
