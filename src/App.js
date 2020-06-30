@@ -3,6 +3,7 @@ import './App.css';
 import {BrowserRouter as Router} from "react-router-dom";
 import {Switch,Route} from "react-router-dom";
 import WelcomePage from './WelcomePage/WelcomePage'
+import AppLayout from './AppLayout/AppLayout'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route exact path="/">
           <WelcomePage />
         </Route>
+        <AppLayout />
       </Switch>
     </Router>
   );

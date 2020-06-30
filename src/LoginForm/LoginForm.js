@@ -10,7 +10,7 @@ class LoginForm extends React.Component {
 
     onFinish = values => {
         console.log('Success:', values);
-        this.props.history.push('/about')
+        this.props.history.push('/home')
     };
 
     onFinishFailed = errorInfo => {

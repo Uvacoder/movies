@@ -36,7 +36,6 @@ class WelcomePage extends React.Component {
                 <div id="particles-js"></div>
                     <div className="welcome-page__action-form">
                         {this.renderContent()}
-                        {/* { <LoginForm/> } */}
                     </div>
                 <div className="welcome-page__footer">Created by Patryk Bura</div>
             </div>
