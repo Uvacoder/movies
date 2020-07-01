@@ -1,5 +1,5 @@
 import React from 'react';
-import './Roots.css'
+import './Roots.scss'
 import { Switch,Route } from "react-router-dom";
 
 function Roots() {

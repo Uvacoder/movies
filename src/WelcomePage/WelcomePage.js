@@ -1,6 +1,6 @@
 import React from 'react';
 import Particles from 'particles.js';
-import "./WelcomePage.css"
+import "./WelcomePage.scss"
 import LoginForm from '../LoginForm/LoginForm';
 import Registration from '../Registration/Registration'
 

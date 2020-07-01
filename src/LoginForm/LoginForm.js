@@ -1,5 +1,5 @@
 import React from 'react';
-import "./LoginForm.css"
+import "./LoginForm.scss"
 import { withRouter } from 'react-router-dom'
 import { Form, Input, Button, Checkbox } from 'antd';
 
