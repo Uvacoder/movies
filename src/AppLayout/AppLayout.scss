@@ -1,9 +1,12 @@
 $search-bar-color: rgba(9, 197, 214, 0.4);
 
-.site-layout .site-layout-background {
-    background: #fff;
-    height: 100%;
-  }
+.site-layout {
+    .site-layout-background {
+        background: #032646;
+        height: 100%;
+      }
+    
+}
 
 .ant-layout {
     height: 100%;
@@ -25,35 +28,40 @@ $search-bar-color: rgba(9, 197, 214, 0.4);
 .ant-layout-header {
     display: flex;
     justify-content: space-between;
-}
 
-.ant-layout-header .ant-menu .ant-menu-item-selected {
-    background-color: transparent;
-}
+    .ant-menu {
+        .ant-menu-item-selected {
+            background-color: transparent;
+        }
+    }
 
-.ant-layout-header .ant-menu-item:hover svg {
-    fill: red;
-}
+    .ant-menu-item:hover {
+        svg {
+            fill: red;
+        }
+    }
+     
+    .ant-btn-primary {
+        background:  $search-bar-color;
+        border-color: $search-bar-color;
+        color: black;
+    }
 
-.header-home .anticon {
-    font-size: 40px;
-}
-
-.header-home .anticon svg {
-    color: rgb(9, 197, 214);
-}
-
-.header-home .ant-menu-item {
-    display: flex;
-    align-items: center;
 }
 
 .header-home {
     display: flex;
-}
 
-.ant-layout-header .ant-btn-primary {
-    background:  $search-bar-color;
-    border-color: $search-bar-color;
-    color: black;
+    .anticon {
+        font-size: 40px;
+
+        svg {
+            color: rgb(9, 197, 214);
+        }
+    }
+
+    .ant-menu-item{
+        display: flex;
+        align-items: center;
+    }
 }
