@@ -7,7 +7,7 @@ import { Menu,Layout,Input } from 'antd';
 import './AppLayout.scss';
 import Roots from '../Roots/Roots'
 import SubMenu from 'antd/lib/menu/SubMenu';
-import { UserOutlined,PlaySquareOutlined,DesktopOutlined,DashboardOutlined,CoffeeOutlined,ProfileOutlined } from '@ant-design/icons';
+import { UserOutlined,PlaySquareOutlined,DesktopOutlined,DashboardOutlined,CoffeeOutlined,ProfileOutlined,SmileOutlined } from '@ant-design/icons';
 // import Communication from '../Communication/Communication';
 
 const { Header, Content } = Layout;
@@ -19,22 +19,24 @@ class AppLayout extends React.Component {
     return (
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
                 <div className='header-home'>
-                  <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>  
+                  <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >  
                           <Menu.Item key="1" icon={<PlaySquareOutlined/>}></Menu.Item>
                   </Menu>
                 </div>
-                <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+                <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
                     <SubMenu key="sub1" icon={<DesktopOutlined />} title="Movies">
-                      <Menu.Item key="1">1</Menu.Item>
-                      <Menu.Item key="2">2</Menu.Item>
-                      <Menu.Item key="3">3</Menu.Item>
-                      <Menu.Item key="4">4</Menu.Item>
+                      <Menu.Item key="1">Browse Movies</Menu.Item>
+                      <Menu.Item key="2">Upcomming</Menu.Item>
                     </SubMenu>
                     <SubMenu  key="sub2" icon={<CoffeeOutlined />} title="TV Shows">
-                      <Menu.Item key="1">1</Menu.Item>
-                      <Menu.Item key="2">2</Menu.Item>
-                      <Menu.Item key="3">3</Menu.Item>
-                      <Menu.Item key="4">4</Menu.Item>
+                      <Menu.Item key="1">Browse TV Shows</Menu.Item>
+                    </SubMenu>
+                    <SubMenu  key="sub3" icon={<DashboardOutlined />} title="Rankings">
+                      <Menu.Item key="1">Top Movies</Menu.Item>
+                      <Menu.Item key="2">Top TV Shows</Menu.Item>
+                      <Menu.Item key="3">Top People of Cinema</Menu.Item>
+                      <Menu.Item key="4">Trending Today</Menu.Item>
+                      <Menu.Item key="5">Trending Weekly</Menu.Item>
                     </SubMenu>
                     <Search
                         placeholder="Search movies, TV Shows or people"
@@ -42,25 +44,22 @@ class AppLayout extends React.Component {
                         style={{ width: 300}}
                         enterButton
                     />
-                    <SubMenu  key="sub3" icon={<DashboardOutlined />} title="Rankings">
-                      <Menu.Item key="1">1</Menu.Item>
-                      <Menu.Item key="2">2</Menu.Item>
-                      <Menu.Item key="3">3</Menu.Item>
-                      <Menu.Item key="4">4</Menu.Item>
+                    <SubMenu  key="sub4" icon={<UserOutlined />} title="Netflix">
+                      <Menu.Item key="1">New Release</Menu.Item>
+                      <Menu.Item key="2">Expiring</Menu.Item>
+                      <Menu.Item key="3">Shows with weekly episodes</Menu.Item>
                     </SubMenu>
-                    <SubMenu  key="sub4" icon={<UserOutlined />} title="People">
-                      <Menu.Item key="1">1</Menu.Item>
-                      <Menu.Item key="2">2</Menu.Item>
-                      <Menu.Item key="3">3</Menu.Item>
-                      <Menu.Item key="4">4</Menu.Item>
+                    <SubMenu  key="sub5" icon={<SmileOutlined />} title="Hyde Park">
+                      <Menu.Item key="1">Random Gif Generator</Menu.Item>
                     </SubMenu>
                 </Menu>
-                <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-                    <SubMenu  key="sub5" icon={<ProfileOutlined />} title="Your Profile">
-                      <Menu.Item key="1">1</Menu.Item>
-                      <Menu.Item key="2">2</Menu.Item>
-                      <Menu.Item key="3">3</Menu.Item>
-                      <Menu.Item key="4">4</Menu.Item>
+                <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
+                    <SubMenu  key="sub6" icon={<ProfileOutlined />} title="Your Profile">
+                      <Menu.Item key="1">My Ratings</Menu.Item>
+                      <Menu.Item key="2">Favorites</Menu.Item>
+                      <Menu.Item key="3">Want to see</Menu.Item>
+                      <Menu.Item key="4">Account Settings</Menu.Item>
+                      <Menu.Item key="5">Log Out</Menu.Item>
                     </SubMenu> 
                 </Menu>
             </Header>

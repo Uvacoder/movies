@@ -37,6 +37,10 @@ class WelcomePage extends React.Component {
                     <div className="welcome-page__action-form">
                         {this.renderContent()}
                     </div>
+                <div className='welcome-page__title-wrapper'>
+                    <div className='welcome-page__title-wrapper-main'>Movie Lounge</div>
+                    <div className='welcome-page__title-wrapper-quote'>"The true formula to happines is binge watching movies" ~ Albert Einstein</div>
+                </div>    
                 <div className="welcome-page__footer">Created by Patryk Bura</div>
             </div>
         );

@@ -23,6 +23,7 @@ $search-bar-color: rgba(9, 197, 214, 0.4);
 
 .nav-bar-menu__your-profile-bttn {
     justify-content: flex-end
+   
 }
 
 .ant-layout-header {
@@ -63,5 +64,15 @@ $search-bar-color: rgba(9, 197, 214, 0.4);
     .ant-menu-item{
         display: flex;
         align-items: center;
+    }
+}
+
+.nav-bar-menu {
+    .ant-menu-submenu-title:hover {
+        color: #1890ff
+    }
+
+    .ant-menu-submenu-title {
+        // color:white
     }
 }

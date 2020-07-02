@@ -24,3 +24,21 @@
 #particles-js {
     height: 100%
 }
+.welcome-page__title-wrapper {
+    position: absolute;
+    left: 10%;
+    top: 25%;
+    font-family: monospace;
+    pointer-events: none;
+    align-items: center;
+
+    .welcome-page__title-wrapper-main {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 8rem; 
+    }
+    
+    .welcome-page__title-wrapper-quote {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1rem;
+    }
+}
