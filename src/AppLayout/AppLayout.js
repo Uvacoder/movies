@@ -15,52 +15,109 @@ const { Search } = Input;
 
 class AppLayout extends React.Component {
 
+  renderSubMenu = (title,icon,menuItems) => {
+    return (
+      <SubMenu key={title} icon={icon} title={title}>
+        {menuItems.map((item,idx) => <Menu.Item key={idx}>{item.title}</Menu.Item>)}
+      </SubMenu>
+    )
+  }
+
+  renderMoviesSubMenu = () => {
+    const menuItems = [{
+      title: 'Browse Movies'
+    },{
+      title: 'Upcomming'
+    }]
+
+    return this.renderSubMenu('Movies',<DesktopOutlined />,menuItems)
+  }
+
+  renderTVShowsSubMenu = () => {
+    const menuItems = [{
+      title: 'Browse TV Shows'
+    }]
+
+    return this.renderSubMenu('TV Shows',<CoffeeOutlined />,menuItems)
+  }
+
+  renderRankingsMenu = () => {
+    const menuItems = [{
+      title: 'Top Movies'
+    },{
+      title: 'Top TV Shows'
+    },{
+      title: 'Top People of Cinema'
+    },{
+      title: 'Trending Today'
+    },{
+      title: 'Trending Weekly'
+    }]
+
+    return this.renderSubMenu('Rankings',<DashboardOutlined />,menuItems)
+  }
+
+  
+  renderNetflixMenu = () => {
+    const menuItems = [{
+      title: 'New Release'
+    },{
+      title: 'Expiring'
+    },{
+      title: 'Shows with weekly episodes'
+    }]
+
+    return this.renderSubMenu('Netflix',<UserOutlined />,menuItems)
+  }
+
+  renderHydeParkMenu = () => {
+    const menuItems = [{
+      title: 'Random Gif Generator'
+    }]
+
+    return this.renderSubMenu('Hyde Park',<SmileOutlined />,menuItems)
+  }
+
+  renderYouProfileMenu = () => {
+    const menuItems = [{
+      title: 'My Ratings'
+    },{
+      title: 'Favorites'
+    },{
+      title: 'Want to see'
+    },{
+      title: 'Account Settings'
+    },{
+      title: 'Log Out'
+    }]
+
+    return this.renderSubMenu('Your Profile',<ProfileOutlined />,menuItems)
+  }
+
+
   renderHeader = () => {
     return (
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
                 <div className='header-home'>
                   <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >  
-                          <Menu.Item key="1" icon={<PlaySquareOutlined/>}></Menu.Item>
+                    <Menu.Item key="1" icon={<PlaySquareOutlined/>}></Menu.Item>
                   </Menu>
                 </div>
                 <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
-                    <SubMenu key="sub1" icon={<DesktopOutlined />} title="Movies">
-                      <Menu.Item key="1">Browse Movies</Menu.Item>
-                      <Menu.Item key="2">Upcomming</Menu.Item>
-                    </SubMenu>
-                    <SubMenu  key="sub2" icon={<CoffeeOutlined />} title="TV Shows">
-                      <Menu.Item key="1">Browse TV Shows</Menu.Item>
-                    </SubMenu>
-                    <SubMenu  key="sub3" icon={<DashboardOutlined />} title="Rankings">
-                      <Menu.Item key="1">Top Movies</Menu.Item>
-                      <Menu.Item key="2">Top TV Shows</Menu.Item>
-                      <Menu.Item key="3">Top People of Cinema</Menu.Item>
-                      <Menu.Item key="4">Trending Today</Menu.Item>
-                      <Menu.Item key="5">Trending Weekly</Menu.Item>
-                    </SubMenu>
-                    <Search
-                        placeholder="Search movies, TV Shows or people"
-                        onSearch={value => console.log(value)}
-                        style={{ width: 300}}
-                        enterButton
-                    />
-                    <SubMenu  key="sub4" icon={<UserOutlined />} title="Netflix">
-                      <Menu.Item key="1">New Release</Menu.Item>
-                      <Menu.Item key="2">Expiring</Menu.Item>
-                      <Menu.Item key="3">Shows with weekly episodes</Menu.Item>
-                    </SubMenu>
-                    <SubMenu  key="sub5" icon={<SmileOutlined />} title="Hyde Park">
-                      <Menu.Item key="1">Random Gif Generator</Menu.Item>
-                    </SubMenu>
+                  {this.renderMoviesSubMenu()}
+                  {this.renderTVShowsSubMenu()}
+                  {this.renderRankingsMenu()}
+                  <Search
+                    placeholder="Search movies, TV Shows or people"
+                    onSearch={value => console.log(value)}
+                    style={{ width: 300}}
+                    enterButton
+                  />
+                    {this.renderNetflixMenu()}
+                    {this.renderHydeParkMenu()}
                 </Menu>
                 <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
-                    <SubMenu  key="sub6" icon={<ProfileOutlined />} title="Your Profile">
-                      <Menu.Item key="1">My Ratings</Menu.Item>
-                      <Menu.Item key="2">Favorites</Menu.Item>
-                      <Menu.Item key="3">Want to see</Menu.Item>
-                      <Menu.Item key="4">Account Settings</Menu.Item>
-                      <Menu.Item key="5">Log Out</Menu.Item>
-                    </SubMenu> 
+                  {this.renderYouProfileMenu()}
                 </Menu>
             </Header>
     )
