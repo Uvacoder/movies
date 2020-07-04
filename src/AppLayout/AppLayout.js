@@ -17,8 +17,8 @@ const { Search } = Input;
 class AppLayout extends React.Component {
 
   componentDidMount() {
-    //window.particlesJS.load('particles-left', './particles.json');
-    //window.particlesJS.load('particles-right', './particles.json');
+    window.particlesJS.load('particles-left', './particles.json');
+    window.particlesJS.load('particles-right', './particles.json');
 }
 
   renderSubMenu = (title,icon,menuItems) => {
