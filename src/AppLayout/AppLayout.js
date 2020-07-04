@@ -8,12 +8,18 @@ import './AppLayout.scss';
 import Roots from '../Roots/Roots'
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { UserOutlined,PlaySquareOutlined,DesktopOutlined,DashboardOutlined,CoffeeOutlined,ProfileOutlined,SmileOutlined } from '@ant-design/icons';
+import Particles from 'particles.js';
 // import Communication from '../Communication/Communication';
 
 const { Header, Content } = Layout;
 const { Search } = Input;
 
 class AppLayout extends React.Component {
+
+  componentDidMount() {
+    //window.particlesJS.load('particles-left', './particles.json');
+    //window.particlesJS.load('particles-right', './particles.json');
+}
 
   renderSubMenu = (title,icon,menuItems) => {
     return (
@@ -126,9 +132,13 @@ class AppLayout extends React.Component {
     renderContent = () => {
       return (
         <Content className="site-layout" style={{ marginTop: 64}}>
-        <div className="site-layout-background" style={{ padding: 24, minHeight: 380 }}>
-            <Roots />
-        </div>
+        <div className='site-layout__container'>
+          <div id='particles-left' className='site-layout__container-margin-left'></div>  
+          <div className="site-layout__container-main" style={{ padding: 24, minHeight: 380 }}>
+              <Roots />
+          </div>
+          <div id='particles-right' className='site-layout__container-margin-right'></div>   
+        </div> 
         </Content>
       )
 
