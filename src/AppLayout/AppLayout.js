@@ -24,7 +24,10 @@ class AppLayout extends React.Component {
   renderSubMenu = (title,icon,menuItems) => {
     return (
       <SubMenu key={title} icon={icon} title={title}>
-        {menuItems.map((item,idx) => <Menu.Item key={idx}>{item.title}</Menu.Item>)}
+        {menuItems.map((item,idx) => 
+        <Menu.Item key={idx}>
+          <Link to ={item.url}>{item.title}</Link>
+        </Menu.Item>)}
       </SubMenu>
     )
   }
@@ -78,7 +81,8 @@ class AppLayout extends React.Component {
 
   renderHydeParkMenu = () => {
     const menuItems = [{
-      title: 'Random Gif Generator'
+      title: 'Random Gif Generator',
+      url:"/random-gif-generator"
     }]
 
     return this.renderSubMenu('Hyde Park',<SmileOutlined />,menuItems)
