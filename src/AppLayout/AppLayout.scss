@@ -2,20 +2,19 @@ $search-bar-color: rgba(9, 197, 214, 0.4);
 $content-max-width: 1280px;
 
 @media only screen and (max-width: $content-max-width) {
-    .site-layout {
-        .site-layout__container {
-            display: flex;
+    .ant-layout .site-layout .site-layout__container { 
+        display: flex ;
 
-            .site-layout__container-margin-left, 
-            .site-layout__container-margin-right {
-                display:none;
-            }
-            .site-layout__container-margin-main {
-                width: 100%;
-            }
+        .site-layout__container-margin-left, 
+        .site-layout__container-margin-right {
+            display:none;     
+        }
+
+        .site-layout__container-margin-main {
+            width: 100%;
         }
     }
-  }
+}
   
 .site-layout {   
     .site-layout__container {
@@ -24,18 +23,21 @@ $content-max-width: 1280px;
         display: grid;
         grid-template-columns: minmax(0,1fr) minmax($content-max-width ,5fr) minmax(0,1fr);
       }
-     
+
+    .site-layout__container-margin-right, 
     .site-layout__container-margin-left {
         background-image: url("../Images/welcomepage.jpg");
-
-    }
-    .site-layout__container-margin-main {
-        background-color:green
+        height: calc(100vh - 64px);
     }
 
     .site-layout__container-margin-right {
-        background-image: url("../Images/welcomepage.jpg");
+        background-position: top;
     }
+
+    .site-layout__container-main {
+        color: white;
+    }
+
 }
 
 .ant-layout {

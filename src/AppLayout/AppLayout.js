@@ -106,7 +106,9 @@ class AppLayout extends React.Component {
       <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
                 <div className='header-home'>
                   <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >  
-                    <Menu.Item key="1" icon={<PlaySquareOutlined/>}></Menu.Item>
+                    <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
+                      <Link to ="/home" />
+                    </Menu.Item>
                   </Menu>
                 </div>
                 <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
