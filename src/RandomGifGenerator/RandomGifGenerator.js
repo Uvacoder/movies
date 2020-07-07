@@ -21,26 +21,21 @@ class RandomGifGenerator extends React.Component {
         return `http://api.giphy.com/v1/gifs/search?q=${word}&api_key=ZE8Jt8Tj0rtwPZlv7QzlYNfg9n1Urzgi&limit=1`
     }
 
-    setup = () => {
-        let wordDefinition = null;
-
-        Communication.get(RANDOM_WORD_API)
-            .then((data) => {
-                wordDefinition = data.list[0]
-                return Communication.get(this.getGifApiUrl(wordDefinition.word))
-            })
-            .then((gif) => {
-                if (!gif?.data[0]) {
-                    this.setup()
-                    return
-                }
-                this.setState({
-                    gifData: gif,
-                    word: wordDefinition.word,
-                    definition: wordDefinition.definition,
-                    example: wordDefinition.example
-                });
-            });
+    setup = async() => {
+        const randomWord = await Communication.get(RANDOM_WORD_API)
+        const wordDefinition = randomWord.list[0];
+        const gif = await Communication.get(this.getGifApiUrl(wordDefinition.word))
+        
+        if (!gif?.data[0]) {
+            this.setup()
+            return
+        }
+        this.setState({
+            gifData: gif,
+            word: wordDefinition.word,
+            definition: wordDefinition.definition,
+            example: wordDefinition.example
+        });
     };
 
     renderGif = () => {
