@@ -9,13 +9,18 @@ import Roots from '../Roots/Roots'
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { UserOutlined,PlaySquareOutlined,DesktopOutlined,DashboardOutlined,CoffeeOutlined,ProfileOutlined,SmileOutlined } from '@ant-design/icons';
 import Particles from 'particles.js';
+import { withResizeDetector } from 'react-resize-detector';
 import ReactResizeDetector from 'react-resize-detector';
-// import Communication from '../Communication/Communication';
 
 const { Header, Content } = Layout;
 const { Search } = Input;
 
 class AppLayout extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.hasChangedTimer = null;
+  }
 
   renderParticles() {
     // Due to library constraints accessing to load function from window object is necessary.
@@ -23,16 +28,49 @@ class AppLayout extends React.Component {
     window.particlesJS.load('particles-right', './particles.json');
   }
 
-  componentDidMount() {
-    this.renderParticles();
-    // setTimeout(() => {
-      
+  // componentDidUpdate(prevProps) {
+  //   const heightHasChanged = this.props.height !== prevProps.height;
+  //   // if () {
+  //   //   console.log("height has changed")
+  //   // }
 
-      // window.updateLEFT = () => window.particlesJS.load('particles-left', './particles.json');
-      // window.particlesJS.load('jamnikTEST', './particles.json');
-    // }, 3000)
-  
-}
+  //   if (heightHasChanged) {
+  //     console.log('heightHasChanged')
+  //     clearTimeout(this.hasChangedTimer);
+  //     // this.hasChangedTimer = setTimeout(() => this.renderParticles(), 500);
+  //     this.hasChangedTimer = setTimeout(() => this.renderParticles(), 500);
+  //   }
+
+  //         // this.renderParticles();
+      
+  //     // function resizedw(){
+  //     //     // Haven't resized in 100ms!
+  //     // }
+    
+  //     // var doit;
+  //     // window.onresize = function(){
+  //     //   clearTimeout(doit);
+  //     //   doit = setTimeout(resizedw, 100);
+  //     // };
+  // }
+
+  onResize() {
+    console.log('height has cahnged')
+
+
+
+    //TODO rerender particles
+    // clearTimeout(this.hasChangedTimer);
+    // this.hasChangedTimer = setTimeout(() => {
+    //   //tmp for each
+    //   window.pJSDom[0].pJS.fn.particlesRefresh()
+    //   window.pJSDom[1].pJS.fn.particlesRefresh()
+    // }, 2000);
+  }
+
+  componentDidMount() {
+    this.renderParticles(); //TODO use callback with not on mount
+  }
 
   renderSubMenu = (title,icon,menuItems) => {
     return (
@@ -151,9 +189,10 @@ class AppLayout extends React.Component {
     renderContent = () => {
       return (
         <Content className="site-layout" style={{ marginTop: 64}}>
-        <div id="jamnikTEST" className='site-layout__container'>
+        <div className='site-layout__container'>
           <div id='particles-left' className='site-layout__container-margin-left'></div> 
           <div className="site-layout__container-main" style={{ padding: 24 }}>
+            <ReactResizeDetector skipOnMount handleHeight onResize={this.onResize.bind(this)} />
               <Roots />
           </div>
           <div id='particles-right' className='site-layout__container-margin-right'></div>   
