@@ -1,12 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "./HomePage.scss"
+import Communication from '../Communication/Communication';
+
+const NO_OF_TRENDING_ITEMS = 4;
+const NO_OF_UPCOMMING_ITEMS = 3;
+const TRENDING_API = 'https://api.themoviedb.org/3/trending/all/day?api_key=87f688d5cb704339968f87fae03f38cd'
+const UPCOMMING_API = 'https://api.themoviedb.org/3/movie/upcoming?api_key=87f688d5cb704339968f87fae03f38cd&language=EN&page=1&region=US'
 
 function HomePage () {
+
+    const [trendingList,setTrendingList] = useState([]);
+    const [upcommingList,setUpcommingList] = useState([]);
+
+    const fetchTrending = async() => {
+        const result = await Communication.get(TRENDING_API);
+        setTrendingList(result.results);
+    };
+
+    const fetchUpcomming = async() => {
+        const result = await Communication.get(UPCOMMING_API);
+        setUpcommingList(result.results);
+    };
+
+    useEffect(() => {
+        fetchTrending();
+        fetchUpcomming();
+    },[]);
+
+    const renderTrending = () => {
+        const availableMovies = trendingList.filter(movie => movie.title)
+
+        return availableMovies.slice(0,NO_OF_TRENDING_ITEMS).map((item) => {
+            return <div className='home-page-container__trending-item'>{item?.title}</div>
+        });
+    };
+
+    const renderUpcomming = () => {
+        const availableMovies = upcommingList.filter(movie => movie.title || movie.orginal_title)
+
+        return availableMovies.slice(0,NO_OF_UPCOMMING_ITEMS).map((item) => {
+            return <div className='home-page-container__upcomming-item'>{ item?.title || item?.orginal_title }</div>
+        });
+    };
+
     return (
         <div className='home-page-container'>
             <div className='home-page-container__main'>
                 <div className='home-page-container__main-title'> Welcome to Movie Lounge! </div>
-                <div className='home-page-container__main-image' ></div>
+                <div className='home-page-container__main-image'></div>
                 <div className='home-page-container__main-content'>   
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut nibh tempus, ultricies velit laoreet, porttitor sem. Aenean feugiat, 
                     mauris ut suscipit ultrices, mauris urna congue elit, suscipit tincidunt quam risus a felis. Sed purus nisl, ullamcorper eget arcu eu, 
@@ -17,18 +58,13 @@ function HomePage () {
                 </div>
             </div>
             <div className='home-page-container__trending'>
-                <div className='home-page-container__trending-item'>trending 1</div>
-                <div className='home-page-container__trending-item'>trending 2</div>
-                <div className='home-page-container__trending-item'>trending 3</div>
-                <div className='home-page-container__trending-item'>trending 4</div>
+                {renderTrending()}
             </div>
             <div className='home-page-container__upcomming'>
-                <div className='home-page-container__upcomming-item'>upcomming 1</div>
-                <div className='home-page-container__upcomming-item'>upcomming 2</div>
-                <div className='home-page-container__upcomming-item'>upcomming 3</div>
+                {renderUpcomming()}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default HomePage;
