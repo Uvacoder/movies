@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import "./HomePage.scss"
 import Communication from '../Communication/Communication';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchTrending } from '../Actions/actions'
+import trending from '../Reducers/HomePageReducer';
 
 const NO_OF_TRENDING_ITEMS = 4;
 const NO_OF_UPCOMMING_ITEMS = 3;
@@ -9,13 +14,15 @@ const UPCOMMING_API = 'https://api.themoviedb.org/3/movie/upcoming?api_key=87f68
 
 function HomePage () {
 
-    const [trendingList,setTrendingList] = useState([]);
+    // const [trendingList,setTrendingList] = useState([]);
     const [upcommingList,setUpcommingList] = useState([]);
+    const trendingList = useSelector(state => [state.trending]);
+    const dispatch = useDispatch();
 
-    const fetchTrending = async() => {
-        const result = await Communication.get(TRENDING_API);
-        setTrendingList(result.results);
-    };
+    // const fetchTrending = async() => {
+    //     const result = await Communication.get(TRENDING_API);
+    //     setTrendingList(result.results);
+    // };
 
     const fetchUpcomming = async() => {
         const result = await Communication.get(UPCOMMING_API);
@@ -23,13 +30,17 @@ function HomePage () {
     };
 
     useEffect(() => {
-        fetchTrending();
+        dispatch(fetchTrending());
+        // fetchTrending()
         fetchUpcomming();
     },[]);
 
-    const renderTrending = () => {
-        const availableMovies = trendingList.filter(movie => movie.title)
+    
 
+    const renderTrending = () => {
+        // const availableMovies = trendingList.filter(movie => movie.title)
+        const availableMovies = trendingList.filter(movie => movie.title)
+        console.log(availableMovies)
         return availableMovies.slice(0,NO_OF_TRENDING_ITEMS).map((item) => {
             return <div className='home-page-container__trending-item'>{item?.title}</div>
         });
@@ -37,7 +48,7 @@ function HomePage () {
 
     const renderUpcomming = () => {
         const availableMovies = upcommingList.filter(movie => movie.title || movie.orginal_title)
-
+        console.log(availableMovies)
         return availableMovies.slice(0,NO_OF_UPCOMMING_ITEMS).map((item) => {
             return <div className='home-page-container__upcomming-item'>{ item?.title || item?.orginal_title }</div>
         });
