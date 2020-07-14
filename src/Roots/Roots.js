@@ -1,6 +1,6 @@
 import React from 'react';
 import './Roots.scss'
-import { Switch,Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import HomePage from '../HomePage/HomePage'
 import RandomGifGenerator from '../RandomGifGenerator/RandomGifGenerator'
 

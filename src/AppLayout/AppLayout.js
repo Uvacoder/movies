@@ -9,8 +9,6 @@ import Roots from '../Roots/Roots'
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { UserOutlined,PlaySquareOutlined,DesktopOutlined,DashboardOutlined,CoffeeOutlined,ProfileOutlined,SmileOutlined } from '@ant-design/icons';
 import Particles from 'particles.js';
-import { withResizeDetector } from 'react-resize-detector';
-import ReactResizeDetector from 'react-resize-detector';
 
 const { Header, Content } = Layout;
 const { Search } = Input;
@@ -25,6 +23,7 @@ class AppLayout extends React.Component {
     window.particlesJS.load('particles-left', './particles.json');
     window.particlesJS.load('particles-right', './particles.json');
   }
+
 
   componentDidMount() {
     this.renderParticles(); //TODO use callback with not on mount
@@ -134,15 +133,15 @@ class AppLayout extends React.Component {
                     style={{ width: 300}}
                     enterButton
                   />
-                  {this.renderNetflixMenu()}
-                  {this.renderHydeParkMenu()}
+                    {this.renderNetflixMenu()}
+                    {this.renderHydeParkMenu()}
                 </Menu>
                 <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
                   {this.renderYouProfileMenu()}
                 </Menu>
             </Header>
-    );
-  };
+    )
+  }
 
     renderContent = () => {
       return (
@@ -150,14 +149,14 @@ class AppLayout extends React.Component {
         <div className='site-layout__container'>
           <div id='particles-left' className='site-layout__container-margin-left'></div> 
           <div className="site-layout__container-main" style={{ padding: 24 }}>
-            <ReactResizeDetector skipOnMount handleHeight onResize={this.onResize.bind(this)} />
               <Roots />
           </div>
           <div id='particles-right' className='site-layout__container-margin-right'></div>   
         </div> 
         </Content>
-      );
-    };
+      )
+
+    }
   
   render() {
     return (
@@ -169,6 +168,6 @@ class AppLayout extends React.Component {
       </div>
      );
    };
-};
+}
 
 export default AppLayout;

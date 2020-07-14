@@ -43,11 +43,9 @@
         grid-column-start: 3;
         grid-row-start: 2;
     }
-
 }
 
 .home-page-container__upcomming{
-    // background-color: green;
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 1;
@@ -66,7 +64,6 @@
 }
 
 .home-page-container__trending {
-    // background-color: blue;
     grid-column-start: 1;
     grid-column-end: 4;
     @extend %display-items;
