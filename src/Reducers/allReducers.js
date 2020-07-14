@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import trending from './HomePageReducer'
+import { trending, upcomming } from './HomePageReducer'
 
 const allReducers = combineReducers({
-    trending
+    trending,
+    upcomming
 })
 
 export default allReducers;

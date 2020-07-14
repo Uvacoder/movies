@@ -18,54 +18,12 @@ const { Search } = Input;
 class AppLayout extends React.Component {
   constructor(props) {
     super(props);
-
-    this.hasChangedTimer = null;
   }
 
   renderParticles() {
     // Due to library constraints accessing to load function from window object is necessary.
     window.particlesJS.load('particles-left', './particles.json');
     window.particlesJS.load('particles-right', './particles.json');
-  }
-
-  // componentDidUpdate(prevProps) {
-  //   const heightHasChanged = this.props.height !== prevProps.height;
-  //   // if () {
-  //   //   console.log("height has changed")
-  //   // }
-
-  //   if (heightHasChanged) {
-  //     console.log('heightHasChanged')
-  //     clearTimeout(this.hasChangedTimer);
-  //     // this.hasChangedTimer = setTimeout(() => this.renderParticles(), 500);
-  //     this.hasChangedTimer = setTimeout(() => this.renderParticles(), 500);
-  //   }
-
-  //         // this.renderParticles();
-      
-  //     // function resizedw(){
-  //     //     // Haven't resized in 100ms!
-  //     // }
-    
-  //     // var doit;
-  //     // window.onresize = function(){
-  //     //   clearTimeout(doit);
-  //     //   doit = setTimeout(resizedw, 100);
-  //     // };
-  // }
-
-  onResize() {
-    console.log('height has cahnged')
-
-
-
-    //TODO rerender particles
-    // clearTimeout(this.hasChangedTimer);
-    // this.hasChangedTimer = setTimeout(() => {
-    //   //tmp for each
-    //   window.pJSDom[0].pJS.fn.particlesRefresh()
-    //   window.pJSDom[1].pJS.fn.particlesRefresh()
-    // }, 2000);
   }
 
   componentDidMount() {
@@ -176,15 +134,15 @@ class AppLayout extends React.Component {
                     style={{ width: 300}}
                     enterButton
                   />
-                    {this.renderNetflixMenu()}
-                    {this.renderHydeParkMenu()}
+                  {this.renderNetflixMenu()}
+                  {this.renderHydeParkMenu()}
                 </Menu>
                 <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
                   {this.renderYouProfileMenu()}
                 </Menu>
             </Header>
-    )
-  }
+    );
+  };
 
     renderContent = () => {
       return (
@@ -198,9 +156,8 @@ class AppLayout extends React.Component {
           <div id='particles-right' className='site-layout__container-margin-right'></div>   
         </div> 
         </Content>
-      )
-
-    }
+      );
+    };
   
   render() {
     return (
@@ -212,6 +169,6 @@ class AppLayout extends React.Component {
       </div>
      );
    };
-}
+};
 
 export default AppLayout;
