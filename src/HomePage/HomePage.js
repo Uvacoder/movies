@@ -13,7 +13,6 @@ function HomePage () {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        debugger;
         dispatch(fetchTrending());
         dispatch(fetchUpcomming());
     },[dispatch]);
@@ -22,7 +21,15 @@ function HomePage () {
         const availableMovies = trendingList.filter(movie => movie.title)
 
         return availableMovies.slice(0,NO_OF_TRENDING_ITEMS).map((item) => {
-            return <div className='home-page-container__trending-item'>{item?.title}</div>
+            return (
+            <div className='home-page-container__trending-item'>
+                <img 
+                        className='home-page-container__trending-item-image' 
+                        src={ `https://image.tmdb.org/t/p/w500${item?.poster_path}`} 
+                    />
+                <div className='home-page-container__trending-item-title'>{item?.title}</div>
+            </div>
+            )
         });
     };
 
@@ -30,7 +37,15 @@ function HomePage () {
         const availableMovies = upcommingList.filter(movie => movie.title || movie.orginal_title)
 
         return availableMovies.slice(0,NO_OF_UPCOMMING_ITEMS).map((item) => {
-            return <div className='home-page-container__upcomming-item'>{ item?.title || item?.orginal_title }</div>
+            return (
+                <div className='home-page-container__upcomming-item'>
+                    <img 
+                        className='home-page-container__upcomming-item-image' 
+                        src={ `https://image.tmdb.org/t/p/w500${item?.poster_path}`} 
+                    />
+                    <div className='home-page-container__upcomming-item-title'>{ item?.title || item?.orginal_title }</div>
+                </div>   
+            );
         });
     };
 
