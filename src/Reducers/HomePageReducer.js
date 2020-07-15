@@ -1,55 +1,33 @@
 import {
-    REQUEST_TRENDING,
-    RECEIVE_TRENDING,  
-    REQUEST_UPCOMMING,
-    RECEIVE_UPCOMMING, 
-} from '../Actions/actions';
+  FETCH_TRENDING,
+  FETCH_UPCOMMING,
+} from '../Actions/HomePageActions';
 
-
-export function trending (
-    state = {
-      isFetching: false,
-      items: [],
-      lastUpdated: Date.now()
-    },
-    action
-  ) {
-    switch (action.type) {
-      case REQUEST_TRENDING:
-        return Object.assign({}, state, {
-          isFetching: true,
-        })
-      case RECEIVE_TRENDING:
-        return Object.assign({}, state, {
-          isFetching: false,
-          items: action.items,
-          lastUpdated: action.receivedAt
-        })
-      default:
-        return state
-    }
+const initialState = {
+  isFetching: false,
+    items: [], 
+  trending: {
+    items: []
+  },
+  upcomming: {
+    items: []
+  },
+  lastUpdated: Date.now()
 }
 
-export function upcomming (
-  state = {
-    isFetching: false,
-    items: [],
-    lastUpdated: Date.now()
-  },
-  action
-) {
+
+
+export function homePage (state = initialState,action) {
   switch (action.type) {
-    case REQUEST_UPCOMMING:
-      return Object.assign({}, state, {
-        isFetching: true,
-      })
-    case RECEIVE_UPCOMMING:
-      return Object.assign({}, state, {
-        isFetching: false,
-        items: action.items,
-        lastUpdated: action.receivedAt
-      })
-    default:
-      return state
+  case FETCH_TRENDING:
+    return Object.assign({}, state, {
+      trending: action.trending,
+    })
+  case FETCH_UPCOMMING:
+    return Object.assign({}, state, {
+      upcomming: action.upcomming,
+    })
+  default:
+    return state
   }
 }

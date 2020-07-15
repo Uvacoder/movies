@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
-import { trending, upcomming } from './HomePageReducer'
+import { homePage } from './HomePageReducer'
+import { changeLoading } from './GlobalReducer'
 
 const allReducers = combineReducers({
-    trending,
-    upcomming
+    homePage,
+    changeLoading
 })
 
 export default allReducers;
