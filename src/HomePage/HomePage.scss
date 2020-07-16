@@ -12,43 +12,58 @@
     height: 100%;
 }
 
+.home-page-container-divider1 {
+    grid-row-start: 3;
+}
+
+.home-page-container__welcome {
+    font-size: 4em;
+    color: rgb(9, 197, 214);
+    display: flex;
+    justify-content: center; 
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+}
+
 .home-page-container__main {
     grid-column-start: 1;
     grid-column-end: 2;
-    display: grid;
-    grid-gap: 10px;
+    display: block;
 
     .home-page-container__main-title {
-        grid-column-start: 1;
-        grid-column-end: 4;
-        grid-row-start: 1;
+        font-size: 2em;
+        color:  rgb(9, 197, 214);
+        margin-left: 10px;
+        margin-bottom: 30px;
         display: flex;
         justify-content: center;
-        font-size: 4em;
-        color: rgb(9, 197, 214);
-    }
-
-    .home-page-container__main-image {
-        background-image: url("../Images/scene.svg");
-        background-repeat: no-repeat;
-        background-size: contain;
-        grid-column-start: 1;
-        grid-row-start: 2;
-        filter: invert(100%);
-        min-width: 100px;
-
     }
 
     .home-page-container__main-content {
-        grid-column-start: 3;
-        grid-row-start: 2;
+        display: flex;
+    }
+
+    .home-page-container__main-image {
+        height: 80%;
+        width: 80%;
+        margin-left: 10px;
+        border-radius: 16px;
+        margin-right: 10px;
+        max-height: 600px;
+
+    }
+
+    .home-page-container__main-description {
+        margin-left: 10px;
+        display: block;
     }
 }
 
 .home-page-container__upcomming{
     grid-column-start: 2;
     grid-column-end: 4;
-    grid-row-start: 1;
+    grid-row-start: 2;
     @extend %display-items;
     flex-direction: column;
     align-items: flex-start;
@@ -61,8 +76,8 @@
         margin-top: 5px;
 
         .home-page-container__upcomming-item-image {
-            width: 150px;
-            height: 200px;
+            width: 175px;
+            height: 250px;
             margin-right: 20px;
             border-radius: 8px;
         }
@@ -76,6 +91,7 @@
 .home-page-container__trending {
     grid-column-start: 1;
     grid-column-end: 4;
+    grid-row-start: 3;
     @extend %display-items;
     flex-grow: 1;
 

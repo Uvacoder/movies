@@ -1,15 +1,17 @@
 import {
   FETCH_TRENDING,
   FETCH_UPCOMMING,
+  FETCH_RANDOM
 } from '../Actions/HomePageActions';
 
 const initialState = {
-  isFetching: false,
-    items: [], 
   trending: {
     items: []
   },
   upcomming: {
+    items: []
+  },
+  random: {
     items: []
   },
   lastUpdated: Date.now()
@@ -26,6 +28,10 @@ export function homePage (state = initialState,action) {
   case FETCH_UPCOMMING:
     return Object.assign({}, state, {
       upcomming: action.upcomming,
+    })
+  case FETCH_RANDOM:
+    return Object.assign({}, state, {
+      random: action.random,
     })
   default:
     return state
