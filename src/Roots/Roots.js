@@ -3,6 +3,7 @@ import './Roots.scss'
 import { Route } from "react-router-dom";
 import HomePage from '../HomePage/HomePage'
 import RandomGifGenerator from '../RandomGifGenerator/RandomGifGenerator'
+import MovieDetails from '../MovieDetails/MovieDetails'
 
 function Roots() {
     return ( 
@@ -12,6 +13,9 @@ function Roots() {
         </Route>
         <Route path="/random-gif-generator">
           <RandomGifGenerator />
+        </Route>
+        <Route path="/movie">
+          <MovieDetails />
         </Route>
       </>
     )   

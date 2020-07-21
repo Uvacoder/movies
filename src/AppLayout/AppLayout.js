@@ -42,7 +42,8 @@ class AppLayout extends React.Component {
 
   renderMoviesSubMenu = () => {
     const menuItems = [{
-      title: 'Browse Movies'
+      title: 'Browse Movies',
+      url:"/movie"
     },{
       title: 'Upcomming'
     }]

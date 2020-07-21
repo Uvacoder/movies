@@ -3,6 +3,7 @@ import Communication from '../Communication/Communication';
 export const FETCH_TRENDING = 'FETCH_TRENDING';
 export const FETCH_UPCOMMING ='FETCH_UPCOMMING'
 export const FETCH_RANDOM ='FETCH_RANDOM'
+export const CLEANUP_RANDOM ='CLEANUP_RANDOM'
 
 const TRENDING_API = 'https://api.themoviedb.org/3/trending/all/day?api_key=87f688d5cb704339968f87fae03f38cd'
 const UPCOMMING_API = 'https://api.themoviedb.org/3/movie/upcoming?api_key=87f688d5cb704339968f87fae03f38cd&language=EN&page=1&region=US'
@@ -49,5 +50,14 @@ export const fetchRandom = () => {
 					}
 				})
 			})
+	};  
+};
+
+export const cleanUpFetchRandom = () => {
+	return {
+		type: CLEANUP_RANDOM,
+		random: {
+			items: null,
+		}
 	};  
 }; 

@@ -1,24 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import "./HomePage.scss"
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchTrending,fetchUpcomming, fetchRandom } from '../Actions/HomePageActions'
+import { fetchTrending,fetchUpcomming, fetchRandom, cleanUpFetchRandom } from '../Actions/HomePageActions'
 import { Divider } from 'antd';
 
 const NO_OF_TRENDING_ITEMS = 4;
 const NO_OF_UPCOMMING_ITEMS = 3;
+const NO_OF_FIRST_RANDOM_ITEM = 0;
+const NO_OF_LAST_LAST_ITEM = 19; // No more than 19, <- maximum TMDB API table length.
 
 function HomePage () {
 
   const trendingList = useSelector(state => state.homePage.trending.items);
   const upcommingList = useSelector(state => state.homePage.upcomming.items);
   const randomMovie = useSelector(state => state.homePage.random.items);
+  const [randomMovieId, setRandomMovieId] = useState(randomInt(NO_OF_FIRST_RANDOM_ITEM, NO_OF_LAST_LAST_ITEM));
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTrending());
     dispatch(fetchUpcomming());
     dispatch(fetchRandom());
+
+    return () => {
+      setRandomMovieId(null);
+      dispatch(cleanUpFetchRandom());
+      console.log('cleaned up')
+    }
   },[dispatch]);
+
+  function randomInt(min, max) {
+    return min + Math.floor((max - min) * Math.random());
+  }
 
   const renderTrending = () => {
     const availableMovies = trendingList.filter(movie => movie.title)
@@ -60,12 +73,9 @@ function HomePage () {
     });
   };
 
-  function randomInt(min, max) {
-    return min + Math.floor((max - min) * Math.random());
-  }
+
 
   const renderRandomMovie = () => {
-    const randomMovieId = randomInt(1, 19)
 
     return (
       <>
