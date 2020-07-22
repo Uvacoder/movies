@@ -4,7 +4,7 @@ import {
   
   const initialState = {
     details: {},
-    lastUpdated: Date.now()
+    lastUpdated: Date.now(),
   }
   
   export function movieDetails (state = initialState,action) {

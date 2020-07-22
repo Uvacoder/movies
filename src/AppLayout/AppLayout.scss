@@ -21,7 +21,7 @@ $content-max-width: 1280px;
         background: #032646;
         height: 100%;
         display: grid;
-        grid-template-columns: minmax(0,1fr) minmax($content-max-width ,5fr) minmax(0,1fr);
+        grid-template-columns: minmax(0,1.5fr) minmax($content-max-width ,5fr) minmax(0,1.5fr);
       }
 
     .site-layout__container-margin-right, 

@@ -4,6 +4,11 @@
     align-items: center;
 }
 
+@keyframes animatedBackground {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+}
+
 .home-page-container {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -16,14 +21,31 @@
     grid-row-start: 3;
 }
 
-.home-page-container__welcome {
-    font-size: 4em;
-    color: rgb(9, 197, 214);
-    display: flex;
-    justify-content: center; 
+.home-page-container__welcome {  
+    color: #86e2d5;
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 1;
+    background-image: url('../Images/moviereel1.jpg');
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    animation: animatedBackground 25s linear infinite;
+    background-size: contain;
+    min-height: 250px;
+    position: relative;
+
+    .home-page-container__welcome-greeting {
+        position: absolute;
+        top: 0;
+        font-size: 4em;
+    }
+
+    .home-page-container__welcome-tagline {
+        bottom: 30px;
+        font-size: 1.5em;
+        position: absolute;
+        font-style: italic;
+    }
 }
 
 .home-page-container__main {
@@ -33,30 +55,38 @@
 
     .home-page-container__main-title {
         font-size: 2em;
-        color:  rgb(9, 197, 214);
+        font-weight: 500;
+        color:  #86e2d5;
         margin-left: 10px;
         margin-bottom: 30px;
         display: flex;
-        justify-content: center;
+        justify-content: left;
     }
 
     .home-page-container__main-content {
         display: flex;
+        align-items: center;
     }
 
     .home-page-container__main-image {
-        height: 80%;
-        width: 80%;
+        height: 80%; 
         margin-left: 10px;
         border-radius: 16px;
         margin-right: 10px;
-        max-height: 600px;
+        max-height: 700px;
 
     }
 
     .home-page-container__main-description {
         margin-left: 10px;
-        display: block;
+        align-items: flex-start;
+
+        .home-page-container__main-description-title {
+
+        }
+        .home-page-container__main-description-overwiev {
+
+        }
     }
 }
 
@@ -96,18 +126,17 @@
     flex-grow: 1;
 
     .home-page-container__trending-item {
-        height: 100%;
-        width: 25%;
-        margin-right: 5px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        user-select: none;
 
         .home-page-container__trending-item-image {
             width:95%;
             height:100%;
             border-radius: 8px;
+            pointer-events: none;
         }
 
         .home-page-container__trending-item-title {

@@ -2,9 +2,10 @@ import React, { useEffect,useState } from 'react';
 import "./HomePage.scss"
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchTrending,fetchUpcomming, fetchRandom, cleanUpFetchRandom } from '../Actions/HomePageActions'
-import { Divider } from 'antd';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
-const NO_OF_TRENDING_ITEMS = 4;
+const NO_OF_TRENDING_ITEMS = 19; // No more than 19, <- maximum TMDB API table length.
 const NO_OF_UPCOMMING_ITEMS = 3;
 const NO_OF_FIRST_RANDOM_ITEM = 0;
 const NO_OF_LAST_LAST_ITEM = 19; // No more than 19, <- maximum TMDB API table length.
@@ -29,16 +30,21 @@ function HomePage () {
     }
   },[dispatch]);
 
+  const responsive = {
+    all: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 0 },
+      items: 5
+    }
+  };  
+
   function randomInt(min, max) {
     return min + Math.floor((max - min) * Math.random());
   }
 
-  const renderTrending = () => {
-    const availableMovies = trendingList.filter(movie => movie.title)
-
-    return availableMovies.slice(0, NO_OF_TRENDING_ITEMS).map((item) => {
-      return (
-      <div className='home-page-container__trending-item'>
+  const renderTrendingMovieBlock = (item) => {
+    return (
+      <div className='home-page-container__trending-item' onClick={() => console.log(item)}>
         <img 
           className='home-page-container__trending-item-image' 
           src={ `https://image.tmdb.org/t/p/w500${ item?.poster_path }`} 
@@ -47,7 +53,22 @@ function HomePage () {
         <div className='home-page-container__trending-item-title'>{ item?.title }</div>
       </div>
       )
-    });
+  }
+
+  const renderTrending = () => {
+    const availableMovies = trendingList.filter(movie => movie.title)
+
+    return (
+      <div style={{width: '100%'}}>
+        <Carousel 
+          responsive={responsive}
+          infinite={true}
+          autoPlay={true}
+        >
+          {availableMovies.slice(0, NO_OF_TRENDING_ITEMS).map((item) => renderTrendingMovieBlock(item))}
+        </Carousel>
+      </div>   
+    )
   };
 
   const renderUpcomming = () => {
@@ -79,28 +100,34 @@ function HomePage () {
 
     return (
       <>
-        <div className='home-page-container__main-title'> You might want to watch today: </div>
+        <div className='home-page-container__main-title'> Don't know what to watch ? Consider this title: </div>
         <div className='home-page-container__main-content'>
           <img className='home-page-container__main-image' src={`https://image.tmdb.org/t/p/w500${randomMovie[randomMovieId]?.poster_path}`}/>
           <div className='home-page-container__main-description'> 
-            <div>Title: {randomMovie[randomMovieId]?.title}</div>  
-            <div>Release Date: {randomMovie[randomMovieId]?.release_date}</div>
-            <div>Overwiev: {randomMovie[randomMovieId]?.overview}</div>
+            <div className='home-page-container__main-description-title'>Title: {randomMovie[randomMovieId]?.title}</div>  
+            <div className='home-page-container__main-description-date'>Release Date: {randomMovie[randomMovieId]?.release_date}</div>
+            <div className='home-page-container__main-description-overwiev'>Overwiev: {randomMovie[randomMovieId]?.overview}</div>
           </div>
         </div>
       </>
     )
   }
-
+  
   return (
     <div className='home-page-container'>
-      <div className='home-page-container__welcome'>Welcome to Movie Lounge!</div>
-      {/* <Divider className='home-page-container-divider1' /> */}
+      <div className='home-page-container__welcome'>
+      <div className='home-page-container__welcome-greeting'>
+        Welcome to Movie Lounge.
+      </div>
+      <div className='home-page-container__welcome-tagline'>
+        Find your favorite movies and explore new ones among the milions available.
+      </div>
+      </div>
       <div className='home-page-container__main'>
         {renderRandomMovie()}
       </div>
-      <div className='home-page-container__trending'>
-        {renderTrending()}
+      <div className='home-page-container__trending' > 
+        { renderTrending() }
       </div>
       <div className='home-page-container__upcomming'>
         {renderUpcomming()}

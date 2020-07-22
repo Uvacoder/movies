@@ -1,6 +1,10 @@
 import React from 'react';
 import './MovieDetails.scss';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import { fetchMovieDetails } from '../Actions/MovieActions'
+
+const TEMP_MOVIE_ID = 550;
 
 class MovieDetails extends React.Component {
   constructor(props) {
@@ -8,7 +12,7 @@ class MovieDetails extends React.Component {
   }
 
   componentDidMount() {
-    fetchMovieDetails();
+    this.props.fetchMovieDetails(TEMP_MOVIE_ID);
   }
   
 
@@ -74,4 +78,14 @@ class MovieDetails extends React.Component {
    };
 }
 
-export default MovieDetails;
+const mapStateToProps = (state) => {
+    return {
+        count: state.movieDetails.details
+    }
+}
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    fetchMovieDetails,
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

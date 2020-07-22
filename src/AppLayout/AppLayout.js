@@ -20,8 +20,8 @@ class AppLayout extends React.Component {
 
   renderParticles() {
     // Due to library constraints accessing to load function from window object is necessary.
-    window.particlesJS.load('particles-left', './particles.json');
-    window.particlesJS.load('particles-right', './particles.json');
+    //window.particlesJS.load('particles-left', './particles.json');
+    //window.particlesJS.load('particles-right', './particles.json');
   }
 
 
