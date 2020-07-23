@@ -122,6 +122,9 @@ class AppLayout extends React.Component {
                     <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
                       <Link to ="/home" />
                     </Menu.Item>
+                    <Menu.Item key="2" >
+                      <Link to ="/home" className="header-home_nav-bar-menu-movie-lounge">Movie Lounge</Link>
+                    </Menu.Item>
                   </Menu>
                 </div>
                 <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
@@ -137,9 +140,11 @@ class AppLayout extends React.Component {
                     {this.renderNetflixMenu()}
                     {this.renderHydeParkMenu()}
                 </Menu>
-                <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
-                  {this.renderYouProfileMenu()}
-                </Menu>
+                <div className="your-profile">
+                  <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
+                    {this.renderYouProfileMenu()}
+                  </Menu>
+                </div>
             </Header>
     )
   }

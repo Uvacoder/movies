@@ -47,6 +47,7 @@ $content-max-width: 1280px;
 .nav-bar-menu {
     display: flex;
     justify-content: center;
+
 }
 
 .ant-input-wrapper {
@@ -80,10 +81,19 @@ $content-max-width: 1280px;
         color: black;
     }
 
+    .ant-menu-item .header-home_nav-bar-menu-movie-lounge {
+        font-size: 1.1em;
+        color: rgb(9, 197, 214);
+    }
+    .ant-menu-item .header-home_nav-bar-menu-movie-lounge:hover {
+        color: red
+    }
+
 }
 
 .header-home {
     display: flex;
+    width: 10%;
 
     .anticon {
         font-size: 40px;
@@ -107,4 +117,8 @@ $content-max-width: 1280px;
     .ant-menu-submenu-title {
         color:white
     }
+}
+
+.your-profile {
+    width: 10%;
 }
