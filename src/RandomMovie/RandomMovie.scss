@@ -1,8 +1,17 @@
 .random-movie-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.6fr;
     grid-gap: 20px;
     height: 100%;
+
+    .random-movie-container__trailer {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .random-movie-container__image {
@@ -13,12 +22,6 @@
     max-height: 500px;
     grid-column-start: 1;
     grid-row-start: 1;
-}
-
-.random-movie-container__video {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 2;
 }
 
 .random-movie-container__details {

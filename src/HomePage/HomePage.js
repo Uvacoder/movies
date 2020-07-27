@@ -59,7 +59,7 @@ function HomePage () {
   };
 
   const renderUpcomming = () => {
-    const availableMovies = upcommingList.filter(movie => movie.title || movie.orginal_title )
+    const availableMovies = upcommingList.filter(movie => movie.poster_path && (movie.title || movie.orginal_title) )
 
     return availableMovies.slice(0, NO_OF_UPCOMMING_ITEMS).map((item) => {
       return (
@@ -87,7 +87,7 @@ function HomePage () {
   return (
     <div className='home-page-container'>
       <div className='home-page-container__random'>
-        <Divider className='home-page-container__main-title' orientation='center'>Don't know what to watch? Consider this title:</Divider>
+        <Divider className='home-page-container__main-title' orientation='left'>Don't know what to watch? Consider this title:</Divider>
         <RandomMovie />
       </div> 
       <div className='home-page-container__trending' > 

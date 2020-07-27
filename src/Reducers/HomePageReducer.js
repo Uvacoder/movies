@@ -2,7 +2,7 @@ import {
   FETCH_TRENDING,
   FETCH_UPCOMMING,
   FETCH_RANDOM,
-  CLEANUP_RANDOM,
+  // CLEANUP_RANDOM,
 } from '../Actions/HomePageActions';
 
 const initialState = {
@@ -35,10 +35,10 @@ export function homePage (state = initialState,action) {
     return Object.assign({}, state, {
       random: action.random,
     })
-  case CLEANUP_RANDOM:
-    return Object.assign({}, state, {
-      random: initialState.random,
-    })
+  // case CLEANUP_RANDOM:
+  //   return Object.assign({}, state, {
+  //     random: initialState.random,
+  //   })
   default:
     return state
   }
