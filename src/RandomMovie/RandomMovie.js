@@ -12,18 +12,19 @@ const API_PATH = 'https://image.tmdb.org/t/p/w500'
 const RandomMovie = () => {
 
     const randomMovie = useSelector(state => state.homePage.random.items);
-    const [randomMovieId, setRandomMovieId] = useState(randomInt(NO_OF_FIRST_RANDOM_ITEM, NO_OF_LAST_LAST_ITEM));
+    const videoKey = useSelector(state => state.homePage.random.videoKey);
+    const [randomMovieId, setRandomMovieId] = useState(randomInt(NO_OF_FIRST_RANDOM_ITEM, NO_OF_LAST_LAST_ITEM)); //TODO it should not be in state
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchRandom());
-    
-        return () => {
-          setRandomMovieId(null);
-          dispatch(cleanUpFetchRandom());
-          console.log('cleaned up')
-        }
-      },[dispatch]);
+      dispatch(fetchRandom(randomMovieId));
+  
+      return () => {
+        // setRandomMovieId(null);
+        dispatch(cleanUpFetchRandom()); // usless by kamil k.
+        console.log('cleaned up')
+      }
+    },[dispatch]);
 
     function randomInt(min, max) {
         return min + Math.floor((max - min) * Math.random());
@@ -58,7 +59,7 @@ const RandomMovie = () => {
             </div>
           </div>
           <iframe className='random-movie-container__video' width="420" height="315"
-            src="https://www.youtube.com/embed/tgbNymZ7vqY">
+            src={`https://www.youtube.com/embed/${randomMovie[randomMovieId]?.videoKey[0].key}`}>
           </iframe>
         </div>
     )

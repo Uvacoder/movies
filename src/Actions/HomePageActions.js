@@ -1,13 +1,14 @@
 import Communication from '../Communication/Communication';
 
 export const FETCH_TRENDING = 'FETCH_TRENDING';
-export const FETCH_UPCOMMING ='FETCH_UPCOMMING'
-export const FETCH_RANDOM ='FETCH_RANDOM'
-export const CLEANUP_RANDOM ='CLEANUP_RANDOM'
+export const FETCH_UPCOMMING ='FETCH_UPCOMMING';
+export const FETCH_RANDOM ='FETCH_RANDOM';
+export const CLEANUP_RANDOM ='CLEANUP_RANDOM';
 
+let randomMoviePage = randomInt(1, 100);
 const TRENDING_API = 'https://api.themoviedb.org/3/trending/all/day?api_key=87f688d5cb704339968f87fae03f38cd'
 const UPCOMMING_API = 'https://api.themoviedb.org/3/movie/upcoming?api_key=87f688d5cb704339968f87fae03f38cd&language=EN&page=1&region=US'
-const RANDOM_API = `https://api.themoviedb.org/3/discover/movie?api_key=87f688d5cb704339968f87fae03f38cd&language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=${randomInt(1, 100)}`
+const RANDOM_API = `https://api.themoviedb.org/3/discover/movie?api_key=87f688d5cb704339968f87fae03f38cd&language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=${randomMoviePage}`;
 
 function randomInt(min, max) {
 	return min + Math.floor((max - min) * Math.random());
@@ -40,16 +41,24 @@ export const fetchUpcomming = () => {
 }; 
 
 
-export const fetchRandom = () => {
-	return dispatch => {
-			Communication.get(RANDOM_API).then(json => {
-				dispatch({ 
-					type: FETCH_RANDOM,
-					random: {
-						items: json.results,
-					}
-				})
-			})
+export const fetchRandom = (randomMovieId) => {
+	return async dispatch => {
+
+		const movies = await Communication.get(RANDOM_API);
+		const items = movies.results;
+
+		await Promise.all(items.map(async item => {
+			const videoKeyResult = await Communication.get(`https://api.themoviedb.org/3/movie/${item.id}/videos?api_key=87f688d5cb704339968f87fae03f38cd&language=en-US`)
+			
+			item.videoKey = videoKeyResult.results; 
+		}));
+
+		dispatch({ 
+			type: FETCH_RANDOM,
+			random: {
+				items: movies.results,
+			}
+		})
 	};  
 };
 

@@ -2,7 +2,7 @@ import {
   FETCH_TRENDING,
   FETCH_UPCOMMING,
   FETCH_RANDOM,
-  CLEANUP_RANDOM
+  CLEANUP_RANDOM,
 } from '../Actions/HomePageActions';
 
 const initialState = {
@@ -13,7 +13,8 @@ const initialState = {
     items: []
   },
   random: {
-    items: []
+    items: [],
+    videoKey: []
   },
   lastUpdated: Date.now()
 }
