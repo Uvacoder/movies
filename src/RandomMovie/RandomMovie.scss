@@ -15,11 +15,11 @@
 }
 
 .random-movie-container__image {
-    height: 100%; 
     margin-left: 10px;
     border-radius: 16px;
     margin-right: 10px;
-    max-height: 500px;
+    height: 500px;
+    width: 333px;
     grid-column-start: 1;
     grid-row-start: 1;
 }
@@ -33,28 +33,31 @@
     grid-row-start: 1;
 
     .random-movie-container__details-vote-wrapper {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         width: 100%;
-        justify-content: space-between;
+        height: 100%;
     }
 
     .random-movie-container__details-title {
         font-size: 2em;
-        flex:1;
-        color: yellow;
+        margin-bottom: 20px;
+        font-weight: bold;
+        color: aqua;
     }
     .random-movie-container__details-vote-wrapper-popularity,
     .random-movie-container__details-vote-wrapper-average {
         flex:1;
-        width: 100px;
-        height: 100px;
+        width: 120px;
+        height: 120px;
     }
     .random-movie-container__details-overwiev {
-        flex:2;
+        margin-bottom: 20px;
+        min-height: 220px;
     }
 
     .random-movie-container__details-date {
-        flex:1;
+        margin-bottom: 20px;
     }
 
     .random-movie-container__details-vote-wrapper-popularity-name,

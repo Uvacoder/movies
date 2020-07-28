@@ -25,6 +25,7 @@ const DoughnutChart = (props) => {
         }}
         labelPosition={0}
         background="#a9ae9e26"
+        startAngle={270}
         />    
     );
 };

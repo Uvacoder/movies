@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import "./HomePage.scss"
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchTrending,fetchUpcomming, fetchRandom, cleanUpFetchRandom } from '../Actions/HomePageActions'
+import { fetchTrending,fetchUpcomming } from '../Actions/HomePageActions'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Divider } from 'antd'
-import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import RandomMovie from '../RandomMovie/RandomMovie'
+import UpcommingMovies from '../UpcommingMovies/UpcommingMovies'
 
 const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table length.
 const NO_OF_UPCOMMING_ITEMS = 3;
@@ -52,7 +52,7 @@ function HomePage () {
           infinite={true}
           autoPlay={true}
         >
-          {availableMovies.slice(0, NO_OF_TRENDING_ITEMS).map((item) => renderTrendingMovieBlock(item))}
+          { availableMovies.slice(0, NO_OF_TRENDING_ITEMS).map((item) => renderTrendingMovieBlock(item)) }
         </Carousel>
       </div>   
     )
@@ -63,23 +63,7 @@ function HomePage () {
 
     return availableMovies.slice(0, NO_OF_UPCOMMING_ITEMS).map((item) => {
       return (
-        <div className='home-page-container__upcomming-item'>
-          <img 
-            className='home-page-container__upcomming-item-image' 
-            src={ `https://image.tmdb.org/t/p/w500${ item?.poster_path }`} 
-            alt=''
-          />
-          <div className='home-page-container__upcomming-item-text'>
-           <div className='home-page-container__upcomming-item-title'>
-             { item?.title || item?.orginal_title }
-            </div>
-            <div className='home-page-container__upcomming-item-title-date'>Release date: {item?.release_date}</div>
-            <div className='home-page-container__upcomming-item-title-popularity'>
-              Popularity score:
-              <DoughnutChart data={Math.floor(item?.popularity)}/>  
-            </div>
-          </div> 
-        </div>   
+        <UpcommingMovies item={item} /> 
       );
     });
   };
@@ -96,7 +80,7 @@ function HomePage () {
       </div>
       <div className='home-page-container__upcomming'>
         <Divider className='home-page-container__upcomming-title' orientation='center'>Upcomming</Divider>
-        {renderUpcomming()}
+        { renderUpcomming() }
       </div>
     </div>
   );
