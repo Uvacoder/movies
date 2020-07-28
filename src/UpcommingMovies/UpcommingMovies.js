@@ -15,14 +15,16 @@ const UpcommingMovie = (props) => {
           alt=''
         />
         <div className='upcomming-container__details'>
-         <div className='upcomming-container__details-title'>
-           { item?.title || item?.orginal_title }
-          </div>
-          <div className='upcomming-container__details-release'>Release date: {item?.release_date}</div>
-          <div className='upcomming-container__details-popularity'>
-            <div className='upcomming-container__details-popularity-text'>
-                Popularity:
+            <div className='upcomming-container__details-title'>
+                { item?.title || item?.orginal_title }
             </div>
+            <div className='upcomming-container__details-release'>
+                Release date: {item?.release_date}
+            </div>
+            <div className='upcomming-container__details-popularity'>
+                <div className='upcomming-container__details-popularity-text'>
+                    Popularity:
+                </div>
             <div className='upcomming-container__details-popularity-chart'>
                 <DoughnutChart data={Math.floor(item?.popularity)}/> 
             </div>

@@ -3,6 +3,7 @@
     grid-template-columns: 1fr 1.6fr;
     grid-gap: 20px;
     height: 100%;
+    grid-row-gap: 30px;
 
     .random-movie-container__trailer {
         grid-column-start: 1;
@@ -50,14 +51,25 @@
         flex:1;
         width: 120px;
         height: 120px;
+        padding-bottom: 20px;
     }
     .random-movie-container__details-overwiev {
         margin-bottom: 20px;
         min-height: 220px;
+
+        .random-movie-container__details-overwiev-title{
+            font-weight: bold;
+        }
     }
 
     .random-movie-container__details-date {
         margin-bottom: 20px;
+        display: flex;
+        
+        .random-movie-container__details-date-title{
+            font-weight: bold;
+            margin-right: 5px;
+        }
     }
 
     .random-movie-container__details-vote-wrapper-popularity-name,

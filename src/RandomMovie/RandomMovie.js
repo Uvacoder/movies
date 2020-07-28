@@ -40,25 +40,39 @@ const RandomMovie = () => {
           <div className='random-movie-container__details'> 
             <div className='random-movie-container__details-title'>
                 {currentMovie.title}
-            </div>  
+            </div> 
             <div className='random-movie-container__details-overwiev'>
-                Overwiev: {currentMovie.overview}
+              <div className='random-movie-container__details-overwiev-title'>
+                Overwiev: 
+              </div >
+              <div className='random-movie-container__details-overwiev-content'>
+                {currentMovie.overview}
+              </div >
             </div>
             <div className='random-movie-container__details-date'>
-                Release Date: {currentMovie.release_date}
+              <div className='random-movie-container__details-date-title'>
+                Release Date:
+              </div>
+              <div className='random-movie-container__details-date-content'>
+               {currentMovie.release_date}
+              </div>
             </div>
             <div className='random-movie-container__details-vote-wrapper'>
               <div className='random-movie-container__details-vote-wrapper-popularity'>
                 <div  className='random-movie-container__details-vote-wrapper-popularity-name'>
                     Popularity:
                 </div>
-                <DoughnutChart data={Math.floor(currentMovie.popularity)}/>
+                <DoughnutChart data={ Math.floor(currentMovie.popularity)  } />
               </div>
               <div className='random-movie-container__details-vote-wrapper-average'>
                 <div className='random-movie-container__details-vote-wrapper-average-name'>
                     Vote average:
                 </div>
-                <DoughnutChart data={currentMovie.vote_average} maxValue={10} percent={false}/>
+                <DoughnutChart 
+                  data={currentMovie.vote_average} 
+                  maxValue={10} percent={false} 
+                  chartColor= {currentMovie.vote_average > 7 ? 'lightgreen' : 'Aquamarine' }
+                />
               </div>
             </div>
           </div>
