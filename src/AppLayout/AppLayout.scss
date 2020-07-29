@@ -1,7 +1,7 @@
 $search-bar-color: rgba(9, 197, 214, 0.4);
-$content-max-width: 1280px;
+$content-min-width: 1056px;
 
-@media only screen and (max-width: $content-max-width) {
+@media only screen and (max-width: $content-min-width) {
     .ant-layout .site-layout .site-layout__container { 
         display: flex ;
 
@@ -21,8 +21,9 @@ $content-max-width: 1280px;
         background: #032646;
         height: 100%;
         display: grid;
-        grid-template-columns: minmax(0,1.5fr) minmax($content-max-width ,5fr) minmax(0,1.5fr);
-      }
+        grid-template-columns: minmax(0,1.5fr) minmax($content-min-width ,5fr) minmax(0,1.5fr);
+    }
+
 
     .site-layout__container-margin-right, 
     .site-layout__container-margin-left {
@@ -35,6 +36,7 @@ $content-max-width: 1280px;
 
     .site-layout__container-main {
         color: white;
+
     }
 
 }

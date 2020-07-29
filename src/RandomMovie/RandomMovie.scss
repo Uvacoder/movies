@@ -54,8 +54,13 @@
         padding-bottom: 20px;
     }
     .random-movie-container__details-overwiev {
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         min-height: 220px;
+
+        .random-movie-container__details-overwiev-content{
+            overflow: auto;
+            height: 220px;
+        }
 
         .random-movie-container__details-overwiev-title{
             font-weight: bold;

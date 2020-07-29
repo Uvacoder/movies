@@ -3,8 +3,10 @@ import './MovieDetails.scss';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { fetchMovieDetails } from '../Actions/MovieActions'
+import MovieHeader from '../MovieHeader/MovieHeader'
 
-const TEMP_MOVIE_ID = 550;
+const TEMP_MOVIE_ID = 583083;
+const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 
 class MovieDetails extends React.Component {
   constructor(props) {
@@ -18,15 +20,17 @@ class MovieDetails extends React.Component {
 
   render() {
     return (
-        <div>
-            <div className='test'> 
-                <div>Tło</div>
-                <div>tytuł</div>
-                <div>org.tytuł</div>
-                <div>ocena</div>
-                <div>popularnosc</div>
+        <div className='movie-details-container'>
+            <div className='movie-details-container__header'> 
+                <MovieHeader 
+                    backDropPath={`${BACKDROP_API_PATH}${this.props.details.backdrop_path}`} 
+                    title={this.props.details.original_title} 
+                    originalTitle={this.props.details.original_title}
+                    voteAverage={this.props.details.vote_average}
+                    popularity={this.props.details.popularity}
+                />
             </div>
-            <div className='test'> 
+            <div className='test2'> 
                 <div>plakat</div>
                 <div>overview</div>
                 <div>genres</div>
@@ -34,11 +38,11 @@ class MovieDetails extends React.Component {
                 <div>runtime</div>
                 <div>country</div>
             </div>
-            <div className='test'> 
+            <div className='test2'> 
                 <div>director</div>
                 <div>writers</div>
             </div>
-            <div className='test'> 
+            <div className='test2'> 
                 <div>CAST:</div>
                 <div>1</div>
                 <div>2</div>
@@ -47,19 +51,19 @@ class MovieDetails extends React.Component {
                 <div>5</div>
             </div>
             <div>TRAILER</div>
-            <div className='test'> 
+            <div className='test2'> 
                 <div>photo1</div>
                 <div>photo2</div>
                 <div>photo3</div>
                 <div>photo4</div>
             </div>
-            <div className='test'> 
+            <div className='test2'> 
                 <div>MORE LIKE THIS1</div>
                 <div>MORE LIKE THIS2</div>
                 <div>MORE LIKE THIS3</div>
                 <div>MORE LIKE THIS4</div>
             </div>
-            <div className='test'> 
+            <div className='test2'> 
                 <div>USER REVIEW 1</div>
                 <div>USER REVIEW2</div>
                 <div>USER REVIEW3</div>
@@ -80,7 +84,7 @@ class MovieDetails extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        count: state.movieDetails.details
+        details: state.movieDetails.details
     }
 }
 
