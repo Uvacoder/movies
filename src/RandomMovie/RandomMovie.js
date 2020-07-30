@@ -5,10 +5,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchRandom } from '../Actions/HomePageActions';
 import YouTube from 'react-youtube';
 
-//tmp
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
-
 const NO_OF_FIRST_RANDOM_ITEM = 0;
 const NO_OF_LAST_LAST_ITEM = 20; // No more than 20, <- maximum TMDB API table length.
 const API_PATH = 'https://image.tmdb.org/t/p/w500'

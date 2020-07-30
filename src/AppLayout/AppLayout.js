@@ -116,7 +116,7 @@ class AppLayout extends React.Component {
 
   renderHeader = () => {
     return (
-      <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+      <Header style={{ position: 'fixed', width: '100%' }}>
                 <div className='header-home'>
                   <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >  
                     <Menu.Item key="1" icon={<PlaySquareOutlined/>}>

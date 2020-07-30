@@ -3,10 +3,13 @@ import './MovieDetails.scss';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { fetchMovieDetails } from '../Actions/MovieActions'
+import { Divider } from 'antd'
 import MovieHeader from '../MovieHeader/MovieHeader'
+import MovieOverwiev from '../MovieOverwiev/MovieOverwiev'
 
-const TEMP_MOVIE_ID = 583083;
+const TEMP_MOVIE_ID = 979;
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
+const POSTER_PATH = 'https://image.tmdb.org/t/p/w500'
 
 class MovieDetails extends React.Component {
   constructor(props) {
@@ -16,32 +19,37 @@ class MovieDetails extends React.Component {
   componentDidMount() {
     this.props.fetchMovieDetails(TEMP_MOVIE_ID);
   }
-  
 
   render() {
+    console.log(this.props.details)
     return (
         <div className='movie-details-container'>
             <div className='movie-details-container__header'> 
                 <MovieHeader 
                     backDropPath={`${BACKDROP_API_PATH}${this.props.details.backdrop_path}`} 
                     title={this.props.details.original_title} 
-                    originalTitle={this.props.details.original_title}
+                    tagline={this.props.details.tagline ? this.props.details.tagline : this.props.details.original_title}
                     voteAverage={this.props.details.vote_average}
                     popularity={this.props.details.popularity}
                 />
             </div>
-            <div className='test2'> 
-                <div>plakat</div>
-                <div>overview</div>
-                <div>genres</div>
-                <div>realease date</div>
-                <div>runtime</div>
-                <div>country</div>
+            <div className='movie-details-container__overwiev'> 
+                <MovieOverwiev
+                    poster={`${POSTER_PATH}${this.props.details.poster_path}`}
+                    description={this.props.details.overview}
+                    realeaseDate={this.props.details.release_date}
+                    genres={this.props.details.genres?.map((item) => item.name).join(', ')}
+                    runtime={this.props.details.runtime}
+                    country={this.props.details.production_countries?.map((item) => item.name).join(', ')}
+                    director={this.props.details.credits?.crew?.filter((item) => item.job === 'director').name}
+                    writers={'1'}
+                    budget={`${this.props.details.budget} $`}
+                    revenue={`${this.props.details.revenue} $`}
+                    languages={this.props.details.spoken_languages?.map((item) => item.name).join(', ')}
+                    companies={this.props.details.production_companies?.map((item) => item.name).join(', ')}
+                />
             </div>
-            <div className='test2'> 
-                <div>director</div>
-                <div>writers</div>
-            </div>
+            <Divider className='movie-details-container__divider' orientation='left'>CAST</Divider>
             <div className='test2'> 
                 <div>CAST:</div>
                 <div>1</div>
@@ -50,30 +58,31 @@ class MovieDetails extends React.Component {
                 <div>4</div>
                 <div>5</div>
             </div>
+            <Divider className='movie-details-container__divider' orientation='left'>WATCH TRAILER</Divider>
             <div>TRAILER</div>
+            <Divider className='movie-details-container__divider' orientation='left'>PHOTOS</Divider>
             <div className='test2'> 
                 <div>photo1</div>
                 <div>photo2</div>
                 <div>photo3</div>
                 <div>photo4</div>
             </div>
+            <Divider className='movie-details-container__divider' orientation='left'>SIMILAR MOVIES</Divider>
             <div className='test2'> 
                 <div>MORE LIKE THIS1</div>
                 <div>MORE LIKE THIS2</div>
                 <div>MORE LIKE THIS3</div>
                 <div>MORE LIKE THIS4</div>
             </div>
+            <Divider className='movie-details-container__divider' orientation='left'>TMDB USER REVIEWS</Divider>
             <div className='test2'> 
                 <div>USER REVIEW 1</div>
                 <div>USER REVIEW2</div>
                 <div>USER REVIEW3</div>
                 <div>USER REVIEW4</div>
             </div>
+            <Divider className='movie-details-container__divider' orientation='left'>SOCIAL</Divider>
             <div> 
-                <div>budget</div>
-                <div>revenue</div>
-                <div>production companies</div>
-                <div>diffrent title</div>
                 <div>social media</div>
                 <div>website</div>
             </div>

@@ -64,12 +64,16 @@ $content-min-width: 1056px;
 .ant-layout-header {
     display: flex;
     justify-content: space-between;
+    z-index: 2;
 
     .ant-menu {
         .ant-menu-item-selected {
             background-color: transparent;
         }
     }
+
+
+
 
     .ant-menu-item:hover {
         svg {

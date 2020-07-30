@@ -10,7 +10,8 @@ const DoughnutChart = (props) => {
         chartColor,
         fontSize,
         fontColor,
-        percent
+        percent,
+        background
     } = props;
 
     return (
@@ -24,7 +25,7 @@ const DoughnutChart = (props) => {
           fill: fontColor,
         }}
         labelPosition={0}
-        background="#a9ae9e26"
+        background={background}
         startAngle={270}
         />    
     );
@@ -36,7 +37,8 @@ DoughnutChart.defaultProps = {
     chartColor: 'rgb(9, 197, 214)',
     fontSize: '25px',
     fontColor: 'rgb(9, 197, 214)',
-    percent: true
+    percent: true,
+    background: "#a9ae9e26",
 }
 
 export default DoughnutChart
