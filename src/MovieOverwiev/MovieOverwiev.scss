@@ -1,7 +1,18 @@
+%display-title {
+    font-weight: bold;
+    margin-right: 1em;
+    color: wheat;
+}
+
+%display-title-text-under {
+    font-weight: bold;
+    color: wheat;
+}
+
 .movie-overwiev {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-gap: 20px;
+    grid-template-columns: 1fr 1.6fr 1fr;
+    grid-gap: 10px;
     height: 100%;
 
     .movie-overwiev__poster{
@@ -21,14 +32,17 @@
         grid-column-end: 3;
         grid-row-start: 1;
         grid-row-end: 2;
+        min-height: 230px;
 
         .movie-overwiev__description-title{
-            font-weight: bold;
+            @extend %display-title-text-under;
             margin-bottom: 1em;
+            
         }
 
         .movie-overwiev__description-text {
             overflow: auto;
+            
         }
     }
 
@@ -40,8 +54,7 @@
         display: flex;
 
         .movie-overwiev__genres-title{
-            font-weight: bold;
-            margin-right: 1em;
+            @extend %display-title
         }
     }
 
@@ -53,8 +66,7 @@
         display: flex;
 
         .movie-overwiev__release-title{
-            font-weight: bold;
-            margin-right: 1em;
+            @extend %display-title
         }
     }
 
@@ -67,8 +79,7 @@
         margin-bottom: auto;
 
         .movie-overwiev__director-title{
-            font-weight: bold;
-            margin-right: 1em;
+            @extend %display-title
         }
     }
 
@@ -81,8 +92,7 @@
         margin-bottom: auto;
 
         .movie-overwiev__writers-title{
-            font-weight: bold;
-            margin-right: 1em;
+            @extend %display-title
         }
 
     }
@@ -94,6 +104,9 @@
         grid-row-end: 6;
         display: flex;
         flex-direction: column;
+        border-left: white 1px solid;
+        border-left-color: white;
+        padding-left: 20px;
         
 
         .movie-overwiev__extra-runtime,
@@ -107,8 +120,7 @@
             .movie-overwiev__extra-budget-title,
             .movie-overwiev__extra-revenue-title
              {
-                font-weight: bold;
-                margin-right: 1em;
+                @extend %display-title
             }
         }
     
@@ -120,7 +132,7 @@
             .movie-overwiev__extra-countries-title,
             .movie-overwiev__extra-spoken-languages-title,
             .movie-overwiev__extra-production-companies-title {
-                font-weight: bold;
+                @extend %display-title-text-under;
             }
         }
     }
