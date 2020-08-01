@@ -7,8 +7,9 @@ import { Divider } from 'antd'
 import MovieHeader from '../MovieHeader/MovieHeader'
 import MovieOverwiev from '../MovieOverwiev/MovieOverwiev'
 import MovieCast from '../MovieCast/MovieCast'
+import MovieTrailer from '../MovieTrailer/MovieTrailer'
 
-const TEMP_MOVIE_ID = 23168;
+const TEMP_MOVIE_ID = 299534;
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 const POSTER_PATH = 'https://image.tmdb.org/t/p/w500'
 
@@ -56,15 +57,21 @@ class MovieDetails extends React.Component {
                     budget={`${this.props.details.budget} $`}
                     revenue={`${this.props.details.revenue} $`}
                     languages={this.props.details.spoken_languages?.map((item) => item.name).join(', ')}
-                    companies={this.props.details.production_companies?.map((item) => item.name).join(', ')}
+                    companies={this.props.details.production_companies?.slice(0, 5).map((item) => item.name).join(', ')}
                 />
             </div>
             <Divider className='movie-details-container__divider' orientation='left'>CAST</Divider>
             <div className='movie-details-container__cast'> 
-                <MovieCast castItems={this.props.details.credits?.cast}/>
+                <MovieCast 
+                    castItems={this.props.details.credits?.cast}
+                />
             </div>
-            <Divider className='movie-details-container__divider' orientation='left'>WATCH TRAILER</Divider>
-            <div>TRAILER</div>
+            <Divider className='movie-details-container__divider' orientation='left'>{this.props.details.title || this.props.details.original_title}  TRAILERS</Divider>
+            <div className='movie-details-container__trailer'>
+                <MovieTrailer 
+                    videoItems={this.props.details?.videos?.results.slice(0, 3)}
+                />
+            </div>
             <Divider className='movie-details-container__divider' orientation='left'>PHOTOS</Divider>
             <div className='test2'> 
                 <div>photo1</div>
