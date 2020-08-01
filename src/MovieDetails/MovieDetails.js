@@ -8,6 +8,7 @@ import MovieHeader from '../MovieHeader/MovieHeader'
 import MovieOverwiev from '../MovieOverwiev/MovieOverwiev'
 import MovieCast from '../MovieCast/MovieCast'
 import MovieTrailer from '../MovieTrailer/MovieTrailer'
+import MovieImages from '../MovieImages/MovieImages'
 
 const TEMP_MOVIE_ID = 299534;
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
@@ -30,8 +31,18 @@ class MovieDetails extends React.Component {
     return this.props.details.credits?.crew?.filter((item) => item.department === "Writing")?.map((item) => item.name).join(', ')
   }
 
+  createImagesObject = () => {
+    // for (let i=0; i<9; i++) {
+        
+        return {
+          src:`${BACKDROP_API_PATH}${this.props.details?.images?.backdrops[0]?.file_path}`,
+          thumbnail: `${BACKDROP_API_PATH}${this.props.details?.images?.backdrops[0]?.file_path}`
+          
+        // }
+        }
+    }
   render() {
-    
+    debugger;
     
     return (
         <div className='movie-details-container'>
@@ -73,11 +84,9 @@ class MovieDetails extends React.Component {
                 />
             </div>
             <Divider className='movie-details-container__divider' orientation='left'>PHOTOS</Divider>
-            <div className='test2'> 
-                <div>photo1</div>
-                <div>photo2</div>
-                <div>photo3</div>
-                <div>photo4</div>
+            <div className='movie-details-container__images'> 
+                <MovieImages images={[this.createImagesObject()]}     
+                />
             </div>
             <Divider className='movie-details-container__divider' orientation='left'>SIMILAR MOVIES</Divider>
             <div className='test2'> 
