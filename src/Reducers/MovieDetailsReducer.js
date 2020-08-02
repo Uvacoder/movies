@@ -4,6 +4,7 @@ import {
   
   const initialState = {
     details: {},
+    similarMovies: [],
     lastUpdated: Date.now(),
   }
   
@@ -12,6 +13,7 @@ import {
     case FETCH_MOVIE_DETAILS:
       return Object.assign({}, state, {
         details: action.details,
+        similarMovies: action.similarMovies.results
       })
     default:
       return state

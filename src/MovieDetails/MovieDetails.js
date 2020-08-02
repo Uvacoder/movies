@@ -9,8 +9,9 @@ import MovieOverwiev from '../MovieOverwiev/MovieOverwiev'
 import MovieCast from '../MovieCast/MovieCast'
 import MovieTrailer from '../MovieTrailer/MovieTrailer'
 import MovieImages from '../MovieImages/MovieImages'
+import MovieSimilar from '../MovieSimilar/MovieSimilar'
 
-const TEMP_MOVIE_ID = 299534;
+const TEMP_MOVIE_ID = 278;
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 const POSTER_PATH = 'https://image.tmdb.org/t/p/w500'
 
@@ -33,16 +34,19 @@ class MovieDetails extends React.Component {
 
   createImagesObject = () => {
     // for (let i=0; i<9; i++) {
-        
-        return {
-          src:`${BACKDROP_API_PATH}${this.props.details?.images?.backdrops[0]?.file_path}`,
-          thumbnail: `${BACKDROP_API_PATH}${this.props.details?.images?.backdrops[0]?.file_path}`
-          
-        // }
-        }
+        const pictures = []
+        pictures.push({
+        //   src:`${BACKDROP_API_PATH}${this.props.details?.images?.backdrops?.[1]?.file_path}`,
+          src:`${BACKDROP_API_PATH}${this.props.details.backdrop_path}`,
+          thumbnail: `${BACKDROP_API_PATH}${this.props.details?.images?.backdrops?.[1]?.file_path}`,
+          thumbnailWidth: 320,
+          thumbnailHeight: 174,
+          isSelected: false,
+          caption: "After Rain (Jeshu John - designerspics.com)"
+        })
+        return pictures
     }
   render() {
-    debugger;
     
     return (
         <div className='movie-details-container'>
@@ -85,15 +89,12 @@ class MovieDetails extends React.Component {
             </div>
             <Divider className='movie-details-container__divider' orientation='left'>PHOTOS</Divider>
             <div className='movie-details-container__images'> 
-                <MovieImages images={[this.createImagesObject()]}     
+                <MovieImages images={this.createImagesObject()}     
                 />
             </div>
-            <Divider className='movie-details-container__divider' orientation='left'>SIMILAR MOVIES</Divider>
-            <div className='test2'> 
-                <div>MORE LIKE THIS1</div>
-                <div>MORE LIKE THIS2</div>
-                <div>MORE LIKE THIS3</div>
-                <div>MORE LIKE THIS4</div>
+            <Divider className='movie-details-container__divider' orientation='left'>ENJOYED {this.props.details.title || this.props.details.original_title}? YOU MIGHT ALSO LIKE THESE</Divider>
+            <div className='movie-details-container__similar'> 
+                <MovieSimilar similarMovies={this.props?.similarMovies} />
             </div>
             <Divider className='movie-details-container__divider' orientation='left'>TMDB USER REVIEWS</Divider>
             <div className='test2'> 
@@ -114,7 +115,8 @@ class MovieDetails extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        details: state.movieDetails.details
+        details: state.movieDetails.details,
+        similarMovies: state.movieDetails.similarMovies
     }
 }
 

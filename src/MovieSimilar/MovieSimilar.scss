@@ -1,26 +1,21 @@
-.movie-cast{
+.movie-similar{
 
-    .movie-cast__container{
+    .movie-similar__container{
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         user-select: none;
     
-        .movie-cast__container-image{
+        .movie-similar__container-image{
             width:95%;
             height:100%;
             border-radius: 8px;
             pointer-events: none;
         }
-        .movie-cast__container-name{
+        .movie-similar__container-title{
             margin-bottom: 10px;
             font-size: 1.1em;
-            max-width: 80%;
-            text-align: center;
-        }
-        .movie-cast__container-character{
-            color: 	#B8B8B8;
             max-width: 80%;
             text-align: center;
         }

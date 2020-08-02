@@ -26,7 +26,7 @@ MovieImages.defaultProps = {
         thumbnailHeight: 174,
         isSelected: false,
         caption: "After Rain (Jeshu John - designerspics.com)"
-}]
+    }]
 }
 
 export default MovieImages

@@ -61,12 +61,3 @@ export const fetchRandom = (randomMovieId) => {
 		})
 	};  
 };
-
-// export const cleanUpFetchRandom = () => {
-// 	return {
-// 		type: CLEANUP_RANDOM,
-// 		random: {
-// 			items: null,
-// 		}
-// 	};  
-// }; 
