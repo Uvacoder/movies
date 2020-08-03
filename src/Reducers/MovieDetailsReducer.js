@@ -6,6 +6,8 @@ import {
     details: {},
     similarMovies: [],
     lastUpdated: Date.now(),
+    reviews: [],
+    externalIds: []
   }
   
   export function movieDetails (state = initialState,action) {
@@ -13,7 +15,9 @@ import {
     case FETCH_MOVIE_DETAILS:
       return Object.assign({}, state, {
         details: action.details,
-        similarMovies: action.similarMovies.results
+        similarMovies: action.similarMovies.results,
+        reviews: action.movieReviews.results,
+        externalIds: action.externalIds
       })
     default:
       return state

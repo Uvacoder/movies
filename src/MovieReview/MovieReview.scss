@@ -1,0 +1,18 @@
+.ant-card {
+    // padding: 30px;
+    background: #053561;
+    color: white;
+
+    .ant-card-body > div > div:nth-child(3) > div {
+        background-color: rgba(255,255,255,0.3) !important;
+    }
+
+    .ant-card-head-title {
+        color:wheat;
+    }
+
+    .movie-review__content {
+        padding-right: 10px;
+    }
+
+  }

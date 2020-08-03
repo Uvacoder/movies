@@ -15,13 +15,28 @@
         margin: -24px -24px 24px;  
     }
 
+    .movie-details-container__review {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin-left: 20px;
+    }
+
     .movie-details-container__divider{
         color:white;
         font-weight: bold;
         font-size: large;
         text-transform: uppercase;
     }
+    .movie-details-container__images {
+        background-color: #3a6288;
+    }
 
+    .ant-card {
+        margin-right: 12px;
+        margin-bottom: 12px;
+    }
+    
     .react-multiple-carousel__arrow{
         background: rgba(0,30,36,0.9);
     }
