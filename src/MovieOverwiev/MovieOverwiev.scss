@@ -36,17 +36,20 @@
 
         .movie-overwiev__description-title{
             @extend %display-title-text-under;
-            margin-bottom: 1em;
-            
+            margin-bottom: 1em;       
         }
 
         .movie-overwiev__description-text {
             overflow: auto;
-            font-family: sans-serif;
-            
-        }
+            font-family: sans-serif;   
+            padding-right: 10px;   
+        }   
     }
 
+    .movie-overwiev__description > div > div:nth-child(3) > div {
+        background-color: rgba(255,255,255,0.6) !important;
+    }
+    
     .movie-overwiev__genres {
         grid-column-start: 2;
         grid-column-end: 3;
@@ -55,7 +58,9 @@
         display: flex;
 
         .movie-overwiev__genres-title{
-            @extend %display-title
+            @extend %display-title;
+            min-width: 87px;
+            text-align: right;
         }
     }
 
@@ -67,7 +72,9 @@
         display: flex;
 
         .movie-overwiev__release-title{
-            @extend %display-title
+            @extend %display-title;
+            min-width: 87px;
+            text-align: right;
         }
     }
 
@@ -80,7 +87,9 @@
         margin-bottom: auto;
 
         .movie-overwiev__director-title{
-            @extend %display-title
+            @extend %display-title;
+            min-width: 87px;
+            text-align: right;
         }
     }
 
@@ -93,7 +102,9 @@
         margin-bottom: auto;
 
         .movie-overwiev__writers-title{
-            @extend %display-title
+            @extend %display-title;
+            min-width: 87px;
+            text-align: right;
         }
 
     }

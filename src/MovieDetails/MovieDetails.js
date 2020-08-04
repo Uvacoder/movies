@@ -13,7 +13,7 @@ import MovieSimilar from '../MovieSimilar/MovieSimilar'
 import MovieReview from '../MovieReview/MovieReview'
 import MovieSocial from '../MovieSocial/MovieSocial'
 
-const TEMP_MOVIE_ID = 496243;
+const TEMP_MOVIE_ID = 76338;
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 const POSTER_PATH = 'https://image.tmdb.org/t/p/w500'
 

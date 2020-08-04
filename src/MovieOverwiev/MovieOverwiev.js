@@ -1,5 +1,6 @@
 import React from 'react';
 import "./MovieOverwiev.scss"
+import { Scrollbars } from 'react-custom-scrollbars';
 
 
 const MovieOverwiev = (props) => {
@@ -26,7 +27,9 @@ const MovieOverwiev = (props) => {
                 </div>
                 <div className='movie-overwiev__description'>
                     <div className='movie-overwiev__description-title'>Overwiev:</div>
-                    <div className='movie-overwiev__description-text'>{description}</div>    
+                    <Scrollbars autoHeight >
+                        <div className='movie-overwiev__description-text'>{description}</div>   
+                    </Scrollbars>  
                 </div>
                 <div className='movie-overwiev__release'>
                     <div className='movie-overwiev__release-title'>Release date:</div>
