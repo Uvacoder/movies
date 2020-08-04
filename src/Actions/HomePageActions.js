@@ -1,9 +1,9 @@
 import Communication from '../Communication/Communication';
 
-export const FETCH_TRENDING = 'FETCH_TRENDING';
-export const FETCH_UPCOMMING ='FETCH_UPCOMMING';
-export const FETCH_RANDOM ='FETCH_RANDOM';
-export const CLEANUP_RANDOM ='CLEANUP_RANDOM';
+export const FETCH_TRENDING = 'homePage/FETCH_TRENDING';
+export const FETCH_UPCOMMING ='homePage/FETCH_UPCOMMING';
+export const FETCH_RANDOM ='homePage/FETCH_RANDOM';
+export const CLEANUP_RANDOM ='homePage/CLEANUP_RANDOM';
 
 let randomMoviePage = randomInt(1, 100);
 const TRENDING_API = 'https://api.themoviedb.org/3/trending/all/day?api_key=87f688d5cb704339968f87fae03f38cd'

@@ -1,4 +1,4 @@
-export const LOADING = 'LOADING'
+export const LOADING = 'global/LOADING'
 
 export const startedLoading = () => {
   return {
