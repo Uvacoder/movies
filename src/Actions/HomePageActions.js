@@ -1,55 +1,60 @@
-import Communication from '../Communication/Communication';
+import Communication from 'communication/Communication';
+import Api from '../Utils/Api';
+import Calculation from '../Utils/Calculation';
 
 export const FETCH_TRENDING = 'homePage/FETCH_TRENDING';
 export const FETCH_UPCOMMING ='homePage/FETCH_UPCOMMING';
 export const FETCH_RANDOM ='homePage/FETCH_RANDOM';
 export const CLEANUP_RANDOM ='homePage/CLEANUP_RANDOM';
 
-let randomMoviePage = randomInt(1, 100);
-const TRENDING_API = 'https://api.themoviedb.org/3/trending/all/day?api_key=87f688d5cb704339968f87fae03f38cd'
-const UPCOMMING_API = 'https://api.themoviedb.org/3/movie/upcoming?api_key=87f688d5cb704339968f87fae03f38cd&language=EN&page=1&region=US'
-const RANDOM_API = `https://api.themoviedb.org/3/discover/movie?api_key=87f688d5cb704339968f87fae03f38cd&language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=${randomMoviePage}`;
-
-function randomInt(min, max) {
-	return min + Math.floor((max - min) * Math.random());
-}
+const randomMoviePage = Calculation.randomInt(1, 100);
 
 export const fetchTrending = () => {
-	return dispatch => {
-		Communication.get(TRENDING_API,dispatch).then(json => {
+	return async dispatch => {
+		const movies = await Communication.get(Api.get('trending/all/day'))
+
 			dispatch({ 
 				type: FETCH_TRENDING,
 				trending: {
-					items: json.results,
+					items: movies.results,
 				}
-			})
 		})
 	};  
 }; 
 
 export const fetchUpcomming = () => {
-	return dispatch => {
-			Communication.get(UPCOMMING_API).then(json => {
+	return  async dispatch => {
+			const movies = await Communication.get(Api.get('movie/upcoming',{
+				language: 'EN',
+				page: '1',
+				region: 'US'
+			}));
+
 				dispatch({ 
 					type: FETCH_UPCOMMING,
 					upcomming: {
-						items: json.results,
+						items: movies.results,
 					}
-				})
 			})
 	};  
 }; 
 
-
 export const fetchRandom = (randomMovieId) => {
 	return async dispatch => {
 
-		const movies = await Communication.get(RANDOM_API);
+		const movies = await Communication.get(Api.get('discover/movie',{
+				language: 'en-US',
+				sort_by: 'vote_count.desc',
+				include_adult: 'false',
+				include_video: 'true',
+				page: {randomMoviePage}
+			}));
 		const items = movies.results;
 
 		await Promise.all(items.map(async item => {
-			const videoKeyResult = await Communication.get(`https://api.themoviedb.org/3/movie/${item.id}/videos?api_key=87f688d5cb704339968f87fae03f38cd&language=en-US`)
-			
+		const videoKeyResult = await Communication.get(Api.get(`movie/${item.id}/videos`,{
+				language: 'en-US',
+			}));	
 			item.videoKey = videoKeyResult.results; 
 		}));
 
@@ -61,12 +66,3 @@ export const fetchRandom = (randomMovieId) => {
 		})
 	};  
 };
-
-// export const cleanUpFetchRandom = () => {
-// 	return {
-// 		type: CLEANUP_RANDOM,
-// 		random: {
-// 			items: null,
-// 		}
-// 	};  
-// }; 

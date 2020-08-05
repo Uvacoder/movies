@@ -4,6 +4,7 @@ import {BrowserRouter as Router} from "react-router-dom";
 import {Switch,Route} from "react-router-dom";
 import WelcomePage from './WelcomePage/WelcomePage'
 import AppLayout from './AppLayout/AppLayout'
+console.log(process.env)
 
 function App() {
   return (
