@@ -20,6 +20,7 @@ import {
 } from '@ant-design/icons';
 import './LayoutHeader.scss';
 
+const SEARCH_BAR_WIDTH = '300px';
 const { Header } = Layout;
 const { Search } = Input;
 
@@ -111,7 +112,7 @@ function LayoutHeader () {
   
   return (
     <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-      <div className='header-home'>
+      <div className='home-header'>
         <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >  
           <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
             <Link to ="/home" />
@@ -128,7 +129,7 @@ function LayoutHeader () {
         <Search
           placeholder="Search movies, TV Shows or people"
           onSearch={value => console.log(value)}
-          style={{ width: 300}}
+          style={{ width: SEARCH_BAR_WIDTH}}
           enterButton
         />
           {renderNetflixMenu()}
