@@ -1,0 +1,34 @@
+.rnd-gif-container {
+    position: relative;
+    min-height: 100%;
+
+    .rnd-gif-container__data{
+        padding-bottom: 2.5rem;
+    }
+
+    .rnd-gif-container__footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color:transparent;
+        color: black;   
+        text-align: left;
+        font-family: monospace;
+        padding-top: 10px;
+    }
+
+    .rnd-gif-container__content-word {
+        font-weight: bold;
+        font-size: x-large;
+    }
+
+    .rnd-gif-container__content-definition-title,
+    .rnd-gif-container__content-found,
+    .rnd-gif-container__content-example {
+        color: rgb(212, 245, 170);
+    }
+
+    .rnd-gif-container__content-divider{
+        border-color: black;
+    }
+}

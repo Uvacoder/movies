@@ -1,0 +1,12 @@
+.movie-details-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-details-container__header {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 400px;
+    margin: -24px -24px 24px;   
+}

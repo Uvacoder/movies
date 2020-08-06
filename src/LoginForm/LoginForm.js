@@ -1,5 +1,5 @@
 import React from 'react';
-import "./LoginForm.css"
+import "./LoginForm.scss"
 import { withRouter } from 'react-router-dom'
 import { Form, Input, Button, Checkbox } from 'antd';
 
@@ -28,7 +28,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             <div className="login-container">
-                <div className="login-welcome">Movie Lounge Login</div>
+                <div className="login-welcome">Please Log In</div>
                 <div className="login-form">
                     <Form
                         name="basic"
