@@ -2,17 +2,18 @@ import React from 'react';
 import "./UpcommingMovies.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 
-const UpcommingMovie = (props) => {
+const IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
 
+const UpcommingMovie = (props) => {
     const {
         item
     } = props;
     return (
+
         <div className='upcomming-container'>
         <img 
           className='upcomming-container__image' 
-          src={ `https://image.tmdb.org/t/p/w500${ item?.poster_path }`} 
-          alt=''
+          src={ `${IMAGE_URL}${ item?.poster_path }`} 
         />
         <div className='upcomming-container__details'>
             <div className='upcomming-container__details-title'>
@@ -35,7 +36,7 @@ const UpcommingMovie = (props) => {
 }
 
 UpcommingMovie.defaultProps = {
-   item:''
+   item:{}
 }
 
 export default UpcommingMovie

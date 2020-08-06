@@ -1,5 +1,5 @@
 import Communication from '../Communication/Communication';
-import Api from '../Utils/Api';
+import Api from 'utils/Api';
 
 export const FETCH_MOVIE_DETAILS = 'movie/FETCH_MOVIE_DETAILS';
 

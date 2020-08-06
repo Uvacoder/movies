@@ -1,6 +1,6 @@
 import Communication from 'communication/Communication';
-import Api from '../Utils/Api';
-import Calculation from '../Utils/Calculation';
+import Api from 'utils/Api';
+import Calculation from 'utils/Calculation';
 
 export const FETCH_TRENDING = 'homePage/FETCH_TRENDING';
 export const FETCH_UPCOMMING ='homePage/FETCH_UPCOMMING';
