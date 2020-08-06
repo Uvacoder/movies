@@ -30,24 +30,23 @@ export const fetchUpcomming = () => {
 				region: 'US'
 			}));
 
-				dispatch({ 
-					type: FETCH_UPCOMMING,
-					upcomming: {
-						items: movies.results,
-					}
+			dispatch({ 
+				type: FETCH_UPCOMMING,
+				upcomming: {
+					items: movies.results,
+				}
 			})
 	};  
 }; 
 
 export const fetchRandom = (randomMovieId) => {
 	return async dispatch => {
-
 		const movies = await Communication.get(Api.get('discover/movie',{
 				language: 'en-US',
 				sort_by: 'vote_count.desc',
 				include_adult: 'false',
 				include_video: 'true',
-				page: {randomMoviePage}
+				page: randomMoviePage
 			}));
 		const items = movies.results;
 

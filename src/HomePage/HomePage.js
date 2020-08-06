@@ -23,7 +23,7 @@ function HomePage () {
     dispatch(fetchUpcomming());
   },[dispatch]);
 
-  const responsive = {
+  const trendingCarouselResponsive = {
     all: {
       breakpoint: { max: Infinity, min: 0 },
       items: NO_OF_ITEMS_TRENDING_CAROUSEL
@@ -49,7 +49,7 @@ function HomePage () {
     return (
       <div style={{width: '100%'}}>
         <Carousel 
-          responsive={responsive}
+          responsive={trendingCarouselResponsive}
           infinite={true}
           autoPlay={true}
         >

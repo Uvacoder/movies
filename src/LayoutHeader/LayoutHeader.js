@@ -45,7 +45,7 @@ function LayoutHeader () {
       title: 'Upcomming'
     }]
   
-    return renderSubMenu('Movies',<DesktopOutlined />,menuItems)
+    return renderSubMenu('Movies',<DesktopOutlined />, menuItems)
   }
   
   const renderTVShowsSubMenu = () => {
@@ -53,7 +53,7 @@ function LayoutHeader () {
       title: 'Browse TV Shows'
     }]
   
-    return renderSubMenu('TV Shows',<CoffeeOutlined />,menuItems)
+    return renderSubMenu('TV Shows',<CoffeeOutlined />, menuItems)
   }
   
   const renderRankingsMenu = () => {
@@ -69,7 +69,7 @@ function LayoutHeader () {
       title: 'Trending Weekly'
     }]
   
-    return renderSubMenu('Rankings',<DashboardOutlined />,menuItems)
+    return renderSubMenu('Rankings',<DashboardOutlined />, menuItems)
   }
   
   
@@ -82,7 +82,7 @@ function LayoutHeader () {
       title: 'Shows with weekly episodes'
     }]
   
-    return renderSubMenu('Netflix',<UserOutlined />,menuItems)
+    return renderSubMenu('Netflix',<UserOutlined />, menuItems)
   }
   
   const renderHydeParkMenu = () => {
@@ -91,7 +91,7 @@ function LayoutHeader () {
       url:"/random-gif-generator"
     }]
   
-    return renderSubMenu('Hyde Park',<SmileOutlined />,menuItems)
+    return renderSubMenu('Hyde Park',<SmileOutlined />, menuItems)
   }
   
   const renderYouProfileMenu = () => {
@@ -107,7 +107,7 @@ function LayoutHeader () {
       title: 'Log Out'
     }]
   
-    return renderSubMenu('Your Profile',<ProfileOutlined />,menuItems)
+    return renderSubMenu('Your Profile',<ProfileOutlined />, menuItems)
   }
   
   return (

@@ -16,7 +16,6 @@ class AppLayout extends React.Component {
     //window.particlesJS.load('particles-right', './particles.json');
   }
 
-
   componentDidMount() {
     this.renderParticles(); //TODO use callback with not on mount
   }

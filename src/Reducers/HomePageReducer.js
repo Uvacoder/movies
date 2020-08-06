@@ -16,7 +16,7 @@ const initialState = {
     items: [],
     videoKey: []
   }
-}
+};
 
 export function homePage (state = initialState,action) {
   switch (action.type) {
@@ -33,6 +33,6 @@ export function homePage (state = initialState,action) {
       random: action.random,
     })
   default:
-    return state
+    return state;
   }
 }

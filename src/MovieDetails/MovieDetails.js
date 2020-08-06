@@ -5,29 +5,26 @@ import { bindActionCreators } from 'redux';
 import { fetchMovieDetails } from '../Actions/MovieActions'
 import MovieHeader from '../MovieHeader/MovieHeader'
 
-const TEMP_MOVIE_ID = 583083;
+const TEMP_MOVIE_ID = 583083; // To do => change to movie ID on clicked TITLE
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 
 class MovieDetails extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.fetchMovieDetails(TEMP_MOVIE_ID);
   }
   
-
   render() {
+    const details = this.props.details;
+
     return (
         <div className='movie-details-container'>
             <div className='movie-details-container__header'> 
                 <MovieHeader 
-                    backDropPath={`${BACKDROP_API_PATH}${this.props.details.backdrop_path}`} 
-                    title={this.props.details.original_title} 
-                    originalTitle={this.props.details.original_title}
-                    voteAverage={this.props.details.vote_average}
-                    popularity={this.props.details.popularity}
+                    backDropPath={`${BACKDROP_API_PATH}${details.backdrop_path}`} 
+                    title={details.original_title} 
+                    originalTitle={details.original_title}
+                    voteAverage={details.vote_average}
+                    popularity={details.popularity}
                 />
             </div>
             <div className='test2'> 
