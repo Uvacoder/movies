@@ -28,7 +28,7 @@ const MovieHeader = (props) => {
         <div className='movie-header__wrapper-title'>
           {title}
         </div>
-        <div className='movie-header__wrapper-original-title'>
+        <div className='movie-header__wrapper-tagline'>
           "{tagline}"
         </div>
         <div className='movie-header-votes'>
