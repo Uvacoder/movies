@@ -30,7 +30,11 @@ const RandomMovie = () => {
 
   return (
     <div className='random-movie-container'>
-      <img className='random-movie-container__image' src={`${API_PATH}${currentMovie.poster_path}`}/>
+      <img 
+        className='random-movie-container__image' 
+        src={`${API_PATH}${currentMovie.poster_path}`} 
+        alt='poster'
+      />
       <div className='random-movie-container__details'> 
         <div className='random-movie-container__details-title'>
             {currentMovie.title}

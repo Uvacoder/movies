@@ -56,7 +56,7 @@ class RandomGifGenerator extends React.Component {
         <p className='rnd-gif-container__content-example'>Usage example:</p>
         <p className='rnd-gif-container__content-example-content'>{this.state.example}</p>
         <Divider/>
-        <img src={this.state.gifData.data[0].images.original.url} className='rnd-gif-container__content-gif'/>
+        <img src={this.state.gifData.data[0].images.original.url} className='rnd-gif-container__content-gif' alt={this.state.word}/>
       </div>
     );
   };

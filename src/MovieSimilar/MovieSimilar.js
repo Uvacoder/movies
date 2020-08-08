@@ -2,36 +2,41 @@ import React from 'react';
 import "./MovieSimilar.scss"
 import Carousel from 'react-multi-carousel';
 
+const NO_OF_ITEMS_SIMILAR_MOVIES = 6;
+const TMDB_API_IMG_PATH = 'https://image.tmdb.org/t/p/w500';
+
 const MovieSimilar = (props) => {
   const {
       similarMovies
   } = props;
 
-  const responsive = {
+  const SimilarMoviesCarouselResponsive = {
     all: {
-      breakpoint: { max: 4000, min: 0 },
-      items: 6
+      breakpoint: { max: Infinity, min: 0 },
+      items: NO_OF_ITEMS_SIMILAR_MOVIES
     }
   };  
 
   const renderCastBlock = (item) => {
-  return (
+    return (
       <div className='movie-similar__container'>
-      <img 
-          className='movie-similar__container-image' 
-          src={ `https://image.tmdb.org/t/p/w500${ item?.poster_path }`} 
-          alt=''
-      />
-      <div className='movie-similar__container-title'>{ item?.title}</div>
+        <img 
+            className='movie-similar__container-image' 
+            src={ `${TMDB_API_IMG_PATH}${ item?.poster_path }`} 
+            alt='poster'
+        />
+        <div className='movie-similar__container-title'>
+          { item?.title}
+        </div>
       </div>
-      )
+    )
   }
 
   return (
     <div className='movie-similar'>
       <div style={{width: '100%'}}>
         <Carousel 
-          responsive={responsive}
+          responsive={SimilarMoviesCarouselResponsive}
           infinite={true}
           autoPlay={true}
         >

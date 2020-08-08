@@ -5,7 +5,6 @@ import {
   const initialState = {
     details: {},
     similarMovies: [],
-    lastUpdated: Date.now(),
     reviews: [],
     externalIds: []
   }

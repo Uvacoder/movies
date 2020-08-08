@@ -5,14 +5,10 @@
   img  {
     width: 60px;
     height: 60px;
-  }
+  };
 
-  img:hover {
-    // cursor: pointer;
-  }
-
-  .img-disabled{
+  .img-disabled {
     filter: grayscale(100%);
     pointer-events: none;
-  }
-}
+  };
+};
