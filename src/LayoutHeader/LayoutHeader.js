@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Link
-  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { 
   Menu,
@@ -25,7 +22,6 @@ const { Header } = Layout;
 const { Search } = Input;
 
 function LayoutHeader () {
-
  const renderSubMenu = (title, icon, menuItems) => {
     return (
       <SubMenu key={ title } icon={ icon } title={ title }>
@@ -34,8 +30,8 @@ function LayoutHeader () {
           <Link to ={ item.url }>{ item.title }</Link>
         </Menu.Item>)}
       </SubMenu>
-    )
-  }
+    );
+  };
   
   const renderMoviesSubMenu = () => {
     const menuItems = [{
@@ -111,15 +107,15 @@ function LayoutHeader () {
   }
   
   return (
-    <Header style={{ position: 'fixed', zIndex: 2, width: '100%' }}>
+    <Header style={{ position: 'fixed', zIndex: 1001, width: '100%' }}>
       <div className='home-header'>
-        <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >  
+        <Menu className ='nav-bar-menu__title' theme="dark" mode="horizontal" >  
           <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
-            <Link to ="/home" />
+            <Link to ="/home" > Movie Lounge</Link>
           </Menu.Item>
-          <Menu.Item key="2" >
-            <Link to ="/home" className="nav-bar-menu__title">Movie Lounge</Link>
-          </Menu.Item>
+          {/* <Menu.Item key="2" >
+            <Link to ="/home" className="nav-bar-menu__title">Lounge</Link>
+          </Menu.Item> */}
         </Menu>
       </div>
       <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
@@ -141,7 +137,7 @@ function LayoutHeader () {
         </Menu>
       </div>
     </Header>
-  )
-}
+  );
+};
 
 export default LayoutHeader

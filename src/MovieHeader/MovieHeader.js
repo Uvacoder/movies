@@ -22,7 +22,7 @@ const MovieHeader = (props) => {
   return (
     <div className='movie-header'>
       <div className='movie-header_image-wrapper'>
-        <img src={backDropPath}/>
+        <img src={backDropPath} alt='backdrop'/>
       </div>
       <div className='movie-header__wrapper'>
         <div className='movie-header__wrapper-title'>

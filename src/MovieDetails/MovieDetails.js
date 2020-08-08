@@ -13,39 +13,35 @@ import MovieSimilar from '../MovieSimilar/MovieSimilar'
 import MovieReview from '../MovieReview/MovieReview'
 import MovieSocial from '../MovieSocial/MovieSocial'
 
-const TEMP_MOVIE_ID = 550;
+const TEMP_MOVIE_ID = 8065; // TO DO MAKE DYNAMIC MOVIE CHANGE ON IMG CLICK
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 const POSTER_PATH = 'https://image.tmdb.org/t/p/w500'
 
 class MovieDetails extends React.Component {
-  constructor(props) {
-    super(props);
-    window.MD=this;
+
+  componentDidMount() {
+    this.props.fetchMovieDetails(TEMP_MOVIE_ID);
   }
 
-    componentDidMount() {
-        this.props.fetchMovieDetails(TEMP_MOVIE_ID);
-    }
+  filterDirector = () => {
+    return this.props.details.credits?.crew?.filter((item) => item.job === "Director")?.[0]?.name
+  }
+  filterWriters = () => {
+    return this.props.details.credits?.crew?.filter((item) => item.department === "Writing")?.map((item) => item.name).join(', ')
+  }
 
-    filterDirector = () => {
-        return this.props.details.credits?.crew?.filter((item) => item.job === "Director")?.[0]?.name
+  createImagesObject = (backdrop) => {
+    return {
+      src:`${BACKDROP_API_PATH}${backdrop.file_path}`,
+      thumbnail: `${BACKDROP_API_PATH}${backdrop.file_path}`,
+      thumbnailWidth: Math.min(backdrop.width/5, 400),
+      thumbnailHeight: 250,
     }
-    filterWriters = () => {
-        return this.props.details.credits?.crew?.filter((item) => item.department === "Writing")?.map((item) => item.name).join(', ')
-    }
+  }
 
-    createImagesObject = (backdrop) => {
-        return {
-            src:`${BACKDROP_API_PATH}${backdrop.file_path}`,
-            thumbnail: `${BACKDROP_API_PATH}${backdrop.file_path}`,
-            thumbnailWidth: Math.min(backdrop.width/5, 400),
-            thumbnailHeight: 250,
-        }
-    }
-
-    getCurrencyNotation = (number) => {
-        return number?.toLocaleString('en', { style: 'currency', currency: 'USD' })
-    }  
+  getCurrencyNotation = (number) => {
+    return number?.toLocaleString('en', { style: 'currency', currency: 'USD' })
+  }  
 
   renderReviews = () => {
     if (this.props.reviews.length === 0) {
@@ -122,66 +118,66 @@ class MovieDetails extends React.Component {
     );
   }
     
-    render() {
-    
+  render() {
     return (
-        <div className='movie-details-container'>
-            <div className='movie-details-container__header'> 
-                <MovieHeader 
-                    backDropPath={this.props.details.backdrop_path ? `${BACKDROP_API_PATH}${this.props.details.backdrop_path}` : null} 
-                    title={this.props.details.title || this.props.details.original_title} 
-                    tagline={this.props.details.tagline ? this.props.details.tagline : this.props.details.original_title}
-                    voteAverage={this.props.details.vote_average}
-                    popularity={this.props.details.popularity}
-                />
-            </div>
-            <div className='movie-details-container__overwiev'> 
-                <MovieOverwiev
-                    poster={`${POSTER_PATH}${this.props.details.poster_path}`}
-                    description={this.props.details.overview}
-                    realeaseDate={this.props.details.release_date}
-                    genres={this.props.details.genres?.map((item) => item.name).join(', ')}
-                    runtime={this.props.details.runtime}
-                    country={this.props.details.production_countries?.map((item) => item.name).join(', ')}
-                    director={this.filterDirector()}
-                    writers={this.filterWriters()}
-                    budget={this.getCurrencyNotation(this.props.details.budget)}
-                    revenue={this.getCurrencyNotation(this.props.details.revenue)}
-                    languages={this.props.details.spoken_languages?.map((item) => item.name).join(', ')}
-                    companies={this.props.details.production_companies?.slice(0, 5).map((item) => item.name).join(', ')}
-                />
-            </div>
-            {this.renderCast()}
-            {this.renderTrailer()}
-            {this.renderPhotos()}
-            {this.renderSimilar()}
-            {this.renderReviews()}
-            <Divider className='movie-details-container__divider' orientation='left'>SOCIAL</Divider>
-            <div> 
-                <MovieSocial 
-                  movieHomePage={this.props.details?.homepage} 
-                  facebookPage={this.props.externalIds.facebook_id && `https://www.facebook.com/${this.props.externalIds.facebook_id}`}
-                  InstagramPage={this.props.externalIds.instagram_id &&`https://www.instagram.com/${this.props.externalIds.instagram_id}`}
-                  TwitterPage={this.props.externalIds.twitter_id && `https://twitter.com/${this.props.externalIds.twitter_id}`}
-                  IMDBPage={this.props.externalIds.imdb_id && `https://www.imdb.com/title/${this.props.externalIds.imdb_id}`}
-                />
-            </div>
-        </div> 
-     );
-   };
+
+      <div className='movie-details-container'>
+        <div className='movie-details-container__header'> 
+          <MovieHeader 
+            backDropPath={this.props.details.backdrop_path ? `${BACKDROP_API_PATH}${this.props.details.backdrop_path}` : null} 
+            title={this.props.details.title || this.props.details.original_title} 
+            tagline={this.props.details.tagline ? this.props.details.tagline : this.props.details.original_title}
+            voteAverage={this.props.details.vote_average}
+            popularity={this.props.details.popularity}
+          />
+        </div>
+        <div className='movie-details-container__overwiev'> 
+          <MovieOverwiev
+            poster={`${POSTER_PATH}${this.props.details.poster_path}`}
+            description={this.props.details.overview}
+            realeaseDate={this.props.details.release_date}
+            genres={this.props.details.genres?.map((item) => item.name).join(', ')}
+            runtime={this.props.details.runtime}
+            country={this.props.details.production_countries?.map((item) => item.name).join(', ')}
+            director={this.filterDirector()}
+            writers={this.filterWriters()}
+            budget={this.getCurrencyNotation(this.props.details.budget)}
+            revenue={this.getCurrencyNotation(this.props.details.revenue)}
+            languages={this.props.details.spoken_languages?.map((item) => item.name).join(', ')}
+            companies={this.props.details.production_companies?.slice(0, 5).map((item) => item.name).join(', ')}
+          />
+        </div>
+        {this.renderCast()}
+        {this.renderTrailer()}
+        {this.renderPhotos()}
+        {this.renderSimilar()}
+        {this.renderReviews()}
+        <Divider className='movie-details-container__divider' orientation='left'>SOCIAL</Divider>
+        <div> 
+          <MovieSocial 
+            movieHomePage={this.props.details?.homepage} 
+            facebookPage={this.props.externalIds.facebook_id && `https://www.facebook.com/${this.props.externalIds.facebook_id}`}
+            InstagramPage={this.props.externalIds.instagram_id &&`https://www.instagram.com/${this.props.externalIds.instagram_id}`}
+            TwitterPage={this.props.externalIds.twitter_id && `https://twitter.com/${this.props.externalIds.twitter_id}`}
+            IMDBPage={this.props.externalIds.imdb_id && `https://www.imdb.com/title/${this.props.externalIds.imdb_id}`}
+          />
+        </div>
+      </div> 
+    );
+  };
 }
 
 const mapStateToProps = (state) => {
-    return {
-        details: state.movieDetails.details,
-        similarMovies: state.movieDetails.similarMovies,
-        reviews: state.movieDetails.reviews,
-        externalIds: state.movieDetails.externalIds
-    }
+  return {
+    details: state.movieDetails.details,
+    similarMovies: state.movieDetails.similarMovies,
+    reviews: state.movieDetails.reviews,
+    externalIds: state.movieDetails.externalIds
+  }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    fetchMovieDetails,
+  fetchMovieDetails,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);

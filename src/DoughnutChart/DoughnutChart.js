@@ -4,7 +4,6 @@ import { PieChart } from 'react-minimal-pie-chart';
 
 const DOUGHNUT_CHART_LINE_WIDTH = 20;
 const DOUGHNUT_CHART_LABEL_POSITION = 0;
-const DOUGHNUT_CHART_BACKGROUND = '#a9ae9e26';
 const DOUGHNUT_CHART_START_ANGLE = 270;
 
 const DoughnutChart = (props) => {
@@ -29,7 +28,7 @@ const DoughnutChart = (props) => {
         fill: fontColor,
       }}
       labelPosition={DOUGHNUT_CHART_LABEL_POSITION}
-      background={DOUGHNUT_CHART_BACKGROUND}
+      background={background}
       startAngle={DOUGHNUT_CHART_START_ANGLE}
       />     
     );
