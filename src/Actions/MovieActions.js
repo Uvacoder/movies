@@ -1,7 +1,7 @@
 import Communication from '../Communication/Communication';
+import Api from 'utils/Api';
 
-export const FETCH_MOVIE_DETAILS = 'FETCH_MOVIE_DETAILS';
-
+export const FETCH_MOVIE_DETAILS = 'movie/FETCH_MOVIE_DETAILS';
 
 const getMovieDetailsURL = (Id) => `https://api.themoviedb.org/3/movie/${Id}?api_key=87f688d5cb704339968f87fae03f38cd&append_to_response=videos,images,credits`
 const getSimilarMovieURL = (Id) => `https://api.themoviedb.org/3/movie/${Id}/recommendations?api_key=87f688d5cb704339968f87fae03f38cd&language=en-US&page=1`

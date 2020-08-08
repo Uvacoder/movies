@@ -10,9 +10,10 @@ import UpcommingMovies from '../UpcommingMovies/UpcommingMovies'
 
 const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table length.
 const NO_OF_UPCOMMING_ITEMS = 3;
+const NO_OF_ITEMS_TRENDING_CAROUSEL = 5;
+const IMG_URL = 'https://image.tmdb.org/t/p/w500'
 
 function HomePage () {
-
   const trendingList = useSelector(state => state.homePage.trending.items);
   const upcommingList = useSelector(state => state.homePage.upcomming.items);
   const dispatch = useDispatch();
@@ -22,10 +23,10 @@ function HomePage () {
     dispatch(fetchUpcomming());
   },[dispatch]);
 
-  const responsive = {
+  const trendingCarouselResponsive = {
     all: {
-      breakpoint: { max: 4000, min: 0 },
-      items: 5
+      breakpoint: { max: Infinity, min: 0 },
+      items: NO_OF_ITEMS_TRENDING_CAROUSEL
     }
   };  
 
@@ -34,7 +35,7 @@ function HomePage () {
       <div className='home-page-container__trending-item' onClick={() => console.log(item)}>
         <img 
           className='home-page-container__trending-item-image' 
-          src={ `https://image.tmdb.org/t/p/w500${ item?.poster_path }`} 
+          src={ `${IMG_URL}${ item?.poster_path }`} 
           alt=''
         />
         <div className='home-page-container__trending-item-title'>{ item?.title || item?.orginal_title || item?.original_name}</div>
@@ -48,7 +49,7 @@ function HomePage () {
     return (
       <div style={{width: '100%'}}>
         <Carousel 
-          responsive={responsive}
+          responsive={trendingCarouselResponsive}
           infinite={true}
           autoPlay={true}
         >

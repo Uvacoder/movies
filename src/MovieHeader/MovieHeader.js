@@ -2,51 +2,55 @@ import React from 'react';
 import "./MovieHeader.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 
+const VOTE_AVERAGE_MAX_VALUE = 10;
+const VOTE_AVERAGE_DISPLAY_PERCENT = false;
+const VOTE_AVERAGE_CHART_COLOR_CHANGE_VALUE = 7;
+const VOTE_AVERAGE_CHART_COLOR_HIGH = 'lightgreen';
+const VOTE_AVERAGE_CHART_COLOR_LOW = 'Aquamarine';
+const POPULARITY_MAX_VALUE = 100;
+const POPULARITY_DISPLAY_PERCENT = true;
 
 const MovieHeader = (props) => {
+  const {
+    backDropPath,
+    title,
+    tagline,
+    voteAverage,
+    popularity
+  } = props;
 
-    const {
-        backDropPath,
-        title,
-        tagline,
-        voteAverage,
-        popularity
-    } = props;
-
-    return (
-        <div className='movie-header'>
-            <div className='movie-header_image-wrapper'>
-                <img src={backDropPath}/>
-            </div>
-            <div className='movie-header__wrapper'>
-                <div className='movie-header__wrapper-title'>
-                    {title}
-                </div>
-                <div className='movie-header__wrapper-tagline'>
-                    "{tagline}"
-                </div>
-                <div className='movie-header-votes'>
-                    <div className='movie-header-votes-average'>
-                        <div className='movie-header-votes-average-title'>VOTE AVERAGE:</div>
-                        <DoughnutChart 
-                        data={voteAverage} 
-                        maxValue={10} percent={false} 
-                        chartColor= {{voteAverage} > 7 ? 'lightgreen' : 'Aquamarine' }
-                        background={"#a9ae9e40"}
-                        />
-                    </div>
-                    <div className='movie-header-votes-popularity'>
-                        <div className='movie-header-votes-popularity-title'>POPULARITY:</div>
-                        <DoughnutChart 
-                        data={Math.floor(popularity)} 
-                        maxValue={100} percent={true} 
-                        background={"#a9ae9e66"}
-                        />
-                    </div> 
-                </div>
-            </div>
+  return (
+    <div className='movie-header'>
+      <div className='movie-header_image-wrapper'>
+        <img src={backDropPath}/>
+      </div>
+      <div className='movie-header__wrapper'>
+        <div className='movie-header__wrapper-title'>
+          {title}
         </div>
-    );
+        <div className='movie-header__wrapper-original-title'>
+          "{tagline}"
+        </div>
+        <div className='movie-header-votes'>
+          <div className='movie-header-votes-average'>
+            <DoughnutChart 
+              data={voteAverage} 
+              maxValue={VOTE_AVERAGE_MAX_VALUE} 
+              percent={VOTE_AVERAGE_DISPLAY_PERCENT} 
+              chartColor= {{voteAverage} > VOTE_AVERAGE_CHART_COLOR_CHANGE_VALUE ? VOTE_AVERAGE_CHART_COLOR_HIGH : VOTE_AVERAGE_CHART_COLOR_LOW }
+            />
+          </div>
+          <div className='movie-header-votes-popularity'>
+            <DoughnutChart 
+              data={Math.floor(popularity)} 
+              maxValue={POPULARITY_MAX_VALUE} 
+              percent={POPULARITY_DISPLAY_PERCENT} 
+            />
+          </div> 
+        </div>
+      </div>
+    </div>
+  );
 };
 
 MovieHeader.defaultProps = {

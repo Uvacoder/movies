@@ -10,8 +10,8 @@ import {
     externalIds: []
   }
   
-  export function movieDetails (state = initialState,action) {
-    switch (action.type) {
+  export function movieDetails (state = initialState, action) {
+    switch(action.type) {
     case FETCH_MOVIE_DETAILS:
       return Object.assign({}, state, {
         details: action.details,

@@ -15,11 +15,8 @@ const initialState = {
   random: {
     items: [],
     videoKey: []
-  },
-  lastUpdated: Date.now()
-}
-
-
+  }
+};
 
 export function homePage (state = initialState,action) {
   switch (action.type) {
@@ -35,11 +32,7 @@ export function homePage (state = initialState,action) {
     return Object.assign({}, state, {
       random: action.random,
     })
-  // case CLEANUP_RANDOM:
-  //   return Object.assign({}, state, {
-  //     random: initialState.random,
-  //   })
   default:
-    return state
+    return state;
   }
 }

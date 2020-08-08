@@ -26,7 +26,6 @@
 }
 
 .random-movie-container__details {
-    margin-left: 10px;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
@@ -45,6 +44,7 @@
         margin-bottom: 20px;
         font-weight: bold;
         color: aqua;
+        min-height: 88px;
     }
     .random-movie-container__details-vote-wrapper-popularity,
     .random-movie-container__details-vote-wrapper-average {
@@ -53,13 +53,17 @@
         height: 120px;
         padding-bottom: 20px;
     }
+    .random-movie-container__details-overwiev > div > div:nth-child(3) > div {
+        background-color: rgba(255,255,255,0.3) !important;
+    }
+
     .random-movie-container__details-overwiev {
         margin-bottom: 30px;
-        min-height: 220px;
-
+        min-height: 175px;
+        
         .random-movie-container__details-overwiev-content{
-            overflow: auto;
-            height: 220px;
+            padding-right: 20px;
+            height: 175px;
         }
 
         .random-movie-container__details-overwiev-title{

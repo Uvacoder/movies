@@ -13,7 +13,7 @@ const MovieReview = (props) => {
     return (
         <div className='movie-review'>
             <div className="site-card-border-less-wrapper">
-                <Card title={`Review by: ${review.author}`} bordered={false} style={{ width: 360 }}>
+                <Card title={`Review by: ${review.author}`} bordered={false} style={{ width: 310 }}>
                      <Scrollbars autoHeight >
                         <div className='movie-review__content'>{review.content}</div>
                     </Scrollbars>
