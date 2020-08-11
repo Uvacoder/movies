@@ -1,8 +1,8 @@
 import React from 'react';
 import Particles from 'particles.js'; // to do -> move to app js
 import "./WelcomePage.scss"
-import LoginForm from '../LoginForm/LoginForm';
-import Registration from '../Components/Registration/Registration'
+import LoginForm from '../../Components/LoginForm/LoginForm';
+import Registration from '../../Components/Registration/Registration'
 
 class WelcomePage extends React.Component {
     constructor (props) {

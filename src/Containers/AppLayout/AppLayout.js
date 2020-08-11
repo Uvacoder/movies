@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import './AppLayout.scss';
 import Particles from 'particles.js';
-import LayoutHeader from '../../LayoutHeader/LayoutHeader'
+import LayoutHeader from '../../Components/LayoutHeader/LayoutHeader'
 import LayoutContent from '../../Components/LayoutContent/LayoutContent'
 class AppLayout extends React.Component {
 

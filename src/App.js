@@ -2,7 +2,7 @@ import React from 'react';
 import './App.scss';
 import {BrowserRouter as Router} from "react-router-dom";
 import {Switch,Route} from "react-router-dom";
-import WelcomePage from './WelcomePage/WelcomePage'
+import WelcomePage from './Containers/WelcomePage/WelcomePage'
 import AppLayout from './Containers/AppLayout/AppLayout'
 
 function App() {

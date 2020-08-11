@@ -299,7 +299,7 @@ module.exports = function(webpackEnv) {
           'scheduler/tracing': 'scheduler/tracing-profiling',
         }),
         ...(modules.webpackAliases || {}),
-		'communication': path.resolve(__dirname, '../src/Communication/'),
+		'communication': path.resolve(__dirname, '../src/Utils/Communication/'),
 		'utils': path.resolve(__dirname, '../src/Utils/')
       },
       plugins: [
