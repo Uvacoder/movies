@@ -1,10 +1,10 @@
 import React from 'react';
 import "./MovieSocial.scss"
-import Homepage from '../Images/homepage.svg'
-import Facebook from '../Images/facebook.svg'
-import Instagram from '../Images/instagram.svg'
-import Twitter from '../Images/twitter.svg'
-import IMDB from '../Images/IMDB.svg'
+import Homepage from '../../Images/homepage.svg'
+import Facebook from '../../Images/facebook.svg'
+import Instagram from '../../Images/instagram.svg'
+import Twitter from '../../Images/twitter.svg'
+import IMDB from '../../Images/IMDB.svg'
 
 const MovieSocial = (props) => {
   const {

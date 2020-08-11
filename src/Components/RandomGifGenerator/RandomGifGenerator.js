@@ -1,5 +1,5 @@
 import React from 'react';
-import Communication from '../Communication/Communication';
+import Communication from '../../Communication/Communication';
 import { Button, Divider } from 'antd';
 import './RandomGifGenerator.scss'
 

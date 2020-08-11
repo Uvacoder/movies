@@ -1,6 +1,6 @@
 import React from 'react';
 import './LayoutContent.scss';
-import Roots from '../Roots/Roots'
+import Roots from '../../Roots/Roots'
 import { Layout } from 'antd';
 
 const LAYOUT_CONTENT_MARGIN_TOP = 64;

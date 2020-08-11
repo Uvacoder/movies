@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import "./RandomMovie.scss"
-import DoughnutChart from '../DoughnutChart/DoughnutChart'
+import DoughnutChart from '../../Components/DoughnutChart/DoughnutChart'
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchRandom } from '../Actions/HomePageActions';
+import { fetchRandom } from '../../Actions/HomePageActions';
 import YouTube from 'react-youtube';
 import Calculation from 'utils/Calculation';
 import { Scrollbars } from 'react-custom-scrollbars';
