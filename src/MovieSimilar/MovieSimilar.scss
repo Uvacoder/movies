@@ -1,5 +1,4 @@
 .movie-similar{
-
   .movie-similar__container{
   display: flex;
   flex-direction: column;
@@ -13,6 +12,7 @@
       border-radius: 8px;
       pointer-events: none;
     }
+    
     .movie-similar__container-title{
       margin-bottom: 10px;
       font-size: 1.1em;

@@ -9,13 +9,13 @@
   color: wheat;
 }
 
-.movie-overwiev {
+.movie-overview {
   display: grid;
   grid-template-columns: 1fr 1.6fr 1fr;
   grid-gap: 10px;
   height: 100%;
 
-  .movie-overwiev__poster{
+  .movie-overview__poster{
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
@@ -27,58 +27,58 @@
     }
   }
 
-  .movie-overwiev__description {
+  .movie-overview__description {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
     grid-row-end: 2;
     min-height: 230px;
 
-    .movie-overwiev__description-title{
+    .movie-overview__description-title{
       @extend %display-title-text-under;
       margin-bottom: 1em;       
     }
 
-    .movie-overwiev__description-text {
+    .movie-overview__description-text {
       overflow: auto;
       font-family: sans-serif;   
       padding-right: 10px;   
     }   
   }
 
-  .movie-overwiev__description > div > div:nth-child(3) > div {
-    background-color: rgba(255,255,255,0.6) !important;
+  .movie-overview__description > div > div:nth-child(3) > div {
+    background-color: rgba(255, 255, 255, 0.6) !important; // workaround to make scrollbar from react-custom-scrollbars appear white
   }
   
-  .movie-overwiev__genres {
+  .movie-overview__genres {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 3;
     grid-row-end: 4;
     display: flex;
 
-    .movie-overwiev__genres-title{
+    .movie-overview__genres-title{
       @extend %display-title;
       min-width: 87px;
       text-align: right;
     }
   }
 
-  .movie-overwiev__release {
+  .movie-overview__release {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
     grid-row-end: 3;
     display: flex;
 
-    .movie-overwiev__release-title{
+    .movie-overview__release-title{
       @extend %display-title;
       min-width: 87px;
       text-align: right;
     }
   }
 
-  .movie-overwiev__director {
+  .movie-overview__director {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 4;
@@ -86,14 +86,14 @@
     display: flex;
     margin-bottom: auto;
 
-    .movie-overwiev__director-title{
+    .movie-overview__director-title{
       @extend %display-title;
       min-width: 87px;
       text-align: right;
     }
   }
 
-  .movie-overwiev__writers {
+  .movie-overview__writers {
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 5;
@@ -101,14 +101,14 @@
     display: flex;
     margin-bottom: auto;
 
-    .movie-overwiev__writers-title{
+    .movie-overview__writers-title{
       @extend %display-title;
       min-width: 87px;
       text-align: right;
     }
   }
 
-  .movie-overwiev__extra {
+  .movie-overview__extra {
     grid-column-start: 3;
     grid-column-end: 4;
     grid-row-start: 1;
@@ -120,28 +120,28 @@
     padding-left: 20px;
     
 
-    .movie-overwiev__extra-runtime,
-    .movie-overwiev__extra-budget,
-    .movie-overwiev__extra-revenue {
+    .movie-overview__extra-runtime,
+    .movie-overview__extra-budget,
+    .movie-overview__extra-revenue {
       display: flex;
       margin-bottom: auto;
       
 
-      .movie-overwiev__extra-runtime-title,
-      .movie-overwiev__extra-budget-title,
-      .movie-overwiev__extra-revenue-title {
+      .movie-overview__extra-runtime-title,
+      .movie-overview__extra-budget-title,
+      .movie-overview__extra-revenue-title {
         @extend %display-title
       }
     }
 
-    .movie-overwiev__extra-countries,
-    .movie-overwiev__extra-spoken-languages,
-    .movie-overwiev__extra-production-companies {
+    .movie-overview__extra-countries,
+    .movie-overview__extra-spoken-languages,
+    .movie-overview__extra-production-companies {
       margin-bottom: auto;
 
-      .movie-overwiev__extra-countries-title,
-      .movie-overwiev__extra-spoken-languages-title,
-      .movie-overwiev__extra-production-companies-title {
+      .movie-overview__extra-countries-title,
+      .movie-overview__extra-spoken-languages-title,
+      .movie-overview__extra-production-companies-title {
         @extend %display-title-text-under;
       }
     }

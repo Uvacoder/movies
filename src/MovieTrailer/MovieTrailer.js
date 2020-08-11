@@ -3,6 +3,8 @@ import "./MovieTrailer.scss"
 import Carousel from 'react-multi-carousel';
 import YouTube from 'react-youtube';
 
+const NO_OF_VIDEOS_DISPLAYED = 1;
+const NAME_OF_SEARCHED_SITE = "YouTube";
 
 const MovieTrailer = (props) => {
   const {
@@ -11,8 +13,8 @@ const MovieTrailer = (props) => {
 
   const responsive = {
     all: {
-      breakpoint: { max: 4000, min: 0 },
-      items: 1
+      breakpoint: { max: Infinity, min: 0 },
+      items: NO_OF_VIDEOS_DISPLAYED
     }
   };  
 
@@ -33,7 +35,7 @@ const MovieTrailer = (props) => {
           autoPlay={false}
           keyBoardControl={false}
         >
-          { videoItems.filter((item) => item.site === "YouTube").map((item) => renderMovieTrailerBlock(item)) }
+          { videoItems.filter((item) => item.site === NAME_OF_SEARCHED_SITE).map((item) => renderMovieTrailerBlock(item)) }
         </Carousel>
       </div>   
     </div>

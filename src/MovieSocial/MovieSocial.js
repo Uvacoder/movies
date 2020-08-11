@@ -16,51 +16,35 @@ const MovieSocial = (props) => {
   } = props;
 
 
+  const renderSocialTag = (propName, imgPath) => {
+    return (
+      <a href={propName}>
+        <img 
+          className={ !propName && 'img-disabled' } 
+          src={ imgPath } 
+          alt={`${ imgPath }`} 
+        />
+      </a>
+    )
+  }
+
   return (
     <div className='movie-social'>
-      <a href={movieHomePage}>
-        <img 
-          className={ !movieHomePage && 'img-disabled' } 
-          src={Homepage} 
-          alt='homepage' 
-        />
-      </a>
-      <a href={IMDBPage}>
-        <img 
-          className={ !IMDBPage && 'img-disabled' } 
-          src={IMDB} 
-          alt='IMDB'
-        />
-      </a>  
-      <a href={facebookPage}>
-        <img 
-          className={ !facebookPage && 'img-disabled' } 
-          src={Facebook} 
-          alt='Facebook'/>
-      </a>
-      <a href={InstagramPage}>
-        <img 
-          className={ !InstagramPage && 'img-disabled' } 
-          src={Instagram} 
-          alt='Instagram'/>
-      </a>
-      <a href={TwitterPage}>
-        <img 
-          className={ !TwitterPage && 'img-disabled' } 
-          src={Twitter} 
-          alt='Twitter'/>
-      </a>        
+      { renderSocialTag(movieHomePage, Homepage) }
+      { renderSocialTag(IMDBPage, IMDB) }
+      { renderSocialTag(facebookPage, Facebook) }
+      { renderSocialTag(InstagramPage, Instagram) }
+      { renderSocialTag(TwitterPage, Twitter) }
     </div>
   );
 };
 
 MovieSocial.defaultProps = {
-    movieHomePage: null,
-    facebookPage: null,
-    InstagramPage: null,
-    TwitterPage: null,
-    IMDBPage: null
+    movieHomePage: '',
+    facebookPage: '',
+    InstagramPage: '',
+    TwitterPage: '',
+    IMDBPage: ''
 }
 
 export default MovieSocial
-

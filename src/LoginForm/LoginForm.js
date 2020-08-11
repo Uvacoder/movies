@@ -24,9 +24,9 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div className="login-container">
-        <div className="login-welcome">Please Log In</div>
-          <div className="login-form">
+      <div className="login-form">
+        <div className="login-form__welcome">Please Log In</div>
+          <div className="login-form__container">
            <Form
               name="basic"
               initialValues={{
@@ -73,8 +73,9 @@ class LoginForm extends React.Component {
                     Submit
                 </Button>
               </Form.Item>
-              <div className="register">
-                <div  className="register__label" onClick={ this.props.goTo }>Not registered yet? Click here to register!</div>
+              {/* TEMPORARY PLACEHOLDER FOR REGISTRATION COMPONENT  */}
+              <div className="registration-form"> 
+                <div  className="registration-form__label" onClick={ this.props.goTo }>Not registered yet? Click here to register!</div>
               </div>
           </Form>
         </div>

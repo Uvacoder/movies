@@ -13,7 +13,6 @@ const API_PATH = 'https://image.tmdb.org/t/p/w500'
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE = 7;
 
-
 const RandomMovie = () => {
   const randomMovie = useSelector(state => state.homePage.random.items);
   const [randomMovieId] = useState(Calculation.randomInt(NO_OF_FIRST_RANDOM_ITEM, NO_OF_LAST_LAST_ITEM));
@@ -43,7 +42,7 @@ const RandomMovie = () => {
           <div className='random-movie-container__details-overwiev-title'>
             Overwiev: 
           </div >
-          <Scrollbars autoHeight >
+          <Scrollbars autoHeight>
             <div className='random-movie-container__details-overwiev-content'>
                 {currentMovie.overview} 
             </div >

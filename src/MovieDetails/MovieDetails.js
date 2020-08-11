@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { fetchMovieDetails } from '../Actions/MovieActions'
 import { Divider } from 'antd'
+import Api from 'utils/Api';
 import MovieHeader from '../MovieHeader/MovieHeader'
-import MovieOverwiev from '../MovieOverwiev/MovieOverwiev'
+import MovieOverwiev from '../MovieOverview/MovieOverview'
 import MovieCast from '../MovieCast/MovieCast'
 import MovieTrailer from '../MovieTrailer/MovieTrailer'
 import MovieImages from '../MovieImages/MovieImages'
@@ -15,10 +16,12 @@ import MovieSocial from '../MovieSocial/MovieSocial'
 
 const TEMP_MOVIE_ID = 550; // TO DO MAKE DYNAMIC MOVIE CHANGE ON IMG CLICK
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
-const POSTER_PATH = 'https://image.tmdb.org/t/p/w500'
+const POSTER_WIDTH = 500;
+const THUMBNAIL_WIDTH_DIVIDER_VALUE = 5;
+const THUMBNAIL_WIDTH_MAX_VALUE = 400;
+const THUMBNAIL_HEIGHT = 250;
 
 class MovieDetails extends React.Component {
-
   componentDidMount() {
     this.props.fetchMovieDetails(TEMP_MOVIE_ID);
   }
@@ -34,8 +37,8 @@ class MovieDetails extends React.Component {
     return {
       src:`${BACKDROP_API_PATH}${backdrop.file_path}`,
       thumbnail: `${BACKDROP_API_PATH}${backdrop.file_path}`,
-      thumbnailWidth: Math.min(backdrop.width/5, 400),
-      thumbnailHeight: 250,
+      thumbnailWidth: Math.min(backdrop.width/THUMBNAIL_WIDTH_DIVIDER_VALUE, THUMBNAIL_WIDTH_MAX_VALUE ),
+      thumbnailHeight: THUMBNAIL_HEIGHT,
     }
   }
 
@@ -59,7 +62,7 @@ class MovieDetails extends React.Component {
   }
 
   renderPhotos = () => {
-    if (this.props.details?.images?.backdrops?.length === 0) {
+    if (this.props.details.images?.backdrops?.length === 0) {
       return null 
     }
 
@@ -74,7 +77,7 @@ class MovieDetails extends React.Component {
   }
 
   renderSimilar = () => {
-    if (this.props?.similarMovies.length === 0) {
+    if (this.props.similarMovies.length === 0) {
       return null 
     }
 
@@ -89,7 +92,7 @@ class MovieDetails extends React.Component {
   }
 
   renderTrailer = () => {
-    if (this.props.details?.videos?.results.length === 0) {
+    if (this.props.details.videos?.results.length === 0) {
       return null 
     }
 
@@ -120,7 +123,6 @@ class MovieDetails extends React.Component {
     
   render() {
     return (
-
       <div className='movie-details-container'>
         <div className='movie-details-container__header'> 
           <MovieHeader 
@@ -133,7 +135,7 @@ class MovieDetails extends React.Component {
         </div>
         <div className='movie-details-container__overwiev'> 
           <MovieOverwiev
-            poster={`${POSTER_PATH}${this.props.details.poster_path}`}
+            poster={`${Api.imgPath(POSTER_WIDTH)}${this.props.details.poster_path}`}
             description={this.props.details.overview}
             realeaseDate={this.props.details.release_date}
             genres={this.props.details.genres?.map((item) => item.name).join(', ')}

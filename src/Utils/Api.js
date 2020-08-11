@@ -13,6 +13,12 @@ const getTMDBApiUrl = (url, queryParams) => {
   }
 }
 
+// check available img sizes in API before applying
+const getImgPath = (imgWidth) => {
+  return `https://image.tmdb.org/t/p/w${imgWidth}`
+}
+
 export default {
-  get: getTMDBApiUrl
+  get: getTMDBApiUrl,
+  imgPath : getImgPath
 }

@@ -12,13 +12,11 @@ const MovieReview = (props) => {
 
   return (
     <div className='movie-review'>
-      <div className="site-card-border-less-wrapper">
-        <Card title={`Review by: ${review.author}`} bordered={false} style={{ width: MOVIE_REVIEW_CARD_WIDTH }}>
-          <Scrollbars autoHeight >
-            <div className='movie-review__content'>{review.content}</div>
-          </Scrollbars>
-        </Card>
-      </div>
+      <Card title={`Review by: ${review.author}`} bordered={false} style={{ width: MOVIE_REVIEW_CARD_WIDTH }}>
+        <Scrollbars autoHeight >
+          <div className='movie-review__content'>{review.content}</div>
+        </Scrollbars>
+      </Card>
     </div>
   );
 };

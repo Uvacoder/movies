@@ -1,9 +1,10 @@
 import React from 'react';
 import "./MovieSimilar.scss"
 import Carousel from 'react-multi-carousel';
+import Api from 'utils/Api';
 
 const NO_OF_ITEMS_SIMILAR_MOVIES = 6;
-const TMDB_API_IMG_PATH = 'https://image.tmdb.org/t/p/w500';
+const IMG_SIZE = 500;
 
 const MovieSimilar = (props) => {
   const {
@@ -22,7 +23,7 @@ const MovieSimilar = (props) => {
       <div className='movie-similar__container'>
         <img 
             className='movie-similar__container-image' 
-            src={ `${TMDB_API_IMG_PATH}${ item?.poster_path }`} 
+            src={ `${Api.imgPath(IMG_SIZE)}${ item?.poster_path }`} 
             alt='poster'
         />
         <div className='movie-similar__container-title'>

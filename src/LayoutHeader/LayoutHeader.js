@@ -113,9 +113,6 @@ function LayoutHeader () {
           <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
             <Link to ="/home" > Movie Lounge</Link>
           </Menu.Item>
-          {/* <Menu.Item key="2" >
-            <Link to ="/home" className="nav-bar-menu__title">Lounge</Link>
-          </Menu.Item> */}
         </Menu>
       </div>
       <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >

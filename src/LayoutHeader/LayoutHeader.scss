@@ -1,4 +1,4 @@
-$search-bar-color: rgba(9, 197, 214, 0.4);
+$search-bar-color: #09C5D6;
 
 .nav-bar-menu {
   display: flex;
@@ -19,15 +19,15 @@ $search-bar-color: rgba(9, 197, 214, 0.4);
   justify-content: space-between;
 
   .ant-menu {
-      .ant-menu-item-selected {
-          background-color: transparent;
-      }
+    .ant-menu-item-selected {
+      background-color: transparent;
+    }
   }
 
   .ant-menu-item:hover {
-      svg {
-          fill: 	rgb(255,215,0)
-      }
+    svg {
+      fill:rgb(255,215,0)
+    }
   }
    
   .ant-btn-primary {
@@ -37,11 +37,11 @@ $search-bar-color: rgba(9, 197, 214, 0.4);
   }
 
   .nav-bar-menu__title .ant-menu-item a  {
-      font-size: 1.1em;
-      color: rgb(9, 197, 214) ;
+    font-size: 1.1em;
+    color: $search-bar-color ;
   }
   .nav-bar-menu__title .ant-menu-item:hover a {
-      color: rgb(9, 197, 214) ;
+    color: $search-bar-color ;
   }
 
 }
@@ -51,26 +51,26 @@ $search-bar-color: rgba(9, 197, 214, 0.4);
   width: 10%;
 
   .anticon {
-      font-size: 40px;
+    font-size: 40px;
 
-      svg {
-          color: rgb(9, 197, 214);
-      }
+    svg {
+      color: $search-bar-color;
+    }
   }
 
   .ant-menu-item{
-      display: flex;
-      align-items: center;
+    display: flex;
+    align-items: center;
   }
 }
 
 .nav-bar-menu {
   .ant-menu-submenu-title:hover {
-      color: #1890ff
+    color: #1890ff
   }
 
   .ant-menu-submenu-title {
-      color:white
+    color:white
   }
 }
 
