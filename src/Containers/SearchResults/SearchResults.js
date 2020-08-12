@@ -5,8 +5,10 @@ import { bindActionCreators } from 'redux';
 import { fetchSearched } from 'actions/SearchActions'
 import { Divider } from 'antd'
 import Api from 'utils/Api';
+import SearchedMovies from 'components/SearchedMovies//SearchedMovies'
 
 const SEARCHED_PHRASE = 'gladiator'
+const POSTER_WIDTH = 500;
 
 class SearchResults extends React.Component {
   componentDidMount() {
@@ -16,8 +18,7 @@ class SearchResults extends React.Component {
   render() {
     return (
       <div className='search-results'>
-        {this.props.searchResults?.[0]?.title}
-        
+        <SearchedMovies item={this.props.searchResults}/> 
       </div> 
     );
   };

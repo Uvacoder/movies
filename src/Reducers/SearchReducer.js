@@ -10,7 +10,7 @@ export function searchResults (state = initialState, action) {
   switch(action.type) {
   case FETCH_SEARCHED:
     return Object.assign({}, state, {
-      results: action.searchResults.results,
+      results: action.searchResults,
     })
   default:
     return state
