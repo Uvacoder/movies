@@ -23,7 +23,7 @@ const MovieSimilar = (props) => {
       <div className='movie-similar__container'>
         <img 
             className='movie-similar__container-image' 
-            src={ `${Api.imgPath(IMG_SIZE)}${ item?.poster_path }`} 
+            src={ `${Api.getImgURL(IMG_SIZE)}${ item?.poster_path }`} 
             alt='poster'
         />
         <div className='movie-similar__container-title'>

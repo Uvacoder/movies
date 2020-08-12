@@ -23,7 +23,7 @@ const MovieCast = (props) => {
     <div className='movie-cast__container'>
       <img 
           className='movie-cast__container-image' 
-          src={ `${Api.imgPath(IMG_SIZE)}${ item?.profile_path }`} 
+          src={ `${Api.getImgURL(IMG_SIZE)}${ item?.profile_path }`} 
           alt=''
       />
       <div className='movie-cast__container-name'>{ item?.name}</div>

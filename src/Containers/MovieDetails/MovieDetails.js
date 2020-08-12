@@ -135,7 +135,7 @@ class MovieDetails extends React.Component {
         </div>
         <div className='movie-details-container__overwiev'> 
           <MovieOverwiev
-            poster={`${Api.imgPath(POSTER_WIDTH)}${this.props.details.poster_path}`}
+            poster={`${Api.getImgURL(POSTER_WIDTH)}${this.props.details.poster_path}`}
             description={this.props.details.overview}
             realeaseDate={this.props.details.release_date}
             genres={this.props.details.genres?.map((item) => item.name).join(', ')}
