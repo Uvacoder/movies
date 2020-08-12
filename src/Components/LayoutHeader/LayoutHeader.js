@@ -16,12 +16,13 @@ import {
   SmileOutlined 
 } from '@ant-design/icons';
 import './LayoutHeader.scss';
+import { withRouter } from 'react-router-dom'
 
 const SEARCH_BAR_WIDTH = '300px';
 const { Header } = Layout;
 const { Search } = Input;
 
-function LayoutHeader () {
+function LayoutHeader (props) {
  const renderSubMenu = (title, icon, menuItems) => {
     return (
       <SubMenu key={ title } icon={ icon } title={ title }>
@@ -121,7 +122,7 @@ function LayoutHeader () {
         {renderRankingsMenu()}
         <Search
           placeholder="Search movies, TV Shows or people"
-          onSearch={value => console.log(value)}
+          onSearch={value => props.history.push('/search-results')}
           style={{ width: SEARCH_BAR_WIDTH}}
           enterButton
         />
@@ -137,4 +138,4 @@ function LayoutHeader () {
   );
 };
 
-export default LayoutHeader
+export default withRouter(LayoutHeader)
