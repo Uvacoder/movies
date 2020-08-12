@@ -2,7 +2,6 @@ import {
   FETCH_TRENDING,
   FETCH_UPCOMMING,
   FETCH_RANDOM,
-  // CLEANUP_RANDOM,
 } from '../Actions/HomePageActions';
 
 const initialState = {

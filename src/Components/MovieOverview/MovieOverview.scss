@@ -1,0 +1,149 @@
+%display-title {
+  font-weight: bold;
+  margin-right: 1em;
+  color: wheat;
+}
+
+%display-title-text-under {
+  font-weight: bold;
+  color: wheat;
+}
+
+.movie-overview {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 1fr;
+  grid-gap: 10px;
+  height: 100%;
+
+  .movie-overview__poster{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 6;
+
+    img {
+      height: 400px;
+      border-radius: 16px;
+    }
+  }
+
+  .movie-overview__description {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    min-height: 230px;
+
+    .movie-overview__description-title{
+      @extend %display-title-text-under;
+      margin-bottom: 1em;       
+    }
+
+    .movie-overview__description-text {
+      overflow: auto;
+      font-family: sans-serif;   
+      padding-right: 10px;   
+    }   
+  }
+
+  .movie-overview__description > div > div:nth-child(3) > div {
+    background-color: rgba(255, 255, 255, 0.6) !important; // workaround to make scrollbar from react-custom-scrollbars appear white
+  }
+  
+  .movie-overview__genres {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    display: flex;
+
+    .movie-overview__genres-title{
+      @extend %display-title;
+      min-width: 87px;
+      text-align: right;
+    }
+  }
+
+  .movie-overview__release {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    display: flex;
+
+    .movie-overview__release-title{
+      @extend %display-title;
+      min-width: 87px;
+      text-align: right;
+    }
+  }
+
+  .movie-overview__director {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
+    display: flex;
+    margin-bottom: auto;
+
+    .movie-overview__director-title{
+      @extend %display-title;
+      min-width: 87px;
+      text-align: right;
+    }
+  }
+
+  .movie-overview__writers {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    display: flex;
+    margin-bottom: auto;
+
+    .movie-overview__writers-title{
+      @extend %display-title;
+      min-width: 87px;
+      text-align: right;
+    }
+  }
+
+  .movie-overview__extra {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 6;
+    display: flex;
+    flex-direction: column;
+    border-left: white 1px solid;
+    border-left-color: white;
+    padding-left: 20px;
+    
+
+    .movie-overview__extra-runtime,
+    .movie-overview__extra-budget,
+    .movie-overview__extra-revenue {
+      display: flex;
+      margin-bottom: auto;
+      
+
+      .movie-overview__extra-runtime-title,
+      .movie-overview__extra-budget-title,
+      .movie-overview__extra-revenue-title {
+        @extend %display-title
+      }
+    }
+
+    .movie-overview__extra-countries,
+    .movie-overview__extra-spoken-languages,
+    .movie-overview__extra-production-companies {
+      margin-bottom: auto;
+
+      .movie-overview__extra-countries-title,
+      .movie-overview__extra-spoken-languages-title,
+      .movie-overview__extra-production-companies-title {
+        @extend %display-title-text-under;
+      }
+    }
+  }
+}

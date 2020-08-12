@@ -1,0 +1,44 @@
+.login-form__container {
+  label {
+    color:white;
+  }
+
+  .ant-btn-primary {
+    background-color: #165b9a;
+    border: none;
+  }
+
+  .ant-form-item-control-input-content {
+    width: 320px;
+    max-width: 320px;
+  }
+
+  .ant-form-item {
+    justify-content: space-between;
+  }
+
+  .ant-form-item-control {
+    max-width: 320px;
+  }
+}
+
+.login-form__welcome {
+  color: white ;
+  padding-bottom: 20px;
+  font-size: 30px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.registration-form__label {
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.registration-form__label:hover {
+  color: yellow;   
+}

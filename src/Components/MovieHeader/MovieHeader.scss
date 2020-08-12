@@ -1,0 +1,75 @@
+.movie-header{
+  height: 100%;
+
+  .movie-header_image-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #011425;
+    border-bottom: aqua 1px solid;
+
+    img {
+      width: 70%;
+      height: 100%;
+      mask-image: linear-gradient(to right,rgba(0,0,0,0), rgba(0,0,0,1), rgba(0,0,0,0));
+      filter: grayscale(40%)
+    };
+  };
+  
+  .movie-header__wrapper-title,
+  .movie-header__wrapper-tagline,
+  .movie-header-votes-average-title,
+  .movie-header-votes-popularity-title {
+    z-index: 1;
+  };
+
+  .movie-header-votes {
+    display: flex;
+    height: 250px;
+    width: 340px;
+    justify-content: space-between;
+    align-items: center;
+
+    .movie-header-votes-average,
+    .movie-header-votes-popularity {
+      z-index: 1;
+      height: 200px;
+      width: 150px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+
+      .movie-header-votes-average-title,
+      .movie-header-votes-popularity-title{
+          font-weight: 600;
+      };
+    };
+  };
+
+  .movie-header__wrapper{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 24px;
+
+    .movie-header__wrapper-title {
+      font-size: 56px; 
+      font-weight: 1000; 
+      line-height: 72px; 
+      margin: 0 0 24px; 
+      text-align: left;
+      text-transform: uppercase;
+    };
+
+    .movie-header__wrapper-tagline{
+      color:#BFBFBF;
+      font-style: italic;
+    };
+  };
+};

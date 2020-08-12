@@ -24,3 +24,6 @@ yarn-error.log*
 
 # api keys
 .env
+
+# overflow files
+package-lock.json

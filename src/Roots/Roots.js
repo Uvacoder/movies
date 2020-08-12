@@ -1,9 +1,9 @@
 import React from 'react';
 import './Roots.scss'
 import { Route } from "react-router-dom";
-import HomePage from '../HomePage/HomePage'
-import RandomGifGenerator from '../RandomGifGenerator/RandomGifGenerator'
-import MovieDetails from '../MovieDetails/MovieDetails'
+import HomePage from '../Containers/HomePage/HomePage'
+import RandomGifGenerator from '../Components/RandomGifGenerator/RandomGifGenerator'
+import MovieDetails from '../Containers/MovieDetails/MovieDetails'
 
 function Roots() {
     return ( 

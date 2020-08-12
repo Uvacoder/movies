@@ -1,0 +1,39 @@
+$content-min-width: 1056px;
+
+@media only screen and (max-width: $content-min-width) {
+    .ant-layout .site-layout .site-layout__container { 
+        display: flex ;
+
+        .site-layout__container-margin-left, 
+        .site-layout__container-margin-right {
+            display:none;     
+        }
+
+        .site-layout__container-margin-main {
+            width: 100%;
+        };
+    };
+};
+  
+.site-layout {   
+    .site-layout__container {
+        background: #032646;
+        height: 100%;
+        display: grid;
+        grid-template-columns: minmax(0,1.5fr) minmax($content-min-width ,5fr) minmax(0,1.5fr);
+    }
+
+    .site-layout__container-margin-right, 
+    .site-layout__container-margin-left {
+        background-image: url("../../Images/welcomepage.jpg");
+    }
+
+    .site-layout__container-margin-right {
+        background-position: top;
+    }
+
+    .site-layout__container-main {
+        color: white;
+
+    };
+};
