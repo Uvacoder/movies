@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import "./HomePage.scss"
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchTrending,fetchUpcomming } from '../../Actions/HomePageActions'
+import { fetchTrending,fetchUpcomming } from 'actions/HomePageActions'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Divider } from 'antd'
 import RandomMovie from '../RandomMovie/RandomMovie'
-import UpcommingMovies from '../../Components/UpcommingMovies/UpcommingMovies'
+import UpcommingMovies from 'components/UpcommingMovies/UpcommingMovies'
 
 const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table length.
 const NO_OF_UPCOMMING_ITEMS = 3;

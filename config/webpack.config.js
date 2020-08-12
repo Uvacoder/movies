@@ -300,7 +300,11 @@ module.exports = function(webpackEnv) {
         }),
         ...(modules.webpackAliases || {}),
 		'communication': path.resolve(__dirname, '../src/Utils/Communication/'),
-		'utils': path.resolve(__dirname, '../src/Utils/')
+		'utils': path.resolve(__dirname, '../src/Utils/'),
+		'components': path.resolve(__dirname, '../src/Components/'),
+		'containers': path.resolve(__dirname, '../src/Containers/'),
+		'actions': path.resolve(__dirname, '../src/Actions/'),
+		'reducers': path.resolve(__dirname, '../src/Reducers/')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

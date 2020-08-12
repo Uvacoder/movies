@@ -2,17 +2,17 @@ import React from 'react';
 import './MovieDetails.scss';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { fetchMovieDetails } from '../../Actions/MovieActions'
+import { fetchMovieDetails } from 'actions/MovieActions'
 import { Divider } from 'antd'
 import Api from 'utils/Api';
-import MovieHeader from '../../Components/MovieHeader/MovieHeader'
-import MovieOverwiev from '../../Components/MovieOverview/MovieOverview'
-import MovieCast from '../../Components/MovieCast/MovieCast'
-import MovieTrailer from '../../Components/MovieTrailer/MovieTrailer'
-import MovieImages from '../../Components/MovieImages/MovieImages'
-import MovieSimilar from '../../Components/MovieSimilar/MovieSimilar'
-import MovieReview from '../../Components/MovieReview/MovieReview'
-import MovieSocial from '../../Components/MovieSocial/MovieSocial'
+import MovieHeader from 'components/MovieHeader/MovieHeader'
+import MovieOverwiev from 'components/MovieOverview/MovieOverview'
+import MovieCast from 'components/MovieCast/MovieCast'
+import MovieTrailer from 'components/MovieTrailer/MovieTrailer'
+import MovieImages from 'components/MovieImages/MovieImages'
+import MovieSimilar from 'components/MovieSimilar/MovieSimilar'
+import MovieReview from 'components/MovieReview/MovieReview'
+import MovieSocial from 'components/MovieSocial/MovieSocial'
 
 const TEMP_MOVIE_ID = 550; // TO DO MAKE DYNAMIC MOVIE CHANGE ON IMG CLICK
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
