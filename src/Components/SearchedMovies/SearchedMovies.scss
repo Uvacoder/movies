@@ -1,0 +1,105 @@
+%display-title {
+  color: wheat;
+  font-weight: bold;
+}
+
+.searched-movies {
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 0.6fr;
+  grid-gap: 10px;
+  height: 100%;
+  background: radial-gradient(#15528b, #032646);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  width: 80%;
+
+  .searched-movies__poster{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+
+    img {
+      height: 200px;
+      width: 133px;
+      border-radius: 12px;
+    }
+  }
+
+  .searched-movies__title{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    font-size: xx-large;
+    font-weight: bold;
+  }
+
+  .searched-movies__container1{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    display:flex;
+    justify-content: flex-start;
+
+    .searched-movies__container1-release,
+    .searched-movies__container1-runtime{
+      display:flex;
+      justify-content: space-evenly;
+      margin-right: 20px;
+
+      .searched-movies__container1-release-title,
+      .searched-movies__container1-runtime-title{
+        @extend %display-title;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .searched-movies__container2{
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    display:flex;
+    justify-content: flex-start;
+
+    .searched-movies__container2-genres,
+    .searched-movies__container2-director{
+      display:flex;
+      justify-content: space-evenly;
+      margin-right: 20px;
+    }
+
+    .searched-movies__container2-genres-title,
+    .searched-movies__container2-director-title{
+      @extend %display-title;
+      margin-right: 10px;
+    }
+  }
+
+  .searched-movies__votes{
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    .searched-movies__votes-average,
+    .searched-movies__votes-popularity {
+      width: 100px;
+      margin-right: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .searched-movies__votes-popularity-title,
+    .searched-movies__votes-average-title{
+      margin-bottom: 10px;
+      @extend %display-title
+    }
+  }
+
+}

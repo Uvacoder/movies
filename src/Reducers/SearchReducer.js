@@ -3,7 +3,7 @@ import {
 } from 'actions/SearchActions';
 
 const initialState = {
-  results: {}
+  results: []
 }
 
 export function searchResults (state = initialState, action) {

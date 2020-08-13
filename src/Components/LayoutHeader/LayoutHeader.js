@@ -121,7 +121,7 @@ function LayoutHeader (props) {
         {renderTVShowsSubMenu()}
         {renderRankingsMenu()}
         <Search
-          placeholder="Search movies, TV Shows or people"
+          placeholder="Find your favorite movies"
           onSearch={value => props.history.push('/search-results')}
           style={{ width: SEARCH_BAR_WIDTH}}
           enterButton
