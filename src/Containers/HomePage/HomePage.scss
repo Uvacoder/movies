@@ -58,6 +58,10 @@
     justify-content: center;
     user-select: none;
 
+    img {
+      min-height: 325px;
+    }
+
     .home-page-container__trending-item-image {
       width:95%;
       height:100%;

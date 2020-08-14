@@ -44,7 +44,7 @@ function HomePage () {
   }
 
   const renderTrending = () => {
-    const availableMovies = trendingList.filter(movie => movie.title || movie.orginal_title || movie.original_name)
+    const availableMovies = trendingList.filter(movie => movie.title || movie.orginal_title)
 
     return (
       <div style={{width: '100%'}}>

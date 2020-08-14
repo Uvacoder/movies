@@ -1,5 +1,6 @@
 import {
-  FETCH_SEARCHED
+  FETCH_SEARCHED,
+  CLEAR_SEARCHED
 } from 'actions/SearchActions';
 
 const initialState = {
@@ -10,6 +11,11 @@ const initialState = {
 export function searchResults (state = initialState, action) {
   switch(action.type) {
   case FETCH_SEARCHED:
+    return Object.assign({}, state, {
+      results: action.searchResults,
+      phrase: action.phrase
+    })
+  case CLEAR_SEARCHED:
     return Object.assign({}, state, {
       results: action.searchResults,
       phrase: action.phrase

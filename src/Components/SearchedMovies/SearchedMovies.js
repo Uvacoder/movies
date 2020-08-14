@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./SearchedMovies.scss"
 import Api from 'utils/Api';
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import ImgPlaceholder from '../../Images/imgPlaceholder.svg'
+import { clearSearched } from 'actions/SearchActions'
+import { useDispatch } from 'react-redux';
 
 const POSTER_WIDTH = 500;
 
@@ -18,7 +20,15 @@ const SearchedMovies = (props) => {
   const VOTE_AVERAGE_CHART_COLOR_LOW = 'Aquamarine';
   const POPULARITY_MAX_VALUE = 100;
   const POPULARITY_DISPLAY_PERCENT = true;
-  
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearSearched())
+    }
+   },[])
+ 
   const filterDirector = () => {
     const director = item.details.credits.crew.filter((item) => item.job === "Director")?.[0]?.name
     return director ? director : '–'

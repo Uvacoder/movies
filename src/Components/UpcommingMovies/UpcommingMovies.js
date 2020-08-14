@@ -19,7 +19,8 @@ const UpcommingMovie = (props) => {
           { item?.title || item?.orginal_title }
         </div>
         <div className='upcomming-container__details-release'>
-          Release date: {item?.release_date}
+          <span>Release date:</span>
+          <span>{item?.release_date}</span>
         </div>
           <div className='upcomming-container__details-popularity'>
             <div className='upcomming-container__details-popularity-text'>
