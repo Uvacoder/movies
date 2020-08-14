@@ -1,9 +1,13 @@
 import React from 'react';
 import { Layout } from 'antd';
 import './AppLayout.scss';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import Particles from 'particles.js';
 import LayoutHeader from 'components/LayoutHeader/LayoutHeader'
 import LayoutContent from 'components/LayoutContent/LayoutContent'
+import { fetchSearched } from 'actions/SearchActions'
+
 class AppLayout extends React.Component {
 
 // //TODO -> FIX PARTICLES JS LIBRARY
@@ -21,7 +25,7 @@ class AppLayout extends React.Component {
     return (
       <div className='app-layout'>
         <Layout>
-           <LayoutHeader />
+           <LayoutHeader handleSearch={this.props.fetchSearched} />
            <LayoutContent />
         </Layout>
       </div>
@@ -29,4 +33,8 @@ class AppLayout extends React.Component {
   };
 }
 
-export default AppLayout;
+const mapDispatchToProps = dispatch => bindActionCreators({
+  fetchSearched,
+}, dispatch)
+
+export default connect(null, mapDispatchToProps)(AppLayout);

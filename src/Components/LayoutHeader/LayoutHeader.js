@@ -122,9 +122,14 @@ function LayoutHeader (props) {
         {renderRankingsMenu()}
         <Search
           placeholder="Find your favorite movies"
-          onSearch={value => props.history.push('/search-results')}
+          onSearch={value => { 
+            if (value) {
+              props.handleSearch(value);
+              props.history.push('/search-results')
+          }}}
           style={{ width: SEARCH_BAR_WIDTH}}
           enterButton
+          defaultValue=''
         />
           {renderNetflixMenu()}
           {renderHydeParkMenu()}

@@ -6,15 +6,9 @@ import { fetchSearched } from 'actions/SearchActions'
 import { Divider } from 'antd'
 import SearchedMovies from 'components/SearchedMovies/SearchedMovies'
 
-const SEARCHED_PHRASE = 'mamma mia'
-
 class SearchResults extends React.Component {
   constructor(props) {
     super(props)
-  }
-
-  componentDidMount() {
-    this.props.fetchSearched(SEARCHED_PHRASE);
   }
 
   renderResults = () => {
@@ -40,7 +34,7 @@ class SearchResults extends React.Component {
       <div className='search-results'>
         <Divider className='search-results__title' orientation='center'>
           <span>Search results for:</span>
-          <span>{SEARCHED_PHRASE}</span>
+          <span>{this.props.phrase}</span>
         </Divider>
         <div className='search-results__content'>
           {this.renderResults()}
@@ -52,7 +46,8 @@ class SearchResults extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    searchResults: state.searchResults.results
+    searchResults: state.searchResults.results,
+    phrase: state.searchResults.phrase
   }
 }
 

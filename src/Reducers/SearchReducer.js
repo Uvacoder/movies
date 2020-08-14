@@ -3,7 +3,8 @@ import {
 } from 'actions/SearchActions';
 
 const initialState = {
-  results: []
+  results: [],
+  phrase: ''
 }
 
 export function searchResults (state = initialState, action) {
@@ -11,6 +12,7 @@ export function searchResults (state = initialState, action) {
   case FETCH_SEARCHED:
     return Object.assign({}, state, {
       results: action.searchResults,
+      phrase: action.phrase
     })
   default:
     return state

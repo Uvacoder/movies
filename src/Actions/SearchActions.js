@@ -24,7 +24,8 @@ export const fetchSearched = (phrase) => {
 
 			dispatch({ 
 				type: FETCH_SEARCHED,
-				searchResults: searched.results
+				searchResults: searched.results,
+				phrase
 		});
 	};  
 }; 
