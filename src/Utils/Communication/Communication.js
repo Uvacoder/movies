@@ -1,9 +1,7 @@
+// TO DO figure out how to add store outisde react component
+
 // import store from '../../store';
 // import { changeLoadingStatus } from 'actions/GlobalActions';
-
-// console.log(changeLoadingStatus)
-// console.log(store)
-// window.store = store;
 
 async function Get(url) {
   let results;

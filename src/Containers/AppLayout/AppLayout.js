@@ -31,7 +31,7 @@ class AppLayout extends React.Component {
       </div>
     );
   };
-}
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchSearched,

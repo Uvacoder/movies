@@ -25,8 +25,7 @@ class SearchResults extends React.Component {
           <span className ='search-results__failed'>Make sure you haven't made any typos</span>
         </>
       )
-    }
-    
+    };
   };
 
   render() {

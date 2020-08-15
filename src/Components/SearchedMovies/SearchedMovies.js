@@ -27,7 +27,7 @@ const SearchedMovies = (props) => {
     return () => {
       dispatch(clearSearched())
     }
-   },[])
+  },[])
  
   const filterDirector = () => {
     const director = item.details.credits.crew.filter((item) => item.job === "Director")?.[0]?.name

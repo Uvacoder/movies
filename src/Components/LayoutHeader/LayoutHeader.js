@@ -17,7 +17,7 @@ import {
 } from '@ant-design/icons';
 import './LayoutHeader.scss';
 import { withRouter } from 'react-router-dom'
-import SearchBar from '../SearchBar/SearchBar'
+import SearchInput from '../SearchInput/SearchInput'
 
 const SEARCH_BAR_WIDTH = '300px';
 const { Header } = Layout;
@@ -121,7 +121,7 @@ function LayoutHeader (props) {
         {renderMoviesSubMenu()}
         {renderTVShowsSubMenu()}
         {renderRankingsMenu()}
-        <SearchBar
+        <SearchInput
           onSearch={value => { 
             if (value) {
               props.handleSearch(value);
