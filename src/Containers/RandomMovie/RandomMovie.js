@@ -6,6 +6,7 @@ import { fetchRandom } from 'actions/HomePageActions';
 import YouTube from 'react-youtube';
 import Calculation from 'utils/Calculation';
 import { Scrollbars } from 'react-custom-scrollbars';
+import { push } from 'connected-react-router'
 
 const NO_OF_FIRST_RANDOM_ITEM = 0;
 const NO_OF_LAST_LAST_ITEM = 20; // No more than 20, <- maximum TMDB API table length.
@@ -13,7 +14,7 @@ const API_PATH = 'https://image.tmdb.org/t/p/w500'
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE = 7;
 
-const RandomMovie = () => {
+const RandomMovie = (props) => {
   const randomMovie = useSelector(state => state.homePage.random.items);
   const [randomMovieId] = useState(Calculation.randomInt(NO_OF_FIRST_RANDOM_ITEM, NO_OF_LAST_LAST_ITEM));
   const dispatch = useDispatch();
@@ -30,12 +31,15 @@ const RandomMovie = () => {
   return (
     <div className='random-movie-container'>
       <img 
-        className='random-movie-container__image' 
+        className='random-movie-container__image routed-image' 
         src={`${API_PATH}${currentMovie.poster_path}`} 
         alt='poster'
+        onClick={() => dispatch(push(`/movie/${currentMovie.id}`))}
       />
       <div className='random-movie-container__details'> 
-        <div className='random-movie-container__details-title'>
+        <div 
+          className='random-movie-container__details-title routed-text'
+          onClick={() => dispatch(push(`/movie/${currentMovie.id}`))}>
             {currentMovie.title}
         </div> 
         <div className='random-movie-container__details-overwiev'>

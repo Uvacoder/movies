@@ -127,9 +127,10 @@ function LayoutHeader (props) {
               props.handleSearch(value);
               props.history.push('/search-results');
           }}}
-          placeholder={'Find your favorite movies'}
+          placeholder='Find your favorite movies'
           enterButton={true}
           defaultValue=''
+          searchBarWidth={SEARCH_BAR_WIDTH}
         />
           {renderNetflixMenu()}
           {renderHydeParkMenu()}

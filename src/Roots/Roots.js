@@ -15,7 +15,7 @@ function Roots() {
         <Route path="/random-gif-generator">
           <RandomGifGenerator />
         </Route>
-        <Route path="/movie">
+        <Route path="/movie/:id">
           <MovieDetails />
         </Route>
         <Route path="/search-results">

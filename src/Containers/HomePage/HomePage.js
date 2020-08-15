@@ -7,6 +7,7 @@ import 'react-multi-carousel/lib/styles.css';
 import { Divider } from 'antd'
 import RandomMovie from '../RandomMovie/RandomMovie'
 import UpcommingMovies from 'components/UpcommingMovies/UpcommingMovies'
+import { push } from 'connected-react-router'
 
 const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table length.
 const NO_OF_UPCOMMING_ITEMS = 3;
@@ -32,13 +33,13 @@ function HomePage () {
 
   const renderTrendingMovieBlock = (item) => {
     return (
-      <div className='home-page-container__trending-item' onClick={() => console.log(item)}>
+      <div className='home-page-container__trending-item routed-image-carousel' onClick={() => dispatch(push(`/movie/${item.id}`))}>
         <img 
           className='home-page-container__trending-item-image' 
           src={ `${IMG_URL}${ item?.poster_path }`} 
-          alt=''
+          alt='' 
         />
-        <div className='home-page-container__trending-item-title'>{ item?.title || item?.orginal_title || item?.original_name}</div>
+        <div className='home-page-container__trending-item-title routed-text'>{ item?.title || item?.orginal_title || item?.original_name}</div>
       </div>
       )
   }

@@ -5,6 +5,10 @@ const { Search } = Input;
 const SEARCH_BAR_WIDTH = '300px';
 
 const SearchInput = (props) => {
+  const {
+    searchBarWidth
+  } = props;
+
   const [inputValue, setInputValue] = useState('')
 
   return (
@@ -14,7 +18,7 @@ const SearchInput = (props) => {
         props.onSearch(value);
         setInputValue('')
       }}
-      style={{ width: SEARCH_BAR_WIDTH}}
+      style={{ width: searchBarWidth}}
       enterButton={ props.enterButton }
       defaultValue={ props.defaultValue }
       value={ inputValue }
@@ -22,5 +26,9 @@ const SearchInput = (props) => {
     />
   );
 };
+
+SearchInput.defaultProps = {
+  searchBarWidth: 300
+}
 
 export default SearchInput

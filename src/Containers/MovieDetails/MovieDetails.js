@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { fetchMovieDetails } from 'actions/MovieActions'
 import { Divider } from 'antd'
 import Api from 'utils/Api';
+import { withRouter } from 'react-router-dom'
 import MovieHeader from 'components/MovieHeader/MovieHeader'
 import MovieOverwiev from 'components/MovieOverview/MovieOverview'
 import MovieCast from 'components/MovieCast/MovieCast'
@@ -14,7 +15,6 @@ import MovieSimilar from 'components/MovieSimilar/MovieSimilar'
 import MovieReview from 'components/MovieReview/MovieReview'
 import MovieSocial from 'components/MovieSocial/MovieSocial'
 
-const TEMP_MOVIE_ID = 550; // TO DO MAKE DYNAMIC MOVIE CHANGE ON IMG CLICK
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 const POSTER_WIDTH = 500;
 const THUMBNAIL_WIDTH_DIVIDER_VALUE = 5;
@@ -23,7 +23,15 @@ const THUMBNAIL_HEIGHT = 250;
 
 class MovieDetails extends React.Component {
   componentDidMount() {
-    this.props.fetchMovieDetails(TEMP_MOVIE_ID);
+    this.props.fetchMovieDetails(this.props.match.params.id);
+    window.MD=this;
+  }
+
+  componentDidUpdate(prevProps) {
+    console.log(prevProps, this.props)
+    if (this.props.location.pathname !== prevProps.location.pathname) {
+      window.scrollTo(0, 0)
+    }
   }
 
   filterDirector = () => {
@@ -182,4 +190,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   fetchMovieDetails,
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);
+export default connect(mapStateToProps, mapDispatchToProps)((withRouter(MovieDetails)));

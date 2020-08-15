@@ -34,43 +34,43 @@
     font-weight: bold;
   }
 
-  .searched-movies__container1{
+  .searched-movies__first-container{
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
     display:flex;
     justify-content: flex-start;
 
-    .searched-movies__container1-release,
-    .searched-movies__container1-runtime{
+    .searched-movies__first-container-release,
+    .searched-movies__first-container-runtime{
       display:flex;
       justify-content: space-evenly;
       margin-right: 20px;
 
-      .searched-movies__container1-release-title,
-      .searched-movies__container1-runtime-title{
+      .searched-movies__first-container-release-title,
+      .searched-movies__first-container-runtime-title{
         @extend %display-title;
         margin-right: 10px;
       }
     }
   }
 
-  .searched-movies__container2{
+  .searched-movies__second-container{
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 3;
     display:flex;
     justify-content: flex-start;
 
-    .searched-movies__container2-genres,
-    .searched-movies__container2-director{
+    .searched-movies__second-container-genres,
+    .searched-movies__second-container-director{
       display:flex;
       justify-content: space-evenly;
       margin-right: 20px;
     }
 
-    .searched-movies__container2-genres-title,
-    .searched-movies__container2-director-title{
+    .searched-movies__second-container-genres-title,
+    .searched-movies__second-container-director-title{
       @extend %display-title;
       margin-right: 10px;
     }

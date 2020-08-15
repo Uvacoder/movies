@@ -25,7 +25,8 @@ $content-min-width: 1056px;
 
     .site-layout__container-margin-right, 
     .site-layout__container-margin-left {
-        background-image: url("../../Images/welcomepage.jpg");
+        background-image: url("../../Images/sidespicture.jpg");
+
     }
 
     .site-layout__container-margin-right {
@@ -35,5 +36,30 @@ $content-min-width: 1056px;
     .site-layout__container-main {
         color: white;
 
+        .routed-image {
+            cursor: pointer;
+            transition: transform .2s;
+        }
+
+        .routed-image:hover {
+            filter:grayscale(40%);
+            transform: scale(1.05);
+        }
+
+        .routed-image-carousel {
+            cursor: pointer;
+        }
+        
+        .routed-image-carousel:hover {
+            filter: sepia(80%);
+        }
+
+        .routed-text{
+            cursor: pointer;
+        }
+
+        .routed-text:hover {
+            color: rgb(255,215,0);
+        }
     };
 };

@@ -7,19 +7,18 @@ import { clearSearched } from 'actions/SearchActions'
 import { useDispatch } from 'react-redux';
 
 const POSTER_WIDTH = 500;
+const VOTE_AVERAGE_MAX_VALUE = 10;
+const VOTE_AVERAGE_DISPLAY_PERCENT = false;
+const VOTE_AVERAGE_CHART_COLOR_CHANGE_VALUE = 7;
+const VOTE_AVERAGE_CHART_COLOR_HIGH = 'lightgreen';
+const VOTE_AVERAGE_CHART_COLOR_LOW = 'Aquamarine';
+const POPULARITY_MAX_VALUE = 100;
+const POPULARITY_DISPLAY_PERCENT = true;
 
 const SearchedMovies = (props) => {
   const {
     item
   } = props;
-
-  const VOTE_AVERAGE_MAX_VALUE = 10;
-  const VOTE_AVERAGE_DISPLAY_PERCENT = false;
-  const VOTE_AVERAGE_CHART_COLOR_CHANGE_VALUE = 7;
-  const VOTE_AVERAGE_CHART_COLOR_HIGH = 'lightgreen';
-  const VOTE_AVERAGE_CHART_COLOR_LOW = 'Aquamarine';
-  const POPULARITY_MAX_VALUE = 100;
-  const POPULARITY_DISPLAY_PERCENT = true;
 
   const dispatch = useDispatch();
 
@@ -45,26 +44,26 @@ const SearchedMovies = (props) => {
       <div className='searched-movies__title'>
         {item.title}
       </div>
-      <div className='searched-movies__container1'>
-        <div className='searched-movies__container1-release'>
-          <div className='searched-movies__container1-release-title'>Release date:</div>
-          <div className='searched-movies__container1-release-text'>{item.release_date}</div>
+      <div className='searched-movies__first-container'>
+        <div className='searched-movies__first-container-release'>
+          <div className='searched-movies__first-container-release-title'>Release date:</div>
+          <div className='searched-movies__first-container-release-text'>{item.release_date}</div>
         </div>
-        <div className='searched-movies__container1-runtime'>
-          <div className='searched-movies__container1-runtime-title'>Runtime: </div>
-          <div className='searched-movies__container1-runtime-text'>{`${item.details.runtime} min.`}</div>
+        <div className='searched-movies__first-container-runtime'>
+          <div className='searched-movies__first-container-runtime-title'>Runtime: </div>
+          <div className='searched-movies__first-container-runtime-text'>{`${item.details.runtime} min.`}</div>
         </div>
       </div>
-      <div className='searched-movies__container2'>
-        <div className='searched-movies__container2-genres'>
-          <div className='searched-movies__container2-genres-title'>Genres:</div>
-          <div className='searched-movies__container2-genres-text'>
+      <div className='searched-movies__second-container'>
+        <div className='searched-movies__second-container-genres'>
+          <div className='searched-movies__second-container-genres-title'>Genres:</div>
+          <div className='searched-movies__second-container-genres-text'>
             {item.details.genres.length !== 0 ? item.details.genres.map((item) => item.name).join(', ') : '–'}
           </div>
         </div>
-        <div className='searched-movies__container2-director'>
-          <div className='searched-movies__container2-director-title'>Director:</div>
-          <div className='searched-movies__container2-director-text'>{filterDirector()}</div>
+        <div className='searched-movies__second-container-director'>
+          <div className='searched-movies__second-container-director-title'>Director:</div>
+          <div className='searched-movies__second-container-director-text'>{filterDirector()}</div>
         </div>
       </div>
       <div className='searched-movies__votes'>

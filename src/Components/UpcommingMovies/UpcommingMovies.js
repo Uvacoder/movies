@@ -11,11 +11,11 @@ const UpcommingMovie = (props) => {
   return (
     <div className='upcomming-container'>
       <img 
-        className='upcomming-container__image' 
+        className='upcomming-container__image routed-image' 
         src={ `${IMAGE_URL}${ item?.poster_path }`} 
       />
       <div className='upcomming-container__details'>
-        <div className='upcomming-container__details-title'>
+        <div className='upcomming-container__details-title routed-text'>
           { item?.title || item?.orginal_title }
         </div>
         <div className='upcomming-container__details-release'>
