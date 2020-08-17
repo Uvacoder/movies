@@ -6,7 +6,7 @@ import { fetchRandom } from 'actions/HomePageActions';
 import YouTube from 'react-youtube';
 import Calculation from 'utils/Calculation';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { push } from 'connected-react-router'
+import { routeToMovieDetails } from 'utils/Routing/Routing'
 
 const NO_OF_FIRST_RANDOM_ITEM = 0;
 const NO_OF_LAST_LAST_ITEM = 20; // No more than 20, <- maximum TMDB API table length.
@@ -34,12 +34,12 @@ const RandomMovie = (props) => {
         className='random-movie-container__image routed-image' 
         src={`${API_PATH}${currentMovie.poster_path}`} 
         alt='poster'
-        onClick={() => dispatch(push(`/movie/${currentMovie.id}`))}
+        onClick={() => dispatch(routeToMovieDetails(currentMovie.id))}
       />
       <div className='random-movie-container__details'> 
         <div 
           className='random-movie-container__details-title routed-text'
-          onClick={() => dispatch(push(`/movie/${currentMovie.id}`))}>
+          onClick={() => dispatch(routeToMovieDetails(currentMovie.id))}>
             {currentMovie.title}
         </div> 
         <div className='random-movie-container__details-overwiev'>
@@ -65,7 +65,7 @@ const RandomMovie = (props) => {
             <div  className='random-movie-container__details-vote-wrapper-popularity-name'>
                 Popularity:
             </div>
-            <DoughnutChart data={ Math.floor(currentMovie.popularity)  } />
+            <DoughnutChart data={ Math.floor(currentMovie.popularity) }/>
           </div>
           <div className='random-movie-container__details-vote-wrapper-average'>
             <div className='random-movie-container__details-vote-wrapper-average-name'>

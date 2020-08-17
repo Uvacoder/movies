@@ -35,13 +35,17 @@ const SearchedMovies = (props) => {
 
   return (
     <div className='searched-movies'>
-      <div className='searched-movies__poster'>
+      <div className='searched-movies__poster routed-image'>
         <img 
           src={ item.poster_path ? `${Api.getImgURL(POSTER_WIDTH)}${item.poster_path}` : ImgPlaceholder} 
           alt='poster'
+          onClick={props.routing}
         />
       </div>
-      <div className='searched-movies__title'>
+      <div 
+        className='searched-movies__title routed-text' 
+        onClick={props.routing}
+      >
         {item.title}
       </div>
       <div className='searched-movies__first-container'>

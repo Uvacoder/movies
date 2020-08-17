@@ -14,6 +14,7 @@ import MovieImages from 'components/MovieImages/MovieImages'
 import MovieSimilar from 'components/MovieSimilar/MovieSimilar'
 import MovieReview from 'components/MovieReview/MovieReview'
 import MovieSocial from 'components/MovieSocial/MovieSocial'
+import { routeToMovieDetails } from 'utils/Routing/Routing'
 
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 const POSTER_WIDTH = 500;
@@ -24,13 +25,11 @@ const THUMBNAIL_HEIGHT = 250;
 class MovieDetails extends React.Component {
   componentDidMount() {
     this.props.fetchMovieDetails(this.props.match.params.id);
-    window.MD=this;
   }
 
   componentDidUpdate(prevProps) {
-    console.log(prevProps, this.props)
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      window.scrollTo(0, 0)
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.fetchMovieDetails(this.props.match.params.id);
     }
   }
 
@@ -93,7 +92,10 @@ class MovieDetails extends React.Component {
       <>
         <Divider className='movie-details-container__divider' orientation='left'>MOVIES SIMILAR TO {this.props.details.title || this.props.details.original_title}</Divider>
         <div className='movie-details-container__similar'> 
-          <MovieSimilar similarMovies={ this.props?.similarMovies } />
+          <MovieSimilar 
+            similarMovies={ this.props.similarMovies } 
+            routing={this.props.routeToMovieDetails}
+          />
         </div>
       </>
     );
@@ -188,6 +190,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchMovieDetails,
+  routeToMovieDetails
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)((withRouter(MovieDetails)));

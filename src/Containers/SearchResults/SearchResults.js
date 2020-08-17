@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { fetchSearched } from 'actions/SearchActions'
 import { Divider } from 'antd'
 import SearchedMovies from 'components/SearchedMovies/SearchedMovies'
+import { routeToMovieDetails } from 'utils/Routing/Routing'
 
 class SearchResults extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class SearchResults extends React.Component {
     if (this.props.searchResults.length !== 0) {
       return this.props.searchResults?.map((item) => {
         return (
-          <SearchedMovies item={item}/> 
+          <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/> 
         );
       });
     } else {
@@ -52,6 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchSearched,
+  routeToMovieDetails
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
