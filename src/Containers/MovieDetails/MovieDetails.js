@@ -18,7 +18,7 @@ import { routeToMovieDetails } from 'utils/Routing/Routing'
 
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 const POSTER_WIDTH = 500;
-const THUMBNAIL_WIDTH_DIVIDER_VALUE = 5;
+const THUMBNAIL_WIDTH_DIVIDER_VALUE = 3;
 const THUMBNAIL_WIDTH_MAX_VALUE = 400;
 const THUMBNAIL_HEIGHT = 250;
 
@@ -45,6 +45,7 @@ class MovieDetails extends React.Component {
       src:`${BACKDROP_API_PATH}${backdrop.file_path}`,
       thumbnail: `${BACKDROP_API_PATH}${backdrop.file_path}`,
       thumbnailWidth: Math.min(backdrop.width/THUMBNAIL_WIDTH_DIVIDER_VALUE, THUMBNAIL_WIDTH_MAX_VALUE ),
+      // thumbnailWidth: THUMBNAIL_WIDTH_MAX_VALUE,
       thumbnailHeight: THUMBNAIL_HEIGHT,
     }
   }

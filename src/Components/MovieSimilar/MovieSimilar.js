@@ -5,6 +5,8 @@ import Api from 'utils/Api';
 
 const NO_OF_ITEMS_SIMILAR_MOVIES = 6;
 const IMG_SIZE = 500;
+const CAROUSEL_SLIDES_TO_SLIDE = 2;
+const CAROUSEL_AUTOPLAY_DURATION = 5000;
 
 const MovieSimilar = (props) => {
   const {
@@ -28,9 +30,7 @@ const MovieSimilar = (props) => {
             
         />
         <div 
-          className='movie-similar__container-title routed-text' 
-          // onClick={() => props.routing(item.id)}
-        >
+          className='movie-similar__container-title routed-text'>
           { item?.title}
         </div>
       </div>
@@ -44,6 +44,8 @@ const MovieSimilar = (props) => {
           responsive={SimilarMoviesCarouselResponsive}
           infinite={true}
           autoPlay={true}
+          slidesToSlide={CAROUSEL_SLIDES_TO_SLIDE}
+          autoPlaySpeed={CAROUSEL_AUTOPLAY_DURATION}
         >
         { similarMovies.filter((item) => item.poster_path).map((item) => renderCastBlock(item)) }
         </Carousel>

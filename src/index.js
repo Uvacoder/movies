@@ -4,10 +4,6 @@ import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
-// import configureStore from './store'
-
-// const store = configureStore()
-
 import {store} from './store'
 
 ReactDOM.render(
@@ -18,7 +14,6 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
-
 
 //SUPER TMP
 window.store = store;

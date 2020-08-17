@@ -5,6 +5,7 @@ import { PieChart } from 'react-minimal-pie-chart';
 const DOUGHNUT_CHART_LINE_WIDTH = 20;
 const DOUGHNUT_CHART_LABEL_POSITION = 0;
 const DOUGHNUT_CHART_START_ANGLE = 270;
+const MAX_VALUE_COLOR = 'gold';
 
 const DoughnutChart = (props) => {
     const {
@@ -19,7 +20,7 @@ const DoughnutChart = (props) => {
 
     return (
       <PieChart
-      data={[{ value: data, color: chartColor }]}
+      data={[{ value: Math.min(data, maxValue), color: data >= maxValue ? MAX_VALUE_COLOR : chartColor }]}
       totalValue={maxValue}
       lineWidth={DOUGHNUT_CHART_LINE_WIDTH}
       label={({ dataEntry }) => percent ? `${dataEntry.value}%` : dataEntry.value}

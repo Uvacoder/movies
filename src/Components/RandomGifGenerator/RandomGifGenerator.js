@@ -1,6 +1,6 @@
 import React from 'react';
 import Communication from 'communication/Communication';
-import { Button, Divider } from 'antd';
+import { Button, Divider, Modal, Space } from 'antd';
 import './RandomGifGenerator.scss'
 
 // const RANDOM_WORD_API = "https://random-word-api.herokuapp.com/word?number=1" // standard dictionary word - need to change setup function before implementing
@@ -16,7 +16,19 @@ class RandomGifGenerator extends React.Component {
       example: null
     }
   }
+
+  componentDidMount() {
+    this.warning()
+  }
   
+  warning = () => {
+    Modal.warning({
+      title: 'Caution! Enter at you own risk.',
+      content: 'This site is using random words provided by Urbandictionary, they might be controversial. Generated images can be blunt. If you are not OK with it please leave.',
+    });
+   
+  }
+
   getGifApiUrl = (word) => {
     return `http://api.giphy.com/v1/gifs/search?q=${word}&api_key=${process.env.REACT_APP_GIPHY_API_KEY}&limit=1`
   }

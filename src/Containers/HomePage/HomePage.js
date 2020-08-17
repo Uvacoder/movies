@@ -14,6 +14,8 @@ const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table l
 const NO_OF_UPCOMMING_ITEMS = 3;
 const NO_OF_ITEMS_TRENDING_CAROUSEL = 5;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'
+const CAROUSEL_SLIDES_TO_SLIDE = 2
+const CAROUSEL_AUTOPLAY_DURATION =  5000;
 
 function HomePage () {
   const trendingList = useSelector(state => state.homePage.trending.items);
@@ -41,9 +43,7 @@ function HomePage () {
           alt=''  
         />
         <div 
-          className='home-page-container__trending-item-title routed-text'
-          // onClick={() => dispatch(routeToMovieDetails(item.id))}
-        >
+          className='home-page-container__trending-item-title routed-text'>
           { item?.title || item?.orginal_title || item?.original_name}
         </div>
       </div>
@@ -59,6 +59,8 @@ function HomePage () {
           responsive={trendingCarouselResponsive}
           infinite={true}
           autoPlay={true}
+          slidesToSlide={CAROUSEL_SLIDES_TO_SLIDE}
+          autoPlaySpeed={CAROUSEL_AUTOPLAY_DURATION}
         >
           { availableMovies.slice(0, NO_OF_TRENDING_ITEMS).map((item) => renderTrendingMovieBlock(item)) }
         </Carousel>
