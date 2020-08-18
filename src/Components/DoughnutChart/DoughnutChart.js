@@ -31,6 +31,7 @@ const DoughnutChart = (props) => {
       labelPosition={DOUGHNUT_CHART_LABEL_POSITION}
       background={background}
       startAngle={DOUGHNUT_CHART_START_ANGLE}
+      onClick={ props.onClick }
       />     
     );
 };

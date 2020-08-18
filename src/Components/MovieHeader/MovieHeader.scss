@@ -72,4 +72,12 @@
       font-style: italic;
     };
   };
+
+  .movie-header__user-vote{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 200px;
+    right: 50px;
+  }
 };

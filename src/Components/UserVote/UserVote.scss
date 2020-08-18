@@ -1,0 +1,45 @@
+$bttn-color: #4390d8;
+
+.user-vote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  .user-vote__title {
+    font-weight: bold;
+    margin-bottom: 12px;
+  };
+};
+
+.user-vote:hover{
+  color: yellow;
+};
+
+.user-vote__modal{
+  .ant-modal-content,
+  .ant-modal-header{
+    background-color: #85b1c0
+  }
+
+  .ant-modal-title{
+    color:wheat;
+    font-weight: bold;
+  }
+  .ant-btn{
+    background: $bttn-color;
+    border-color: $bttn-color;
+  }
+  .ant-btn span {
+    color: wheat;
+    font-weight: bold;
+    background: $bttn-color;
+    border-color: $bttn-color;
+  }
+
+  .ant-modal-body,
+  .ant-modal-header{
+    display: flex;
+    justify-content: center;
+  }
+}

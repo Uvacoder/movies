@@ -15,6 +15,7 @@ import MovieSimilar from 'components/MovieSimilar/MovieSimilar'
 import MovieReview from 'components/MovieReview/MovieReview'
 import MovieSocial from 'components/MovieSocial/MovieSocial'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
+import ImgPlaceholder from '../../Images/imgPlaceholder.svg'
 
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 const POSTER_WIDTH = 500;
@@ -146,7 +147,7 @@ class MovieDetails extends React.Component {
         </div>
         <div className='movie-details-container__overwiev'> 
           <MovieOverwiev
-            poster={`${Api.getImgURL(POSTER_WIDTH)}${this.props.details.poster_path}`}
+            poster={this.props.details.poster_path ? `${Api.getImgURL(POSTER_WIDTH)}${this.props.details.poster_path}` : ImgPlaceholder}
             description={this.props.details.overview}
             realeaseDate={this.props.details.release_date}
             genres={this.props.details.genres?.map((item) => item.name).join(', ')}
