@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import "./UserVote.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
-import { Rate, Modal, Button } from 'antd';
+import { Rate, Modal, Button, Input } from 'antd';
 
 const USER_VOTE_MAX_VALUE = 10;
 const USER_VOTE_DISPLAY_PERCENT = false;
 const USER_VOTE_CHART_COLOR = 'lightgreen';
 const USER_VOTE_TOOLTIPS = ['Misunderstanding','Very bad', 'Bad', 'Weak', 'Average', 'Decent', 'Good', 'Very Good', 'Fantastic', 'Masterpiece!' ];
+const { TextArea } = Input;
 
 class UserVote  extends React.Component {
   constructor(props) {
@@ -48,13 +49,18 @@ class UserVote  extends React.Component {
           </Button>,
         ]}
         >
-        <Rate
-          className='user-vote__rate' 
-          count={ USER_VOTE_MAX_VALUE }
-          tooltips={ USER_VOTE_TOOLTIPS }
-          value //TODO WHEN BACKEND WILL BE READY
-          onChange //TODO WHEN BACKEND WILL BE READY
-        />
+        <div className='user-vote__modal-body'>
+          <Rate
+            className='user-vote__modal-body-rate' 
+            count={ USER_VOTE_MAX_VALUE }
+            tooltips={ USER_VOTE_TOOLTIPS }
+            // value //TODO WHEN BACKEND WILL BE READY
+            // onChange //TODO WHEN BACKEND WILL BE READY
+          />
+          <TextArea 
+            rows={4}
+          />
+        </div>
       </Modal>
     )
   }
