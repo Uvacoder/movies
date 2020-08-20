@@ -14,11 +14,11 @@ const UserComment = (props) => {
 
   return (
     <TextArea 
-    rows={rows}
-    placeholder= { placeholder }
-    value={inputValue}
-    onChange={e => setInputValue(e.target.value)}
-  />
+      rows={rows}
+      placeholder= { placeholder }
+      value={inputValue}
+      onChange={e => setInputValue(e.target.value)}
+    />
   )
 };
 

@@ -36,6 +36,12 @@ class UserVote  extends React.Component {
     this.setState({ visible: false });
   };
 
+  updateRateValue = (value) => {
+    this.setState({
+      rateValue: value,
+    })
+  }
+  
   renderModal = () => {
     const { visible, loading } = this.state;
     // if (!visible) {
@@ -54,13 +60,14 @@ class UserVote  extends React.Component {
         ]}
         >
         <div className='user-vote__modal-body'>
-          <UserRate />
+          <UserRate updateRateValue={this.updateRateValue}/>
           <p className='user-vote__modal-body-comment'>Your comment:</p>
           <UserComment />
         </div>
       </Modal>
     )
   }
+
  
   render() {
     return (
@@ -69,7 +76,7 @@ class UserVote  extends React.Component {
           <span className='user-vote__title'>Your Vote:</span>
           <div className='user-vote__chart'>
             <DoughnutChart 
-              data={ this.props.userVote } 
+              data={ this.state.rateValue } 
               maxValue={ USER_VOTE_MAX_VALUE } 
               percent={ USER_VOTE_DISPLAY_PERCENT } 
               chartColor= { USER_VOTE_CHART_COLOR }
@@ -84,7 +91,7 @@ class UserVote  extends React.Component {
 
 
 UserVote.defaultProps = {
-  userVote: 0,
+  // userVote: 0,
 }
 
 export default UserVote

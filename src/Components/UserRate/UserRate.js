@@ -17,7 +17,11 @@ const UserRate = (props) => {
       tooltips={ tooltips }
       defaultValue={ defaultValue }
       value = { rateValue }
-      onChange={ value => setRateValue(value) }
+      // onChange={ value => setRateValue(value) }
+      onChange={ value => {
+        props.updateRateValue(value)
+        setRateValue(value)
+      }}
     />
   )
 };

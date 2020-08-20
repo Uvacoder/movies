@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.scss';
-import {BrowserRouter as Router} from "react-router-dom";
 import { ConnectedRouter } from 'connected-react-router'
 import {Switch,Route} from "react-router-dom";
 import WelcomePage from 'containers/WelcomePage/WelcomePage'
