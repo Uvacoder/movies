@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./UserVote.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
-import { Rate, Modal, Button, Input } from 'antd';
+import { Modal, Button } from 'antd';
+import UserRate from 'components/UserRate/UserRate'
+import UserComment from 'components/UserComment/UserComment'
 
 const USER_VOTE_MAX_VALUE = 10;
 const USER_VOTE_DISPLAY_PERCENT = false;
 const USER_VOTE_CHART_COLOR = 'lightgreen';
-const USER_VOTE_TOOLTIPS = ['Misunderstanding','Very bad', 'Bad', 'Weak', 'Average', 'Decent', 'Good', 'Very Good', 'Fantastic', 'Masterpiece!' ];
-const { TextArea } = Input;
 
 class UserVote  extends React.Component {
   constructor(props) {
@@ -15,6 +15,7 @@ class UserVote  extends React.Component {
     this.state = {
       loading: false,
       visible: false,
+      rateValue: 0,
     };
   };
   
@@ -37,6 +38,9 @@ class UserVote  extends React.Component {
 
   renderModal = () => {
     const { visible, loading } = this.state;
+    // if (!visible) {
+    //   return null;
+    // }
     return (
       <Modal
         className='user-vote__modal'
@@ -50,21 +54,14 @@ class UserVote  extends React.Component {
         ]}
         >
         <div className='user-vote__modal-body'>
-          <Rate
-            className='user-vote__modal-body-rate' 
-            count={ USER_VOTE_MAX_VALUE }
-            tooltips={ USER_VOTE_TOOLTIPS }
-            // value //TODO WHEN BACKEND WILL BE READY
-            // onChange //TODO WHEN BACKEND WILL BE READY
-          />
-          <TextArea 
-            rows={4}
-          />
+          <UserRate />
+          <p className='user-vote__modal-body-comment'>Your comment:</p>
+          <UserComment />
         </div>
       </Modal>
     )
   }
-
+ 
   render() {
     return (
       <>
