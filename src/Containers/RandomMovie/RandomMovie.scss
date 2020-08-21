@@ -23,6 +23,8 @@
     width: 333px;
     grid-column-start: 1;
     grid-row-start: 1;
+    cursor: pointer;
+    transition: transform .2s;
 }
 
 .random-movie__details {
@@ -45,6 +47,7 @@
     font-weight: bold;
     color: aqua;
     min-height: 88px;
+    cursor: pointer;
   }
   
   .random-movie__details-vote-wrapper-popularity,

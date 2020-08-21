@@ -5,6 +5,7 @@ import Api from 'utils/Api';
 
 const MOVIE_CAST_NO_OF_CAROUSEL_ITEMS = 6;
 const IMG_SIZE = 500;
+const CAROUSEL_SLIDES_TO_SLIDE = 3;
 
 const MovieCast = (props) => {
   const {
@@ -39,6 +40,7 @@ const MovieCast = (props) => {
           responsive={movieCastCarouseleResponsive}
           infinite={false}
           autoPlay={false}
+          slidesToSlide={CAROUSEL_SLIDES_TO_SLIDE}
         >
           { castItems.filter((item) => item.profile_path).map((item) => renderCastBlock(item)) }
         </Carousel>

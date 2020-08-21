@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { 
@@ -16,12 +16,14 @@ import {
   SmileOutlined 
 } from '@ant-design/icons';
 import './LayoutHeader.scss';
+import { withRouter } from 'react-router-dom'
+import SearchInput from '../SearchInput/SearchInput'
 
 const SEARCH_BAR_WIDTH = '300px';
 const { Header } = Layout;
 const { Search } = Input;
 
-function LayoutHeader () {
+function LayoutHeader (props) {
  const renderSubMenu = (title, icon, menuItems) => {
     return (
       <SubMenu key={ title } icon={ icon } title={ title }>
@@ -119,11 +121,16 @@ function LayoutHeader () {
         {renderMoviesSubMenu()}
         {renderTVShowsSubMenu()}
         {renderRankingsMenu()}
-        <Search
-          placeholder="Search movies, TV Shows or people"
-          onSearch={value => console.log(value)}
-          style={{ width: SEARCH_BAR_WIDTH}}
-          enterButton
+        <SearchInput
+          onSearch={value => { 
+            if (value) {
+              props.handleSearch(value);
+              props.history.push('/search-results');
+          }}}
+          placeholder='Find your favorite movies'
+          enterButton={true}
+          defaultValue=''
+          searchBarWidth={SEARCH_BAR_WIDTH}
         />
           {renderNetflixMenu()}
           {renderHydeParkMenu()}
@@ -137,4 +144,4 @@ function LayoutHeader () {
   );
 };
 
-export default LayoutHeader
+export default withRouter(LayoutHeader)

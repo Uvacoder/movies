@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { fetchMovieDetails } from 'actions/MovieActions'
 import { Divider } from 'antd'
 import Api from 'utils/Api';
+import { withRouter } from 'react-router-dom'
 import MovieHeader from 'components/MovieHeader/MovieHeader'
 import MovieOverwiev from 'components/MovieOverview/MovieOverview'
 import MovieCast from 'components/MovieCast/MovieCast'
@@ -13,17 +14,23 @@ import MovieImages from 'components/MovieImages/MovieImages'
 import MovieSimilar from 'components/MovieSimilar/MovieSimilar'
 import MovieReview from 'components/MovieReview/MovieReview'
 import MovieSocial from 'components/MovieSocial/MovieSocial'
+import { routeToMovieDetails } from 'utils/Routing/Routing'
 
-const TEMP_MOVIE_ID = 550; // TO DO MAKE DYNAMIC MOVIE CHANGE ON IMG CLICK
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 const POSTER_WIDTH = 500;
-const THUMBNAIL_WIDTH_DIVIDER_VALUE = 5;
+const THUMBNAIL_WIDTH_DIVIDER_VALUE = 3;
 const THUMBNAIL_WIDTH_MAX_VALUE = 400;
 const THUMBNAIL_HEIGHT = 250;
 
 class MovieDetails extends React.Component {
   componentDidMount() {
-    this.props.fetchMovieDetails(TEMP_MOVIE_ID);
+    this.props.fetchMovieDetails(this.props.match.params.id);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.fetchMovieDetails(this.props.match.params.id);
+    }
   }
 
   filterDirector = () => {
@@ -38,6 +45,7 @@ class MovieDetails extends React.Component {
       src:`${BACKDROP_API_PATH}${backdrop.file_path}`,
       thumbnail: `${BACKDROP_API_PATH}${backdrop.file_path}`,
       thumbnailWidth: Math.min(backdrop.width/THUMBNAIL_WIDTH_DIVIDER_VALUE, THUMBNAIL_WIDTH_MAX_VALUE ),
+      // thumbnailWidth: THUMBNAIL_WIDTH_MAX_VALUE,
       thumbnailHeight: THUMBNAIL_HEIGHT,
     }
   }
@@ -85,7 +93,10 @@ class MovieDetails extends React.Component {
       <>
         <Divider className='movie-details-container__divider' orientation='left'>MOVIES SIMILAR TO {this.props.details.title || this.props.details.original_title}</Divider>
         <div className='movie-details-container__similar'> 
-          <MovieSimilar similarMovies={ this.props?.similarMovies } />
+          <MovieSimilar 
+            similarMovies={ this.props.similarMovies } 
+            routeToMovieDetails={this.props.routeToMovieDetails }
+          />
         </div>
       </>
     );
@@ -180,6 +191,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchMovieDetails,
+  routeToMovieDetails
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieDetails);
+export default connect(mapStateToProps, mapDispatchToProps)((withRouter(MovieDetails)));
