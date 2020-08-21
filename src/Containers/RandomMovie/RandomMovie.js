@@ -28,43 +28,43 @@ const RandomMovie = () => {
   }
 
   return (
-    <div className='random-movie-container'>
+    <div className='random-movie'>
       <img 
-        className='random-movie-container__image' 
+        className='random-movie__image' 
         src={`${API_PATH}${currentMovie.poster_path}`} 
         alt='poster'
       />
-      <div className='random-movie-container__details'> 
-        <div className='random-movie-container__details-title'>
+      <div className='random-movie__details'> 
+        <div className='random-movie__details-title'>
             {currentMovie.title}
         </div> 
-        <div className='random-movie-container__details-overwiev'>
-          <div className='random-movie-container__details-overwiev-title'>
+        <div className='random-movie__details-overwiev'>
+          <div className='random-movie__details-overwiev-title'>
             Overwiev: 
           </div >
           <Scrollbars autoHeight>
-            <div className='random-movie-container__details-overwiev-content'>
+            <div className='random-movie__details-overwiev-content'>
                 {currentMovie.overview} 
             </div >
           </Scrollbars>
         </div>
-        <div className='random-movie-container__details-date'>
-          <div className='random-movie-container__details-date-title'>
+        <div className='random-movie__details-date'>
+          <div className='random-movie__details-date-title'>
             Release Date:
           </div>
-          <div className='random-movie-container__details-date-content'>
+          <div className='random-movie__details-date-content'>
             {currentMovie.release_date}
           </div>
         </div>
-        <div className='random-movie-container__details-vote-wrapper'>
-          <div className='random-movie-container__details-vote-wrapper-popularity'>
-            <div  className='random-movie-container__details-vote-wrapper-popularity-name'>
+        <div className='random-movie__details-vote-wrapper'>
+          <div className='random-movie__details-vote-wrapper-popularity'>
+            <div  className='random-movie__details-vote-wrapper-popularity-name'>
                 Popularity:
             </div>
             <DoughnutChart data={ Math.floor(currentMovie.popularity)  } />
           </div>
-          <div className='random-movie-container__details-vote-wrapper-average'>
-            <div className='random-movie-container__details-vote-wrapper-average-name'>
+          <div className='random-movie__details-vote-wrapper-average'>
+            <div className='random-movie__details-vote-wrapper-average-name'>
                 Vote average:
             </div>
             <DoughnutChart 
@@ -76,7 +76,7 @@ const RandomMovie = () => {
           </div>
         </div>
       </div>
-      <div className='random-movie-container__trailer'>
+      <div className='random-movie__trailer'>
         <YouTube videoId={ currentMovie.videoKey[0].key }  />
       </div>   
     </div>
