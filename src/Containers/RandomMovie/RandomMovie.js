@@ -27,11 +27,11 @@ const RandomMovie = (props) => {
   const renderImage = (imgPath) => {
     return (
       <img 
-      className='random-movie-container__image routed-image' 
-      src={imgPath} 
-      alt='poster'
-      onClick={() => dispatch(routeToMovieDetails(currentMovie.id))}
-    />
+        className='random-movie-container__image routed-image' 
+        src={imgPath} 
+        alt='poster'
+        onClick={() => dispatch(routeToMovieDetails(currentMovie.id))}
+      />
     );
   };
 
@@ -76,7 +76,7 @@ const RandomMovie = (props) => {
         </div>
         <div className='random-movie-container__details-vote-wrapper-average'>
           <div className='random-movie-container__details-vote-wrapper-average-name'>
-              Vote average:
+            Vote average:
           </div>
           <DoughnutChart 
             data={movie.vote_average} 
@@ -99,7 +99,7 @@ const RandomMovie = (props) => {
       <div className='random-movie-container__details'> 
         {renderDetails(currentMovie)}
         <div className='random-movie-container__details-vote-wrapper'>
-        {renderVoteCharts(currentMovie)}
+          {renderVoteCharts(currentMovie)}
         </div>
       </div>
       <div className='random-movie-container__trailer'>
