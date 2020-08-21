@@ -8,8 +8,8 @@ const UserRate = (props) => {
     defaultValue,
     tooltips,
   } = props;
-
   const [rateValue, setRateValue] = useState(0)
+  
   return (
     <Rate
       className='user-rate' 
@@ -17,7 +17,6 @@ const UserRate = (props) => {
       tooltips={ tooltips }
       defaultValue={ defaultValue }
       value = { rateValue }
-      // onChange={ value => setRateValue(value) }
       onChange={ value => {
         props.updateRateValue(value)
         setRateValue(value)

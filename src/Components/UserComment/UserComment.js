@@ -9,7 +9,6 @@ const UserComment = (props) => {
     placeholder,
     rows,
   } = props;
-
   const [inputValue, setInputValue] = useState('')
 
   return (

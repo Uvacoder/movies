@@ -17,10 +17,11 @@ $bttn-color: #4390d8;
 };
 
 .user-vote__modal{
+
   .ant-modal-content,
   .ant-modal-header{
     background-color: #85b1c0
-  }
+  };
   
   .user-vote__modal-body{
     display: flex;
@@ -33,27 +34,29 @@ $bttn-color: #4390d8;
       color:wheat;
       font-weight: bold;
       margin-bottom: 8px;
-    }
-  }
+    };
+  };
 
   .ant-modal-title{
     color:wheat;
     font-weight: bold;
-  }
+  };
+
   .ant-btn{
     background: $bttn-color;
     border-color: $bttn-color;
-  }
+  };
+  
   .ant-btn span {
     color: wheat;
     font-weight: bold;
     background: $bttn-color;
     border-color: $bttn-color;
-  }
+  };
 
   .ant-modal-body,
   .ant-modal-header{
     display: flex;
     justify-content: center;
-  }
-}
+  };
+};

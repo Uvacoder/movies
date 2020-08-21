@@ -39,8 +39,8 @@ class UserVote  extends React.Component {
   updateRateValue = (value) => {
     this.setState({
       rateValue: value,
-    })
-  }
+    });
+  };
   
   renderModal = () => {
     const { visible, loading } = this.state;
@@ -85,11 +85,6 @@ class UserVote  extends React.Component {
     );
   };
 };
-
-
-UserVote.defaultProps = {
-  // userVote: 0,
-}
 
 export default UserVote
 
