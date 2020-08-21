@@ -1,6 +1,7 @@
 import React from 'react';
 import "./UpcommingMovies.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
+import { routeToMovieDetails } from 'utils/Routing/Routing'
 
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
 const UpcommingMovie = (props) => {
@@ -11,15 +12,20 @@ const UpcommingMovie = (props) => {
   return (
     <div className='upcomming-container'>
       <img 
-        className='upcomming-container__image' 
+        className='upcomming-container__image routed-image' 
         src={ `${IMAGE_URL}${ item?.poster_path }`} 
+        onClick={props.routing}
       />
       <div className='upcomming-container__details'>
-        <div className='upcomming-container__details-title'>
+        <div 
+          className='upcomming-container__details-title routed-text'
+          // onClick={() => dispatch(routeToMovieDetails(item.id))}
+        >
           { item?.title || item?.orginal_title }
         </div>
         <div className='upcomming-container__details-release'>
-          Release date: {item?.release_date}
+          <span>Release date:</span>
+          <span>{item?.release_date}</span>
         </div>
           <div className='upcomming-container__details-popularity'>
             <div className='upcomming-container__details-popularity-text'>

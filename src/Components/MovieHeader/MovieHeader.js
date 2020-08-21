@@ -33,6 +33,7 @@ const MovieHeader = (props) => {
         </div>
         <div className='movie-header-votes'>
           <div className='movie-header-votes-average'>
+            <span className='movie-header-votes-average-title'>Vote average:</span>
             <DoughnutChart 
               data={voteAverage} 
               maxValue={VOTE_AVERAGE_MAX_VALUE} 
@@ -41,6 +42,7 @@ const MovieHeader = (props) => {
             />
           </div>
           <div className='movie-header-votes-popularity'>
+            <span className='movie-header-votes-average-title'>Popularity:</span>
             <DoughnutChart 
               data={Math.floor(popularity)} 
               maxValue={POPULARITY_MAX_VALUE} 

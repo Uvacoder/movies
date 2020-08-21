@@ -1,21 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import '../src/Fonts/OpenSans-Regular.ttf'
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk';
-import allReducers from 'reducers/allReducers';
-
-const store = createStore(
-  allReducers,
-  compose(
-    applyMiddleware(thunk), 
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
+import {store} from './store'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -25,6 +14,9 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+//SUPER TMP
+window.store = store;
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

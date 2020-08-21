@@ -7,11 +7,15 @@ import 'react-multi-carousel/lib/styles.css';
 import { Divider } from 'antd'
 import RandomMovie from '../RandomMovie/RandomMovie'
 import UpcommingMovies from 'components/UpcommingMovies/UpcommingMovies'
+import { routeToMovieDetails } from 'utils/Routing/Routing'
+
 
 const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table length.
 const NO_OF_UPCOMMING_ITEMS = 3;
 const NO_OF_ITEMS_TRENDING_CAROUSEL = 5;
 const IMG_URL = 'https://image.tmdb.org/t/p/w500'
+const CAROUSEL_SLIDES_TO_SLIDE = 2
+const CAROUSEL_AUTOPLAY_DURATION =  5000;
 
 function HomePage () {
   const trendingList = useSelector(state => state.homePage.trending.items);
@@ -32,19 +36,22 @@ function HomePage () {
 
   const renderTrendingMovieBlock = (item) => {
     return (
-      <div className='home-page-container__trending-item' onClick={() => console.log(item)}>
+      <div className='home-page-container__trending-item routed-image-carousel' onClick={() => dispatch(routeToMovieDetails(item.id))} >
         <img 
           className='home-page-container__trending-item-image' 
           src={ `${IMG_URL}${ item?.poster_path }`} 
-          alt=''
+          alt=''  
         />
-        <div className='home-page-container__trending-item-title'>{ item?.title || item?.orginal_title || item?.original_name}</div>
+        <div 
+          className='home-page-container__trending-item-title routed-text'>
+          { item?.title || item?.orginal_title || item?.original_name}
+        </div>
       </div>
       )
   }
 
   const renderTrending = () => {
-    const availableMovies = trendingList.filter(movie => movie.title || movie.orginal_title || movie.original_name)
+    const availableMovies = trendingList.filter(movie => movie.title || movie.orginal_title)
 
     return (
       <div style={{width: '100%'}}>
@@ -52,6 +59,8 @@ function HomePage () {
           responsive={trendingCarouselResponsive}
           infinite={true}
           autoPlay={true}
+          slidesToSlide={CAROUSEL_SLIDES_TO_SLIDE}
+          autoPlaySpeed={CAROUSEL_AUTOPLAY_DURATION}
         >
           { availableMovies.slice(0, NO_OF_TRENDING_ITEMS).map((item) => renderTrendingMovieBlock(item)) }
         </Carousel>
@@ -60,11 +69,14 @@ function HomePage () {
   };
 
   const renderUpcomming = () => {
-    const availableMovies = upcommingList.filter(movie => movie.poster_path && (movie.title || movie.orginal_title) )
+    const availableMovies = upcommingList.filter(movie => movie.poster_path && (movie.title || movie.orginal_title))
 
     return availableMovies.slice(0, NO_OF_UPCOMMING_ITEMS).map((item) => {
       return (
-        <UpcommingMovies item={item} /> 
+        <UpcommingMovies 
+          item={item} 
+          routing={() => dispatch(routeToMovieDetails(item.id))}
+        /> 
       );
     });
   };
