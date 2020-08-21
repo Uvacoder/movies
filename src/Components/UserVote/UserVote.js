@@ -44,9 +44,6 @@ class UserVote  extends React.Component {
   
   renderModal = () => {
     const { visible, loading } = this.state;
-    // if (!visible) {
-    //   return null;
-    // }
     return (
       <Modal
         className='user-vote__modal'
@@ -65,8 +62,8 @@ class UserVote  extends React.Component {
           <UserComment />
         </div>
       </Modal>
-    )
-  }
+    );
+  };
 
  
   render() {
