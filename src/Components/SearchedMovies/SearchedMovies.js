@@ -29,8 +29,8 @@ const SearchedMovies = (props) => {
   },[])
  
   const filterDirector = () => {
-    const director = item.details.credits.crew.filter((item) => item.job === "Director")?.[0]?.name
-    return director ? director : '–'
+    const director = item.details.credits.crew.filter((item) => item.job === "Director")[0]?.name
+    return director || '–'
   }
 
   return (

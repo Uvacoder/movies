@@ -76,18 +76,18 @@ const MovieOverview = (props) => {
 };
 
 MovieOverview.defaultProps = {
-    poster:'poster_path',
-    description:'description',
-    genres:'genres',
-    realeaseDate:'realease date',
-    runtime:'runtime',
-    country:'countries of production',
-    director:'director',
-    writers:'writers',
-    budget: 'unknown',
-    revenue: 'unknown',
-    languages:'english',
-    companies:'warner bros'
+    poster:'–',
+    description:'–',
+    genres:'–',
+    realeaseDate:'–',
+    runtime:'–',
+    country:'–',
+    director:'–',
+    writers:'–',
+    budget: '–',
+    revenue: '–',
+    languages:'–',
+    companies:'–'
 }
 
 export default MovieOverview

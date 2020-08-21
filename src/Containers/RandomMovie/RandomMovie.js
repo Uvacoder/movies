@@ -24,77 +24,89 @@ const RandomMovie = (props) => {
     dispatch(fetchRandom(randomMovieId));
   },[dispatch, randomMovieId]);
 
-  if (!currentMovie) {
+  const renderImage = (imgPath) => {
+    return (
+      <img 
+      className='random-movie-container__image routed-image' 
+      src={imgPath} 
+      alt='poster'
+      onClick={() => dispatch(routeToMovieDetails(currentMovie.id))}
+    />
+    );
+  };
+
+  const renderDetails = (movie) => {
+    return (
+      <>
+        <div 
+        className='random-movie-container__details-title routed-text'
+        onClick={() => dispatch(routeToMovieDetails(movie.id))}>
+          {movie.title}
+        </div> 
+        <div className='random-movie-container__details-overwiev'>
+          <div className='random-movie-container__details-overwiev-title'>
+            Overwiev: 
+          </div >
+          <Scrollbars autoHeight>
+            <div className='random-movie-container__details-overwiev-content'>
+                {movie.overview} 
+            </div >
+          </Scrollbars>
+        </div>
+        <div className='random-movie-container__details-date'>
+          <div className='random-movie-container__details-date-title'>
+            Release Date:
+          </div>
+          <div className='random-movie-container__details-date-content'>
+            {movie.release_date}
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const renderVoteCharts = (movie) => {
+    return (
+      <>
+        <div className='random-movie-container__details-vote-wrapper-popularity'>
+          <div className='random-movie-container__details-vote-wrapper-popularity-name'>
+              Popularity:
+          </div>
+          <DoughnutChart data={ Math.floor(movie.popularity) }/>
+        </div>
+        <div className='random-movie-container__details-vote-wrapper-average'>
+          <div className='random-movie-container__details-vote-wrapper-average-name'>
+              Vote average:
+          </div>
+          <DoughnutChart 
+            data={movie.vote_average} 
+            maxValue={VOTE_AVERAGE_MAX_VALUE} 
+            percent={false} 
+            chartColor= {movie.vote_average > VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE ? 'lightgreen' : 'Aquamarine' }
+          />
+        </div>
+      </>
+    );
+  };
+
+  if (!currentMovie || !currentMovie.videoKey[0]) {
     return null;
   }
 
-  const renderRandomMovie = () => {
-    if (!currentMovie.videoKey[0].key) {
-      return null;
-    }
-
-    return (
-      <div className='random-movie-container'>
-        <img 
-          className='random-movie-container__image routed-image' 
-          src={`${API_PATH}${currentMovie.poster_path}`} 
-          alt='poster'
-          onClick={() => dispatch(routeToMovieDetails(currentMovie.id))}
-        />
-        <div className='random-movie-container__details'> 
-          <div 
-            className='random-movie-container__details-title routed-text'
-            onClick={() => dispatch(routeToMovieDetails(currentMovie.id))}>
-              {currentMovie.title}
-          </div> 
-          <div className='random-movie-container__details-overwiev'>
-            <div className='random-movie-container__details-overwiev-title'>
-              Overwiev: 
-            </div >
-            <Scrollbars autoHeight>
-              <div className='random-movie-container__details-overwiev-content'>
-                  {currentMovie.overview} 
-              </div >
-            </Scrollbars>
-          </div>
-          <div className='random-movie-container__details-date'>
-            <div className='random-movie-container__details-date-title'>
-              Release Date:
-            </div>
-            <div className='random-movie-container__details-date-content'>
-              {currentMovie.release_date}
-            </div>
-          </div>
-          <div className='random-movie-container__details-vote-wrapper'>
-            <div className='random-movie-container__details-vote-wrapper-popularity'>
-              <div  className='random-movie-container__details-vote-wrapper-popularity-name'>
-                  Popularity:
-              </div>
-              <DoughnutChart data={ Math.floor(currentMovie.popularity) }/>
-            </div>
-            <div className='random-movie-container__details-vote-wrapper-average'>
-              <div className='random-movie-container__details-vote-wrapper-average-name'>
-                  Vote average:
-              </div>
-              <DoughnutChart 
-                data={currentMovie.vote_average} 
-                maxValue={VOTE_AVERAGE_MAX_VALUE} 
-                percent={false} 
-                chartColor= {currentMovie.vote_average > VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE ? 'lightgreen' : 'Aquamarine' }
-              />
-            </div>
-          </div>
-        </div>
-        <div className='random-movie-container__trailer'>
-          <YouTube videoId={ currentMovie.videoKey[0].key }  />
-        </div>   
-      </div>
-    )
-  }
-
   return (
-    renderRandomMovie()
-  )
+    <div className='random-movie-container'>
+      {renderImage(`${API_PATH}${currentMovie.poster_path}`)}
+      <div className='random-movie-container__details'> 
+        {renderDetails(currentMovie)}
+        <div className='random-movie-container__details-vote-wrapper'>
+        {renderVoteCharts(currentMovie)}
+        </div>
+      </div>
+      <div className='random-movie-container__trailer'>
+        <YouTube videoId={ currentMovie.videoKey[0].key }  />
+      </div>   
+    </div>
+  );
 };
 
 export default RandomMovie

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Input } from 'antd';
 
 const { Search } = Input;
-const SEARCH_BAR_WIDTH = '300px';
 
 const SearchInput = (props) => {
   const {

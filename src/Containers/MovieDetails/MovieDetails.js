@@ -95,7 +95,7 @@ class MovieDetails extends React.Component {
         <div className='movie-details-container__similar'> 
           <MovieSimilar 
             similarMovies={ this.props.similarMovies } 
-            routing={this.props.routeToMovieDetails}
+            routeToMovieDetails={this.props.routeToMovieDetails }
           />
         </div>
       </>

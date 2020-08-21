@@ -8,13 +8,10 @@ import SearchedMovies from 'components/SearchedMovies/SearchedMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
 
 class SearchResults extends React.Component {
-  constructor(props) {
-    super(props)
-  }
 
   renderResults = () => {
     if (this.props.searchResults.length !== 0) {
-      return this.props.searchResults?.map((item) => {
+      return this.props.searchResults.map((item) => {
         return (
           <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/> 
         );

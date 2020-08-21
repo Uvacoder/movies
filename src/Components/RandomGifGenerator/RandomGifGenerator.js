@@ -5,6 +5,7 @@ import './RandomGifGenerator.scss'
 
 // const RANDOM_WORD_API = "https://random-word-api.herokuapp.com/word?number=1" // standard dictionary word - need to change setup function before implementing
 const RANDOM_WORD_API = "http://api.urbandictionary.com/v0/random" // urban/slang words
+const warningModalTitle = 'Caution! Enter at you own risk.'
 
 class RandomGifGenerator extends React.Component {
   constructor (props) {
@@ -18,12 +19,12 @@ class RandomGifGenerator extends React.Component {
   }
 
   componentDidMount() {
-    this.warning()
+    this.showWarning()
   }
   
-  warning = () => {
+  showWarning = () => {
     Modal.warning({
-      title: 'Caution! Enter at you own risk.',
+      title: warningModalTitle,
       content: 'This site is using random words provided by Urbandictionary, they might be controversial. Generated images can be blunt. If you are not OK with it please leave.',
     });
    

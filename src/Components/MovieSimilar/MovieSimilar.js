@@ -22,7 +22,7 @@ const MovieSimilar = (props) => {
 
   const renderCastBlock = (item) => {
     return (
-      <div className='movie-similar__container routed-image-carousel' onClick={() => props.routing(item.id)}>
+      <div className='movie-similar__container routed-image-carousel' onClick={() => props.routeToMovieDetails(item.id)}>
         <img 
             className='movie-similar__container-image ' 
             src={ `${Api.getImgURL(IMG_SIZE)}${ item.poster_path }`} 

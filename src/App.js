@@ -9,7 +9,7 @@ import { history } from './store';
 
 function App() {
   return (
-    <ConnectedRouter onUpdate={() => window.scrollTo(0, 0)} history={history} >
+    <ConnectedRouter history={history}>
       <Switch>
         <Route exact path="/">
           <WelcomePage />
@@ -18,6 +18,6 @@ function App() {
       </Switch>
     </ConnectedRouter>
   );
-}
+};
 
 export default App;
