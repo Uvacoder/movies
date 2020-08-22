@@ -36,6 +36,7 @@
     .login-form__container-buttons-guest{
       @extend %display-login-button;
       background-color: #165a9ab0;
+      transition: transform .2s;
     }
 
     .login-form__container-buttons-guest{
@@ -44,7 +45,8 @@
 
     .login-form__container-buttons-login:hover,
     .login-form__container-buttons-guest:hover{
-      color: rgb(84, 179, 211);
+      color: rgb(250, 250, 174);
+      transform: scale(1.05);
     }
   }
  

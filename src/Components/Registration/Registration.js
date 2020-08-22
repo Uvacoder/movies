@@ -46,9 +46,14 @@ const tailFormItemLayout = {
 
 const Registration = () => {
   const [form] = Form.useForm();
+  const [userName, setUserName] = useState('');
+  const [userPassword, setUserPassword] = useState('');
+  const [userMail, setUserMail] = useState('');
 
   const onFinish = values => {
-    console.log('Received values of form: ', values);
+    setUserName(values.nickname)
+    setUserPassword(values.password)
+    setUserMail(values.email)
   };
 
   return (
@@ -86,6 +91,10 @@ const Registration = () => {
               required: true,
               message: 'Please input your password!',
             },
+            {
+              min: 6,
+              message: 'Password must be at least 6 characters long.'
+            },
           ]}
           hasFeedback
         >
@@ -120,7 +129,7 @@ const Registration = () => {
           name="nickname"
           label={
             <span>
-              Nickname&nbsp;
+              User Name&nbsp;
               <Tooltip title="What do you want others to call you?">
                 <QuestionCircleOutlined />
               </Tooltip>
@@ -129,8 +138,16 @@ const Registration = () => {
           rules={[
             {
               required: true,
-              message: 'Please input your nickname!',
+              message: 'Please input your user name!',
               whitespace: true,
+            },
+            {
+              min: 3,
+              message: 'User name must be at least 3 characters long.'
+            },
+            {
+              max: 30,
+              message: 'User name to long.'
             },
           ]}
         >
@@ -157,26 +174,29 @@ const Registration = () => {
             </Col>
           </Row>
         </Form.Item>
-        <Form.Item
-          name="agreement"
-          valuePropName="checked"
-          rules={[
-            {
-              validator: (_, value) =>
-                value ? Promise.resolve() : Promise.reject('Should accept agreement'),
-            },
-          ]}
-          {...tailFormItemLayout}
-        >
-          <Checkbox>
-            I have read the <a href="">agreement</a>
-          </Checkbox>
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
-            Register
-          </Button>
-        </Form.Item>
+        <div className='registration__footer'>
+          <Form.Item
+            name="agreement"
+            valuePropName="checked"
+            rules={[
+              {
+                validator: (_, value) =>
+                  value ? Promise.resolve() : Promise.reject('Should accept agreement'),
+              },
+            ]}
+            {...tailFormItemLayout}
+          >
+            <Checkbox>
+              I have read the <a href="">agreement</a>
+            </Checkbox>
+          </Form.Item>
+          <Form.Item {...tailFormItemLayout}>
+            <Button type="primary" htmlType="submit">
+              Register
+            </Button>
+          </Form.Item>
+        </div>
+      
       </Form>
     </div>
   );
