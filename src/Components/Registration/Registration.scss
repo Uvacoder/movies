@@ -1,4 +1,23 @@
-.registerContainer {
-    color:white;
-    font-size: x-large;
+.registration{
+
+	.registration__title {
+		color: white ;
+		padding-bottom: 20px;
+		font-size: 30px;
+		text-align: center;
+	}
+	
+	.ant-form-horizontal label {
+		color: white;
+	}
+	
+	.ant-form-item-extra{
+		color: lightgrey;
+	}
+	
+	.ant-form-item-control{
+		margin-left: 12px;
+		width: 333px;
+	}
 }
+

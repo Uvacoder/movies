@@ -1,3 +1,9 @@
+%display-login-button {
+  width: 49%;
+  border: none;
+  color: white;
+}
+
 .login-form__container {
   label {
     color:white;
@@ -20,6 +26,28 @@
   .ant-form-item-control {
     max-width: 320px;
   }
+
+  .login-form__container-buttons{
+    width: 415px;
+    display: flex;
+    justify-content: space-between;
+
+    .login-form__container-buttons-login,
+    .login-form__container-buttons-guest{
+      @extend %display-login-button;
+      background-color: #165a9ab0;
+    }
+
+    .login-form__container-buttons-guest{
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .login-form__container-buttons-login:hover,
+    .login-form__container-buttons-guest:hover{
+      color: rgb(84, 179, 211);
+    }
+  }
+ 
 }
 
 .login-form__welcome {
@@ -37,6 +65,7 @@
   color: white;
   font-size: 14px;
   cursor: pointer;
+  text-align: center;
 }
 
 .registration-form__label:hover {
