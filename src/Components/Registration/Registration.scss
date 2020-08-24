@@ -27,10 +27,13 @@
 		
 		.ant-btn-primary{
 			width: 416px;
-			// background-color: #102438b0;
 			background-color: rgba(0,0,0,0.7);
 			border: none;
 			transition: transform .2s;
+		}
+
+		.ant-checkbox-wrapper{
+			width:416px;
 		}
 
 		.ant-btn-primary:hover{

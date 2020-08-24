@@ -46,19 +46,19 @@ class LoginForm extends React.Component {
                 },
                 ]}
               >
-                  <Input />
+                <Input />
               </Form.Item>
               <Form.Item
                 label="Password"
                 name="password"
                 rules={[
                 {
-                    required: true,
-                    message: 'Please input your password!',
+                  required: true,
+                  message: 'Please input your password!',
                 },
                 { 
-                    validator: this.validatePassword,
-                    validateTrigger: []
+                  validator: this.validatePassword,
+                  validateTrigger: []
                 },
                 ]}
               >
@@ -67,7 +67,6 @@ class LoginForm extends React.Component {
               <Form.Item name="remember" valuePropName="checked">
                   <Checkbox>Remember me</Checkbox>
               </Form.Item>
-
               <Form.Item >
                 <div className='login-form__container-buttons'>
                   <Button 
@@ -85,7 +84,6 @@ class LoginForm extends React.Component {
                   </Button>
                 </div>
               </Form.Item>
-              {/* TEMPORARY PLACEHOLDER FOR REGISTRATION COMPONENT  */}
               <div className="registration-form"> 
                 <div  className="registration-form__label" onClick={ this.props.goTo }>Not registered yet? Click here to Sign Up!</div>
               </div>
