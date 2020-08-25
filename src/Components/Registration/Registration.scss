@@ -20,6 +20,29 @@
 		width: 333px;
 	}
 
+	.ant-input,
+  .ant-input-password,
+  .ant-input-affix-wrapper,
+  .ant-input-affix-wrapper:hover,
+  .ant-input-affix-wrapper-focused:hover{
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-bottom: solid 1px rgba(255,255,255,1);
+  }
+
+	#register_password,
+	#register_confirm {
+    background-color: rgba(0,0,0,0);
+  }
+  .ant-input-password svg{
+    fill: white;
+  }
+
+  .ant-form-item-has-error input:hover{
+    background-color: rgba(0,0,0,0.5);
+  }
+
 	.registration__footer{
 		display: flex;
     flex-direction: column;
