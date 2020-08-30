@@ -1,3 +1,4 @@
+$input-color-alpha: rgba(0,0,0,0.4);
 %display-login-button {
   width: 49%;
   border: none;
@@ -32,7 +33,7 @@
   .ant-input-affix-wrapper,
   .ant-input-affix-wrapper:hover,
   .ant-input-affix-wrapper-focused:hover{
-    background-color: rgba(0,0,0,0.4);
+    background-color: $input-color-alpha;
     color: white;
     border: none;
     border-bottom: solid 1px rgba(255,255,255,1);
@@ -46,7 +47,7 @@
   }
 
   .ant-form-item-has-error input:hover{
-    background-color: rgba(0,0,0,0.4);
+    background-color: $input-color-alpha;
   }
 
   .login-form__container-buttons{

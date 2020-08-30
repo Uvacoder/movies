@@ -3,14 +3,9 @@ import "./Registration.scss"
 import {
   Form,
   Input,
-  Tooltip,
-  Select,
-  Row,
-  Col,
   Checkbox,
   Button,
 } from 'antd';
-import { QuestionCircleOutlined } from '@ant-design/icons';
 
 const formItemLayout = {
   labelCol: {
@@ -45,19 +40,14 @@ const tailFormItemLayout = {
 
 const Registration = () => {
   const [form] = Form.useForm();
-  const [userName, setUserName] = useState('');
-  const [userPassword, setUserPassword] = useState('');
-  const [userMail, setUserMail] = useState('');
 
   const onFinish = values => {
-    setUserName(values.nickname)
-    setUserPassword(values.password)
-    setUserMail(values.email)
+    // TO DO SUBMIT VALUES TO BACKEND
   };
 
   return (
     <div className="registration">
-        <div className="registration__title">Create an Account</div>
+      <div className="registration__title">Create an Account</div>
       <Form
         {...formItemLayout}
         form={form}
@@ -69,10 +59,7 @@ const Registration = () => {
           name="nickname"
           label={
             <span>
-              Username&nbsp;
-              <Tooltip title="What do you want others to call you?">
-                <QuestionCircleOutlined />
-              </Tooltip>
+              Username
             </span>
           }
           rules={[
@@ -83,7 +70,7 @@ const Registration = () => {
             },
             {
               min: 3,
-              message: 'User name must be at least 3 characters long.'
+              message: 'Username to short.'
             },
             {
               max: 30,
@@ -125,7 +112,6 @@ const Registration = () => {
                 if (!value || getFieldValue('password') === value) {
                   return Promise.resolve();
                 }
-
                 return Promise.reject('The two passwords that you entered do not match!');
               },
             }),
@@ -140,7 +126,7 @@ const Registration = () => {
             rules={[
               {
                 validator: (_, value) =>
-                  value ? Promise.resolve() : Promise.reject('Should accept agreement'),
+                  value ? Promise.resolve() : Promise.reject('Please confirm!'),
               },
             ]}
             {...tailFormItemLayout}
@@ -155,7 +141,6 @@ const Registration = () => {
             </Button>
           </Form.Item>
         </div>
-      
       </Form>
     </div>
   );

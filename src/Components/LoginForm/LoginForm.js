@@ -80,7 +80,7 @@ class LoginForm extends React.Component {
                     onClick={ () => this.props.history.push('/home') }
                     className='login-form__container-buttons-guest'
                   >
-                    Continue as Guest
+                    Continue as a Guest
                   </Button>
                 </div>
               </Form.Item>
