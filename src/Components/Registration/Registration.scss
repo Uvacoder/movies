@@ -1,4 +1,87 @@
-.registerContainer {
-    color:white;
-    font-size: x-large;
-}
+$input-color-alpha: rgba(0,0,0,0.5);
+
+.registration{
+
+	.registration__title {
+		color: white ;
+		padding-bottom: 20px;
+		font-size: 30px;
+		text-align: center;
+	};
+	
+	.ant-form-horizontal label {
+		color: white;
+	};
+	
+	.ant-form-item-extra{
+		color: lightgrey;
+	};
+	
+	.ant-form-item-control{
+		margin-left: 12px;
+		width: 333px;
+
+		.ant-form-item-control-input{
+			width: 330px;
+		}
+	};
+
+	.ant-input,
+  .ant-input-password,
+  .ant-input-affix-wrapper,
+  .ant-input-affix-wrapper:hover,
+  .ant-input-affix-wrapper-focused:hover{
+    background-color: $input-color-alpha;
+    color: white;
+    border: none;
+    border-bottom: solid 1px rgba(255,255,255,1);
+	};
+	
+	#register{
+		display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-end;
+	}
+
+	#register_password,
+	#register_confirm {
+    background-color: rgba(0,0,0,0);
+	};
+	
+  .ant-input-password svg{
+    fill: white;
+  };
+
+  .ant-form-item-has-error input:hover{
+    background-color: $input-color-alpha;
+  };
+
+	.registration__footer{
+		display: flex;
+    flex-direction: column;
+		align-items: center;
+		width: 100%;
+		
+		.ant-btn-primary{
+			width: 405px;
+			background-color: rgba(0,0,0,0.7);
+			border: none;
+			transition: transform .2s;
+		};
+
+		.ant-checkbox-wrapper{
+			width:416px;
+		};
+
+		.ant-btn-primary:hover{
+			color: rgb(250, 250, 174);
+			transform: scale(1.05);
+		};
+	};
+
+	.registration__footer a {
+		color: aqua;
+	};
+};
+
