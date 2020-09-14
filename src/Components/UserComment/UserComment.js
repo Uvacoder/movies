@@ -22,7 +22,7 @@ const UserComment = (props) => {
 };
 
 UserComment.defaultProps = {
-  placeholder: '',
+  placeholder: 'Please enter comment',
   rows: 4,
 }
 
