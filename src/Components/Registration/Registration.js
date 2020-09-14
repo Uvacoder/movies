@@ -7,36 +7,9 @@ import {
   Button,
 } from 'antd';
 
-const formItemLayout = {
-  labelCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 8,
-    },
-  },
-  wrapperCol: {
-    xs: {
-      span: 24,
-    },
-    sm: {
-      span: 16,
-    },
-  },
-};
-const tailFormItemLayout = {
-  wrapperCol: {
-    xs: {
-      span: 24,
-      offset: 0,
-    },
-    sm: {
-      span: 16,
-      offset: 8,
-    },
-  },
-};
+const REGISTRATION_NICKNAME_MIN_LENGHT = 3;
+const REGISTRATION_NICKNAME_MAX_LENGHT = 30;
+const REGISTRATION_PASSWORD_MIN_LENGHT = 6;
 
 const Registration = () => {
   const [form] = Form.useForm();
@@ -49,7 +22,6 @@ const Registration = () => {
     <div className="registration">
       <div className="registration__title">Create an Account</div>
       <Form
-        {...formItemLayout}
         form={form}
         name="register"
         onFinish={onFinish}
@@ -69,11 +41,11 @@ const Registration = () => {
               whitespace: true,
             },
             {
-              min: 3,
+              min: REGISTRATION_NICKNAME_MIN_LENGHT,
               message: 'Username to short.'
             },
             {
-              max: 30,
+              max: REGISTRATION_NICKNAME_MAX_LENGHT,
               message: 'User name to long.'
             },
           ]}
@@ -89,8 +61,8 @@ const Registration = () => {
               message: 'Please input your password!',
             },
             {
-              min: 6,
-              message: 'Password must be at least 6 characters long.'
+              min: REGISTRATION_PASSWORD_MIN_LENGHT,
+              message: `Password must be at least ${ REGISTRATION_PASSWORD_MIN_LENGHT } characters long.`
             },
           ]}
           hasFeedback
@@ -129,13 +101,12 @@ const Registration = () => {
                   value ? Promise.resolve() : Promise.reject('Please confirm!'),
               },
             ]}
-            {...tailFormItemLayout}
           >
             <Checkbox>
               I have read the <a href="">terms and conditions</a>
             </Checkbox>
           </Form.Item>
-          <Form.Item {...tailFormItemLayout}>
+          <Form.Item>
             <Button type="primary" htmlType="submit">
               Register
             </Button>

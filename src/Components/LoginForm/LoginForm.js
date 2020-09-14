@@ -58,7 +58,6 @@ class LoginForm extends React.Component {
                 },
                 { 
                   validator: this.validatePassword,
-                  validateTrigger: []
                 },
                 ]}
               >
