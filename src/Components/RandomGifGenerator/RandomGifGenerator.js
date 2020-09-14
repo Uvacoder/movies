@@ -9,6 +9,7 @@ const RANDOM_WORD_API = "http://api.urbandictionary.com/v0/random" // urban/slan
 class RandomGifGenerator extends React.Component {
   constructor (props) {
     super(props);
+    
     this.state = {
       word: null,
       gifData: null,

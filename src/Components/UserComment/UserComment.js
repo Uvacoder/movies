@@ -14,7 +14,7 @@ const UserComment = (props) => {
   return (
     <TextArea 
       rows={rows}
-      placeholder= { placeholder }
+      placeholder={placeholder}
       value={inputValue}
       onChange={e => setInputValue(e.target.value)}
     />
@@ -22,7 +22,7 @@ const UserComment = (props) => {
 };
 
 UserComment.defaultProps = {
-  placeholder: 'Leave a comment so you can remember what you liked or disliked about this film.',
+  placeholder: '',
   rows: 4,
 }
 

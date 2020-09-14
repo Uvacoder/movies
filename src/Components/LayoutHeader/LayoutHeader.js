@@ -25,7 +25,6 @@ const { Search } = Input;
 
 function LayoutHeader (props) {
  const renderSubMenu = (title, icon, menuItems) => {
-   console.log(menuItems)
     return (
       <SubMenu key={ title } icon={ icon } title={ title }>
         {menuItems.map((item, idx) => 

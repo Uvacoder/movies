@@ -28,7 +28,7 @@ const UserRate = (props) => {
 UserRate.defaultProps = {
   count: 10,
   defaultValue: 0,
-  tooltips: ['Misunderstanding','Very bad', 'Bad', 'Weak', 'Average', 'Decent', 'Good', 'Very Good', 'Fantastic', 'Masterpiece!' ],
+  tooltips: [],
 }
 
 export default UserRate

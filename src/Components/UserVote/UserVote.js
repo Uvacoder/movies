@@ -8,10 +8,13 @@ import UserComment from 'components/UserComment/UserComment'
 const USER_VOTE_MAX_VALUE = 10;
 const USER_VOTE_DISPLAY_PERCENT = false;
 const USER_VOTE_CHART_COLOR = 'lightgreen';
+const USER_COMMENT_PLACEHOLDER = 'Leave a comment so you can remember what you liked or disliked about this film.';
+const USER_RATE_TOOLTIPS = ['Misunderstanding','Very bad', 'Bad', 'Weak', 'Average', 'Decent', 'Good', 'Very Good', 'Fantastic', 'Masterpiece!' ];
 
 class UserVote  extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       loading: false,
       visible: false,
@@ -19,21 +22,21 @@ class UserVote  extends React.Component {
     };
   };
   
-  showModal = () => {
+  changeModalVisibility = (visible) => {
     this.setState({
-      visible: true,
+      visible,
     });
   };
 
   handleOk = () => {
-    this.setState({ loading: true });
-    setTimeout(() => {
-      this.setState({ loading: false, visible: false });
-    }, 1000);
+    this.setState({ 
+      loading: false, 
+    });
+    this.changeModalVisibility(false);
   };
 
   handleCancel = () => {
-    this.setState({ visible: false });
+    this.changeModalVisibility(false)
   };
 
   updateRateValue = (value) => {
@@ -50,16 +53,21 @@ class UserVote  extends React.Component {
         visible={visible}
         title="Your Vote"
         onCancel={this.handleCancel}
-        footer={[
+        footer={
           <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
             Save
-          </Button>,
-        ]}
-        >
+          </Button>
+        }
+      >
         <div className='user-vote__modal-body'>
-          <UserRate updateRateValue={this.updateRateValue}/>
+          <UserRate 
+            updateRateValue={this.updateRateValue}
+            tooltips={ USER_RATE_TOOLTIPS }
+            />
           <p className='user-vote__modal-body-comment'>Your comment:</p>
-          <UserComment />
+          <UserComment 
+            placeholder={ USER_COMMENT_PLACEHOLDER }
+          />
         </div>
       </Modal>
     );
@@ -69,7 +77,7 @@ class UserVote  extends React.Component {
   render() {
     return (
       <>
-        <div className='user-vote' onClick={this.showModal}>
+        <div className='user-vote' onClick={() => this.changeModalVisibility(true)}>
           <span className='user-vote__title'>Your Vote:</span>
           <div className='user-vote__chart'>
             <DoughnutChart 
