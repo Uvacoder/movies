@@ -7,11 +7,10 @@ import {
   Input 
 } from 'antd';
 import { 
-  UserOutlined,
   PlaySquareOutlined,
-  DesktopOutlined,
-  DashboardOutlined,
-  CoffeeOutlined,
+  BarsOutlined,
+  InfoCircleOutlined,
+  ClockCircleOutlined,
   ProfileOutlined,
   SmileOutlined 
 } from '@ant-design/icons';
@@ -35,52 +34,38 @@ function LayoutHeader (props) {
     );
   };
   
-  const renderMoviesSubMenu = () => {
+  const renderTopListsMenu = () => {
     const menuItems = [{
-      title: 'Browse Movies',
+      title: 'Top Rated',
       url:"/movie"
-    },{
-      title: 'Upcomming'
-    }]
-  
-    return renderSubMenu('Movies',<DesktopOutlined />, menuItems)
-  }
-  
-  const renderTVShowsSubMenu = () => {
-    const menuItems = [{
-      title: 'Browse TV Shows'
-    }]
-  
-    return renderSubMenu('TV Shows',<CoffeeOutlined />, menuItems)
-  }
-  
-  const renderRankingsMenu = () => {
-    const menuItems = [{
-      title: 'Top Movies'
-    },{
-      title: 'Top TV Shows'
-    },{
-      title: 'Top People of Cinema'
     },{
       title: 'Trending Today'
     },{
       title: 'Trending Weekly'
     }]
   
-    return renderSubMenu('Rankings',<DashboardOutlined />, menuItems)
+    return renderSubMenu('Top Lists',<BarsOutlined />, menuItems)
   }
   
-  
-  const renderNetflixMenu = () => {
+  const renderTVShowsSubMenu = () => {
     const menuItems = [{
-      title: 'New Release'
+      title: 'Upcomming'
     },{
-      title: 'Expiring'
-    },{
-      title: 'Shows with weekly episodes'
+      title: 'Now Playing'
     }]
   
-    return renderSubMenu('Netflix',<UserOutlined />, menuItems)
+    return renderSubMenu('New',<ClockCircleOutlined />, menuItems)
+  }
+  
+  const renderAboutMenu = () => {
+    const menuItems = [{
+      title: 'About Movie Lounge'
+    },{
+      title: 'Contact'
+    }
+  ]
+  
+    return renderSubMenu('About',<InfoCircleOutlined />, menuItems)
   }
   
   const renderHydeParkMenu = () => {
@@ -118,9 +103,8 @@ function LayoutHeader (props) {
         </Menu>
       </div>
       <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
-        {renderMoviesSubMenu()}
+        {renderTopListsMenu()}
         {renderTVShowsSubMenu()}
-        {renderRankingsMenu()}
         <SearchInput
           onSearch={value => { 
             if (value) {
@@ -132,8 +116,8 @@ function LayoutHeader (props) {
           defaultValue=''
           searchBarWidth={SEARCH_BAR_WIDTH}
         />
-          {renderNetflixMenu()}
           {renderHydeParkMenu()}
+          {renderAboutMenu()}
       </Menu>
       <div className="your-profile">
         <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
