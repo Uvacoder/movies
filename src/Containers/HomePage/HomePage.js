@@ -8,6 +8,7 @@ import { Divider } from 'antd'
 import RandomMovie from '../RandomMovie/RandomMovie'
 import UpcommingMovies from 'components/UpcommingMovies/UpcommingMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
+import Calculation from 'utils/Calculation';
 
 
 const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table length.
@@ -70,8 +71,9 @@ function HomePage () {
 
   const renderUpcomming = () => {
     const availableMovies = upcommingList.filter(movie => movie.poster_path && (movie.title || movie.orginal_title))
+    const shuffledArray = Calculation.shuffleArray(availableMovies)
 
-    return availableMovies.slice(0, NO_OF_UPCOMMING_ITEMS).map((item) => {
+    return shuffledArray.slice(0, NO_OF_UPCOMMING_ITEMS).map((item) => {
       return (
         <UpcommingMovies 
           item={item} 

@@ -25,9 +25,9 @@ export const fetchTrending = () => {
 export const fetchUpcomming = () => {
 	return  async dispatch => {
 			const movies = await Communication.get(Api.get('movie/upcoming',{
-				language: 'EN',
+				language: 'en-US',
 				page: '1',
-				region: 'US'
+				region:'US'
 			}));
 
 			dispatch({ 
