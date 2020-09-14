@@ -29,7 +29,7 @@ function LayoutHeader (props) {
       <SubMenu key={ title } icon={ icon } title={ title }>
         {menuItems.map((item, idx) => 
         <Menu.Item key={ idx }>
-          <Link to ={ item.url }>{ item.title }</Link>
+          <Link to={ item.url }>{ item.title }</Link>
         </Menu.Item>)}
       </SubMenu>
     );

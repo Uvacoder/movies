@@ -10,6 +10,7 @@ const WARNING_MODAL_TITLE = 'Caution! Enter at you own risk.'
 class RandomGifGenerator extends React.Component {
   constructor (props) {
     super(props);
+    
     this.state = {
       word: null,
       gifData: null,
