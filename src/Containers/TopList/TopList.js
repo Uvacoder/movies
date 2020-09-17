@@ -13,8 +13,8 @@ const MIN_NUM_OF_VOTES = 3000;
 class TopList extends React.Component {
 
   componentDidMount() {
-    this.props.fetchTopList(this.props.match.params.type, this.props.match.params.subtype);
-    console.log(this.props.match.params.type, this.props.match.params.subtype)
+    this.props.fetchTopList(this.props.match.params.type);
+    console.log(this.props.match.params.type)
   }
 
   renderResults = () => {

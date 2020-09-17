@@ -3,9 +3,9 @@ import Api from 'utils/Api';
 
 export const FETCH_TOP_RATED = 'toplist/FETCH_TOP_RATED';
 
-export const fetchTopList = (type, subtype) => {
+export const fetchTopList = (type) => {
 	return async dispatch => {
-		const searched = await Communication.get(Api.get(`${type}/${subtype}`, {
+		const searched = await Communication.get(Api.get(`movie/${type}`, {
 			language:'en-US',
       page: '1',
       region: 'US',

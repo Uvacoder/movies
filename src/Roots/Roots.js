@@ -19,7 +19,7 @@ function Roots() {
         <Route path="/movie/:id">
           <MovieDetails />
         </Route>
-        <Route path="/toplist/:type/:subtype">
+        <Route path="/toplist/:type">
           <TopList />
         </Route>
         <Route path="/search-results">
