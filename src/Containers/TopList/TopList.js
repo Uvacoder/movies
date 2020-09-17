@@ -1,39 +1,38 @@
 import React from 'react';
-// import './SearchResults.scss';
+import './TopList.scss';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Divider } from 'antd'
 import SearchedMovies from 'components/SearchedMovies/SearchedMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
+import { fetchTopList } from 'actions/TopListActions'
+import { withRouter } from 'react-router-dom'
+
+const MIN_NUM_OF_VOTES = 3000;
 
 class TopList extends React.Component {
 
-  // componentDidMount() {
-  //   this.props.fetchMovieDetails(this.props.match.params.id);
-  // }
+  componentDidMount() {
+    this.props.fetchTopList(this.props.match.params.type, this.props.match.params.subtype);
+    console.log(this.props.match.params.type, this.props.match.params.subtype)
+  }
 
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.match.params.id !== prevProps.match.params.id) {
-  //     this.props.fetchMovieDetails(this.props.match.params.id);
-  //   }
-  // }
-
-  // renderResults = () => {
-  //   return this.props.searchResults.map((item) => {
-  //     return (
-  //       <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/> 
-  //     );
-  //   });
-  // };
+  renderResults = () => {
+    return this.props.topRatedMovies.filter((item) => item.vote_count > MIN_NUM_OF_VOTES ).map((item) => {
+      return (
+        <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/> 
+      );
+    });
+  };
 
   render() {
     return (
       <div className='top-list'>
         <Divider className='top-list__title' orientation='center'>
-          <span>TOP RATED MOVIES</span>
+          <span>{this.props.match.params.type === 'top_rated' ? "TOP RATED" : 'TRENDING'} MOVIES</span>
         </Divider>
         <div className='top-list__content'>
-          {/* {this.renderResults()} */}
+          {this.renderResults()}
         </div> 
       </div>
     );
@@ -42,13 +41,13 @@ class TopList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    // searchResults: state.searchResults.results,
-    // phrase: state.searchResults.phrase
+    topRatedMovies: state.topRatedMovies.results,
   }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  routeToMovieDetails
+  routeToMovieDetails,
+  fetchTopList
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopList);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TopList));

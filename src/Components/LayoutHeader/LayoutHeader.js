@@ -37,13 +37,13 @@ function LayoutHeader (props) {
   const renderTopListsMenu = () => {
     const menuItems = [{
       title: 'Top Rated',
-      url:"/toplist/top-rated"
+      url:"/toplist/movie/top_rated"
     },{
       title: 'Trending Today',
-      url:"/toplist/trending-today"
+      url:"/toplist/trending/movie/day"
     },{
       title: 'Trending Weekly',
-      url:"/toplist/trending-weekly"
+      url:"/toplist/trending/movie/week"
     }]
   
     return renderSubMenu('Top Lists',<BarsOutlined />, menuItems)
