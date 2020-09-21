@@ -9,9 +9,21 @@
   margin-top: -24px;
 
   .top-list__content {
-    @extend %display-results;
+    // @extend %display-results;
     margin-top: 12px;
     width: 100%;
+
+    .top-list__content-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+
+      span {
+        font-size: 5em;
+        text-shadow: 3px 3px 3px #FF0000;
+      }
+    }
   }
 
   .top-list__title :nth-child(1){

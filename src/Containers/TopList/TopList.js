@@ -34,9 +34,12 @@ class TopList extends React.Component {
     } else {
       items = this.props.topRatedMovies;
     }
-    return items.map((item) => {
+    return items.map((item,idx) => {
       return (
-        <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/>  // TO DO CHANGE ROUTING NAME TO ROUTE TO MOVIE DETAILS
+        <div className='top-list__content-item'>
+          <span>{idx + 1}</span>
+          <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/>  {/* TO DO CHANGE ROUTING NAME TO ROUTE TO MOVIE DETAILS */}
+        </div>
       );
     });
   };
