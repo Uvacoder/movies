@@ -40,10 +40,10 @@ function LayoutHeader (props) {
       url:"/toplist/top_rated"
     },{
       title: 'Trending Today',
-      url:"/toplist/trending/movie/day"
+      url:"/toplist/trending_daily"
     },{
       title: 'Trending Weekly',
-      url:"/toplist/trending/movie/week"
+      url:"/toplist/trending_weekly"
     }]
   
     return renderSubMenu('Top Lists',<BarsOutlined />, menuItems)

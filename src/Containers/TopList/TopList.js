@@ -14,13 +14,29 @@ class TopList extends React.Component {
 
   componentDidMount() {
     this.props.fetchTopList(this.props.match.params.type);
-    console.log(this.props.match.params.type)
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.type !== this.props.match.params.type) {
+      // this.props.clearTopList();
+      this.props.fetchTopList(this.props.match.params.type);
+    }
+  }
+  
   renderResults = () => {
-    return this.props.topRatedMovies.filter((item) => item.vote_count > MIN_NUM_OF_VOTES ).map((item) => {
+    // if (isLoading) {
+    //   return null; // TO DO 
+    // }
+    let items = [];
+
+    if (this.props.match.params.type === 'top_rated') {
+      items = this.props.topRatedMovies.filter((item) => item.vote_count > MIN_NUM_OF_VOTES);
+    } else {
+      items = this.props.topRatedMovies;
+    }
+    return items.map((item) => {
       return (
-        <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/> 
+        <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/>  // TO DO CHANGE ROUTING NAME TO ROUTE TO MOVIE DETAILS
       );
     });
   };
@@ -47,7 +63,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   routeToMovieDetails,
-  fetchTopList
+  fetchTopList,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TopList));
