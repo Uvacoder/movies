@@ -11,34 +11,32 @@ import { withRouter } from 'react-router-dom'
 const MIN_NUM_OF_VOTES = 3000;
 
 class TopList extends React.Component {
-
   componentDidMount() {
     this.props.fetchTopList(this.props.match.params.type);
-  }
+  };
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.type !== this.props.match.params.type) {
-      // this.props.clearTopList();
       this.props.fetchTopList(this.props.match.params.type);
-    }
-  }
+    };
+  };
   
   renderResults = () => {
-    // if (isLoading) {
-    //   return null; // TO DO 
+    // if (isLoading) { // TO DO 
+    //   return null; 
     // }
     let items = [];
 
     if (this.props.match.params.type === 'top_rated') {
-      items = this.props.topRatedMovies.filter((item) => item.vote_count > MIN_NUM_OF_VOTES);
+      items = this.props.topListOfMovies.filter((item) => item.vote_count > MIN_NUM_OF_VOTES);
     } else {
-      items = this.props.topRatedMovies;
+      items = this.props.topListOfMovies;
     }
     return items.map((item,idx) => {
       return (
         <div className='top-list__content-item'>
           <span>{idx + 1}</span>
-          <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/>  {/* TO DO CHANGE ROUTING NAME TO ROUTE TO MOVIE DETAILS */}
+          <SearchedMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/>  {/* TO DO CHANGE ROUTING NAME TO ROUTE TO MOVIE DETAILS */}
         </div>
       );
     });
@@ -48,7 +46,9 @@ class TopList extends React.Component {
     return (
       <div className='top-list'>
         <Divider className='top-list__title' orientation='center'>
-          <span>{this.props.match.params.type === 'top_rated' ? "TOP RATED" : 'TRENDING'} MOVIES</span>
+          <span>
+            {this.props.match.params.type === 'top_rated' ? "ALL TIME TOP RATED" : (this.props.match.params.type === 'trending_daily' ? "TRENDING DAILY" : "TRENDING WEEKLY")}
+          </span>
         </Divider>
         <div className='top-list__content'>
           {this.renderResults()}
@@ -60,7 +60,7 @@ class TopList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    topRatedMovies: state.topRatedMovies.results,
+    topListOfMovies: state.topListOfMovies.results,
   }
 }
 

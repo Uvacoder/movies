@@ -14,12 +14,12 @@ const UpcommingMovie = (props) => {
       <img 
         className='upcomming-container__image routed-image' 
         src={ `${IMAGE_URL}${ item?.poster_path }`} 
-        onClick={props.routing}
+        onClick={props.routeToMovieDetails}
       />
       <div className='upcomming-container__details'>
         <div 
           className='upcomming-container__details-title routed-text'
-          // onClick={() => dispatch(routeToMovieDetails(item.id))}
+          onClick={props.routeToMovieDetails}
         >
           { item?.title || item?.orginal_title }
         </div>

@@ -18,7 +18,7 @@ class SearchResults extends React.Component {
     if (this.props.searchResults.length !== 0) {
       return this.props.searchResults.map((item) => {
         return (
-          <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/> 
+          <SearchedMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/> 
         );
       });
     } else {

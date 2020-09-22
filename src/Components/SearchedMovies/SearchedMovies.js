@@ -29,12 +29,12 @@ const SearchedMovies = (props) => {
         <img 
           src={ item.poster_path ? `${Api.getImgURL(POSTER_WIDTH)}${item.poster_path}` : ImgPlaceholder} 
           alt='poster'
-          onClick={props.routing}
+          onClick={props.routeToMovieDetails}
         />
       </div>
       <div 
         className='searched-movies__title routed-text' 
-        onClick={props.routing}
+        onClick={props.routeToMovieDetails}
       >
         {item.title}
       </div>
