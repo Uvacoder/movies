@@ -5,6 +5,7 @@ import HomePage from 'containers/HomePage/HomePage'
 import RandomGifGenerator from 'components/RandomGifGenerator/RandomGifGenerator'
 import MovieDetails from 'containers/MovieDetails/MovieDetails'
 import SearchResults from 'containers/SearchResults/SearchResults'
+import About from 'components/About/About'
 
 function Roots() {
     return ( 
@@ -20,6 +21,9 @@ function Roots() {
         </Route>
         <Route path="/search-results">
           <SearchResults />
+        </Route>
+        <Route path="/about">
+          <About />
         </Route>
       </>
     )   

@@ -1,0 +1,18 @@
+.about{
+  .about__divider{
+    color: wheat;
+    font-size: 1.8em;
+    margin-top: 32px;
+  }
+  .about__author,
+  .about__faq,
+  .about__movie-lounge{
+    span{
+      clear: both;
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      line-height: 1.5em;
+    }
+  }
+}
