@@ -21,8 +21,8 @@ export const fetchTopList = (type) => {
 	return async dispatch => {
 		const searched = await Communication.get(Api.get(`${toplistType}`, {
 			language:'en-US',
-      page: '1',
-      region: 'US',
+			page: '1',
+			region: 'US',
 		}));
 
 	const items = searched.results
