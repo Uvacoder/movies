@@ -1,0 +1,29 @@
+.recent-movies{
+
+  .recent-movies__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    height: 100%;
+  
+    .upcomming-container {
+      margin-top: 0;
+
+      .upcomming-container__image{
+        margin-right: auto;
+      }
+    }  
+  }
+
+  .recent-movies__title :nth-child(1){
+    color:rgb(175, 171, 171);
+    font-size: x-large;
+  }
+  
+  .recent-movies__title :nth-child(2){
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: x-large;
+  }
+}

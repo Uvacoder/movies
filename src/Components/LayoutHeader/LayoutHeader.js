@@ -51,9 +51,11 @@ function LayoutHeader (props) {
   
   const renderNewMoviesSubMenu = () => {
     const menuItems = [{
-      title: 'Upcomming'
+      title: 'Upcomming',
+      url:'/new/upcomming'
     },{
-      title: 'Now Playing'
+      title: 'Now Playing',
+      url:'/new/now_playing'
     }]
   
     return renderSubMenu('New',<ClockCircleOutlined />, menuItems)
