@@ -37,17 +37,19 @@ function LayoutHeader (props) {
   const renderTopListsMenu = () => {
     const menuItems = [{
       title: 'Top Rated',
-      url:"/movie"
+      url:'/toplist/top_rated'
     },{
-      title: 'Trending Today'
+      title: 'Trending Today',
+      url:'/toplist/trending_daily'
     },{
-      title: 'Trending Weekly'
+      title: 'Trending Weekly',
+      url:'/toplist/trending_weekly'
     }]
   
     return renderSubMenu('Top Lists',<BarsOutlined />, menuItems)
   }
   
-  const renderTVShowsSubMenu = () => {
+  const renderNewMoviesSubMenu = () => {
     const menuItems = [{
       title: 'Upcomming'
     },{
@@ -104,7 +106,7 @@ function LayoutHeader (props) {
       </div>
       <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
         {renderTopListsMenu()}
-        {renderTVShowsSubMenu()}
+        {renderNewMoviesSubMenu()}
         <SearchInput
           onSearch={value => { 
             if (value) {
