@@ -2,8 +2,8 @@
   .about__divider{
     color: wheat;
     font-size: 1.8em;
-    margin-top: 32px;
-  }
+  };
+
   .about__author,
   .about__faq,
   .about__movie-lounge{
@@ -13,6 +13,25 @@
       width: 100%;
       text-align: center;
       line-height: 1.5em;
+    };
+
+    .about__movie-lounge-list{
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.5em;
+    };
+  };
+
+  .about__faq{
+
+    .about__faq-question{
+      margin-bottom: 18px;
     }
-  }
-}
+    .about__faq-header{
+      margin-bottom: 1em;
+      font-size: 1.3em;
+      font-style: italic;
+    };
+  };
+};

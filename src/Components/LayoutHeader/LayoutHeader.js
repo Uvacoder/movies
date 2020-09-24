@@ -59,10 +59,11 @@ function LayoutHeader (props) {
   
   const renderAboutMenu = () => {
     const menuItems = [{
-      title: 'About Movie Lounge',
+      title: 'Informations',
       url:'About'
     },{
-      title: 'Contact'
+      title: 'Contact',
+      url:'Contact'
     }
   ]
   
