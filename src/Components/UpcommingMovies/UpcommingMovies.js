@@ -1,7 +1,7 @@
 import React from 'react';
 import "./UpcommingMovies.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
-import { routeToMovieDetails } from 'utils/Routing/Routing'
+import ImgPlaceholder from '../../Images/imgPlaceholder.svg'
 
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
 const UpcommingMovie = (props) => {
@@ -13,7 +13,7 @@ const UpcommingMovie = (props) => {
     <div className='upcomming-container'>
       <img 
         className='upcomming-container__image routed-image' 
-        src={ `${IMAGE_URL}${ item?.poster_path }`} 
+        src={ item.poster_path ? `${IMAGE_URL}${ item.poster_path }` : ImgPlaceholder} 
         onClick={props.routeToMovieDetails}
       />
       <div className='upcomming-container__details'>
@@ -21,18 +21,18 @@ const UpcommingMovie = (props) => {
           className='upcomming-container__details-title routed-text'
           onClick={props.routeToMovieDetails}
         >
-          { item?.title || item?.orginal_title }
+          { item.title || item.orginal_title }
         </div>
         <div className='upcomming-container__details-release'>
           <span>Release date:</span>
-          <span>{item?.release_date}</span>
+          <span>{item.release_date}</span>
         </div>
           <div className='upcomming-container__details-popularity'>
             <div className='upcomming-container__details-popularity-text'>
               Popularity:
             </div>
           <div className='upcomming-container__details-popularity-chart'>
-            <DoughnutChart data={Math.floor(item?.popularity)}/> 
+            <DoughnutChart data={Math.floor(item.popularity)}/> 
           </div>
         </div>
       </div> 

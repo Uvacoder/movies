@@ -32,7 +32,7 @@ class TopList extends React.Component {
         </div>
       );
     });
-  }
+  };
 
   render() {
     return (

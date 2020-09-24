@@ -1,7 +1,7 @@
 import Communication from 'communication/Communication';
 import Api from 'utils/Api';
 
-export const FETCH_RECENT_MOVIES = 'toplist/FETCH_RECENT_MOVIES';
+export const FETCH_RECENT_MOVIES = 'recent/FETCH_RECENT_MOVIES';
 
 export const fetchRecentMovies = (type) => {
 	let toplistType = '';
