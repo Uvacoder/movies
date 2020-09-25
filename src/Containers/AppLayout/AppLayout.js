@@ -7,6 +7,8 @@ import Particles from 'particles.js';
 import LayoutHeader from 'components/LayoutHeader/LayoutHeader'
 import LayoutContent from 'components/LayoutContent/LayoutContent'
 import { fetchSearched } from 'actions/SearchActions'
+import {withRouter} from 'react-router-dom';
+import Contact from 'components/Contact/Contact'
 
 class AppLayout extends React.Component {
 
@@ -26,7 +28,7 @@ class AppLayout extends React.Component {
       <div className='app-layout'>
         <Layout>
            <LayoutHeader handleSearch={this.props.fetchSearched} />
-           <LayoutContent />
+           {this.props.location.pathname === '/contact' ? <Contact /> : <LayoutContent />}
         </Layout>
       </div>
     );
@@ -37,4 +39,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   fetchSearched,
 }, dispatch)
 
-export default connect(null, mapDispatchToProps)(AppLayout);
+export default connect(null, mapDispatchToProps)(withRouter(AppLayout));

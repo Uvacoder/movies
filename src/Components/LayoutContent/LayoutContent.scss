@@ -15,18 +15,15 @@ $content-min-width: 1056px;
     };
 };
   
-.site-layout {   
+.site-layout {
+
     .site-layout__container {
         background: #032646;
         height: 100%;
         display: grid;
         grid-template-columns: minmax(0,1.5fr) minmax($content-min-width ,5fr) minmax(0,1.5fr);
-    }
-
-    .site-layout__container-margin-right, 
-    .site-layout__container-margin-left {
         background-image: url("../../Images/sidespicture.jpg");
-
+        background-size: 100% auto;
     }
 
     .site-layout__container-margin-right {
@@ -35,6 +32,7 @@ $content-min-width: 1056px;
 
     .site-layout__container-main {
         color: white;
+        background-color: rgb(3,38,70);
 
         .routed-image {
             cursor: pointer;

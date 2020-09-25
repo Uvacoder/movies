@@ -60,10 +60,10 @@ function LayoutHeader (props) {
   const renderAboutMenu = () => {
     const menuItems = [{
       title: 'Informations',
-      url:'About'
+      url:'/about'
     },{
       title: 'Contact',
-      url:'Contact'
+      url:'/contact'
     }
   ]
   
