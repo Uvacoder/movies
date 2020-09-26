@@ -26,11 +26,11 @@ const About = (props) => {
       <div className='about__author'>
         <span>My name is Patryk Bura, i'm aspiring JavaScript/React Developer.</span>
         <span>This website is my Portfolio. Feel free to contact me via email or Linkedin.</span>
-        <span>All contact details are available in Contact tab. Click <a onClick={() => props.history.push('contact')}>HERE</a> to see.</span>
+        <span>All contact details are available in contact tab. Click <a onClick={() => props.history.push('contact')}>HERE</a> to see.</span>
       </div>
       <Divider className='about__divider' orientation='center'>Movie Lounge FAQ</Divider>
       <div className='about__faq'>
-        <span className='about__faq-header'>Here you can find some of the answers to questions that may occur when using Movie Lounge.</span>
+        <span className='about__faq-header'>Here you can find some of the answers to questions, that may occur when using Movie Lounge.</span>
           <div className='about__faq-question'>
             <span>Q: How does popularity rating work?</span>
             <span>A: Popularity is metric made by TMDB, the model isn't official. Rating changes based on number of votes, views, realease date etc. 

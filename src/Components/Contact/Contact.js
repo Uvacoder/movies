@@ -1,6 +1,5 @@
 import React from 'react';
 import "./Contact.scss"
-import { Divider } from 'antd'
 import { withRouter } from 'react-router-dom'
 import Mail from '../../Images/mail.svg'
 import Linkedin from '../../Images/linkedin.svg'
