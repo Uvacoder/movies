@@ -5,10 +5,14 @@ import { bindActionCreators } from 'redux';
 import { Divider } from 'antd'
 import SearchedMovies from 'components/SearchedMovies/SearchedMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
-import { fetchTopList } from 'actions/TopListActions'
+import { fetchTopList, fetchNextPageOfTopList } from 'actions/TopListActions'
 import { withRouter } from 'react-router-dom'
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Spin } from 'antd';
 
 const MIN_NUM_OF_VOTES = 3000;
+const NO_OF_PAGE_TO_VOID_MIN_NUM_OF_VOTES = 10;
+const MAX_NO_OF_PAGES = 1000; // 1000 is fixed, because that's maximum number of pages TMDB API can return.
 const TOP_LIST_TYPES_NAMES = {
   'top_rated': 'ALL TIME TOP RATED',
   'trending_daily': 'TRENDING DAILY',
@@ -16,14 +20,27 @@ const TOP_LIST_TYPES_NAMES = {
 }
 
 class TopList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        currentPage: 1
+    };
+}
   componentDidMount() {
     this.props.fetchTopList(this.props.match.params.type);
   };
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.type !== this.props.match.params.type) {
+      this.setState({ currentPage: 1 });
       this.props.fetchTopList(this.props.match.params.type);
     };
+  };
+
+  fetchData = () => {
+    this.setState({ currentPage: this.state.currentPage + 1})
+    this.props.fetchNextPageOfTopList(this.props.match.params.type, this.state.currentPage)
   };
   
   renderResults = () => {
@@ -31,21 +48,43 @@ class TopList extends React.Component {
     //   return null; 
     // }
     let items = [];
+    let results = [];
 
-    if (this.props.match.params.type === 'top_rated') {
+    if (this.props.match.params.type === 'top_rated' && this.state.currentPage < NO_OF_PAGE_TO_VOID_MIN_NUM_OF_VOTES) {
       items = this.props.topListOfMovies.filter((item) => item.vote_count > MIN_NUM_OF_VOTES);
     } else {
       items = this.props.topListOfMovies;
     }
 
-    return items.map((item,idx) => {
-      return (
+    items.map((item,idx) => {
+      results.push(
         <div className='top-list__content-item'>
           <span>{idx + 1}</span>
           <SearchedMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/>
         </div>
       );
     });
+
+    return (
+      <InfiniteScroll
+        dataLength={results.length}
+        next={this.fetchData}
+        hasMore={this.state.currentPage < MAX_NO_OF_PAGES} 
+        loader={
+          <Spin 
+            size="large"
+            className='top-list__spin'
+          />
+        }
+        endMessage={
+          <p style={{ textAlign: 'center' }}>
+            <b>Yay! You have seen it all</b>
+          </p>
+        }
+      >
+        {results}
+      </InfiniteScroll>
+    );
   };
 
   render() {
@@ -73,6 +112,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => bindActionCreators({
   routeToMovieDetails,
   fetchTopList,
+  fetchNextPageOfTopList,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TopList));

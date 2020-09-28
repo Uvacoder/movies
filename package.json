@@ -54,6 +54,7 @@
     "react-dev-utils": "^10.2.1",
     "react-dom": "16.13.1",
     "react-grid-gallery": "0.5.5",
+    "react-infinite-scroll-component": "^5.1.0",
     "react-minimal-pie-chart": "8.0.1",
     "react-multi-carousel": "2.5.5",
     "react-redux": "7.2.0",

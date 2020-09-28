@@ -12,6 +12,14 @@
     margin-top: 12px;
     width: 100%;
 
+    .infinite-scroll-component {
+      overflow: hidden !important; // to overwrite bugged inline style
+    };
+
+    .infinite-scroll-component > :first-child {
+      margin-top: 12px;
+    }
+
     .top-list__content-item {
       display: flex;
       flex-direction: row;
@@ -21,19 +29,24 @@
       span {
         font-size: 5em;
         text-shadow: 3px 3px 3px #FF0000;
-      }
-    }
-  }
+      };
+    };
+  };
 
   .top-list__title :nth-child(1){
     color:rgb(175, 171, 171);
     font-size: x-large;
-  }
+  };
   
   .top-list__title :nth-child(2){
     color: white;
     font-weight: bold;
     text-transform: uppercase;
     font-size: x-large;
-  }
-}
+  };
+
+  .top-list__spin{
+    display: flex;
+    justify-content: center;
+  };
+};

@@ -21,12 +21,13 @@ $content-min-width: 1056px;
         height: 100%;
         display: grid;
         grid-template-columns: minmax(0,1.5fr) minmax($content-min-width ,5fr) minmax(0,1.5fr);
+        transform: translate3d(0,0,0);
     }
 
     .site-layout__container-margin-right, 
     .site-layout__container-margin-left {
         background-image: url("../../Images/sidespicture.jpg");
-
+        transform: translate3d(0,0,0);
     }
 
     .site-layout__container-margin-right {
