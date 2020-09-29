@@ -26,6 +26,7 @@ export const fetchTopList = (type) => {
 		dispatch({ 
 			type: FETCH_TOP_LIST,
 			topRatedMovies: searched.results,
+			numberOfPages: searched.total_pages
 		});
 	};  
 };

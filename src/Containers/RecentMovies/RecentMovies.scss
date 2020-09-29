@@ -5,6 +5,14 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 20px;
     height: 100%;
+
+    .infinite-scroll-component {
+      overflow: hidden !important; // to overwrite bugged inline style
+    };
+
+    .infinite-scroll-component > :first-child {
+      margin-top: 12px;
+    };
   
     .upcomming-container {
       margin-top: 0;

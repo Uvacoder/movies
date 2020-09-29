@@ -12,7 +12,6 @@ import { Spin } from 'antd';
 
 const MIN_NUM_OF_VOTES = 3000;
 const NO_OF_PAGE_TO_VOID_MIN_NUM_OF_VOTES = 10;
-const MAX_NO_OF_PAGES = 1000; // 1000 is fixed, because that's maximum number of pages TMDB API can return.
 const TOP_LIST_TYPES_NAMES = {
   'top_rated': 'ALL TIME TOP RATED',
   'trending_daily': 'TRENDING DAILY',
@@ -26,7 +25,7 @@ class TopList extends React.Component {
     this.state = {
         currentPage: 1
     };
-}
+  }
   componentDidMount() {
     this.props.fetchTopList(this.props.match.params.type);
   };
@@ -48,7 +47,7 @@ class TopList extends React.Component {
     //   return null; 
     // }
     let items = [];
-    let results = [];
+    // let results = [];
 
     if (this.props.match.params.type === 'top_rated' && this.state.currentPage < NO_OF_PAGE_TO_VOID_MIN_NUM_OF_VOTES) {
       items = this.props.topListOfMovies.filter((item) => item.vote_count > MIN_NUM_OF_VOTES);
@@ -56,8 +55,8 @@ class TopList extends React.Component {
       items = this.props.topListOfMovies;
     }
 
-    items.map((item,idx) => {
-      results.push(
+    const results = items.map((item,idx) => {
+      return(
         <div className='top-list__content-item'>
           <span>{idx + 1}</span>
           <SearchedMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/>
@@ -69,7 +68,7 @@ class TopList extends React.Component {
       <InfiniteScroll
         dataLength={results.length}
         next={this.fetchData}
-        hasMore={this.state.currentPage < MAX_NO_OF_PAGES} 
+        hasMore={this.state.currentPage < this.props.numberOfPages} 
         loader={
           <Spin 
             size="large"
@@ -78,7 +77,7 @@ class TopList extends React.Component {
         }
         endMessage={
           <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen it all</b>
+            <b>Yay! You have seen all the movies on this list!</b>
           </p>
         }
       >
@@ -106,6 +105,7 @@ class TopList extends React.Component {
 const mapStateToProps = (state) => {
   return {
     topListOfMovies: state.topListOfMovies.results,
+    numberOfPages: state.topListOfMovies.numberOfPages
   }
 }
 
