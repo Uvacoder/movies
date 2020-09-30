@@ -8,7 +8,7 @@ import { routeToMovieDetails } from 'utils/Routing/Routing'
 import { fetchRecentMovies } from 'actions/RecentMoviesActions'
 import { withRouter } from 'react-router-dom'
 
-const TOP_LIST_RECENT_MOVIES_TYPES = {
+const TOP_LIST_RECENT_MOVIES_NAMES = {
   'upcomming': 'UPCOMMING MOVIES',
   'now_playing': 'MOVIES PLAYING NOW IN THEATERS',
 }
@@ -39,7 +39,7 @@ class TopList extends React.Component {
       <div className='recent-movies'>
         <Divider className='recent-movies__title' orientation='center'>
           <span>
-            {TOP_LIST_RECENT_MOVIES_TYPES[this.props.match.params.type]}
+            {TOP_LIST_RECENT_MOVIES_NAMES[this.props.match.params.type]}
           </span>
         </Divider>
         <div className='recent-movies__container'>
