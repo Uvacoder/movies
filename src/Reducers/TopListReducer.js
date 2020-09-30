@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   results: [],
-  numberOfPages: 1
+  numberOfPages: 0
 }
 
 export function topListOfMovies (state = initialState, action) {

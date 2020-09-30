@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spin } from 'antd';
 
+const INFINITY_SCROLL_END_MESSAGE = 'Yay! You have seen all the movies on this list!'
 const TOP_LIST_RECENT_MOVIES_TYPES = {
   'upcomming': 'UPCOMMING MOVIES',
   'now_playing': 'MOVIES PLAYING NOW IN THEATERS',
@@ -22,7 +23,7 @@ class TopList extends React.Component {
     this.state = {
         currentPage: 1
     };
-  }
+  };
 
   componentDidMount() {
     this.props.fetchRecentMovies(this.props.match.params.type);
@@ -56,7 +57,7 @@ class TopList extends React.Component {
 
     for (let i = 0; i < this.props.recentMovies.length; i+=3) {
       results.push(
-        <div className='recent-movies__item' style={ {display:'flex'} }>
+        <div className='recent-movies__item'>
           {[getUpcommingMoviesBlock(i),getUpcommingMoviesBlock(i+1),getUpcommingMoviesBlock(i+2)]}
         </div>
       )
@@ -67,16 +68,15 @@ class TopList extends React.Component {
         dataLength={results.length}
         next={this.fetchData}
         hasMore={this.state.currentPage < this.props.numberOfPages} 
-        initialScrollY={3}
         loader={
           <Spin 
             size="large"
-            className='top-list__spin'
+            className='recent-movies__spin'
           />
         }
         endMessage={
           <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen all the movies on this list!</b>
+            <b>{INFINITY_SCROLL_END_MESSAGE}</b>
           </p>
         }
       >

@@ -12,6 +12,7 @@ import { Spin } from 'antd';
 
 const MIN_NUM_OF_VOTES = 3000;
 const NO_OF_PAGE_TO_VOID_MIN_NUM_OF_VOTES = 10;
+const INFINITY_SCROLL_END_MESSAGE = 'Yay! You have seen all the movies on this list!';
 const TOP_LIST_TYPES_NAMES = {
   'top_rated': 'ALL TIME TOP RATED',
   'trending_daily': 'TRENDING DAILY',
@@ -25,7 +26,8 @@ class TopList extends React.Component {
     this.state = {
         currentPage: 1
     };
-  }
+  };
+
   componentDidMount() {
     this.props.fetchTopList(this.props.match.params.type);
   };
@@ -47,7 +49,6 @@ class TopList extends React.Component {
     //   return null; 
     // }
     let items = [];
-    // let results = [];
 
     if (this.props.match.params.type === 'top_rated' && this.state.currentPage < NO_OF_PAGE_TO_VOID_MIN_NUM_OF_VOTES) {
       items = this.props.topListOfMovies.filter((item) => item.vote_count > MIN_NUM_OF_VOTES);
@@ -77,7 +78,7 @@ class TopList extends React.Component {
         }
         endMessage={
           <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen all the movies on this list!</b>
+            <b>{INFINITY_SCROLL_END_MESSAGE}</b>
           </p>
         }
       >
