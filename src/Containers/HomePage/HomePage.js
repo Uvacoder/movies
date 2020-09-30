@@ -76,7 +76,7 @@ function HomePage () {
       return (
         <UpcommingMovies 
           item={item} 
-          routing={() => dispatch(routeToMovieDetails(item.id))}
+          routeToMovieDetails={() => dispatch(routeToMovieDetails(item.id))}
         /> 
       );
     });

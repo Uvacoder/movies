@@ -6,14 +6,19 @@ import { fetchSearched } from 'actions/SearchActions'
 import { Divider } from 'antd'
 import SearchedMovies from 'components/SearchedMovies/SearchedMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
+import { clearSearched } from 'actions/SearchActions'
 
 class SearchResults extends React.Component {
+
+  componentWillUnmount() {
+    this.props.clearSearched()
+  }
 
   renderResults = () => {
     if (this.props.searchResults.length !== 0) {
       return this.props.searchResults.map((item) => {
         return (
-          <SearchedMovies item={item} routing={() => this.props.routeToMovieDetails(item.id)}/> 
+          <SearchedMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/> 
         );
       });
     } else {
@@ -50,7 +55,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchSearched,
-  routeToMovieDetails
+  routeToMovieDetails,
+  clearSearched
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);

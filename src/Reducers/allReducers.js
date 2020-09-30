@@ -3,6 +3,7 @@ import { homePage } from './HomePageReducer'
 import { changeLoading } from './GlobalReducer'
 import { movieDetails } from './MovieDetailsReducer'
 import { searchResults } from './SearchReducer'
+import { topListOfMovies } from './TopListReducer'
 import { connectRouter } from 'connected-react-router'
 
 const allReducers = (history) => combineReducers({
@@ -10,6 +11,7 @@ const allReducers = (history) => combineReducers({
 	changeLoading,
 	movieDetails,
 	searchResults,
+	topListOfMovies,
 	router: connectRouter(history),
 })
 

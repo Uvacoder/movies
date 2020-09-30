@@ -3,8 +3,6 @@ import "./SearchedMovies.scss"
 import Api from 'utils/Api';
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import ImgPlaceholder from '../../Images/imgPlaceholder.svg'
-import { clearSearched } from 'actions/SearchActions'
-import { useDispatch } from 'react-redux';
 
 const POSTER_WIDTH = 500;
 const VOTE_AVERAGE_MAX_VALUE = 10;
@@ -19,14 +17,6 @@ const SearchedMovies = (props) => {
   const {
     item
   } = props;
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    return () => {
-      dispatch(clearSearched())
-    }
-  },[])
  
   const filterDirector = () => {
     const director = item.details.credits.crew.filter((item) => item.job === "Director")[0]?.name
@@ -39,12 +29,12 @@ const SearchedMovies = (props) => {
         <img 
           src={ item.poster_path ? `${Api.getImgURL(POSTER_WIDTH)}${item.poster_path}` : ImgPlaceholder} 
           alt='poster'
-          onClick={props.routing}
+          onClick={props.routeToMovieDetails}
         />
       </div>
       <div 
         className='searched-movies__title routed-text' 
-        onClick={props.routing}
+        onClick={props.routeToMovieDetails}
       >
         {item.title}
       </div>

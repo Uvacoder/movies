@@ -6,6 +6,7 @@ import RandomGifGenerator from 'components/RandomGifGenerator/RandomGifGenerator
 import MovieDetails from 'containers/MovieDetails/MovieDetails'
 import SearchResults from 'containers/SearchResults/SearchResults'
 import About from 'components/About/About'
+import TopList from 'containers/TopList/TopList'
 
 function Roots() {
     return ( 
@@ -18,6 +19,9 @@ function Roots() {
         </Route>
         <Route path="/movie/:id">
           <MovieDetails />
+        </Route>
+        <Route path="/toplist/:type">
+          <TopList />
         </Route>
         <Route path="/search-results">
           <SearchResults />
