@@ -6,6 +6,7 @@ import RandomGifGenerator from 'components/RandomGifGenerator/RandomGifGenerator
 import MovieDetails from 'containers/MovieDetails/MovieDetails'
 import SearchResults from 'containers/SearchResults/SearchResults'
 import TopList from 'containers/TopList/TopList'
+import RecentMovies from 'containers/RecentMovies/RecentMovies'
 
 function Roots() {
     return ( 
@@ -24,6 +25,9 @@ function Roots() {
         </Route>
         <Route path="/search-results">
           <SearchResults />
+        </Route>
+        <Route path="/new/:type">
+          <RecentMovies />
         </Route>
       </>
     )   
