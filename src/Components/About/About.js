@@ -19,6 +19,7 @@ const About = (props) => {
             <li>Ant Design</li>
           </ul>
         </div>
+        <span><b>Backend</b> created by helpful friend, in Node.js with MongoDB.</span>
         <span>You can check out Movie Lounge source code by clicking <a href='https://bitbucket.org/patrykbura/movielounge'>HERE</a>.</span>
       </div>
       <Divider className='about__divider' orientation='center'>About Author</Divider>
