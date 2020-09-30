@@ -4,7 +4,6 @@ import { Divider } from 'antd'
 import { withRouter } from 'react-router-dom'
 
 const About = (props) => {
-
   return (
     <div className='about'>
       <Divider className='about__divider' orientation='center'>About Movie Lounge</Divider>
