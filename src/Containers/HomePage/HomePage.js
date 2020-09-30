@@ -10,7 +10,6 @@ import UpcommingMovies from 'components/UpcommingMovies/UpcommingMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
 import Calculation from 'utils/Calculation';
 
-
 const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table length.
 const NO_OF_UPCOMMING_ITEMS = 3;
 const NO_OF_ITEMS_TRENDING_CAROUSEL = 5;

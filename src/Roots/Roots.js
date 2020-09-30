@@ -5,6 +5,7 @@ import HomePage from 'containers/HomePage/HomePage'
 import RandomGifGenerator from 'components/RandomGifGenerator/RandomGifGenerator'
 import MovieDetails from 'containers/MovieDetails/MovieDetails'
 import SearchResults from 'containers/SearchResults/SearchResults'
+import About from 'components/About/About'
 import TopList from 'containers/TopList/TopList'
 import RecentMovies from 'containers/RecentMovies/RecentMovies'
 
@@ -29,9 +30,12 @@ function Roots() {
         <Route path="/new/:type">
           <RecentMovies />
         </Route>
+        <Route path="/about">
+          <About />
+        </Route>
       </>
-    )   
-  }
+    );   
+  };
   
 export default Roots;
     
