@@ -2,7 +2,6 @@ import React from 'react';
 import "./MovieHeader.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import UserVote from 'components/UserVote/UserVote'
-import ImgPlaceholderHoriztonal from '../../Images/imgPlaceholderHorizontal.svg'
 
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_DISPLAY_PERCENT = false;
@@ -24,7 +23,7 @@ const MovieHeader = (props) => {
   return (
     <div className='movie-header'>
       <div className='movie-header_image-wrapper'>
-        <img src={backDropPath ? backDropPath : ImgPlaceholderHoriztonal } alt=''/>
+        <img src={backDropPath ? backDropPath : null } alt=''/>
       </div>
       <div className='movie-header__wrapper'>
         <div className='movie-header__wrapper-title'>
