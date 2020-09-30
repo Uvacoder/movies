@@ -16,7 +16,6 @@ $content-min-width: 1056px;
 };
   
 .site-layout {
-
     .site-layout__container {
         background: #032646;
         height: 100%;
@@ -24,6 +23,7 @@ $content-min-width: 1056px;
         grid-template-columns: minmax(0,1.5fr) minmax($content-min-width ,5fr) minmax(0,1.5fr);
         background-image: url("../../Images/sidespicture.jpg");
         background-size: 100% auto;
+        transform: translate3d(0,0,0);
     }
 
     .site-layout__container-margin-right {

@@ -52,7 +52,7 @@ const SearchedMovies = (props) => {
         <div className='searched-movies__second-container-genres'>
           <div className='searched-movies__second-container-genres-title'>Genres:</div>
           <div className='searched-movies__second-container-genres-text'>
-            {item.details.genres.length !== 0 ? item.details.genres.map((item) => item.name).join(', ') : '–'}
+            {item.details.genres?.length !== 0 ? item.details.genres.map((item) => item.name).join(', ') : '–'}
           </div>
         </div>
         <div className='searched-movies__second-container-director'>

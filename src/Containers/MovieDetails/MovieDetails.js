@@ -169,7 +169,7 @@ class MovieDetails extends React.Component {
         <Divider className='movie-details-container__divider' orientation='left'>SOCIAL</Divider>
         <div> 
           <MovieSocial 
-            movieHomePage={this.props.details?.homepage} 
+            movieHomePage={this.props.details.homepage ? this.props.details.homepage : false} 
             facebookPage={this.props.externalIds.facebook_id && `https://www.facebook.com/${this.props.externalIds.facebook_id}`}
             InstagramPage={this.props.externalIds.instagram_id &&`https://www.instagram.com/${this.props.externalIds.instagram_id}`}
             TwitterPage={this.props.externalIds.twitter_id && `https://twitter.com/${this.props.externalIds.twitter_id}`}

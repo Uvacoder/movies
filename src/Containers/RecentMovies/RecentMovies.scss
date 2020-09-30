@@ -1,10 +1,28 @@
-.recent-movies{
-
+.recent-movies {
   .recent-movies__container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 20px;
-    height: 100%;
+    .infinite-scroll-component {
+      overflow: hidden !important; // to overwrite bugged inline style
+    };
+
+    .infinite-scroll-component > :first-child {
+      margin-top: 12px;
+    };
+
+    .recent-movies__item {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap: 20px;
+      height: 100%;
+      width: 100%;
+      margin-bottom: 20px;
+    };
+    
+    .recent-movies__spin {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 10px;
+    }
   
     .upcomming-container {
       margin-top: 0;
