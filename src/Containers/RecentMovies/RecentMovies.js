@@ -11,7 +11,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spin } from 'antd';
 
 const INFINITY_SCROLL_END_MESSAGE = 'Yay! You have seen all the movies on this list!'
-const TOP_LIST_RECENT_MOVIES_TYPES = {
+const TOP_LIST_RECENT_MOVIES_NAMES = {
   'upcomming': 'UPCOMMING MOVIES',
   'now_playing': 'MOVIES PLAYING NOW IN THEATERS',
 }
@@ -42,7 +42,6 @@ class TopList extends React.Component {
   };
   
   renderResults = () => {
-
     let results = [];
 
     const getUpcommingMoviesBlock = (index) => {
@@ -58,7 +57,7 @@ class TopList extends React.Component {
     for (let i = 0; i < this.props.recentMovies.length; i+=3) {
       results.push(
         <div className='recent-movies__item'>
-          {[getUpcommingMoviesBlock(i),getUpcommingMoviesBlock(i+1),getUpcommingMoviesBlock(i+2)]}
+          {[i,i+1,i+2].map(index => getUpcommingMoviesBlock(index))}
         </div>
       )
     }
@@ -90,7 +89,7 @@ class TopList extends React.Component {
       <div className='recent-movies'>
         <Divider className='recent-movies__title' orientation='center'>
           <span>
-            {TOP_LIST_RECENT_MOVIES_TYPES[this.props.match.params.type]}
+            {TOP_LIST_RECENT_MOVIES_NAMES[this.props.match.params.type]}
           </span>
         </Divider>
         <div className='recent-movies__container'>

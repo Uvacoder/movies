@@ -1,5 +1,4 @@
 export const getRecentMoviesTypeUrl = (type) => {
-
 	switch (type) {
 		case 'upcomming':
       return 'movie/upcoming'

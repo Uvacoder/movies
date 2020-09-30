@@ -6,7 +6,6 @@ export const FETCH_RECENT_MOVIES = 'recent/FETCH_RECENT_MOVIES';
 export const FETCH_NEXT_PAGE_OF_RECENT_MOVIES = 'recent/FETCH_NEXT_PAGE_OF_RECENT_MOVIES';
 
 export const fetchRecentMovies = (type) => {
-
 	return async dispatch => {
 		const searched = await Communication.get(Api.get(`${getRecentMoviesTypeUrl(type)}`, {
 			language:'en-US',
@@ -14,14 +13,12 @@ export const fetchRecentMovies = (type) => {
 			region:'US'
 		}));
 
-	const items = searched.results
-
-	await Promise.all(items.map(async item => {
-		const searchedDetails = await	Communication.get(Api.get(`movie/${item.id}`,{
-			append_to_response: 'credits'
-		}));	
-		item.details = searchedDetails; 
-	}));
+		await Promise.all(searched.results.map(async item => {
+			const searchedDetails = await	Communication.get(Api.get(`movie/${item.id}`,{
+				append_to_response: 'credits'
+			}));	
+			item.details = searchedDetails; 
+		}));
 
 		dispatch({ 
 			type: FETCH_RECENT_MOVIES,
@@ -32,7 +29,6 @@ export const fetchRecentMovies = (type) => {
 };
 
 export const fetchNextPageOfRecentMovies = (type, page) => {
-
 	return async dispatch => {
 		const searched = await Communication.get(Api.get(`${getRecentMoviesTypeUrl(type)}`, {
 			language:'en-US',
@@ -40,14 +36,12 @@ export const fetchNextPageOfRecentMovies = (type, page) => {
 			region:'US'
 		}));
 
-	const items = searched.results
-
-	await Promise.all(items.map(async item => {
-		const searchedDetails = await	Communication.get(Api.get(`movie/${item.id}`,{
-			append_to_response: 'credits'
-		}));	
-		item.details = searchedDetails; 
-	}));
+		await Promise.all(searched.results.map(async item => {
+			const searchedDetails = await	Communication.get(Api.get(`movie/${item.id}`,{
+				append_to_response: 'credits'
+			}));	
+			item.details = searchedDetails; 
+		}));
 
 		dispatch({ 
 			type: FETCH_NEXT_PAGE_OF_RECENT_MOVIES,
