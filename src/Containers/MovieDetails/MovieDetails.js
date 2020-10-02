@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { fetchMovieDetails } from 'actions/MovieActions'
 import { Divider } from 'antd'
-import Api from 'utils/Api';
+import TMDBApi from 'utils/TMDBApi';
 import { withRouter } from 'react-router-dom'
 import MovieHeader from 'components/MovieHeader/MovieHeader'
 import MovieOverwiev from 'components/MovieOverview/MovieOverview'
@@ -147,7 +147,7 @@ class MovieDetails extends React.Component {
         </div>
         <div className='movie-details-container__overwiev'> 
           <MovieOverwiev
-            poster={this.props.details.poster_path ? `${Api.getImgURL(POSTER_WIDTH)}${this.props.details.poster_path}` : ImgPlaceholder}
+            poster={this.props.details.poster_path ? `${TMDBApi.getImgURL(POSTER_WIDTH)}${this.props.details.poster_path}` : ImgPlaceholder}
             description={this.props.details.overview}
             realeaseDate={this.props.details.release_date}
             genres={this.props.details.genres?.map((item) => item.name).join(', ')}

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import "./SearchedMovies.scss"
-import Api from 'utils/Api';
+import TMDBApi from 'utils/TMDBApi';
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import ImgPlaceholder from '../../Images/imgPlaceholder.svg'
 
@@ -27,7 +27,7 @@ const SearchedMovies = (props) => {
     <div className='searched-movies'>
       <div className='searched-movies__poster routed-image'>
         <img 
-          src={ item.poster_path ? `${Api.getImgURL(POSTER_WIDTH)}${item.poster_path}` : ImgPlaceholder} 
+          src={ item.poster_path ? `${TMDBApi.getImgURL(POSTER_WIDTH)}${item.poster_path}` : ImgPlaceholder} 
           alt='poster'
           onClick={props.routeToMovieDetails}
         />

@@ -3,19 +3,33 @@
 // import { store }  from '../../store';
 import { changeLoadingStatus } from 'actions/GlobalActions';
 
-async function Get(url) {
-  let results;
-  try {
-    // window.store.dispatch(changeLoadingStatus())
-    const response = await fetch(url);
-    results = response.json();
+function getMethod(type) {
+  return async (url,body) => {
+    let results;
+    const fetchParams = {
+      method: type,
+      body
+    };
 
-  } catch (err) {
-    throw new Error('Failed to fetch', err)
-  }
-  return results
-}
+    if(url.includes("localhost")) {
+      fetchParams.headers = {
+        token: null // TO DO USER TOKEN FROM LOCAL STORAGE
+      };
+    };
+
+    try {
+      // window.store.dispatch(changeLoadingStatus()) // TO DO
+      const response = await fetch(url, fetchParams);
+      results = response.json();
+    } catch (err) {
+      throw new Error('Failed to fetch', err)
+    }
+    return results
+  };
+};
 
 export default {
-  get: Get
+  get: getMethod('GET'),
+  post: getMethod('POST'),
+  delete: getMethod('DELETE')
 };

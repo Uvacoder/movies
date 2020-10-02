@@ -1,7 +1,7 @@
 import React from 'react';
 import "./MovieCast.scss"
 import Carousel from 'react-multi-carousel';
-import Api from 'utils/Api';
+import TMDBApi from 'utils/TMDBApi';
 
 const MOVIE_CAST_NO_OF_CAROUSEL_ITEMS = 6;
 const IMG_SIZE = 500;
@@ -24,7 +24,7 @@ const MovieCast = (props) => {
     <div className='movie-cast__container'>
       <img 
           className='movie-cast__container-image' 
-          src={ `${Api.getImgURL(IMG_SIZE)}${ item?.profile_path }`} 
+          src={ `${TMDBApi.getImgURL(IMG_SIZE)}${ item?.profile_path }`} 
           alt=''
       />
       <div className='movie-cast__container-name'>{ item?.name}</div>

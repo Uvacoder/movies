@@ -1,5 +1,5 @@
 import Communication from 'communication/Communication';
-import Api from 'utils/Api';
+import TMDBApi from 'utils/TMDBApi';
 import Calculation from 'utils/Calculation';
 
 export const FETCH_TRENDING = 'homePage/FETCH_TRENDING';
@@ -11,7 +11,7 @@ const randomMoviePage = Calculation.randomInt(1, 100);
 
 export const fetchTrending = () => {
 	return async dispatch => {
-		const movies = await Communication.get(Api.get('trending/all/day'))
+		const movies = await Communication.get(TMDBApi.get('trending/all/day'))
 
 			dispatch({ 
 				type: FETCH_TRENDING,
@@ -24,7 +24,7 @@ export const fetchTrending = () => {
 
 export const fetchUpcomming = () => {
 	return  async dispatch => {
-			const movies = await Communication.get(Api.get('movie/upcoming',{
+			const movies = await Communication.get(TMDBApi.get('movie/upcoming',{
 				language: 'en-US',
 				page: '1',
 				region:'US'
@@ -41,7 +41,7 @@ export const fetchUpcomming = () => {
 
 export const fetchRandom = (randomMovieId) => {
 	return async dispatch => {
-		const movies = await Communication.get(Api.get('discover/movie',{
+		const movies = await Communication.get(TMDBApi.get('discover/movie',{
 				language: 'en-US',
 				sort_by: 'vote_count.desc',
 				include_adult: 'false',
@@ -51,7 +51,7 @@ export const fetchRandom = (randomMovieId) => {
 		const items = movies.results;
 
 		await Promise.all(items.map(async item => {
-		const videoKeyResult = await Communication.get(Api.get(`movie/${item.id}/videos`,{
+		const videoKeyResult = await Communication.get(TMDBApi.get(`movie/${item.id}/videos`,{
 				language: 'en-US',
 			}));	
 			item.videoKey = videoKeyResult.results; 

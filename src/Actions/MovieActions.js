@@ -1,5 +1,5 @@
 import Communication from 'communication/Communication';
-import Api from 'utils/Api';
+import TMDBApi from 'utils/TMDBApi';
 
 export const FETCH_MOVIE_DETAILS = 'movie/FETCH_MOVIE_DETAILS';
 
@@ -11,18 +11,18 @@ export function fetchMovieDetails(Id) {
 			movieReviews, 
 			externalIds
 		] = await Promise.all([
-			Communication.get(Api.get(`movie/${Id}`,{
+			Communication.get(TMDBApi.get(`movie/${Id}`,{
 				append_to_response: 'videos,images,credits'
 			})),
-			Communication.get(Api.get(`movie/${Id}/recommendations`,{
+			Communication.get(TMDBApi.get(`movie/${Id}/recommendations`,{
 				language: 'en-US',
 				page: '1'
 			})),
-			Communication.get(Api.get(`movie/${Id}/reviews`,{
+			Communication.get(TMDBApi.get(`movie/${Id}/reviews`,{
 				language: 'en-US',
 				page: '1'
 			})),
-			Communication.get(Api.get(`movie/${Id}/external_ids`))
+			Communication.get(TMDBApi.get(`movie/${Id}/external_ids`))
 		]);
 
 		return dispatch({ 
