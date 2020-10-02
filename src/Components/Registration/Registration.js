@@ -11,11 +11,15 @@ const REGISTRATION_NICKNAME_MIN_LENGHT = 3;
 const REGISTRATION_NICKNAME_MAX_LENGHT = 30;
 const REGISTRATION_PASSWORD_MIN_LENGHT = 6;
 
-const Registration = () => {
+const Registration = (props) => {
   const [form] = Form.useForm();
 
   const onFinish = values => {
-    // TO DO SUBMIT VALUES TO BACKEND
+    props.register({
+      "username": values.nickname,
+      "password": values.password
+    })
+    // console.log(values)
   };
 
   return (
@@ -92,20 +96,6 @@ const Registration = () => {
           <Input.Password />
         </Form.Item>
         <div className='registration__footer'>
-          <Form.Item
-            name="agreement"
-            valuePropName="checked"
-            rules={[
-              {
-                validator: (_, value) =>
-                  value ? Promise.resolve() : Promise.reject('Please confirm!'),
-              },
-            ]}
-          >
-            <Checkbox>
-              I have read the <a href="">terms and conditions</a>
-            </Checkbox>
-          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Register

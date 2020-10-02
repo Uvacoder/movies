@@ -8,15 +8,16 @@ function getMethod(type) {
     let results;
     const fetchParams = {
       method: type,
-      body
+      body: JSON.stringify(body),
+      // mode: 'no-cors'
     };
 
-    if(url.includes("localhost")) {
-      fetchParams.headers = {
-        token: null // TO DO USER TOKEN FROM LOCAL STORAGE
-      };
-    };
-
+    // if(url.includes("localhost")) {
+    //   fetchParams.headers = {
+    //     token: null // TO DO USER TOKEN FROM LOCAL STORAGE
+    //   };
+    // };
+    console.log(fetchParams)
     try {
       // window.store.dispatch(changeLoadingStatus()) // TO DO
       const response = await fetch(url, fetchParams);
