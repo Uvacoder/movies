@@ -9,7 +9,10 @@ function getMethod(type) {
     const fetchParams = {
       method: type,
       body: JSON.stringify(body),
-      // mode: 'no-cors'
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
     };
 
     // if(url.includes("localhost")) {
@@ -17,15 +20,13 @@ function getMethod(type) {
     //     token: null // TO DO USER TOKEN FROM LOCAL STORAGE
     //   };
     // };
-    console.log(fetchParams)
     try {
       // window.store.dispatch(changeLoadingStatus()) // TO DO
       const response = await fetch(url, fetchParams);
-      results = response.json();
+        return response.json()
     } catch (err) {
       throw new Error('Failed to fetch', err)
     }
-    return results
   };
 };
 

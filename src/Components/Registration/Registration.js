@@ -19,7 +19,6 @@ const Registration = (props) => {
       "username": values.nickname,
       "password": values.password
     })
-    // console.log(values)
   };
 
   return (
