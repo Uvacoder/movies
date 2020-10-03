@@ -43,14 +43,6 @@ export const login = (body) => {
         placement: "topRight",
         duration: 8,
       });
-      // console.log(error.text)
-      // if (error.text) {
-      //   notification.warn({
-      //     message: error.text.msg,
-      //     placement: "topRight",
-      //     duration: 8,
-      //   });
-      // };
       return {
         errors: true,
       };

@@ -37,10 +37,14 @@ export const fetchNextPageOfRecentMovies = (type, page) => {
 		}));
 
 		await Promise.all(searched.results.map(async item => {
-			const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
-				append_to_response: 'credits'
-			}));	
-			item.details = searchedDetails; 
+			try {
+				const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
+					append_to_response: 'credits'
+				}));	
+				item.details = searchedDetails; 
+			}
+			catch(error) {
+			}
 		}));
 
 		dispatch({ 

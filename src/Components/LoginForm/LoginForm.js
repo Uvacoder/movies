@@ -5,31 +5,14 @@ import { Form, Input, Button, Checkbox } from 'antd';
 
 class LoginForm extends React.Component {
 
-  // onFinish = values => {
-  //   // console.log('Success:', values);
-  //   this.props.login({
-  //     "username": values.username,
-  //     "password": values.password
-  //   }).then(({errors} = {}) => {
-  //     if (!errors) {
-  //       this.props.history.push('/home')
-  //     }
-      
-  //   }).then({errors} = {}) => {
-  //     if (!errors) {
-  //       this.props.history.push('/home')
-  //     }
-  //   }
-  // }
-
   onFinish = values => {
     this.props.login({
       "username": values.username,
       "password": values.password
     }).then(({errors} = {}) => {
-      if (errors == false) {
+      if (errors === false) {
         this.props.history.push('/home')
-      } 
+      }
     })
   };
 
@@ -38,11 +21,6 @@ class LoginForm extends React.Component {
   };
 
   validatePassword = (rule, value, callback) => {
-    // if (value !== "admin") {
-    //   callback("Wrong password!");
-    // } else {
-    //   callback();
-    // }
   };
 
   render() {
