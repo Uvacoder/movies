@@ -5,7 +5,7 @@ import LoginForm from '../../Components/LoginForm/LoginForm';
 import Registration from '../../Components/Registration/Registration'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { register } from 'actions/UserActions'
+import { register, login } from 'actions/UserActions'
 
 class WelcomePage extends React.Component {
   constructor (props) {
@@ -21,7 +21,7 @@ class WelcomePage extends React.Component {
   }
   renderContent = () => {
     if (this.state.loginForm) {
-      return <LoginForm goTo={this.goToRegistration}/>
+      return <LoginForm login={this.props.login} goTo={this.goToRegistration}/>
     } else {
       return <Registration register={this.props.register} goToLogin={this.goToLogin}/>
     }
@@ -62,7 +62,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  register
+  register,
+  login,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);

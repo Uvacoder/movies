@@ -5,21 +5,44 @@ import { Form, Input, Button, Checkbox } from 'antd';
 
 class LoginForm extends React.Component {
 
+  // onFinish = values => {
+  //   // console.log('Success:', values);
+  //   this.props.login({
+  //     "username": values.username,
+  //     "password": values.password
+  //   }).then(({errors} = {}) => {
+  //     if (!errors) {
+  //       this.props.history.push('/home')
+  //     }
+      
+  //   }).then({errors} = {}) => {
+  //     if (!errors) {
+  //       this.props.history.push('/home')
+  //     }
+  //   }
+  // }
+
   onFinish = values => {
-    console.log('Success:', values);
-    this.props.history.push('/home')
+    this.props.login({
+      "username": values.username,
+      "password": values.password
+    }).then(({errors} = {}) => {
+      if (errors == false) {
+        this.props.history.push('/home')
+      } 
+    })
   };
 
   onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
+    // console.log('Failed:', errorInfo);
   };
 
   validatePassword = (rule, value, callback) => {
-    if (value !== "admin") {
-      callback("Wrong password!");
-    } else {
-      callback();
-    }
+    // if (value !== "admin") {
+    //   callback("Wrong password!");
+    // } else {
+    //   callback();
+    // }
   };
 
   render() {
@@ -56,9 +79,9 @@ class LoginForm extends React.Component {
                   required: true,
                   message: 'Please input your password!',
                 },
-                { 
-                  validator: this.validatePassword,
-                },
+                // { 
+                //   validator: this.validatePassword,
+                // },
                 ]}
               >
                 <Input.Password />
