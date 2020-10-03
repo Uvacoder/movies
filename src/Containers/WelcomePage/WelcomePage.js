@@ -23,13 +23,19 @@ class WelcomePage extends React.Component {
     if (this.state.loginForm) {
       return <LoginForm goTo={this.goToRegistration}/>
     } else {
-      return <Registration register={this.props.register}/>
+      return <Registration register={this.props.register} goToLogin={this.goToLogin}/>
     }
   }
 
   goToRegistration = () => {
     this.setState({
       loginForm: false
+    })
+  }
+
+  goToLogin = () => {
+    this.setState({
+      loginForm: true
     })
   }
 

@@ -5,6 +5,7 @@ import {
   Input,
   Checkbox,
   Button,
+  notification ,
 } from 'antd';
 
 const REGISTRATION_NICKNAME_MIN_LENGHT = 3;
@@ -18,6 +19,22 @@ const Registration = (props) => {
     props.register({
       "username": values.nickname,
       "password": values.password
+    }).then(({errors, userAlreadyExists} = {}) => {
+      if (errors) {
+        if (userAlreadyExists) {
+          console.log('User already exists');
+        } else {
+          console.log('Ups! Something went wrong :(');
+        }
+      } else {
+        notification.success({
+          message: "Succes!",
+          description: "You can log in now.",
+          placement: "topRight",
+          duration: 8,
+        });
+        props.goToLogin()
+      }
     })
   };
 
@@ -87,7 +104,7 @@ const Registration = (props) => {
                 if (!value || getFieldValue('password') === value) {
                   return Promise.resolve();
                 }
-                return Promise.reject('The two passwords that you entered do not match!');
+                return Promise.reject('Passwords do not match!');
               },
             }),
           ]}
