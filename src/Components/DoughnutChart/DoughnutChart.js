@@ -37,7 +37,7 @@ const DoughnutChart = (props) => {
 };
 
 DoughnutChart.defaultProps = {
-  data: 25,
+  data: 0,
   maxValue: 100,
   chartColor: 'rgb(9, 197, 214)',
   fontSize: '25px',

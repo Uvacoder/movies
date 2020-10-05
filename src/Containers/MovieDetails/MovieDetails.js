@@ -3,6 +3,7 @@ import './MovieDetails.scss';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { fetchMovieDetails } from 'actions/MovieActions'
+import { getUserRating } from 'actions/UserActions'
 import { Divider } from 'antd'
 import TMDBApi from 'utils/TMDBApi';
 import { withRouter } from 'react-router-dom'
@@ -26,6 +27,8 @@ const THUMBNAIL_HEIGHT = 250;
 class MovieDetails extends React.Component {
   componentDidMount() {
     this.props.fetchMovieDetails(this.props.match.params.id);
+    // console.log(this.props.match.params.id)
+    this.props.getUserRating(this.props.match.params.id)
   }
 
   componentDidUpdate(prevProps) {
@@ -192,7 +195,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchMovieDetails,
-  routeToMovieDetails
+  routeToMovieDetails,
+  getUserRating,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)((withRouter(MovieDetails)));

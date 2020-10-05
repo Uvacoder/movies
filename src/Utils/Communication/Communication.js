@@ -24,7 +24,7 @@ function getMethod(type) {
     };
 
     if(url.includes("localhost") || url.includes("movielounge")) {
-      fetchParams.headers.token = null;
+      fetchParams.headers.token =  localStorage.getItem('token');
     };
 
     try {

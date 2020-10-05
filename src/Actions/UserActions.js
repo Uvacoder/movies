@@ -2,6 +2,8 @@ import Communication from 'communication/Communication';
 import DomainApi from 'utils/DomainAPI';
 import { notification } from 'antd';
 
+export const  ADD_USER_RATING = 'user/ADD_USER_RATING';
+
 export const register = (body) => {
 	return async () => {
     try {
@@ -30,10 +32,9 @@ export const register = (body) => {
 export const login = (body) => {
 	return async () => {
     try {
-
       const response = await Communication.post(DomainApi.get('user/login'),body)
       localStorage.setItem('token', response.token);
-      console.log(response.token)
+
       return {
         errors: false
       }
@@ -49,3 +50,45 @@ export const login = (body) => {
     };
 	};  
 }; 
+
+export const getUserRating = (movieId) => {
+	return async dispatch => {
+    try {
+      const results = await Communication.get(DomainApi.get(`user/vote?movieId=${movieId}`))
+
+      dispatch({ 
+        type: ADD_USER_RATING,
+        movieRate: {...results, movieId: Number(movieId)}
+      });
+      return {
+        errors: false
+      }
+    } catch(error) {
+        console.error('getting user vote error:', error)
+      };
+    return {
+      errors: true,
+    };
+  };
+};  
+
+export const saveUserRating = (body) => {
+	return async dispatch => {
+    try {
+      await Communication.post(DomainApi.get(`user/vote`), body)
+      dispatch({ 
+        type: ADD_USER_RATING,
+        movieRate: {...body}
+      });
+
+      return {
+        errors: false
+      }
+    } catch(error) {
+        console.error('posting user vote error:', error)
+      };
+    return {
+      errors: true,
+    };
+  };
+};  

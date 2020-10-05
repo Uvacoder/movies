@@ -1,9 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 import "./UserVote.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import { Modal, Button } from 'antd';
 import UserRate from 'components/UserRate/UserRate'
 import UserComment from 'components/UserComment/UserComment'
+import { saveUserRating } from 'actions/UserActions'
+
 
 const USER_VOTE_MAX_VALUE = 10;
 const USER_VOTE_DISPLAY_PERCENT = false;
@@ -19,6 +23,7 @@ class UserVote  extends React.Component {
       loading: false,
       visible: false,
       rateValue: 0,
+      commentValue: " ",
     };
   };
   
@@ -32,6 +37,11 @@ class UserVote  extends React.Component {
     this.setState({ 
       loading: false, 
     });
+    this.props.saveUserRating({
+        "movieId": this.props.details.id,
+        "rateValue": this.state.rateValue,
+        "comment": this.state.commentValue
+    })
     this.changeModalVisibility(false);
   };
 
@@ -44,6 +54,20 @@ class UserVote  extends React.Component {
       rateValue: value,
     });
   };
+
+  updateCommentValue = (value) => {
+    this.setState({
+      commentValue: value,
+    });
+  };
+
+  // saveUserRating = () => {
+  //   this.props.saveUserRating({
+  //     "movieId": 1571,
+  //     "rateValue": this.state.rateValue,
+  //     "comment": this.state.commentValue // to do
+  //   })
+  // }
   
   renderModal = () => {
     const { visible, loading } = this.state;
@@ -67,6 +91,7 @@ class UserVote  extends React.Component {
           <p className='user-vote__modal-body-comment'>Your comment:</p>
           <UserComment 
             placeholder={ USER_COMMENT_PLACEHOLDER }
+            updateCommentValue={this.updateCommentValue}
           />
         </div>
       </Modal>
@@ -75,13 +100,15 @@ class UserVote  extends React.Component {
 
  
   render() {
+    // debugger;
     return (
       <>
         <div className='user-vote' onClick={() => this.changeModalVisibility(true)}>
           <span className='user-vote__title'>Your Vote:</span>
           <div className='user-vote__chart'>
             <DoughnutChart 
-              data={ this.state.rateValue } 
+              data={ this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.rateValue } 
+              // data={ this.state.rateValue } 
               maxValue={ USER_VOTE_MAX_VALUE } 
               percent={ USER_VOTE_DISPLAY_PERCENT } 
               chartColor= { USER_VOTE_CHART_COLOR }
@@ -94,5 +121,15 @@ class UserVote  extends React.Component {
   };
 };
 
-export default UserVote
+const mapStateToProps = (state) => {
+  return {
+    details: state.movieDetails.details,
+    rating: state.userRating.movies
+  }
+}
 
+const mapDispatchToProps = dispatch => bindActionCreators({
+  saveUserRating,
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserVote)
