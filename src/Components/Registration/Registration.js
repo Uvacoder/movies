@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import "./Registration.scss"
 import {
   Form,
   Input,
-  Checkbox,
   Button,
   notification ,
 } from 'antd';
@@ -14,6 +13,7 @@ const REGISTRATION_PASSWORD_MIN_LENGHT = 6;
 
 const Registration = (props) => {
   const [form] = Form.useForm();
+  const formRef = useRef(null);
 
   const onFinish = values => {
     props.register({
@@ -22,9 +22,12 @@ const Registration = (props) => {
     }).then(({errors, userAlreadyExists} = {}) => {
       if (errors) {
         if (userAlreadyExists) {
-          console.log('User already exists');
-        } else {
-          console.log('Ups! Something went wrong :(');
+          formRef.current.setFields([
+            {
+              name: 'nickname',
+              errors: ['Username already taken.'],
+            },
+         ]);
         }
       } else {
         notification.success({
@@ -42,6 +45,7 @@ const Registration = (props) => {
     <div className="registration">
       <div className="registration__title">Create an Account</div>
       <Form
+        ref={formRef}
         form={form}
         name="register"
         onFinish={onFinish}

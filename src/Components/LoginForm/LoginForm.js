@@ -7,20 +7,7 @@ class LoginForm extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = {
-      isPasswordValid: false
-    }
-
     this.formRef = React.createRef();
-
-    this._acceptPassword = null;
-    this._rejectPassword = null;
-    this.passPasswordPromise = new Promise((resolve, reject) => {
-      this._acceptPassword = resolve;
-      this._rejectPassword = reject;
-    });
-    this.passwordHasBeenEntered = false;
-    window.LF = this;
   }
 
   onFinish = values => {
@@ -28,53 +15,17 @@ class LoginForm extends React.Component {
       "username": values.username,
       "password": values.password
     }).then(({errors} = {}) => {
-      this.passwordHasBeenEntered = true;
-
       if (errors === false) {
-        this._acceptPassword();
         this.props.history.push('/home');
-        // this.setState({isPasswordValid: true})
       } else {
-        this._rejectPassword("INVALID PASSWORD")
-        // this.setState({isPasswordValid: false})
-        // this.displayPasswordError('Invalid password')
+        this.formRef.current.setFields([
+          {
+            name: 'password',
+            errors: ['Wrong password'],
+          },
+       ]);
       }
     })
-  };
-
-  onFinishFailed = errorInfo => {
-    // console.log('Failed:', errorInfo);
-  };
-
-  validatePassword = (rule, value, callback) => {
-    // this.displayPasswordError = callback;
-    // window.x = callback
-
-    // if (this.passwordHasBeenEntered && !this.state.isPasswordValid) {
-    //   callback("Invalid password")
-    // } else {
-    //   callback();
-    // }
-
-    if (this.passwordHasBeenEntered) {
-      return this.passPasswordPromise; //todo bug - when pass is not entered but signin is clcked
-    } else {
-      return Promise.resolve();
-    }
-
-    // return Promise.reject('The two passwords that you entered do not match! XXX');
-    // return this.passPasswordPromise;
-
-
-    // if (this.state.isPasswordValid === false) {
-    //   callback("Wrong password!");
-    // } 
-      // callback();
-    // if (value !== "admin") {
-    //   callback("Wrong password!");
-    // } else {
-    //   callback();
-    // }
   };
 
   render() {
@@ -88,11 +39,7 @@ class LoginForm extends React.Component {
               initialValues={{
                 remember: true,
               }}
-              // submit={() => {
-              //   debugger;
-              // }}
               onFinish={this.onFinish}
-              onFinishFailed={this.onFinishFailed}
               >
               <Form.Item
                 label="Username"
@@ -115,9 +62,6 @@ class LoginForm extends React.Component {
                   required: true,
                   message: 'Please input your password!',
                 },
-                // { 
-                //   validator: this.validatePassword,
-                // },
                 ]}
               >
                 <Input.Password />
@@ -131,10 +75,6 @@ class LoginForm extends React.Component {
                     type="primary" 
                     htmlType="submit"
                     className='login-form__container-buttons-login'
-                    // onClick={() => {
-                    //   debugger;
-                    //   this.passwordHasBeenEntered = true;
-                    // }}
                   >
                     Sign In
                   </Button>

@@ -3,6 +3,7 @@ import "./MovieHeader.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import UserVote from 'components/UserVote/UserVote'
 import ImgPlaceholderHoriztonal from '../../Images/imgPlaceholderHorizontal.svg'
+import { Tooltip } from 'antd';
 
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_DISPLAY_PERCENT = false;
@@ -11,6 +12,8 @@ const VOTE_AVERAGE_CHART_COLOR_HIGH = 'lightgreen';
 const VOTE_AVERAGE_CHART_COLOR_LOW = 'Aquamarine';
 const POPULARITY_MAX_VALUE = 100;
 const POPULARITY_DISPLAY_PERCENT = true;
+const TOOTLTIP_TEXT = <span>To use all Movie Lounge features like voting or commenting, please register.</span>;
+const TOOTLTIP_COLOR = '#1890ff';
 
 const MovieHeader = (props) => {
   const {
@@ -20,6 +23,23 @@ const MovieHeader = (props) => {
     voteAverage,
     popularity
   } = props;
+
+  const displayUserVote = () => {
+    if (localStorage.getItem('token') === "null") {
+      return (
+      <Tooltip placement="left" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
+        <div className='movie-header__user-vote'>
+          <UserVote />
+        </div>
+      </Tooltip>
+      )
+    } else
+    return (
+      <div className='movie-header__user-vote'>
+        <UserVote />
+      </div>
+    )
+  }
 
   return (
     <div className='movie-header'>
@@ -53,9 +73,10 @@ const MovieHeader = (props) => {
           </div> 
         </div>
       </div>
-      <div className='movie-header__user-vote'>
+      {displayUserVote()}
+      {/* <div className='movie-header__user-vote'>
         <UserVote />
-      </div>
+      </div> */}
     </div>
   );
 };

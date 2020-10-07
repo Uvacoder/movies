@@ -1,6 +1,5 @@
 import Communication from 'communication/Communication';
 import DomainApi from 'utils/DomainAPI';
-import { notification } from 'antd';
 
 export const ADD_USER_RATING = 'user/ADD_USER_RATING';
 
@@ -13,13 +12,6 @@ export const register = (body) => {
         errors: false
       }
     } catch(error) {
-      if (error.text) {
-        notification.warn({
-          message: error.text.msg,
-          placement: "topRight",
-          duration: 8,
-        });
-      };
 
       return {
         errors: true,
@@ -39,11 +31,7 @@ export const login = (body) => {
         errors: false
       }
     } catch(error) {
-      notification.warn({
-        message: "Wrong password!",
-        placement: "topRight",
-        duration: 8,
-      });
+      
       return {
         errors: true,
       };

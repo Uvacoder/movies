@@ -38,6 +38,12 @@ class UserVote  extends React.Component {
     });
   };
 
+  displayModal = () => { 
+    return (
+      localStorage.getItem('token') !== "null" ? () => this.changeModalVisibility(true) : null
+    )
+  }
+
   handleOk = () => {
     this.setState({ 
       loading: false, 
@@ -66,14 +72,6 @@ class UserVote  extends React.Component {
     });
   };
 
-  // saveUserRating = () => {
-  //   this.props.saveUserRating({
-  //     "movieId": 1571,
-  //     "rateValue": this.state.rateValue,
-  //     "comment": this.state.commentValue // to do
-  //   })
-  // }
-  
   renderModal = () => {
     const { visible, loading } = this.state;
     return (
@@ -107,15 +105,13 @@ class UserVote  extends React.Component {
 
  
   render() {
-    debugger;
     return (
       <>
-        <div className='user-vote' onClick={() => this.changeModalVisibility(true)}>
+        <div className='user-vote' onClick={this.displayModal()}>
           <span className='user-vote__title'>Your Vote:</span>
           <div className='user-vote__chart'>
             <DoughnutChart 
               data={ this.state.rateValue || this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.rateValue } 
-              // data={ this.state.rateValue } 
               maxValue={ USER_VOTE_MAX_VALUE } 
               percent={ USER_VOTE_DISPLAY_PERCENT } 
               chartColor= { USER_VOTE_CHART_COLOR }

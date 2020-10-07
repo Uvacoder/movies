@@ -20,7 +20,7 @@ import SearchInput from '../SearchInput/SearchInput'
 
 const SEARCH_BAR_WIDTH = '300px';
 const { Header } = Layout;
-const { Search } = Input;
+// const { Search } = Input;
 
 function LayoutHeader (props) {
  const renderSubMenu = (title, icon, menuItems) => {
