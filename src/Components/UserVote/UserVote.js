@@ -6,7 +6,8 @@ import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import { Modal, Button } from 'antd';
 import UserRate from 'components/UserRate/UserRate'
 import UserComment from 'components/UserComment/UserComment'
-import { saveUserRating } from 'actions/UserActions'
+import { saveUserRating, getUserRating } from 'actions/UserActions'
+import { withRouter } from 'react-router-dom'
 
 
 const USER_VOTE_MAX_VALUE = 10;
@@ -26,6 +27,10 @@ class UserVote  extends React.Component {
       commentValue: " ",
     };
   };
+
+  componentDidMount() {
+    this.props.getUserRating(this.props.match.params.id)
+  }
   
   changeModalVisibility = (visible) => {
     this.setState({
@@ -87,11 +92,13 @@ class UserVote  extends React.Component {
           <UserRate 
             updateRateValue={this.updateRateValue}
             tooltips={ USER_RATE_TOOLTIPS }
+            userRateValue={this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.rateValue}
             />
           <p className='user-vote__modal-body-comment'>Your comment:</p>
           <UserComment 
             placeholder={ USER_COMMENT_PLACEHOLDER }
             updateCommentValue={this.updateCommentValue}
+            commentValue ={this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.comment}
           />
         </div>
       </Modal>
@@ -100,14 +107,14 @@ class UserVote  extends React.Component {
 
  
   render() {
-    // debugger;
+    debugger;
     return (
       <>
         <div className='user-vote' onClick={() => this.changeModalVisibility(true)}>
           <span className='user-vote__title'>Your Vote:</span>
           <div className='user-vote__chart'>
             <DoughnutChart 
-              data={ this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.rateValue } 
+              data={ this.state.rateValue || this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.rateValue } 
               // data={ this.state.rateValue } 
               maxValue={ USER_VOTE_MAX_VALUE } 
               percent={ USER_VOTE_DISPLAY_PERCENT } 
@@ -130,6 +137,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   saveUserRating,
+  getUserRating
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserVote)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserVote))

@@ -2,7 +2,7 @@ import Communication from 'communication/Communication';
 import DomainApi from 'utils/DomainAPI';
 import { notification } from 'antd';
 
-export const  ADD_USER_RATING = 'user/ADD_USER_RATING';
+export const ADD_USER_RATING = 'user/ADD_USER_RATING';
 
 export const register = (body) => {
 	return async () => {

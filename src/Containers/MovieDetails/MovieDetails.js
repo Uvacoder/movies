@@ -27,8 +27,6 @@ const THUMBNAIL_HEIGHT = 250;
 class MovieDetails extends React.Component {
   componentDidMount() {
     this.props.fetchMovieDetails(this.props.match.params.id);
-    // console.log(this.props.match.params.id)
-    this.props.getUserRating(this.props.match.params.id)
   }
 
   componentDidUpdate(prevProps) {
@@ -49,7 +47,6 @@ class MovieDetails extends React.Component {
       src:`${BACKDROP_API_PATH}${backdrop.file_path}`,
       thumbnail: `${BACKDROP_API_PATH}${backdrop.file_path}`,
       thumbnailWidth: Math.min(backdrop.width/THUMBNAIL_WIDTH_DIVIDER_VALUE, THUMBNAIL_WIDTH_MAX_VALUE ),
-      // thumbnailWidth: THUMBNAIL_WIDTH_MAX_VALUE,
       thumbnailHeight: THUMBNAIL_HEIGHT,
     }
   }
