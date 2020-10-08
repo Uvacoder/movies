@@ -7,6 +7,9 @@ class LoginForm extends React.Component {
   constructor (props) {
     super(props);
 
+    this.state = {
+      rememberMe: "true"
+    }
     this.formRef = React.createRef();
   }
 
@@ -16,6 +19,10 @@ class LoginForm extends React.Component {
       "password": values.password
     }).then(({errors} = {}) => {
       if (errors === false) {
+        localStorage.setItem('rememberMe', this.state.rememberMe);
+        localStorage.setItem('userName', values.username);
+        localStorage.setItem("isUserLogged", "true");
+        this.props.setLoginType(true);
         this.props.history.push('/home');
       } else {
         this.formRef.current.setFields([
@@ -67,7 +74,9 @@ class LoginForm extends React.Component {
                 <Input.Password />
               </Form.Item>
               <Form.Item name="remember" valuePropName="checked">
-                  <Checkbox>Remember me</Checkbox>
+                  <Checkbox onChange={() => this.setState({rememberMe: this.state.rememberMe === "true" ? "false" : "true"})}>
+                    Remember me
+                  </Checkbox>
               </Form.Item>
               <Form.Item >
                 <div className='login-form__container-buttons'>
@@ -82,6 +91,10 @@ class LoginForm extends React.Component {
                     onClick={ () => {
                       this.props.history.push('/home')
                       localStorage.setItem('token', null);
+                      localStorage.setItem('rememberMe', "false");
+                      localStorage.setItem('userName', "Guest");
+                      localStorage.setItem("isUserLogged", "false");
+                      this.props.setLoginType(false)
                     }
                     }
                     className='login-form__container-buttons-guest'

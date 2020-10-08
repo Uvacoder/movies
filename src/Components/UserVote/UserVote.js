@@ -40,7 +40,8 @@ class UserVote  extends React.Component {
 
   displayModal = () => { 
     return (
-      localStorage.getItem('token') !== "null" ? () => this.changeModalVisibility(true) : null
+      this.props.isUserLogged === true ? () => this.changeModalVisibility(true) : null
+      // localStorage.getItem('token') !== "null" ? () => this.changeModalVisibility(true) : null
     )
   }
 
@@ -127,7 +128,8 @@ class UserVote  extends React.Component {
 const mapStateToProps = (state) => {
   return {
     details: state.movieDetails.details,
-    rating: state.userRating.movies
+    rating: state.userRating.movies,
+    isUserLogged: state.loginInfo.isUserLogged
   }
 }
 

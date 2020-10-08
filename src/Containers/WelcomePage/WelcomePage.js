@@ -6,6 +6,9 @@ import Registration from '../../Components/Registration/Registration'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { register, login } from 'actions/UserActions'
+import { setLoginType } from 'actions/LoginActions'
+import { Button } from 'antd';
+import { withRouter } from 'react-router-dom'
 
 class WelcomePage extends React.Component {
   constructor (props) {
@@ -20,12 +23,42 @@ class WelcomePage extends React.Component {
     window.particlesJS.load('particles-js', './particles.json');
   }
   renderContent = () => {
-    if (this.state.loginForm) {
-      return <LoginForm login={this.props.login} goTo={this.goToRegistration}/>
+    if (localStorage.getItem("rememberMe") === "true")
+    {
+      return (
+        <div className="welcome-page__action-form-logged">
+          <Button onClick={() => this.props.history.push('/home')}>
+            <span>Continue as <b>{localStorage.getItem('userName')}</b></span>
+          </Button>
+          <Button onClick={ () => {
+            this.setState({loginForm: true})
+            localStorage.setItem("rememberMe", "false")
+            localStorage.setItem('token', null);
+            localStorage.setItem('userName', "Guest");
+            localStorage.setItem("isUserLogged", "false");
+          }}
+          // className="welcome-page__action-form-logged"
+          >
+            Switch to a diffrent account
+          </Button>
+        </div>
+      )
     } else {
-      return <Registration register={this.props.register} goToLogin={this.goToLogin}/>
+      if (this.state.loginForm) {
+        return <LoginForm login={this.props.login} goTo={this.goToRegistration} setLoginType={this.props.setLoginType}/>
+      } else {
+        return <Registration register={this.props.register} goToLogin={this.goToLogin}/>
+      }
     }
   }
+   
+  // renderContent = () => {
+  //   if (this.state.loginForm) {
+  //     return <LoginForm login={this.props.login} goTo={this.goToRegistration} setLoginType={this.props.setLoginType}/>
+  //   } else {
+  //     return <Registration register={this.props.register} goToLogin={this.goToLogin}/>
+  //   }
+  // }
 
   goToRegistration = () => {
     this.setState({
@@ -64,6 +97,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => bindActionCreators({
   register,
   login,
+  setLoginType
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(WelcomePage));

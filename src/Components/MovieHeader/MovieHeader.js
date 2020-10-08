@@ -25,7 +25,8 @@ const MovieHeader = (props) => {
   } = props;
 
   const displayUserVote = () => {
-    if (localStorage.getItem('token') === "null") {
+    // if (localStorage.getItem('token') === "null") {
+    if (props.isUserLogged === false) {
       return (
       <Tooltip placement="left" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
         <div className='movie-header__user-vote'>
