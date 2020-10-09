@@ -17,7 +17,7 @@ export const register = (body) => {
         userAlreadyExists: error?.text?.msg === "User Already Exists"
       };
     };
-	};  
+  };  
 };
 
 export const login = (body) => {
@@ -34,7 +34,7 @@ export const login = (body) => {
         errors: true,
       };
     };
-	};  
+  };  
 }; 
 
 export const getUserRating = (movieID) => {
