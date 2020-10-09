@@ -12,7 +12,6 @@ export const register = (body) => {
         errors: false
       }
     } catch(error) {
-
       return {
         errors: true,
         userAlreadyExists: error?.text?.msg === "User Already Exists"
@@ -31,7 +30,6 @@ export const login = (body) => {
         errors: false
       }
     } catch(error) {
-      
       return {
         errors: true,
       };
@@ -39,24 +37,28 @@ export const login = (body) => {
 	};  
 }; 
 
-export const getUserRating = (movieId) => {
-	return async dispatch => {
-    try {
-      const results = await Communication.get(DomainApi.get(`user/vote?movieId=${movieId}`))
-
-      dispatch({ 
-        type: ADD_USER_RATING,
-        movieRate: {...results, movieId: Number(movieId)}
-      });
+export const getUserRating = (movieID) => {
+	return async (dispatch, getState) => {
+    debugger;
+    if (getState().userRating.movies.some(item => item.movieId !== Number(movieID))) {
+      try {
+        const results = await Communication.get(DomainApi.get(`user/vote?movieId=${movieID}`))
+  
+        dispatch({ 
+          type: ADD_USER_RATING,
+          movieRate: {...results, movieId: Number(movieID)}
+        });
+        return {
+          errors: false
+        }
+      } catch(error) {
+          console.error('getting user vote error:', error)
+        };
+        
       return {
-        errors: false
-      }
-    } catch(error) {
-        console.error('getting user vote error:', error)
+        errors: true,
       };
-    return {
-      errors: true,
-    };
+    } 
   };
 };  
 
@@ -64,6 +66,7 @@ export const saveUserRating = (body) => {
 	return async dispatch => {
     try {
       await Communication.post(DomainApi.get(`user/vote`), body)
+
       dispatch({ 
         type: ADD_USER_RATING,
         movieRate: {...body}
@@ -75,6 +78,7 @@ export const saveUserRating = (body) => {
     } catch(error) {
         console.error('posting user vote error:', error)
       };
+
     return {
       errors: true,
     };

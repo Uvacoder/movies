@@ -25,8 +25,7 @@ const MovieHeader = (props) => {
   } = props;
 
   const displayUserVote = () => {
-    // if (localStorage.getItem('token') === "null") {
-    if (props.isUserLogged === false) {
+    if (localStorage.getItem('token') === "null") {
       return (
       <Tooltip placement="left" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
         <div className='movie-header__user-vote'>
@@ -39,8 +38,8 @@ const MovieHeader = (props) => {
       <div className='movie-header__user-vote'>
         <UserVote />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className='movie-header'>
@@ -75,9 +74,6 @@ const MovieHeader = (props) => {
         </div>
       </div>
       {displayUserVote()}
-      {/* <div className='movie-header__user-vote'>
-        <UserVote />
-      </div> */}
     </div>
   );
 };
@@ -88,7 +84,7 @@ MovieHeader.defaultProps = {
     tagline: 'tagline',
     voteAverage: 1,
     popularity: 1
-}
+};
 
 export default MovieHeader
 

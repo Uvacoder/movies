@@ -143,7 +143,6 @@ class MovieDetails extends React.Component {
             tagline={this.props.details.tagline ? this.props.details.tagline : this.props.details.original_title}
             voteAverage={this.props.details.vote_average}
             popularity={this.props.details.popularity}
-            isUserLogged={this.props.isUserLogged}
           />
         </div>
         <div className='movie-details-container__overwiev'> 
@@ -188,7 +187,6 @@ const mapStateToProps = (state) => {
     similarMovies: state.movieDetails.similarMovies,
     reviews: state.movieDetails.reviews,
     externalIds: state.movieDetails.externalIds,
-    isUserLogged: state.loginInfo.isUserLogged
   }
 }
 

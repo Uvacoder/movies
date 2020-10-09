@@ -12,6 +12,9 @@ import Contact from 'components/Contact/Contact'
 
 class AppLayout extends React.Component {
 
+  componentDidMount() {
+    
+  }
 // //TODO -> FIX PARTICLES JS LIBRARY
 //   renderParticles() {
 //     // Due to library constraints accessing to load function from window object is necessary.

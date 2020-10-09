@@ -30,7 +30,7 @@ class UserVote  extends React.Component {
 
   componentDidMount() {
     this.props.getUserRating(this.props.match.params.id)
-  }
+  };
   
   changeModalVisibility = (visible) => {
     this.setState({
@@ -40,10 +40,9 @@ class UserVote  extends React.Component {
 
   displayModal = () => { 
     return (
-      this.props.isUserLogged === true ? () => this.changeModalVisibility(true) : null
-      // localStorage.getItem('token') !== "null" ? () => this.changeModalVisibility(true) : null
-    )
-  }
+      localStorage.getItem('token') !== "null" ? () => this.changeModalVisibility(true) : null
+    );
+  };
 
   handleOk = () => {
     this.setState({ 
@@ -53,7 +52,7 @@ class UserVote  extends React.Component {
         "movieId": this.props.details.id,
         "rateValue": this.state.rateValue,
         "comment": this.state.commentValue
-    })
+    });
     this.changeModalVisibility(false);
   };
 
@@ -129,9 +128,8 @@ const mapStateToProps = (state) => {
   return {
     details: state.movieDetails.details,
     rating: state.userRating.movies,
-    isUserLogged: state.loginInfo.isUserLogged
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   saveUserRating,

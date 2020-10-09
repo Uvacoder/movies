@@ -1,15 +1,12 @@
 import React from 'react';
 import "./LoginForm.scss"
 import { withRouter } from 'react-router-dom'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 
 class LoginForm extends React.Component {
   constructor (props) {
     super(props);
 
-    this.state = {
-      rememberMe: "true"
-    }
     this.formRef = React.createRef();
   }
 
@@ -19,10 +16,7 @@ class LoginForm extends React.Component {
       "password": values.password
     }).then(({errors} = {}) => {
       if (errors === false) {
-        localStorage.setItem('rememberMe', this.state.rememberMe);
         localStorage.setItem('userName', values.username);
-        localStorage.setItem("isUserLogged", "true");
-        this.props.setLoginType(true);
         this.props.history.push('/home');
       } else {
         this.formRef.current.setFields([
@@ -31,8 +25,8 @@ class LoginForm extends React.Component {
             errors: ['Wrong password'],
           },
        ]);
-      }
-    })
+      };
+    });
   };
 
   render() {
@@ -73,11 +67,6 @@ class LoginForm extends React.Component {
               >
                 <Input.Password />
               </Form.Item>
-              <Form.Item name="remember" valuePropName="checked">
-                  <Checkbox onChange={() => this.setState({rememberMe: this.state.rememberMe === "true" ? "false" : "true"})}>
-                    Remember me
-                  </Checkbox>
-              </Form.Item>
               <Form.Item >
                 <div className='login-form__container-buttons'>
                   <Button 
@@ -89,14 +78,10 @@ class LoginForm extends React.Component {
                   </Button>
                   <Button 
                     onClick={ () => {
-                      this.props.history.push('/home')
+                      localStorage.setItem('userName', "");
                       localStorage.setItem('token', null);
-                      localStorage.setItem('rememberMe', "false");
-                      localStorage.setItem('userName', "Guest");
-                      localStorage.setItem("isUserLogged", "false");
-                      this.props.setLoginType(false)
-                    }
-                    }
+                      this.props.history.push('/home')    
+                    }}
                     className='login-form__container-buttons-guest'
                   >
                     Continue as a Guest
@@ -109,8 +94,8 @@ class LoginForm extends React.Component {
           </Form>
         </div>
       </div>
-    )
-  }
+    );
+  };
 };
 
 export default withRouter(LoginForm) ;
