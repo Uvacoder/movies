@@ -39,7 +39,6 @@ export const login = (body) => {
 
 export const getUserRating = (movieID) => {
 	return async (dispatch, getState) => {
-    debugger;
     if (getState().userRating.movies.some(item => item.movieId !== Number(movieID))) {
       try {
         const results = await Communication.get(DomainApi.get(`user/vote?movieId=${movieID}`))
@@ -84,3 +83,18 @@ export const saveUserRating = (body) => {
     };
   };
 };  
+
+export const deleteUserAccount = () => {
+	return async () => {
+    try {
+      await Communication.delete(DomainApi.get('user'))
+      return {
+        errors: false
+      }
+    } catch(error) {
+      return {
+        errors: true,
+      };
+    };
+  };  
+}; 

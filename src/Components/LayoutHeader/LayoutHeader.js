@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { 
   Menu,
   Layout,
-  Input 
 } from 'antd';
 import { 
   PlaySquareOutlined,
   BarsOutlined,
   InfoCircleOutlined,
   ClockCircleOutlined,
-  ProfileOutlined,
-  SmileOutlined 
+  SmileOutlined,
+  UserOutlined
 } from '@ant-design/icons';
 import './LayoutHeader.scss';
 import { withRouter } from 'react-router-dom'
@@ -20,14 +19,13 @@ import SearchInput from '../SearchInput/SearchInput'
 
 const SEARCH_BAR_WIDTH = '300px';
 const { Header } = Layout;
-// const { Search } = Input;
 
 function LayoutHeader (props) {
  const renderSubMenu = (title, icon, menuItems) => {
     return (
       <SubMenu key={ title } icon={ icon } title={ title }>
         {menuItems.map((item, idx) => 
-        <Menu.Item key={ idx }>
+        <Menu.Item key={ idx } onClick={item.onClick}>
           <Link to={ item.url }>{ item.title }</Link>
         </Menu.Item>)}
       </SubMenu>
@@ -87,16 +85,28 @@ function LayoutHeader (props) {
     const menuItems = [{
       title: 'My Ratings'
     },{
-      title: 'Favorites'
+      title: 'Account Settings',
+      url:"/settings",
     },{
-      title: 'Want to see'
-    },{
-      title: 'Account Settings'
-    },{
-      title: 'Log Out'
+      title: 'Log Out',
+      url:"/",
+      onClick: () => {
+        localStorage.setItem('userName', "");
+        localStorage.setItem('token', null);
+      }
     }]
-  
-    return renderSubMenu('Your Profile',<ProfileOutlined />, menuItems)
+
+    const guestMenuItems = [{
+      title: 'Log in or Register',
+      url:"/",
+    }]
+
+    if (localStorage.getItem("token") === "null") {
+      return renderSubMenu("Guest", <UserOutlined />, guestMenuItems)
+    } else {
+      const userName = localStorage.getItem("userName") !== "" ?  localStorage.getItem("userName") : "Guest";
+      return renderSubMenu(userName, <UserOutlined />, menuItems)
+    }
   }
   
   return (

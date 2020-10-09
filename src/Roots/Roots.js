@@ -8,6 +8,7 @@ import SearchResults from 'containers/SearchResults/SearchResults'
 import About from 'components/About/About'
 import TopList from 'containers/TopList/TopList'
 import RecentMovies from 'containers/RecentMovies/RecentMovies'
+import UserSettings from 'components/UserSettings/UserSettings'
 
 function Roots() {
     return ( 

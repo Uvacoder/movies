@@ -1,7 +1,10 @@
 import React from 'react';
 import "./LoginForm.scss"
 import { withRouter } from 'react-router-dom'
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Tooltip } from 'antd';
+
+const TOOTLTIP_TEXT = <span>By continuing as a guest you won't be able to use all of Movie Lounge features.</span>;
+const TOOTLTIP_COLOR = '#1890ff';
 
 class LoginForm extends React.Component {
   constructor (props) {
@@ -76,16 +79,18 @@ class LoginForm extends React.Component {
                   >
                     Sign In
                   </Button>
-                  <Button 
-                    onClick={ () => {
-                      localStorage.setItem('userName', "");
-                      localStorage.setItem('token', null);
-                      this.props.history.push('/home')    
-                    }}
-                    className='login-form__container-buttons-guest'
-                  >
-                    Continue as a Guest
-                  </Button>
+                  <Tooltip placement="bottom" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
+                    <Button 
+                      onClick={ () => {
+                        localStorage.setItem('userName', "");
+                        localStorage.setItem('token', null);
+                        this.props.history.push('/home')    
+                      }}
+                      className='login-form__container-buttons-guest'
+                    >
+                      Continue as a Guest
+                    </Button>
+                  </Tooltip>
                 </div>
               </Form.Item>
               <div className="registration-form"> 

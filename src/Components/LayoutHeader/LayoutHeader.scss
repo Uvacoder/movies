@@ -48,7 +48,8 @@ $on-hover-color: rgb(255,215,0);
 
 .home-header {
   display: flex;
-  width: 10%;
+  width: 15%;
+  margin-left: -4%;
 
   .anticon {
     font-size: 40px;
@@ -75,5 +76,7 @@ $on-hover-color: rgb(255,215,0);
 }
 
 .your-profile {
-  width: 10%;
+  width: 15%;
+  margin-right: -4%;
+  text-overflow: ellipsis;
 }
