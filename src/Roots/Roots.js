@@ -8,7 +8,7 @@ import SearchResults from 'containers/SearchResults/SearchResults'
 import About from 'components/About/About'
 import TopList from 'containers/TopList/TopList'
 import RecentMovies from 'containers/RecentMovies/RecentMovies'
-import UserSettings from 'components/UserSettings/UserSettings'
+import UserRatings from 'containers/UserRatings/UserRatings'
 
 function Roots() {
     return ( 
@@ -33,6 +33,9 @@ function Roots() {
         </Route>
         <Route path="/about">
           <About />
+        </Route>
+        <Route path="/user-ratings">
+          <UserRatings />
         </Route>
       </>
     );   

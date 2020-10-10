@@ -83,7 +83,8 @@ function LayoutHeader (props) {
   
   const renderYouProfileMenu = () => {
     const menuItems = [{
-      title: 'My Ratings'
+      title: 'My Ratings',
+      url: '/user-ratings'
     },{
       title: 'Account Settings',
       url:"/settings",

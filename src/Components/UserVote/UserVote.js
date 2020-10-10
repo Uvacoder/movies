@@ -29,7 +29,12 @@ class UserVote  extends React.Component {
   };
 
   componentDidMount() {
+    debugger;
+    // if (this.props.match.params.id) {
+    //   this.props.getUserRating(this.props.match.params.id)
+    // }
     this.props.getUserRating(this.props.match.params.id)
+    // this.props.getUserRating(this.props.movieId)
   };
   
   changeModalVisibility = (visible) => {
@@ -50,6 +55,7 @@ class UserVote  extends React.Component {
     });
     this.props.saveUserRating({
         "movieId": this.props.details.id,
+        // "movieId": this.props.movieId,
         "rateValue": this.state.rateValue,
         "comment": this.state.commentValue
     });
@@ -72,6 +78,24 @@ class UserVote  extends React.Component {
     });
   };
 
+  // getMovieRateValue = () => {
+  //   // debugger;
+  //   if (this.props.match.params.id) {
+  //     return this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.rateValue
+  //   } else {
+  //     return this.props.rating.filter( item => item.movieId === this.props.movieId)[0].rateValue
+  //   }
+  // }
+
+  // getMovieCommentValue = () => {
+  //   // debugger;
+  //   if (this.props.match.params.id) {
+  //     return this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.comment
+  //   } else {
+  //     return this.props.rating.filter( item => item.movieId === this.props.movieId)[0].comment
+  //   }
+  // }
+
   renderModal = () => {
     const { visible, loading } = this.state;
     return (
@@ -91,12 +115,14 @@ class UserVote  extends React.Component {
             updateRateValue={this.updateRateValue}
             tooltips={ USER_RATE_TOOLTIPS }
             userRateValue={this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.rateValue}
+            // userRateValue={this.getMovieRateValue()}
             />
           <p className='user-vote__modal-body-comment'>Your comment:</p>
           <UserComment 
             placeholder={ USER_COMMENT_PLACEHOLDER }
             updateCommentValue={this.updateCommentValue}
             commentValue ={this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.comment}
+            // commentValue ={this.getMovieCommentValue()}
           />
         </div>
       </Modal>
@@ -112,6 +138,7 @@ class UserVote  extends React.Component {
           <div className='user-vote__chart'>
             <DoughnutChart 
               data={ this.state.rateValue || this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.rateValue } 
+              // data={ this.state.rateValue || this.getMovieRateValue() } 
               maxValue={ USER_VOTE_MAX_VALUE } 
               percent={ USER_VOTE_DISPLAY_PERCENT } 
               chartColor= { USER_VOTE_CHART_COLOR }

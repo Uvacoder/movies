@@ -1,7 +1,9 @@
 import Communication from 'communication/Communication';
 import DomainApi from 'utils/DomainAPI';
+import TMDBApi from 'utils/TMDBApi';
 
 export const ADD_USER_RATING = 'user/ADD_USER_RATING';
+export const ADD_ALL_USER_RATINGS = 'user/ADD_ALL_USER_RATINGS';
 
 export const register = (body) => {
 	return async () => {
@@ -39,7 +41,7 @@ export const login = (body) => {
 
 export const getUserRating = (movieID) => {
 	return async (dispatch, getState) => {
-    if (getState().userRating.movies.some(item => item.movieId !== Number(movieID))) {
+    // if (getState().userRating.movies.some(item => item.movieId !== Number(movieID))) {
       try {
         const results = await Communication.get(DomainApi.get(`user/vote?movieId=${movieID}`))
   
@@ -57,7 +59,7 @@ export const getUserRating = (movieID) => {
       return {
         errors: true,
       };
-    } 
+    // } 
   };
 };  
 
@@ -68,7 +70,7 @@ export const saveUserRating = (body) => {
 
       dispatch({ 
         type: ADD_USER_RATING,
-        movieRate: {...body}
+        movieRate: body
       });
 
       return {
@@ -97,4 +99,33 @@ export const deleteUserAccount = () => {
       };
     };
   };  
-}; 
+};
+
+export const getAllUserRatings = () => {
+	return async (dispatch) => {
+    try {
+      const results = await Communication.get(DomainApi.get(`user/myRates`))
+
+      await Promise.all(results.map(async item => {
+        const movieDetails = await	Communication.get(TMDBApi.get(`movie/${item.movieId}`,{
+          append_to_response: 'credits'
+        }));	
+        item.details = movieDetails; 
+      }));
+
+      dispatch({ 
+        type: ADD_ALL_USER_RATINGS,
+        movieRates: [...results]
+      });
+      return {
+        errors: false
+      }
+    } catch(error) {
+        console.error('getting user votes error:', error)
+      };
+        
+    return {
+      errors: true,
+    };
+  } 
+};  

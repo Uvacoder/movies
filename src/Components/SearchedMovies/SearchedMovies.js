@@ -19,8 +19,39 @@ const SearchedMovies = (props) => {
   } = props;
  
   const filterDirector = () => {
-    const director = item.details.credits.crew.filter((item) => item.job === "Director")[0]?.name
+    let director = ''
+
+    if (item.credits?.crew) {
+      director = item.credits.crew.filter((item) => item.job === "Director")[0]?.name
+    } else { 
+      director = item.details?.credits.crew.filter((item) => item.job === "Director")[0]?.name
+    }
+
     return director || '–'
+  }
+
+  const getMovieRuntime = () => {
+    let runtime = 0
+
+    if (item.runtime) {
+      runtime = `${item.runtime} min.`
+    } else {
+      runtime = `${item.details?.runtime} min.`
+    }
+    
+    return runtime || '–'
+  }
+
+  const getMovieGenres = () => {
+    let genres = ''
+
+    if (item.genres) {
+      genres = item.genres.length !== 0 ? item.genres.map((item) => item.name).join(', ') : '–'
+    } else {
+      genres = item.details?.genres?.length !== 0 ? item.details?.genres.map((item) => item.name).join(', ') : '–'
+    }
+    
+    return genres || '–'
   }
 
   return (
@@ -45,15 +76,13 @@ const SearchedMovies = (props) => {
         </div>
         <div className='searched-movies__first-container-runtime'>
           <div className='searched-movies__first-container-runtime-title'>Runtime: </div>
-          <div className='searched-movies__first-container-runtime-text'>{`${item.details.runtime} min.`}</div>
+          <div className='searched-movies__first-container-runtime-text'>{getMovieRuntime()}</div>
         </div>
       </div>
       <div className='searched-movies__second-container'>
         <div className='searched-movies__second-container-genres'>
           <div className='searched-movies__second-container-genres-title'>Genres:</div>
-          <div className='searched-movies__second-container-genres-text'>
-            {item.details.genres?.length !== 0 ? item.details.genres.map((item) => item.name).join(', ') : '–'}
-          </div>
+          <div className='searched-movies__second-container-genres-text'>{getMovieGenres()}</div>
         </div>
         <div className='searched-movies__second-container-director'>
           <div className='searched-movies__second-container-director-title'>Director:</div>
