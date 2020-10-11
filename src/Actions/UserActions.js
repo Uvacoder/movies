@@ -4,6 +4,7 @@ import TMDBApi from 'utils/TMDBApi';
 
 export const ADD_USER_RATING = 'user/ADD_USER_RATING';
 export const ADD_ALL_USER_RATINGS = 'user/ADD_ALL_USER_RATINGS';
+export const EDIT_USER_RATING = 'user/EDIT_USER_RATING';
 
 export const register = (body) => {
 	return async () => {
@@ -41,7 +42,8 @@ export const login = (body) => {
 
 export const getUserRating = (movieID) => {
 	return async (dispatch, getState) => {
-    // if (getState().userRating.movies.some(item => item.movieId !== Number(movieID))) {
+    const movieExists = getState().userRating.movies.some(item => item.movieId === Number(movieID))
+    if(!movieExists) {
       try {
         const results = await Communication.get(DomainApi.get(`user/vote?movieId=${movieID}`))
   
@@ -59,20 +61,29 @@ export const getUserRating = (movieID) => {
       return {
         errors: true,
       };
-    // } 
+    }
   };
 };  
 
 export const saveUserRating = (body) => {
-	return async dispatch => {
+	return async (dispatch, getState) => {
     try {
-      await Communication.post(DomainApi.get(`user/vote`), body)
+      const movieExists = getState().userRating.movies.some(item => item.movieId === Number(body.movieId))
+      if (movieExists) {
+        await Communication.post(DomainApi.get(`user/vote`), body)
+        dispatch({ 
+          type: EDIT_USER_RATING,
+          movieRate: body,
+          movieId: Number(body.movieId)
+        });
+      } else {
+        await Communication.post(DomainApi.get(`user/vote`), body)
 
-      dispatch({ 
-        type: ADD_USER_RATING,
-        movieRate: body
-      });
-
+        dispatch({ 
+          type: ADD_USER_RATING,
+          movieRate: body
+        });
+      }
       return {
         errors: false
       }

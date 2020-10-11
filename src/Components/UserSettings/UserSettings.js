@@ -26,7 +26,7 @@ function UserSettings (props) {
       notification.info({
         message: "Account deleted.",
         placement: "topRight",
-        duration: 6,
+        duration: 5,
       });
       props.history.push('/')  
     } else {

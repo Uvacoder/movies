@@ -34,7 +34,7 @@ const Registration = (props) => {
           message: "Succes!",
           description: "You can log in now.",
           placement: "topRight",
-          duration: 8,
+          duration: 4,
         });
         props.goToLogin()
       }

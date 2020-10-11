@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./SearchedMovies.scss"
 import TMDBApi from 'utils/TMDBApi';
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
