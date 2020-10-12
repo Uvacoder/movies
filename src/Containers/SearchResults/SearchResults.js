@@ -30,15 +30,36 @@ class SearchResults extends React.Component {
     this.props.fetchNextPageOfSearched(this.props.phrase, this.state.currentPage)
   };
 
-  renderResults = () => {
-    let results = [];
+  getResults = () => {
+    return this.props.searchResults.map((item) => {
+      return (
+        <SearchedMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/> 
+      );
+    });
+  };
 
+  renderResults = () => {
     if (this.props.searchResults.length !== 0) {
-      results = this.props.searchResults.map((item) => {
-        return (
-          <SearchedMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/> 
-        );
-      });
+      return (
+        <InfiniteScroll
+          dataLength={this.props.searchResults.length}
+          next={this.fetchData}
+          hasMore={this.state.currentPage < this.props.numberOfPages} 
+          loader={
+            <Spin 
+              size="large"
+              className='search-results__spin'
+            />
+          }
+          endMessage={
+            <p style={{ textAlign: 'center' }}>
+              <b>{INFINITY_SCROLL_END_MESSAGE}</b>
+            </p>
+          }
+        >
+          {this.getResults()}
+        </InfiniteScroll>
+      );
     } else {
       return (
         <>
@@ -47,27 +68,6 @@ class SearchResults extends React.Component {
         </>
       )
     };
-
-    return (
-      <InfiniteScroll
-        dataLength={results.length}
-        next={this.fetchData}
-        hasMore={this.state.currentPage < this.props.numberOfPages} 
-        loader={
-          <Spin 
-            size="large"
-            className='search-results__spin'
-          />
-        }
-        endMessage={
-          <p style={{ textAlign: 'center' }}>
-            <b>{INFINITY_SCROLL_END_MESSAGE}</b>
-          </p>
-        }
-      >
-        {results}
-      </InfiniteScroll>
-    );
   };
 
   render() {

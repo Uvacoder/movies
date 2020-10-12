@@ -23,7 +23,7 @@ const MovieHeader = (props) => {
   return (
     <div className='movie-header'>
       <div className='movie-header_image-wrapper'>
-        <img src={backDropPath ? backDropPath : null } alt=''/>
+        <img src={backDropPath} alt=''/>
       </div>
       <div className='movie-header__wrapper'>
         <div className='movie-header__wrapper-title'>
@@ -68,4 +68,3 @@ MovieHeader.defaultProps = {
 }
 
 export default MovieHeader
-
