@@ -10,6 +10,10 @@ import {
 const REGISTRATION_NICKNAME_MIN_LENGHT = 3;
 const REGISTRATION_NICKNAME_MAX_LENGHT = 30;
 const REGISTRATION_PASSWORD_MIN_LENGHT = 6;
+const REGISTRATION_SUCCES_MESSAGE = "Succes!";
+const REGISTRATION_SUCCES_DESCRIPTION = "You can log in now.";
+const REGISTRATION_SUCCES_POSITION = "topRight";
+const REGISTRATION_SUCCES_MESSAGE_DURATION = 8;
 
 const Registration = (props) => {
   const [form] = Form.useForm();
@@ -31,10 +35,10 @@ const Registration = (props) => {
         }
       } else {
         notification.success({
-          message: "Succes!",
-          description: "You can log in now.",
-          placement: "topRight",
-          duration: 4,
+          message: REGISTRATION_SUCCES_MESSAGE,
+          description: REGISTRATION_SUCCES_DESCRIPTION,
+          placement: REGISTRATION_SUCCES_POSITION,
+          duration: REGISTRATION_SUCCES_MESSAGE_DURATION,
         });
         props.goToLogin()
       }

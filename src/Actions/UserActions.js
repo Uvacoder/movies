@@ -6,6 +6,8 @@ export const ADD_USER_RATING = 'user/ADD_USER_RATING';
 export const ADD_ALL_USER_RATINGS = 'user/ADD_ALL_USER_RATINGS';
 export const EDIT_USER_RATING = 'user/EDIT_USER_RATING';
 
+const USER_EXISTS_IN_DATABASE_ERROR = "Database: User Already Exists"
+
 export const register = (body) => {
 	return async () => {
     try {
@@ -17,7 +19,7 @@ export const register = (body) => {
     } catch(error) {
       return {
         errors: true,
-        userAlreadyExists: error?.text?.msg === "User Already Exists"
+        userAlreadyExists: error.text?.msg === USER_EXISTS_IN_DATABASE_ERROR
       };
     };
   };  

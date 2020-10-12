@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import "./MovieHeader.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import UserVote from 'components/UserVote/UserVote'
-import ImgPlaceholderHoriztonal from '../../Images/imgPlaceholderHorizontal.svg'
 import { Tooltip } from 'antd';
 import { withRouter } from 'react-router-dom'
 import { getUserRating, saveUserRating } from 'actions/UserActions'
@@ -15,7 +14,7 @@ const VOTE_AVERAGE_CHART_COLOR_HIGH = 'lightgreen';
 const VOTE_AVERAGE_CHART_COLOR_LOW = 'Aquamarine';
 const POPULARITY_MAX_VALUE = 100;
 const POPULARITY_DISPLAY_PERCENT = true;
-const TOOTLTIP_TEXT = <span>To use all Movie Lounge features like voting or commenting, please register.</span>;
+const TOOTLTIP_TEXT = 'To use all Movie Lounge features like voting or commenting, please register.'
 const TOOTLTIP_COLOR = '#1890ff';
 
 const MovieHeader = (props) => {
@@ -58,7 +57,7 @@ const MovieHeader = (props) => {
   return (
     <div className='movie-header'>
       <div className='movie-header_image-wrapper'>
-        <img src={backDropPath ? backDropPath : ImgPlaceholderHoriztonal } alt=''/>
+        <img src={backDropPath} alt=''/>
       </div>
       <div className='movie-header__wrapper'>
         <div className='movie-header__wrapper-title'>

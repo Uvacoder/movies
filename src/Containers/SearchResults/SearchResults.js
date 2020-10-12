@@ -2,23 +2,38 @@ import React from 'react';
 import './SearchResults.scss';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { fetchSearched } from 'actions/SearchActions'
+import { fetchSearched, fetchNextPageOfSearched } from 'actions/SearchActions'
 import { Divider } from 'antd'
 import SearchedMovies from 'components/SearchedMovies/SearchedMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
 import { clearSearched } from 'actions/SearchActions'
+import InfiniteScroll from 'react-infinite-scroll-component';
+import { Spin } from 'antd';
+
+const INFINITY_SCROLL_END_MESSAGE = "That's all movies with that phrase.";
 
 class SearchResults extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        currentPage: 1
+    };
+  };
 
   componentWillUnmount() {
     this.props.clearSearched()
   }
 
-  renderResults = () => {
-    if (this.props.searchResults.length !== 0) {
-      return this.props.searchResults.map((item) => {
-        return (
-          <SearchedMovies 
+  fetchData = () => {
+    this.setState({ currentPage: this.state.currentPage + 1})
+    this.props.fetchNextPageOfSearched(this.props.phrase, this.state.currentPage)
+  };
+
+  getResults = () => {
+    return this.props.searchResults.map((item) => {
+      return (
+        <SearchedMovies 
           routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}
           poster={item.details.poster_path}
           title={item.details.title}
@@ -29,8 +44,32 @@ class SearchResults extends React.Component {
           vote_average={item.details.vote_average}
           popularity={item.details.popularity}
         /> 
-        );
-      });
+      );
+    });
+  };
+
+  renderResults = () => {
+    if (this.props.searchResults.length !== 0) {
+      return (
+        <InfiniteScroll
+          dataLength={this.props.searchResults.length}
+          next={this.fetchData}
+          hasMore={this.state.currentPage < this.props.numberOfPages} 
+          loader={
+            <Spin 
+              size="large"
+              className='search-results__spin'
+            />
+          }
+          endMessage={
+            <p style={{ textAlign: 'center' }}>
+              <b>{INFINITY_SCROLL_END_MESSAGE}</b>
+            </p>
+          }
+        >
+          {this.getResults()}
+        </InfiniteScroll>
+      );
     } else {
       return (
         <>
@@ -59,14 +98,16 @@ class SearchResults extends React.Component {
 const mapStateToProps = (state) => {
   return {
     searchResults: state.searchResults.results,
-    phrase: state.searchResults.phrase
+    phrase: state.searchResults.phrase,
+    numberOfPages: state.searchResults.numberOfPages
   }
 }
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchSearched,
   routeToMovieDetails,
-  clearSearched
+  clearSearched,
+  fetchNextPageOfSearched
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResults);
