@@ -27,7 +27,6 @@ function UserRatings () {
               saveUserRating = {(...args) => dispatch(saveUserRating(...args))}
            />
             <SearchedMovies 
-              // item={item.details} 
               routeToMovieDetails={() => dispatch(routeToMovieDetails(item.movieId))}
               poster={item.details.poster_path}
               title={item.details.title}

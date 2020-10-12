@@ -20,7 +20,6 @@ const SearchedMovies = (props) => {
     director,
     vote_average,
     popularity
-
   } = props;
 
   return (
