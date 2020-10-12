@@ -1,6 +1,6 @@
 import React from 'react';
 import Communication from 'communication/Communication';
-import { Button, Divider, Modal, Space } from 'antd';
+import { Button, Divider, Modal } from 'antd';
 import './RandomGifGenerator.scss'
 
 // const RANDOM_WORD_API = "https://random-word-api.herokuapp.com/word?number=1" // standard dictionary word - need to change setup function before implementing

@@ -6,5 +6,7 @@ export const getTopListTypeUrl = (type) => {
 			return 'trending/movie/day'
 		case 'trending_weekly':
 			return 'trending/movie/week'
+		default:
+			return 'top_rated'
   };
-};
+}

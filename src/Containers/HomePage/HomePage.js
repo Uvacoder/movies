@@ -36,10 +36,14 @@ function HomePage () {
 
   const renderTrendingMovieBlock = (item) => {
     return (
-      <div className='home-page-container__trending-item routed-image-carousel' onClick={() => dispatch(routeToMovieDetails(item.id))} >
+      <div 
+        className='home-page-container__trending-item routed-image-carousel' 
+        onClick={() => dispatch(routeToMovieDetails(item.id))} 
+        key={ item.id }
+      >
         <img 
           className='home-page-container__trending-item-image' 
-          src={ `${IMG_URL}${ item?.poster_path }`} 
+          src={ `${IMG_URL}${ item?.poster_path }` } 
           alt=''  
         />
         <div 
@@ -72,11 +76,12 @@ function HomePage () {
     const availableMovies = upcommingList.filter(movie => movie.poster_path && (movie.title || movie.orginal_title))
     const shuffledArray = Calculation.shuffleArray(availableMovies)
 
-    return shuffledArray.slice(0, NO_OF_UPCOMMING_ITEMS).map((item) => {
+    return shuffledArray.slice(0, NO_OF_UPCOMMING_ITEMS).map((item, idx) => {
       return (
         <UpcommingMovies 
           item={item} 
           routeToMovieDetails={() => dispatch(routeToMovieDetails(item.id))}
+          key={idx}
         /> 
       );
     });

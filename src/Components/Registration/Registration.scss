@@ -40,7 +40,7 @@ $input-color-alpha: rgba(0,0,0,0.5);
 	#register{
 		display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: flex-end;
 	}
 

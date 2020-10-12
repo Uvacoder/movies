@@ -1,7 +1,7 @@
 // TO DO figure out how to add store outisde react component
 
 // import { store }  from '../../store';
-import { changeLoadingStatus } from 'actions/GlobalActions';
+// import { changeLoadingStatus } from 'actions/GlobalActions';
 import { notification } from 'antd';
 
 class ApiError extends Error {
