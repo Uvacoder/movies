@@ -21,9 +21,11 @@ function getMethod(type) {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       }
-    };
-
-    if(window.location.hostname.includes("localhost") || window.location.hostname.includes("movielounge")) {
+    };  
+    const URLObject = new URL('', url)
+    
+    if(URLObject.hostname === "localhost" || URLObject.hostname === "movielounge.com") {  
+      debugger;
       fetchParams.headers.token =  localStorage.getItem('token');
     };
 
