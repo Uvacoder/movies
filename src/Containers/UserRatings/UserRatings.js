@@ -7,7 +7,6 @@ import UserVote from 'components/UserVote/UserVote'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
 import { Divider } from 'antd'
 
-
 function UserRatings () {
   const movieList = useSelector(state => state.userRating.movies);
   const dispatch = useDispatch();
@@ -17,8 +16,6 @@ function UserRatings () {
     dispatch(getAllUserRatings());
   },[dispatch]);
 
-  console.log(movieList)
-
   const renderUserRatings = () => {
     if (movieList.length !== 0) {
       return reversedMovieList.map((item) => {
@@ -26,10 +23,21 @@ function UserRatings () {
           <div className='user-ratings__item'>
             <UserVote 
               currentMovieId = {item.movieId}
-              currentMovieRating = {movieList.find(x => x.movieId === item.movieId)}
+              currentMovieRating = {movieList.find(movie => movie.movieId === item.movieId)}
               saveUserRating = {(...args) => dispatch(saveUserRating(...args))}
            />
-            <SearchedMovies item={item.details} routeToMovieDetails={() => dispatch(routeToMovieDetails(item.movieId))}/>
+            <SearchedMovies 
+              // item={item.details} 
+              routeToMovieDetails={() => dispatch(routeToMovieDetails(item.movieId))}
+              poster={item.details.poster_path}
+              title={item.details.title}
+              release_date={item.details.release_date}
+              runtime={item.details.runtime}
+              genres={item.details.genres?.length !== 0 ? item.details.genres.map((item) => item.name).join(', ') : '–'}
+              director={item.details.credits.crew.find((item) => item.job === "Director").name}
+              vote_average={item.details.vote_average}
+              popularity={item.details.popularity}
+            />
           </div>
         );
       })

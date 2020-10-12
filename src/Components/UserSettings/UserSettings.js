@@ -28,10 +28,8 @@ function UserSettings (props) {
         placement: "topRight",
         duration: 5,
       });
-      props.history.push('/')  
-    } else {
-      props.history.push('/')  
-    }
+    } 
+    props.history.push('/')  
   }
 
   return (

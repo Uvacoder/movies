@@ -55,13 +55,13 @@ export const getUserRating = (movieID) => {
           errors: false
         }
       } catch(error) {
-          console.error('getting user vote error:', error)
+        console.error('getting user vote error:', error)
+
+        return {
+          errors: true,
         };
-        
-      return {
-        errors: true,
       };
-    }
+    };
   };
 };  
 
@@ -88,12 +88,12 @@ export const saveUserRating = (body) => {
         errors: false
       }
     } catch(error) {
-        console.error('posting user vote error:', error)
-      };
+      console.error('posting user vote error:', error)
 
-    return {
-      errors: true,
-    };
+      return {
+        errors: true,
+      };
+    }; 
   };
 };  
 
