@@ -12,7 +12,7 @@ const VOTE_AVERAGE_CHART_COLOR_HIGH = 'lightgreen';
 const VOTE_AVERAGE_CHART_COLOR_LOW = 'Aquamarine';
 const POPULARITY_MAX_VALUE = 100;
 const POPULARITY_DISPLAY_PERCENT = true;
-const TOOTLTIP_TEXT = <span>To use all Movie Lounge features like voting or commenting, please register.</span>;
+const TOOTLTIP_TEXT = 'To use all Movie Lounge features like voting or commenting, please register.'
 const TOOTLTIP_COLOR = '#1890ff';
 
 const MovieHeader = (props) => {

@@ -23,7 +23,7 @@ function getMethod(type) {
       }
     };
 
-    if(url.includes("localhost") || url.includes("movielounge")) {
+    if(window.location.hostname.includes("localhost") || window.location.hostname.includes("movielounge")) {
       fetchParams.headers.token =  localStorage.getItem('token');
     };
 

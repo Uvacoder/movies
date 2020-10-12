@@ -3,6 +3,8 @@ import DomainApi from 'utils/DomainAPI';
 
 export const ADD_USER_RATING = 'user/ADD_USER_RATING';
 
+const USER_EXISTS_IN_DATABASE_ERROR = "Database: User Already Exists"
+
 export const register = (body) => {
 	return async () => {
     try {
@@ -14,7 +16,7 @@ export const register = (body) => {
     } catch(error) {
       return {
         errors: true,
-        userAlreadyExists: error?.text?.msg === "User Already Exists"
+        userAlreadyExists: error.text?.msg === USER_EXISTS_IN_DATABASE_ERROR
       };
     };
   };  
@@ -39,8 +41,8 @@ export const login = (body) => {
 
 export const getUserRating = (movieID) => {
 	return async (dispatch, getState) => {
-    debugger;
-    if (getState().userRating.movies.some(item => item.movieId !== Number(movieID))) {
+    const movieExists = getState().userRating.movies.some(item => item.movieId !== Number(movieID))
+    if (movieExists) {
       try {
         const results = await Communication.get(DomainApi.get(`user/vote?movieId=${movieID}`))
   

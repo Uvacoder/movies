@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { 
   Menu,
   Layout,
-  Input 
 } from 'antd';
 import { 
   PlaySquareOutlined,
@@ -20,7 +19,6 @@ import SearchInput from '../SearchInput/SearchInput'
 
 const SEARCH_BAR_WIDTH = '300px';
 const { Header } = Layout;
-// const { Search } = Input;
 
 function LayoutHeader (props) {
  const renderSubMenu = (title, icon, menuItems) => {

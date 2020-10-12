@@ -49,9 +49,9 @@ class UserVote  extends React.Component {
       loading: false, 
     });
     this.props.saveUserRating({
-        "movieId": this.props.details.id,
-        "rateValue": this.state.rateValue,
-        "comment": this.state.commentValue
+        movieId: this.props.details.id,
+        rateValue: this.state.rateValue,
+        comment: this.state.commentValue
     });
     this.changeModalVisibility(false);
   };
