@@ -1,27 +1,55 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import "./Registration.scss"
 import {
   Form,
   Input,
-  Checkbox,
   Button,
+  notification ,
 } from 'antd';
 
 const REGISTRATION_NICKNAME_MIN_LENGHT = 3;
 const REGISTRATION_NICKNAME_MAX_LENGHT = 30;
 const REGISTRATION_PASSWORD_MIN_LENGHT = 6;
+const REGISTRATION_SUCCES_MESSAGE = "Succes!";
+const REGISTRATION_SUCCES_DESCRIPTION = "You can log in now.";
+const REGISTRATION_SUCCES_POSITION = "topRight";
+const REGISTRATION_SUCCES_MESSAGE_DURATION = 8;
 
-const Registration = () => {
+const Registration = (props) => {
   const [form] = Form.useForm();
+  const formRef = useRef(null);
 
   const onFinish = values => {
-    // TO DO SUBMIT VALUES TO BACKEND
+    props.register({
+      "username": values.nickname,
+      "password": values.password
+    }).then(({errors, userAlreadyExists} = {}) => {
+      if (errors) {
+        if (userAlreadyExists) {
+          formRef.current.setFields([
+            {
+              name: 'nickname',
+              errors: ['Username already taken.'],
+            },
+         ]);
+        }
+      } else {
+        notification.success({
+          message: REGISTRATION_SUCCES_MESSAGE,
+          description: REGISTRATION_SUCCES_DESCRIPTION,
+          placement: REGISTRATION_SUCCES_POSITION,
+          duration: REGISTRATION_SUCCES_MESSAGE_DURATION,
+        });
+        props.goToLogin()
+      }
+    })
   };
 
   return (
     <div className="registration">
       <div className="registration__title">Create an Account</div>
       <Form
+        ref={formRef}
         form={form}
         name="register"
         onFinish={onFinish}
@@ -84,7 +112,7 @@ const Registration = () => {
                 if (!value || getFieldValue('password') === value) {
                   return Promise.resolve();
                 }
-                return Promise.reject('The two passwords that you entered do not match!');
+                return Promise.reject('Passwords do not match!');
               },
             }),
           ]}
@@ -92,20 +120,6 @@ const Registration = () => {
           <Input.Password />
         </Form.Item>
         <div className='registration__footer'>
-          <Form.Item
-            name="agreement"
-            valuePropName="checked"
-            rules={[
-              {
-                validator: (_, value) =>
-                  value ? Promise.resolve() : Promise.reject('Please confirm!'),
-              },
-            ]}
-          >
-            <Checkbox>
-              I have read the <a href="">terms and conditions</a>
-            </Checkbox>
-          </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
               Register

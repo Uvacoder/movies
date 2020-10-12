@@ -1,7 +1,7 @@
 import React from 'react';
 import "./MovieSimilar.scss"
 import Carousel from 'react-multi-carousel';
-import Api from 'utils/Api';
+import TMDBApi from 'utils/TMDBApi';
 
 const NO_OF_ITEMS_SIMILAR_MOVIES = 6;
 const IMG_SIZE = 500;
@@ -25,7 +25,7 @@ const MovieSimilar = (props) => {
       <div className='movie-similar__container routed-image-carousel' onClick={() => props.routeToMovieDetails(item.id)}>
         <img 
             className='movie-similar__container-image ' 
-            src={ `${Api.getImgURL(IMG_SIZE)}${ item.poster_path }`} 
+            src={ `${TMDBApi.getImgURL(IMG_SIZE)}${ item.poster_path }`} 
             alt='poster'
             
         />

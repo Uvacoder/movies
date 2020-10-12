@@ -1,25 +1,32 @@
 import React from 'react';
 import "./LoginForm.scss"
 import { withRouter } from 'react-router-dom'
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Button } from 'antd';
 
 class LoginForm extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.formRef = React.createRef();
+  }
 
   onFinish = values => {
-    console.log('Success:', values);
-    this.props.history.push('/home')
-  };
-
-  onFinishFailed = errorInfo => {
-    console.log('Failed:', errorInfo);
-  };
-
-  validatePassword = (rule, value, callback) => {
-    if (value !== "admin") {
-      callback("Wrong password!");
-    } else {
-      callback();
-    }
+    this.props.login({
+      "username": values.username,
+      "password": values.password
+    }).then(({errors} = {}) => {
+      if (errors === false) {
+        localStorage.setItem('userName', values.username);
+        this.props.history.push('/home');
+      } else {
+        this.formRef.current.setFields([
+          {
+            name: 'password',
+            errors: ['Wrong password'],
+          },
+       ]);
+      };
+    });
   };
 
   render() {
@@ -28,12 +35,12 @@ class LoginForm extends React.Component {
         <div className="login-form__welcome">Sign In</div>
           <div className="login-form__container">
            <Form
+              ref={this.formRef}
               name="basic"
               initialValues={{
                 remember: true,
               }}
               onFinish={this.onFinish}
-              onFinishFailed={this.onFinishFailed}
               >
               <Form.Item
                 label="Username"
@@ -56,15 +63,9 @@ class LoginForm extends React.Component {
                   required: true,
                   message: 'Please input your password!',
                 },
-                { 
-                  validator: this.validatePassword,
-                },
                 ]}
               >
                 <Input.Password />
-              </Form.Item>
-              <Form.Item name="remember" valuePropName="checked">
-                  <Checkbox>Remember me</Checkbox>
               </Form.Item>
               <Form.Item >
                 <div className='login-form__container-buttons'>
@@ -76,7 +77,11 @@ class LoginForm extends React.Component {
                     Sign In
                   </Button>
                   <Button 
-                    onClick={ () => this.props.history.push('/home') }
+                    onClick={ () => {
+                      localStorage.setItem('userName', "");
+                      localStorage.setItem('token', null);
+                      this.props.history.push('/home')    
+                    }}
                     className='login-form__container-buttons-guest'
                   >
                     Continue as a Guest
@@ -89,8 +94,8 @@ class LoginForm extends React.Component {
           </Form>
         </div>
       </div>
-    )
-  }
+    );
+  };
 };
 
 export default withRouter(LoginForm) ;

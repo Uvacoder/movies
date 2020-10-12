@@ -15,8 +15,11 @@ const UserComment = (props) => {
     <TextArea 
       rows={rows}
       placeholder={placeholder}
-      value={inputValue}
-      onChange={e => setInputValue(e.target.value)}
+      value={inputValue || props.commentValue}
+      onChange={e => {
+        setInputValue(e.target.value)
+        props.updateCommentValue(e.target.value)
+      }}
     />
   )
 };
