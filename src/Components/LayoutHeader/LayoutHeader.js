@@ -18,6 +18,7 @@ import { withRouter } from 'react-router-dom'
 import SearchInput from '../SearchInput/SearchInput'
 
 const SEARCH_BAR_WIDTH = '300px';
+const NUMBER_OF_FIRST_API_PAGE = 1;
 const { Header } = Layout;
 
 function LayoutHeader (props) {

@@ -5,8 +5,16 @@
 }
 
 .search-results {
-  @extend %display-results;
   margin-top: -24px;
+
+  .infinite-scroll-component {
+    overflow: hidden !important; // to overwrite bugged inline style
+    @extend %display-results;
+  };
+
+  .infinite-scroll-component > :first-child {
+    margin-top: 12px;
+  };
 
   .search-results__content {
     @extend %display-results;
