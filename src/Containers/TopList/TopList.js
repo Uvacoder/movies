@@ -60,7 +60,17 @@ class TopList extends React.Component {
       return(
         <div className='top-list__content-item'>
           <span>{idx + 1}</span>
-          <SearchedMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/>
+          <SearchedMovies 
+            routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}
+            poster={item.poster_path}
+            title={item.title}
+            release_date={item.release_date}
+            runtime={item.details.runtime}
+            genres={item.details.genres.length !== 0 ? item.details.genres.map((item) => item.name).join(', ') : '–'}
+            director={item.details.credits.crew.find((item) => item.job === "Director").name}
+            vote_average={item.details.vote_average}
+            popularity={item.details.popularity}
+          />
         </div>
       );
     });

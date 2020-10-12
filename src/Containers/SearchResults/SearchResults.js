@@ -33,7 +33,17 @@ class SearchResults extends React.Component {
   getResults = () => {
     return this.props.searchResults.map((item) => {
       return (
-        <SearchedMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/> 
+        <SearchedMovies 
+          routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}
+          poster={item.details.poster_path}
+          title={item.details.title}
+          release_date={item.details.release_date}
+          runtime={item.details.runtime}
+          genres={item.details.genres?.length !== 0 ? item.details.genres.map((item) => item.name).join(', ') : '–'}
+          director={item.details.credits.crew.find((item) => item.job === "Director")?.name}
+          vote_average={item.details.vote_average}
+          popularity={item.details.popularity}
+        /> 
       );
     });
   };

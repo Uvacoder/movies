@@ -12,12 +12,11 @@ $bttn-color: #4390d8;
   };
 };
 
-.user-vote:hover{
+.user-vote:hover {
   color: yellow;
 };
 
-.user-vote__modal{
-
+.user-vote__modal {
   .ant-modal-content,
   .ant-modal-header{
     background-color: #85b1c0

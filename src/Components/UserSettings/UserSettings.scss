@@ -1,0 +1,70 @@
+.user-settings {
+  height: 100%;
+  width: 100%; 
+  background-image: url("../../Images/welcomepage.jpg");
+  color: white;
+  background-size: cover;
+  padding-top: 64px;
+  
+  .user-settings__items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    .user-settings__items-button{
+      background-color: #a32020;
+      transition: transform .2s;
+      border: none;
+      color: white;
+      height: 20%;
+      width: 50%;
+      border-radius: 15px;
+    }
+  
+    .user-settings__items-button:hover {
+        color: rgb(250, 250, 174);
+        transform: scale(1.1);
+    }
+  }
+  
+  .user-settings__divider {
+    color: white;
+    font-size: 1.5em;
+    margin-bottom: 1em;
+  }
+
+  .user-settings__header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4em;
+  }
+
+}
+
+.user-settings__modal{
+  .ant-modal-content,
+  .ant-modal-header{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.884);
+    border-bottom-color: red;
+  };
+
+  .ant-modal-footer {
+    border-top-color: red;
+
+    .ant-btn {
+      background-color: rgba(17, 51, 163, 0.637);
+      border: none;
+      border-radius: 8px;
+      color: white;
+    }
+
+    .ant-btn:hover {
+      color: yellow;
+    }
+  }
+  .ant-modal-title{
+    color: wheat
+  }
+}

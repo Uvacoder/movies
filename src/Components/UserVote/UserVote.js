@@ -1,14 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
 import "./UserVote.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
-import { Modal, Button } from 'antd';
+import { Modal, Button, notification } from 'antd';
 import UserRate from 'components/UserRate/UserRate'
 import UserComment from 'components/UserComment/UserComment'
-import { saveUserRating, getUserRating } from 'actions/UserActions'
-import { withRouter } from 'react-router-dom'
-
 
 const USER_VOTE_MAX_VALUE = 10;
 const USER_VOTE_DISPLAY_PERCENT = false;
@@ -16,20 +11,16 @@ const USER_VOTE_CHART_COLOR = 'lightgreen';
 const USER_COMMENT_PLACEHOLDER = 'Leave a comment so you can remember what you liked or disliked about this film.';
 const USER_RATE_TOOLTIPS = ['Misunderstanding','Very bad', 'Bad', 'Weak', 'Average', 'Decent', 'Good', 'Very Good', 'Fantastic', 'Masterpiece!' ];
 
-class UserVote  extends React.Component {
+class UserVote extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       loading: false,
       visible: false,
-      rateValue: 0,
-      commentValue: " ",
+      rateValue: null,
+      commentValue: "",
     };
-  };
-
-  componentDidMount() {
-    this.props.getUserRating(this.props.match.params.id)
   };
   
   changeModalVisibility = (visible) => {
@@ -45,15 +36,26 @@ class UserVote  extends React.Component {
   };
 
   handleOk = () => {
+    const votePresentInStore = this.props.currentMovieRating?.rateValue !== undefined
+    const votePresentInState = this.state.rateValue !== null
+    
     this.setState({ 
       loading: false, 
     });
-    this.props.saveUserRating({
-        movieId: this.props.details.id,
-        rateValue: this.state.rateValue,
-        comment: this.state.commentValue
-    });
-    this.changeModalVisibility(false);
+    if (!votePresentInStore && !votePresentInState) {
+      notification.info({
+        message: "Please leave a vote before submiting!",
+        placement: "topRight",
+        duration: 5,
+      });
+    } else {
+      this.props.saveUserRating({
+        movieId: this.props.currentMovieId,
+        rateValue: this.state.rateValue || this.props.currentMovieRating?.rateValue,
+        comment: this.state.commentValue || this.props.currentMovieRating?.comment
+      });
+      this.changeModalVisibility(false);
+    }
   };
 
   handleCancel = () => {
@@ -90,13 +92,13 @@ class UserVote  extends React.Component {
           <UserRate 
             updateRateValue={this.updateRateValue}
             tooltips={ USER_RATE_TOOLTIPS }
-            userRateValue={this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.rateValue}
+            userRateValue={this.props.currentMovieRating?.rateValue}
             />
           <p className='user-vote__modal-body-comment'>Your comment:</p>
           <UserComment 
             placeholder={ USER_COMMENT_PLACEHOLDER }
             updateCommentValue={this.updateCommentValue}
-            commentValue ={this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.comment}
+            commentValue ={this.props.currentMovieRating?.comment}
           />
         </div>
       </Modal>
@@ -111,7 +113,7 @@ class UserVote  extends React.Component {
           <span className='user-vote__title'>Your Vote:</span>
           <div className='user-vote__chart'>
             <DoughnutChart 
-              data={ this.state.rateValue || this.props.rating.filter( item => item.movieId === this.props.details.id)[0]?.rateValue } 
+              data={ this.state.rateValue || this.props.currentMovieRating?.rateValue }      
               maxValue={ USER_VOTE_MAX_VALUE } 
               percent={ USER_VOTE_DISPLAY_PERCENT } 
               chartColor= { USER_VOTE_CHART_COLOR }
@@ -123,17 +125,4 @@ class UserVote  extends React.Component {
     );
   };
 };
-
-const mapStateToProps = (state) => {
-  return {
-    details: state.movieDetails.details,
-    rating: state.userRating.movies,
-  };
-};
-
-const mapDispatchToProps = dispatch => bindActionCreators({
-  saveUserRating,
-  getUserRating
-}, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(UserVote))
+export default UserVote

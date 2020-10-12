@@ -15,6 +15,7 @@ const UpcommingMovie = (props) => {
         className='upcomming-container__image routed-image' 
         src={ item.poster_path ? `${IMAGE_URL}${ item.poster_path }` : ImgPlaceholder} 
         onClick={props.routeToMovieDetails}
+        alt=""
       />
       <div className='upcomming-container__details'>
         <div 

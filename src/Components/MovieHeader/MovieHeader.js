@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import "./MovieHeader.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import UserVote from 'components/UserVote/UserVote'
 import { Tooltip } from 'antd';
+import { withRouter } from 'react-router-dom'
+import { getUserRating, saveUserRating } from 'actions/UserActions'
 
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_DISPLAY_PERCENT = false;
@@ -22,6 +25,13 @@ const MovieHeader = (props) => {
     voteAverage,
     popularity
   } = props;
+  const dispatch = useDispatch();
+  const movieList = useSelector(state => state.userRating.movies);
+
+  useEffect(() => {
+    dispatch(getUserRating(props.match.params.id));
+  },[dispatch, props.match.params.id]);
+
 
   const displayUserVote = () => {
     if (localStorage.getItem('token') === "null") {
@@ -35,7 +45,11 @@ const MovieHeader = (props) => {
     } else
     return (
       <div className='movie-header__user-vote'>
-        <UserVote />
+        <UserVote 
+          currentMovieId={Number(props.match.params.id)} 
+          currentMovieRating = {movieList.find( item => item.movieId === Number(props.match.params.id))}
+          saveUserRating = {(...args) => dispatch(saveUserRating(...args))}
+        />
       </div>
     );
   };
@@ -85,4 +99,5 @@ MovieHeader.defaultProps = {
     popularity: 1
 };
 
-export default MovieHeader
+export default withRouter(MovieHeader)
+

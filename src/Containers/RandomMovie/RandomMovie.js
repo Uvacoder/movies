@@ -45,7 +45,7 @@ const RandomMovie = (props) => {
         </div> 
         <div className='random-movie__details-overwiev'>
           <div className='random-movie__details-overwiev-title'>
-            Overwiev: 
+            Overview: 
           </div >
           <Scrollbars autoHeight>
             <div className='random-movie__details-overwiev-content'>
@@ -68,12 +68,6 @@ const RandomMovie = (props) => {
   const renderVoteCharts = (movie) => {
     return (
       <>
-        <div className='random-movie__details-vote-wrapper-popularity'>
-          <div className='random-movie__details-vote-wrapper-popularity-name'>
-              Popularity:
-          </div>
-          <DoughnutChart data={ Math.floor(movie.popularity) }/>
-        </div>
         <div className='random-movie__details-vote-wrapper-average'>
           <div className='random-movie__details-vote-wrapper-average-name'>
             Vote average:
@@ -84,6 +78,12 @@ const RandomMovie = (props) => {
             percent={false} 
             chartColor= {movie.vote_average > VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE ? 'lightgreen' : 'Aquamarine' }
           />
+        </div>
+        <div className='random-movie__details-vote-wrapper-popularity'>
+          <div className='random-movie__details-vote-wrapper-popularity-name'>
+              Popularity:
+          </div>
+          <DoughnutChart data={ Math.floor(movie.popularity) }/>
         </div>
       </>
     );
