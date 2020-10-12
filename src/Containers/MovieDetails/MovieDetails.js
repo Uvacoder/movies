@@ -46,7 +46,6 @@ class MovieDetails extends React.Component {
       src:`${BACKDROP_API_PATH}${backdrop.file_path}`,
       thumbnail: `${BACKDROP_API_PATH}${backdrop.file_path}`,
       thumbnailWidth: Math.min(backdrop.width/THUMBNAIL_WIDTH_DIVIDER_VALUE, THUMBNAIL_WIDTH_MAX_VALUE ),
-      // thumbnailWidth: THUMBNAIL_WIDTH_MAX_VALUE,
       thumbnailHeight: THUMBNAIL_HEIGHT,
     }
   }
