@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useEffect } from 'react';
 import "./RandomMovie.scss"
 import DoughnutChart from 'components/DoughnutChart/DoughnutChart'
 import { useSelector, useDispatch } from 'react-redux'
@@ -6,8 +6,9 @@ import { fetchRandom } from 'actions/HomePageActions';
 import YouTube from 'react-youtube';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { routeToMovieDetails } from 'utils/Routing/Routing'
+import TMDBApi from 'utils/TMDBApi';
 
-const API_PATH = 'https://image.tmdb.org/t/p/w500'
+const IMG_SIZE = 500;
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE = 7;
 
@@ -90,7 +91,7 @@ const RandomMovie = () => {
 
   return (
     <div className='random-movie'>
-      {renderImage(`${API_PATH}${randomMovie.poster_path}`)}
+      {renderImage(`${TMDBApi.getImgURL(IMG_SIZE)}${randomMovie.poster_path}`)}
       <div className='random-movie__details'> 
         {renderDetails(randomMovie)}
         <div className='random-movie__details-vote-wrapper'>

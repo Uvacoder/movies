@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import "./HomePage.scss"
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchTrending,fetchUpcomming } from 'actions/HomePageActions'
+import { fetchTrending, fetchUpcomming, fetchRandom } from 'actions/HomePageActions'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Divider } from 'antd'
@@ -15,7 +15,6 @@ const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table l
 const NO_OF_UPCOMMING_ITEMS = 3;
 const NO_OF_ITEMS_TRENDING_CAROUSEL = 5;
 const IMG_SIZE = 500;
-const IMG_URL = 'https://image.tmdb.org/t/p/w500'
 const CAROUSEL_SLIDES_TO_SLIDE = 2
 const CAROUSEL_AUTOPLAY_DURATION = 5000;
 
@@ -41,11 +40,10 @@ function HomePage () {
       <div 
         className='home-page-container__trending-item routed-image-carousel' 
         onClick={() => dispatch(routeToMovieDetails(item.id))} 
-        // key={ item.id }
+        key={ item.id }
       >
         <img 
           className='home-page-container__trending-item-image' 
-          // src={ `${IMG_URL}${ item?.poster_path }` } 
           src={ `${TMDBApi.getImgURL(IMG_SIZE)}${ item.poster_path }`} 
           alt=''  
         />
@@ -70,7 +68,6 @@ function HomePage () {
           autoPlaySpeed={CAROUSEL_AUTOPLAY_DURATION}
         >
           { availableMovies.slice(0, NO_OF_TRENDING_ITEMS).map((item) => renderTrendingMovieBlock(item)) }
-          {/* { renderTrendingMovieBlock(availableMovies[1]) } */}
         </Carousel>
       </div> 
       </div>
@@ -95,7 +92,9 @@ function HomePage () {
   return (
     <div className='home-page-container'>
       <div className='home-page-container__random'>
-        <Divider className='home-page-container__main-title' orientation='left'>Don't know what to watch? Consider this title:</Divider>
+        <Divider className='home-page-container__main-title' orientation='center'>
+          Consider this movie or draw <a onClick={ () => dispatch(fetchRandom()) }>another one</a>
+        </Divider>
         <RandomMovie />
       </div> 
       <div className='home-page-container__trending' > 

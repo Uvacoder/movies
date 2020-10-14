@@ -7,8 +7,10 @@ export const FETCH_UPCOMMING ='homePage/FETCH_UPCOMMING';
 export const FETCH_RANDOM ='homePage/FETCH_RANDOM';
 export const CLEANUP_RANDOM ='homePage/CLEANUP_RANDOM';
 
-const randomMoviePage = Calculation.randomInt(1, 100);
-const randomMovie = Calculation.randomInt(1, 20);
+const FIRST_PAGE_TO_DRAW = 1;
+const LAST_PAGE_TO_DRAW = 100;
+const FIRST_MOVIE_TO_DRAW = 1;
+const LAST_MOVIE_TO_DRAW = 20;
 
 export const fetchTrending = () => {
 	return async dispatch => {
@@ -49,6 +51,9 @@ export const fetchUpcomming = () => {
 }; 
 
 export const fetchRandom = () => {
+	const randomMoviePage = Calculation.randomInt(FIRST_PAGE_TO_DRAW, LAST_PAGE_TO_DRAW);
+	const randomMovie = Calculation.randomInt(FIRST_MOVIE_TO_DRAW, LAST_MOVIE_TO_DRAW);
+
 	return async dispatch => {
 		try {
 			const movies = await Communication.get(TMDBApi.get('discover/movie',{
