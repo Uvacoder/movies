@@ -25,12 +25,11 @@ function getMethod(type) {
     const URLObject = new URL('', url)
     
     if(URLObject.hostname === "localhost" || URLObject.hostname === "movielounge.com") {  
-      debugger;
       fetchParams.headers.token =  localStorage.getItem('token');
     };
 
     try {
-      // window.store.dispatch(changeLoadingStatus()) // TO DO
+      // store.dispatch(changeLoadingStatus()) // TO DO
       const response = await fetch(url, fetchParams);
 
       return response.json().then(json => {

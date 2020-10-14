@@ -80,6 +80,11 @@ function LayoutHeader (props) {
   
     return renderSubMenu('Hyde Park',<SmileOutlined />, menuItems)
   }
+
+  const logOut = () => {
+    localStorage.setItem('userName', null);
+    localStorage.setItem('token', null);
+  }
   
   const renderYouProfileMenu = () => {
     const menuItems = [{
@@ -91,10 +96,7 @@ function LayoutHeader (props) {
     },{
       title: 'Log Out',
       url:"/",
-      onClick: () => {
-        localStorage.setItem('userName', "");
-        localStorage.setItem('token', null);
-      }
+      onClick: () => { logOut() }
     }]
 
     const guestMenuItems = [{

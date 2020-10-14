@@ -1,6 +1,7 @@
 .movie-details-container {
   display: flex;
   flex-direction: column;
+  max-width: 1056px;
 
   .movie-details-container__overwiev{
     display: flex;

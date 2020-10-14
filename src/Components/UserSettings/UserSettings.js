@@ -5,6 +5,10 @@ import { withRouter } from 'react-router-dom'
 import { deleteUserAccount } from 'actions/UserActions'
 import { useDispatch } from 'react-redux'
 
+const ACCOUNT_DELETED_MESSAGE = "Account deleted.";
+const ACCOUNT_DELETED_MESSAGE_POSITION = "topRight";
+const ACCOUNT_DELETED_MESSAGE_DURATION = 4;
+
 function UserSettings (props) {
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false)
@@ -20,13 +24,13 @@ function UserSettings (props) {
   const deleteAccount = () => {
     if (localStorage.getItem("token") !== "null") {
       dispatch(deleteUserAccount());
-      localStorage.setItem('userName', "");
+      localStorage.setItem('userName', null);
       localStorage.setItem('token', null);
       setVisible(false)
       notification.info({
-        message: "Account deleted.",
-        placement: "topRight",
-        duration: 5,
+        message: ACCOUNT_DELETED_MESSAGE,
+        placement: ACCOUNT_DELETED_MESSAGE_POSITION,
+        duration: ACCOUNT_DELETED_MESSAGE_DURATION,
       });
     } 
     props.history.push('/')  

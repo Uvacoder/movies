@@ -21,6 +21,12 @@ class WelcomePage extends React.Component {
   componentDidMount() {
     window.particlesJS.load('particles-js', './particles.json');
   }
+
+  logOut = () => {
+    localStorage.setItem('token', null);
+    localStorage.setItem('userName', null);
+    this.setState({loginForm: true})
+  }
   renderContent = () => {
     if (localStorage.getItem("token") !== "null") {
       return (
@@ -28,11 +34,7 @@ class WelcomePage extends React.Component {
           <Button onClick={() => this.props.history.push('/home')}>
             <span>Continue as <b>{localStorage.getItem('userName')}</b></span>
           </Button>
-          <Button onClick={ () => {
-            localStorage.setItem('token', "null");
-            localStorage.setItem('userName', "");
-            this.setState({loginForm: true})
-          }}>
+          <Button onClick={ () => {this.logOut()} }>
             Switch to a diffrent account
           </Button>
         </div>

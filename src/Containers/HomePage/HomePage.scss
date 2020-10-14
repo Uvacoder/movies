@@ -16,9 +16,7 @@
   grid-gap: 20px;
   height: 100%;
 
-  .home-page-container__main-title {
-    @extend %display-divider;
-  }
+
 }
 
 .home-page-container__random {
@@ -27,7 +25,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .home-page-container__main-title {
+    @extend %display-divider; 
+  }
+
+  .ant-divider-horizontal.ant-divider-with-text::before,
+  .ant-divider-horizontal.ant-divider-with-text::after{
+    position: initial;
+  }
 }
+
 .home-page-container__upcomming{
   grid-column-start: 2;
   grid-column-end: 4;
@@ -36,41 +44,55 @@
   .home-page-container__upcomming-title{
     @extend %display-divider;
   }
-    
 }   
 
-.home-page-container__trending {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  @extend %display-items;
-  flex-grow: 1;
-  display: block;
+// .test{
+  // display: flex;
+  // flex-direction: column;
 
-  .home-page-container-trending-title{
-    @extend %display-divider;
-  }
+  .home-page-container__trending {
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    // @extend %display-items;
+    // flex-grow: 1;
+    // display: flex;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+    // user-select: none;
 
-  .home-page-container__trending-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-
-    img {
-      min-height: 325px;
+    .react-multi-carousel-track {
+      // transition: transform 400ms ease-in-out 0s !important;
     }
-
-    .home-page-container__trending-item-image {
-      width:95%;
-      height:100%;
-      border-radius: 8px;
-      pointer-events: none;
+  
+    .home-page-container-trending-title{
+      @extend %display-divider;
     }
-
-    .home-page-container__trending-item-title {
-      font-size: large;
+  
+    .home-page-container__trending-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+  
+      img {
+        min-height: 325px;
+      }
+  
+      .home-page-container__trending-item-image {
+        width:95%;
+        height:100%;
+        border-radius: 8px;
+        pointer-events: none;
+      }
+  
+      .home-page-container__trending-item-title {
+        font-size: large;
+      };
     };
   };
-};
+  
+// }
