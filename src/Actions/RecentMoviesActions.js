@@ -7,49 +7,53 @@ export const FETCH_NEXT_PAGE_OF_RECENT_MOVIES = 'recent/FETCH_NEXT_PAGE_OF_RECEN
 
 export const fetchRecentMovies = (type) => {
 	return async dispatch => {
-		const searched = await Communication.get(TMDBApi.get(`${getRecentMoviesTypeUrl(type)}`, {
-			language:'en-US',
-			page: '1',
-			region:'US'
-		}));
-
-		await Promise.all(searched.results.map(async item => {
-			const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
-				append_to_response: 'credits'
-			}));	
-			item.details = searchedDetails; 
-		}));
-
-		dispatch({ 
-			type: FETCH_RECENT_MOVIES,
-			recentMovies: searched.results,
-			numberOfPages: searched.total_pages
-		});
+		try {
+			const searched = await Communication.get(TMDBApi.get(`${getRecentMoviesTypeUrl(type)}`, {
+				language:'en-US',
+				page: '1',
+				region:'US'
+			}));
+	
+			await Promise.all(searched.results.map(async item => {
+				const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
+					append_to_response: 'credits'
+				}));	
+				item.details = searchedDetails; 
+			}));
+	
+			dispatch({ 
+				type: FETCH_RECENT_MOVIES,
+				recentMovies: searched.results,
+				numberOfPages: searched.total_pages
+			});
+		} catch (error) {
+			console.error('TBMD API fetching recent movies', error)
+		};
 	};  
 };
 
 export const fetchNextPageOfRecentMovies = (type, page) => {
 	return async dispatch => {
-		const searched = await Communication.get(TMDBApi.get(`${getRecentMoviesTypeUrl(type)}`, {
-			language:'en-US',
-			page,
-			region:'US'
-		}));
-
-		await Promise.all(searched.results.map(async item => {
-			try {
-				const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
-					append_to_response: 'credits'
-				}));	
-				item.details = searchedDetails; 
-			}
-			catch(error) {
-			}
-		}));
-
-		dispatch({ 
-			type: FETCH_NEXT_PAGE_OF_RECENT_MOVIES,
-			recentMovies: searched.results,
-		});
+		try {
+			const searched = await Communication.get(TMDBApi.get(`${getRecentMoviesTypeUrl(type)}`, {
+				language:'en-US',
+				page,
+				region:'US'
+			}));
+	
+			await Promise.all(searched.results.map(async item => {
+					const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
+						append_to_response: 'credits'
+					}));	
+					item.details = searchedDetails; 
+				}));
+	
+			dispatch({ 
+				type: FETCH_NEXT_PAGE_OF_RECENT_MOVIES,
+				recentMovies: searched.results,
+			});
+		} catch (error) {
+			console.error('TBMD API fetching recent movies', error)
+		};
 	};  
 }; 

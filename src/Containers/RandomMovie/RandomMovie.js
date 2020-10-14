@@ -4,25 +4,20 @@ import DoughnutChart from 'components/DoughnutChart/DoughnutChart'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchRandom } from 'actions/HomePageActions';
 import YouTube from 'react-youtube';
-import Calculation from 'utils/Calculation';
 import { Scrollbars } from 'react-custom-scrollbars';
 import { routeToMovieDetails } from 'utils/Routing/Routing'
 
-const NO_OF_FIRST_RANDOM_ITEM = 0;
-const NO_OF_LAST_LAST_ITEM = 20; // No more than 20, <- maximum TMDB API table length.
 const API_PATH = 'https://image.tmdb.org/t/p/w500'
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE = 7;
 
-const RandomMovie = (props) => {
-  const randomMovie = useSelector(state => state.homePage.random.items);
-  const [randomMovieId] = useState(Calculation.randomInt(NO_OF_FIRST_RANDOM_ITEM, NO_OF_LAST_LAST_ITEM));
+const RandomMovie = () => {
+  const randomMovie = useSelector(state => state.homePage.random);
   const dispatch = useDispatch();
-  const currentMovie = randomMovie[randomMovieId];
 
   useEffect(() => {
-    dispatch(fetchRandom(randomMovieId));
-  },[dispatch, randomMovieId]);
+    dispatch(fetchRandom());
+  },[dispatch]);
 
   const renderImage = (imgPath) => {
     return (
@@ -30,7 +25,7 @@ const RandomMovie = (props) => {
         className='random-movie__image routed-image' 
         src={imgPath} 
         alt='poster'
-        onClick={() => dispatch(routeToMovieDetails(currentMovie.id))}
+        onClick={() => dispatch(routeToMovieDetails(randomMovie.id))}
       />
     );
   };
@@ -89,21 +84,21 @@ const RandomMovie = (props) => {
     );
   };
 
-  if (!currentMovie || !currentMovie.videoKey[0]) {
+  if (!randomMovie || !randomMovie.videoKey) {
     return null;
   }
 
   return (
     <div className='random-movie'>
-      {renderImage(`${API_PATH}${currentMovie.poster_path}`)}
+      {renderImage(`${API_PATH}${randomMovie.poster_path}`)}
       <div className='random-movie__details'> 
-        {renderDetails(currentMovie)}
+        {renderDetails(randomMovie)}
         <div className='random-movie__details-vote-wrapper'>
-          {renderVoteCharts(currentMovie)}
+          {renderVoteCharts(randomMovie)}
         </div>
       </div>
       <div className='random-movie__trailer'>
-        <YouTube videoId={ currentMovie.videoKey[0].key }  />
+        <YouTube videoId={ randomMovie.videoKey.key }  />
       </div>   
     </div>
   );

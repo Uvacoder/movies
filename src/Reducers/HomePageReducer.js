@@ -11,10 +11,7 @@ const initialState = {
   upcomming: {
     items: []
   },
-  random: {
-    items: [],
-    videoKey: []
-  }
+  random: {}
 };
 
 export function homePage (state = initialState,action) {
@@ -33,5 +30,5 @@ export function homePage (state = initialState,action) {
     })
   default:
     return state;
-  }
-}
+  };
+};

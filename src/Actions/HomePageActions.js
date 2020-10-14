@@ -8,22 +8,28 @@ export const FETCH_RANDOM ='homePage/FETCH_RANDOM';
 export const CLEANUP_RANDOM ='homePage/CLEANUP_RANDOM';
 
 const randomMoviePage = Calculation.randomInt(1, 100);
+const randomMovie = Calculation.randomInt(1, 20);
 
 export const fetchTrending = () => {
 	return async dispatch => {
-		const movies = await Communication.get(TMDBApi.get('trending/all/day'))
+		try {
+			const movies = await Communication.get(TMDBApi.get('trending/all/day'))
 
 			dispatch({ 
 				type: FETCH_TRENDING,
 				trending: {
 					items: movies.results,
 				}
-		})
+			})
+		} catch (error) {
+			console.error('TBMD API fetching trending', error)
+		};
 	};  
 }; 
 
 export const fetchUpcomming = () => {
 	return  async dispatch => {
+		try {
 			const movies = await Communication.get(TMDBApi.get('movie/upcoming',{
 				language: 'en-US',
 				page: '1',
@@ -36,32 +42,35 @@ export const fetchUpcomming = () => {
 					items: movies.results,
 				}
 			})
+		} catch (error) {
+			console.error('TBMD API fetching upcomming', error)
+		};
 	};  
 }; 
 
-export const fetchRandom = (randomMovieId) => {
+export const fetchRandom = () => {
 	return async dispatch => {
-		const movies = await Communication.get(TMDBApi.get('discover/movie',{
+		try {
+			const movies = await Communication.get(TMDBApi.get('discover/movie',{
 				language: 'en-US',
 				sort_by: 'vote_count.desc',
 				include_adult: 'false',
 				include_video: 'true',
 				page: randomMoviePage
 			}));
-		const items = movies.results;
+			const videoKeyResult = await Communication.get(TMDBApi.get(`movie/${movies.results[randomMovie].id}/videos`, {
+					language: 'en-US',
+				}));	
+			const shuffledMovie = movies.results[randomMovie];
 
-		await Promise.all(items.map(async item => {
-		const videoKeyResult = await Communication.get(TMDBApi.get(`movie/${item.id}/videos`,{
-				language: 'en-US',
-			}));	
-			item.videoKey = videoKeyResult.results; 
-		}));
+			shuffledMovie.videoKey = videoKeyResult.results[0];
 
-		dispatch({ 
-			type: FETCH_RANDOM,
-			random: {
-				items: movies.results,
-			}
-		})
+			dispatch({ 
+				type: FETCH_RANDOM,
+				random: shuffledMovie
+			});
+		} catch (error) {
+			console.error('TBMD API random movie', error)
+		};
 	};  
 };

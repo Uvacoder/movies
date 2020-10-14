@@ -34,6 +34,7 @@ export function fetchMovieDetails(Id) {
 				externalIds
 			});	
 		} catch (error) {
+			console.error('TBMD API fetching movie details', error)
 		}
 	};   
 };

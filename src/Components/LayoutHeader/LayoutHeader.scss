@@ -48,11 +48,10 @@ $on-hover-color: rgb(255,215,0);
 
 .home-header {
   display: flex;
-  width: 15%;
-  margin-left: -4%;
+  padding-right: 0;
 
   .anticon {
-    font-size: 40px;
+    font-size: 25px;
 
     svg {
       color: $search-bar-color;
@@ -62,6 +61,8 @@ $on-hover-color: rgb(255,215,0);
   .ant-menu-item{
     display: flex;
     align-items: center;
+    padding-right: 0;
+    padding-left: 0;
   }
 }
 
@@ -76,7 +77,5 @@ $on-hover-color: rgb(255,215,0);
 }
 
 .your-profile {
-  width: 15%;
-  margin-right: -4%;
   text-overflow: ellipsis;
 }

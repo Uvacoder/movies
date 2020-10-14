@@ -28,7 +28,13 @@ class WelcomePage extends React.Component {
     this.setState({loginForm: true})
   }
   renderContent = () => {
-    if (localStorage.getItem("token") !== "null") {
+    if (localStorage.getItem("token") === "null" || !localStorage.getItem("token")) {
+      if (this.state.loginForm) {
+        return <LoginForm login={this.props.login} goTo={this.goToRegistration} />
+      } else {
+        return <Registration register={this.props.register} goToLogin={this.goToLogin}/>
+      };
+    } else {
       return (
         <div className="welcome-page__action-form-logged">
           <Button onClick={() => this.props.history.push('/home')}>
@@ -38,16 +44,10 @@ class WelcomePage extends React.Component {
             Switch to a diffrent account
           </Button>
         </div>
-      )
-    } else {
-      if (this.state.loginForm) {
-        return <LoginForm login={this.props.login} goTo={this.goToRegistration} />
-      } else {
-        return <Registration register={this.props.register} goToLogin={this.goToLogin}/>
-      };
+      );
     };
   };
-  
+
   goToRegistration = () => {
     this.setState({
       loginForm: false

@@ -117,6 +117,7 @@ function LayoutHeader (props) {
       <div className='home-header'>
         <Menu className ='nav-bar-menu__title' theme="dark" mode="horizontal" >  
           <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
+          {/* <Menu.Item key="1" > */}
             <Link to ="/home" > Movie Lounge</Link>
           </Menu.Item>
         </Menu>
