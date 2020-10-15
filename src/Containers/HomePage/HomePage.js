@@ -59,7 +59,7 @@ function HomePage () {
     const availableMovies = trendingList.filter(movie => movie.title || movie.orginal_title)
     return (
       <div className='test'>
-      <div style={{width: '100%'}}>
+      <div className="home-page-container__trending-carousel">
         <Carousel 
           responsive={trendingCarouselResponsive}
           infinite={true}
@@ -98,7 +98,7 @@ function HomePage () {
         <RandomMovie />
       </div> 
       <div className='home-page-container__trending' > 
-        <Divider className='home-page-container-trending-title' orientation='left'>Trending today</Divider>
+      <Divider className='home-page-container-trending-title' orientation='left'>Trending today</Divider>
         { renderTrending() }
       </div>
       <div className='home-page-container__upcomming'>

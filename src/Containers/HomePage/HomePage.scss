@@ -1,3 +1,6 @@
+$contnet-width: 1056px;
+$content-padding: 24px;
+
 %display-items {
   display: flex;
   justify-content: space-evenly;
@@ -15,8 +18,6 @@
   grid-template-columns: 2fr 1fr;
   grid-gap: 20px;
   height: 100%;
-
-
 }
 
 .home-page-container__random {
@@ -46,53 +47,41 @@
   }
 }   
 
-// .test{
-  // display: flex;
-  // flex-direction: column;
+.home-page-container__trending {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 3;
 
-  .home-page-container__trending {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row-start: 3;
-    // @extend %display-items;
-    // flex-grow: 1;
-    // display: flex;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
-    // user-select: none;
+  .home-page-container__trending-carousel{
+    width: 100%;
+    max-width: ($contnet-width - 2 * $content-padding); // carousel bug in firefox workaround
+  }
 
-    .react-multi-carousel-track {
-      // transition: transform 400ms ease-in-out 0s !important;
+  .home-page-container-trending-title{
+    @extend %display-divider;
+  }
+
+  .home-page-container__trending-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+
+    img {
+      min-height: 325px;
     }
-  
-    .home-page-container-trending-title{
-      @extend %display-divider;
+
+    .home-page-container__trending-item-image {
+      width:95%;
+      height:100%;
+      border-radius: 8px;
+      pointer-events: none;
     }
-  
-    .home-page-container__trending-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-  
-      img {
-        min-height: 325px;
-      }
-  
-      .home-page-container__trending-item-image {
-        width:95%;
-        height:100%;
-        border-radius: 8px;
-        pointer-events: none;
-      }
-  
-      .home-page-container__trending-item-title {
-        font-size: large;
-      };
+
+    .home-page-container__trending-item-title {
+      font-size: large;
     };
   };
-  
-// }
+};
+
