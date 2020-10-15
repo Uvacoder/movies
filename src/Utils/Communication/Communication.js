@@ -44,7 +44,7 @@ function getMethod(type) {
           message: "Ups! Something went wrong :(",
           description: "Please, try again later.",
           placement: "topRight",
-          duration: 5,
+          duration: 3.2,
         });
       }
       throw err;

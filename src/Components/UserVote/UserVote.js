@@ -46,7 +46,7 @@ class UserVote extends React.Component {
       notification.info({
         message: "Please leave a vote before submiting!",
         placement: "topRight",
-        duration: 5,
+        duration: 3.2,
       });
     } else {
       this.props.saveUserRating({

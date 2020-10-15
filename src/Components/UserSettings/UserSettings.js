@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 
 const ACCOUNT_DELETED_MESSAGE = "Account deleted.";
 const ACCOUNT_DELETED_MESSAGE_POSITION = "topRight";
-const ACCOUNT_DELETED_MESSAGE_DURATION = 4;
+const ACCOUNT_DELETED_MESSAGE_DURATION = 3.2;
 
 function UserSettings (props) {
   const dispatch = useDispatch();

@@ -2,6 +2,8 @@ import React from 'react';
 import "./MovieCast.scss"
 import Carousel from 'react-multi-carousel';
 import TMDBApi from 'utils/TMDBApi';
+import AvatarPlaceholderMan from '../../Images/avatarPlaceholderMan.svg'
+import AvatarPlaceholderWoman from '../../Images/avatarPlaceholderWoman.svg'
 
 const MOVIE_CAST_NO_OF_CAROUSEL_ITEMS = 6;
 const IMG_SIZE = 500;
@@ -17,18 +19,25 @@ const MovieCast = (props) => {
       breakpoint: { max: Infinity, min: 0 },
       items: MOVIE_CAST_NO_OF_CAROUSEL_ITEMS
     }
-  };  
+  };
+
+  const renderPlaceholder = (gender) => {
+    if (gender === 1) {
+      return AvatarPlaceholderWoman
+    }
+    return AvatarPlaceholderMan
+  }
 
   const renderCastBlock = (item) => {
   return (
     <div className='movie-cast__container'>
       <img 
           className='movie-cast__container-image' 
-          src={ `${TMDBApi.getImgURL(IMG_SIZE)}${ item?.profile_path }`} 
+          src={ item.profile_path ? `${TMDBApi.getImgURL(IMG_SIZE)}${ item.profile_path }` : renderPlaceholder(item.gender) } 
           alt=''
       />
-      <div className='movie-cast__container-name'>{ item?.name}</div>
-      <div className='movie-cast__container-character'>{ item?.character}</div>
+      <div className='movie-cast__container-name'>{ item.name}</div>
+      <div className='movie-cast__container-character'>{ item.character}</div>
     </div>
     )
   }
@@ -42,7 +51,8 @@ const MovieCast = (props) => {
           autoPlay={false}
           slidesToSlide={CAROUSEL_SLIDES_TO_SLIDE}
         >
-          { castItems.filter((item) => item.profile_path).map((item) => renderCastBlock(item)) }
+          {/* { castItems.filter((item) => item.profile_path).map((item) => renderCastBlock(item)) } */}
+          { castItems.map((item) => renderCastBlock(item)) }
         </Carousel>
       </div>   
     </div>

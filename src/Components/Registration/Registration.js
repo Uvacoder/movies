@@ -13,7 +13,7 @@ const REGISTRATION_PASSWORD_MIN_LENGHT = 6;
 const REGISTRATION_SUCCES_MESSAGE = "Succes!";
 const REGISTRATION_SUCCES_DESCRIPTION = "You can log in now.";
 const REGISTRATION_SUCCES_POSITION = "topRight";
-const REGISTRATION_SUCCES_MESSAGE_DURATION = 8;
+const REGISTRATION_SUCCES_MESSAGE_DURATION = 3.2;
 
 const Registration = (props) => {
   const [form] = Form.useForm();

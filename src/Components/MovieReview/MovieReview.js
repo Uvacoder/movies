@@ -3,7 +3,7 @@ import { Card } from 'antd';
 import "./MovieReview.scss"
 import { Scrollbars } from 'react-custom-scrollbars';
 
-const MOVIE_REVIEW_CARD_WIDTH = 350;
+const MOVIE_REVIEW_CARD_WIDTH = 315;
 
 const MovieReview = (props) => {
   const {

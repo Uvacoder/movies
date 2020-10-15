@@ -39,7 +39,7 @@
     .movie-header-votes-average,
     .movie-header-votes-popularity {
       z-index: 1;
-      height: 200px;
+      height: 150px;
       width: 150px;
       display: flex;
       flex-direction: column;
@@ -49,6 +49,7 @@
       .movie-header-votes-average-title,
       .movie-header-votes-popularity-title{
           font-weight: 600;
+          margin-bottom: 10px;
       };
     };
   };

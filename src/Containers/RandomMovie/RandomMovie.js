@@ -72,7 +72,7 @@ const RandomMovie = () => {
             data={movie.vote_average} 
             maxValue={VOTE_AVERAGE_MAX_VALUE} 
             percent={false} 
-            chartColor= {movie.vote_average > VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE ? 'lightgreen' : 'Aquamarine' }
+            // chartColor= {movie.vote_average > VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE ? 'lightgreen' : 'Aquamarine' }
           />
         </div>
         <div className='random-movie__details-vote-wrapper-popularity'>
