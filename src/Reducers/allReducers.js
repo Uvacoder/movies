@@ -6,6 +6,7 @@ import { searchResults } from './SearchReducer'
 import { topListOfMovies } from './TopListReducer'
 import { recentMovies } from './RecentMoviesReducer'
 import { userRating } from './UserReducer'
+import { randomGifGenerator } from './RandomGifGeneratorReducer'
 import { connectRouter } from 'connected-react-router'
 
 const allReducers = (history) => combineReducers({
@@ -15,6 +16,7 @@ const allReducers = (history) => combineReducers({
 	searchResults,
 	topListOfMovies,
 	recentMovies,
+	randomGifGenerator,
 	userRating,
 	router: connectRouter(history),
 })

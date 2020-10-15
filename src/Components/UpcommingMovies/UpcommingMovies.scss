@@ -14,10 +14,11 @@
   border-radius: 8px;
   
   .upcomming-container__image {
-  // width: 200px;
+  max-width: 187px;
   height: 280px;
   margin-right: 20px;
   border-radius: 8px;
+  margin-right: 5px;
   }
 
   .upcomming-container__details {
@@ -31,6 +32,10 @@
     .upcomming-container__details-title {
       font-size: large;
       font-weight: bold;
+      max-height: 84px;
+      max-width: 122px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }    
 
     .upcomming-container__details-popularity {

@@ -2,7 +2,7 @@ import React from 'react';
 import './Roots.scss'
 import { Route } from "react-router-dom";
 import HomePage from 'containers/HomePage/HomePage'
-import RandomGifGenerator from 'components/RandomGifGenerator/RandomGifGenerator'
+import RandomGifGenerator from 'containers/RandomGifGenerator/RandomGifGenerator'
 import MovieDetails from 'containers/MovieDetails/MovieDetails'
 import SearchResults from 'containers/SearchResults/SearchResults'
 import About from 'components/About/About'

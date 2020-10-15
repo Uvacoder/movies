@@ -25,7 +25,7 @@ function getMethod(type) {
     const URLObject = new URL('', url)
     
     if(URLObject.hostname === "localhost" || URLObject.hostname === "movielounge.com") {  
-      fetchParams.headers.token =  localStorage.getItem('token');
+      fetchParams.headers.token = localStorage.getItem('token');
     };
 
     try {
