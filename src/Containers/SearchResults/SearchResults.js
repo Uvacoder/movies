@@ -17,7 +17,7 @@ class SearchResults extends React.Component {
     super(props);
 
     this.state = {
-        currentPage: 1
+      currentPage: 1
     };
   };
 

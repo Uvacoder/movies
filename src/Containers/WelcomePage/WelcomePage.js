@@ -23,12 +23,12 @@ class WelcomePage extends React.Component {
   }
 
   logOut = () => {
-    localStorage.setItem('token', null);
-    localStorage.setItem('userName', null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('userName');
     this.setState({loginForm: true})
   }
   renderContent = () => {
-    if (localStorage.getItem("token") === "null" || !localStorage.getItem("token")) {
+    if (!localStorage.getItem("token")) {
       if (this.state.loginForm) {
         return <LoginForm login={this.props.login} goTo={this.goToRegistration} />
       } else {

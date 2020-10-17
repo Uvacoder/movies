@@ -4,6 +4,13 @@
 // import { changeLoadingStatus } from 'actions/GlobalActions';
 import { notification } from 'antd';
 
+const COMMUNICATION_ERROR_MESSAGE = "Ups! Something went wrong :(";
+const COMMUNICATION_ERROR_DESCRIPTION = "Please, try again later.";
+const COMMUNICATION_ERROR_PLACEMENT = "topRight";
+const COMMUNICATION_ERROR_DURATION = 3.2;
+const COMMUNICATION_LOCAL_HOSTNAME = "localhost";
+const COMMUNICATION_WEB_PAGE_HOSTNAME = "movielounge.com";
+
 class ApiError extends Error {
   constructor(message, text) {
     super(message);
@@ -24,7 +31,7 @@ function getMethod(type) {
     };  
     const URLObject = new URL('', url)
     
-    if(URLObject.hostname === "localhost" || URLObject.hostname === "movielounge.com") {  
+    if(URLObject.hostname === COMMUNICATION_LOCAL_HOSTNAME || URLObject.hostname === COMMUNICATION_WEB_PAGE_HOSTNAME) {  
       fetchParams.headers.token = localStorage.getItem('token');
     };
 
@@ -41,10 +48,10 @@ function getMethod(type) {
     } catch (err) {
       if (!(err instanceof ApiError)) {
         notification.error({
-          message: "Ups! Something went wrong :(",
-          description: "Please, try again later.",
-          placement: "topRight",
-          duration: 3.2,
+          message: COMMUNICATION_ERROR_MESSAGE,
+          description: COMMUNICATION_ERROR_DESCRIPTION,
+          placement: COMMUNICATION_ERROR_PLACEMENT,
+          duration: COMMUNICATION_ERROR_DURATION,
         });
       }
       throw err;

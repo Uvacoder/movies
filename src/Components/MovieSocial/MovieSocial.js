@@ -18,7 +18,7 @@ const MovieSocial = (props) => {
 
   const renderSocialTag = (propName, imgPath) => {
     return (
-      <a href={propName}>
+      <a href={ propName ? propName : undefined }>
         <img 
           className={ !propName && 'img-disabled' } 
           src={ imgPath } 

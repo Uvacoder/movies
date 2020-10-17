@@ -19,6 +19,8 @@
   grid-template-columns: 1fr 1.6fr 1fr;
   grid-gap: 10px;
   height: 100%;
+  border-radius: 12px;
+  background: radial-gradient(#053b69, #042f56, #022748, #032646);
 
   .movie-overview__poster{
     grid-column-start: 1;

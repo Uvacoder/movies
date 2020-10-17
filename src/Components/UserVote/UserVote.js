@@ -31,7 +31,7 @@ class UserVote extends React.Component {
 
   displayModal = () => { 
     return (
-      localStorage.getItem('token') !== "null" ? () => this.changeModalVisibility(true) : null
+      localStorage.getItem('token') ? () => this.changeModalVisibility(true) : null
     );
   };
 

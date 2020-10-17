@@ -5,8 +5,10 @@ import { bindActionCreators } from 'redux';
 import { fetchMovieDetails } from 'actions/MovieActions'
 import { getUserRating } from 'actions/UserActions'
 import { Divider } from 'antd'
-import TMDBApi from 'utils/TMDBApi';
+import { routeToMovieDetails } from 'utils/Routing/Routing'
 import { withRouter } from 'react-router-dom'
+import TMDBApi from 'utils/TMDBApi';
+import ImgPlaceholder from '../../Images/imgPlaceholder.svg'
 import MovieHeader from 'components/MovieHeader/MovieHeader'
 import MovieOverwiev from 'components/MovieOverview/MovieOverview'
 import MovieCast from 'components/MovieCast/MovieCast'
@@ -15,8 +17,6 @@ import MovieImages from 'components/MovieImages/MovieImages'
 import MovieSimilar from 'components/MovieSimilar/MovieSimilar'
 import MovieReview from 'components/MovieReview/MovieReview'
 import MovieSocial from 'components/MovieSocial/MovieSocial'
-import { routeToMovieDetails } from 'utils/Routing/Routing'
-import ImgPlaceholder from '../../Images/imgPlaceholder.svg'
 
 const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
 const POSTER_WIDTH = 500;
@@ -38,6 +38,7 @@ class MovieDetails extends React.Component {
   filterDirector = () => {
     return this.props.details.credits?.crew?.filter((item) => item.job === "Director")?.[0]?.name
   }
+
   filterWriters = () => {
     return this.props.details.credits?.crew?.filter((item) => item.department === "Writing")?.map((item) => item.name).join(', ')
   }
@@ -179,7 +180,7 @@ class MovieDetails extends React.Component {
       </div> 
     );
   };
-}
+};
 
 const mapStateToProps = (state) => {
   return {

@@ -58,7 +58,6 @@ function HomePage () {
   const renderTrending = () => {
     const availableMovies = trendingList.filter(movie => movie.title || movie.orginal_title)
     return (
-      <div className='test'>
       <div className="home-page-container__trending-carousel">
         <Carousel 
           responsive={trendingCarouselResponsive}
@@ -70,7 +69,6 @@ function HomePage () {
           { availableMovies.slice(0, NO_OF_TRENDING_ITEMS).map((item) => renderTrendingMovieBlock(item)) }
         </Carousel>
       </div> 
-      </div>
     )
   };
 

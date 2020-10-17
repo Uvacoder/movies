@@ -33,8 +33,8 @@ class LoginForm extends React.Component {
   };
 
   continueAsGuest = () => {
-    localStorage.setItem('userName', null);
-    localStorage.setItem('token', null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('userName');
     this.props.history.push('/home')    
   }
 

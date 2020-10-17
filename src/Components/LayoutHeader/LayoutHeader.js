@@ -82,8 +82,8 @@ function LayoutHeader (props) {
   }
 
   const logOut = () => {
-    localStorage.setItem('userName', null);
-    localStorage.setItem('token', null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('userName');
   }
   
   const renderYouProfileMenu = () => {
@@ -104,10 +104,10 @@ function LayoutHeader (props) {
       url:"/",
     }]
 
-    if (localStorage.getItem("token") === "null") {
+    if (!localStorage.getItem("token")) {
       return renderSubMenu("Guest", <UserOutlined />, guestMenuItems)
     } else {
-      const userName = localStorage.getItem("userName") !== "" ?  localStorage.getItem("userName") : "Guest";
+      const userName = localStorage.getItem("userName") ?  localStorage.getItem("userName") : "Guest";
       return renderSubMenu(userName, <UserOutlined />, menuItems)
     }
   }

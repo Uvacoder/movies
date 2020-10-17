@@ -32,9 +32,15 @@ const MovieHeader = (props) => {
     dispatch(getUserRating(props.match.params.id));
   },[dispatch, props.match.params.id]);
 
+  const renderBackdropImage = () => {
+    if (!backDropPath) {
+      return <div className='movie-header_image-wrapper-placeholder'/>
+    };
+    return <img src={backDropPath} alt=''/>
+  };
 
   const displayUserVote = () => {
-    if (localStorage.getItem('token') === "null") {
+    if (!localStorage.getItem('token')) {
       return (
       <Tooltip placement="left" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
         <div className='movie-header__user-vote'>
@@ -57,7 +63,8 @@ const MovieHeader = (props) => {
   return (
     <div className='movie-header'>
       <div className='movie-header_image-wrapper'>
-        <img src={backDropPath} alt=''/>
+        {renderBackdropImage()}
+        {/* <img src={backDropPath} alt=''/> */}
       </div>
       <div className='movie-header__wrapper'>
         <div className='movie-header__wrapper-title'>

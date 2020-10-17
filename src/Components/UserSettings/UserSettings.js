@@ -22,10 +22,10 @@ function UserSettings (props) {
   };
 
   const deleteAccount = () => {
-    if (localStorage.getItem("token") !== "null") {
+    if (localStorage.getItem("token")) {
       dispatch(deleteUserAccount());
-      localStorage.setItem('userName', null);
-      localStorage.setItem('token', null);
+      localStorage.removeItem('token');
+      localStorage.removeItem('userName');
       setVisible(false)
       notification.info({
         message: ACCOUNT_DELETED_MESSAGE,
