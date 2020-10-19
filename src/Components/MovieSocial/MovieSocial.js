@@ -20,7 +20,7 @@ const MovieSocial = (props) => {
     return (
       <a href={ propName ? propName : undefined }>
         <img 
-          className={ !propName && 'img-disabled' } 
+          className={ !propName ? 'img-disabled' : undefined } 
           src={ imgPath } 
           alt={`${ imgPath }`} 
         />

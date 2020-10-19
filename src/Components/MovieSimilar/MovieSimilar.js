@@ -20,9 +20,13 @@ const MovieSimilar = (props) => {
     }
   };  
 
-  const renderCastBlock = (item) => {
+  const renderCastBlock = (item, idx) => {
     return (
-      <div className='movie-similar__container routed-image-carousel' onClick={() => props.routeToMovieDetails(item.id)}>
+      <div 
+        className='movie-similar__container routed-image-carousel' 
+        onClick={() => props.routeToMovieDetails(item.id)}
+        key={idx}
+      >
         <img 
             className='movie-similar__container-image ' 
             src={ `${TMDBApi.getImgURL(IMG_SIZE)}${ item.poster_path }`} 
@@ -47,7 +51,7 @@ const MovieSimilar = (props) => {
           slidesToSlide={CAROUSEL_SLIDES_TO_SLIDE}
           autoPlaySpeed={CAROUSEL_AUTOPLAY_DURATION}
         >
-        { similarMovies.filter((item) => item.poster_path).map((item) => renderCastBlock(item)) }
+        { similarMovies.filter((item) => item.poster_path).map((item, idx) => renderCastBlock(item, idx)) }
         </Carousel>
       </div>   
     </div>

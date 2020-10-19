@@ -100,7 +100,7 @@ function LayoutHeader (props) {
       url:"/",
     }]
 
-    if (UserUtil.isUserLogged()) {
+    if (!UserUtil.isUserLogged()) {
       return renderSubMenu("Guest", <UserOutlined />, guestMenuItems)
     } else {
       const userName = localStorage.getItem("userName") ?  localStorage.getItem("userName") : "Guest";

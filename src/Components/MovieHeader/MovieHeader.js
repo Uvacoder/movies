@@ -30,7 +30,9 @@ const MovieHeader = (props) => {
   const movieList = useSelector(state => state.userRating.movies);
 
   useEffect(() => {
-    dispatch(getUserRating(props.match.params.id));
+    if (UserUtil.isUserLogged()) {
+      dispatch(getUserRating(props.match.params.id));
+    }
   },[dispatch, props.match.params.id]);
 
   const renderBackdropImage = () => {

@@ -28,9 +28,9 @@ const MovieCast = (props) => {
     return AvatarPlaceholderMan
   }
 
-  const renderCastBlock = (item) => {
+  const renderCastBlock = (item, idx) => {
   return (
-    <div className='movie-cast__container'>
+    <div className='movie-cast__container' key={idx}>
       <img 
           className='movie-cast__container-image' 
           src={ item.profile_path ? `${TMDBApi.getImgURL(IMG_SIZE)}${ item.profile_path }` : renderPlaceholder(item.gender) } 
@@ -51,8 +51,7 @@ const MovieCast = (props) => {
           autoPlay={false}
           slidesToSlide={CAROUSEL_SLIDES_TO_SLIDE}
         >
-          {/* { castItems.filter((item) => item.profile_path).map((item) => renderCastBlock(item)) } */}
-          { castItems.map((item) => renderCastBlock(item)) }
+          { castItems.map((item,idx) => renderCastBlock(item,idx)) }
         </Carousel>
       </div>   
     </div>

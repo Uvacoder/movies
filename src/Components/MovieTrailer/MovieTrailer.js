@@ -18,9 +18,9 @@ const MovieTrailer = (props) => {
     }
   };  
 
-  const renderMovieTrailerBlock = (item) => {
+  const renderMovieTrailerBlock = (item, idx) => {
     return (
-      <div className='movie-trailer__container'>
+      <div className='movie-trailer__container' key={ idx }>
         <YouTube videoId={ item.key }  />
       </div>
     )
@@ -35,7 +35,7 @@ const MovieTrailer = (props) => {
           autoPlay={false}
           keyBoardControl={false}
         >
-          { videoItems.filter((item) => item.site === NAME_OF_SEARCHED_SITE).map((item) => renderMovieTrailerBlock(item)) }
+          { videoItems.filter((item) => item.site === NAME_OF_SEARCHED_SITE).map((item, idx) => renderMovieTrailerBlock(item, idx)) }
         </Carousel>
       </div>   
     </div>

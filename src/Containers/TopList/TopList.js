@@ -56,9 +56,9 @@ class TopList extends React.Component {
       items = this.props.topListOfMovies;
     }
 
-    const results = items.map((item,idx) => {
+    const results = items.map((item, idx) => {
       return(
-        <div className='top-list__content-item'>
+        <div className='top-list__content-item' key={idx}>
           <span>{idx + 1}</span>
           <SearchedMovies 
             routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}

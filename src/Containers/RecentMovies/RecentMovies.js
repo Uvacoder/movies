@@ -44,20 +44,26 @@ class TopList extends React.Component {
   renderResults = () => {
     let results = [];
 
-    const getUpcommingMoviesBlock = (index) => {
+    const getUpcommingMoviesBlock = (index, idx) => {
       const item = this.props.recentMovies[index];
 
       if (!item) {
         return null;
       }
 
-      return <UpcommingMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/>
+      return (
+        <UpcommingMovies 
+          item={item} 
+          routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}
+          key={idx}
+        />
+      )
     }
 
     for (let i = 0; i < this.props.recentMovies.length; i+=3) {
       results.push(
         <div className='recent-movies__item'>
-          {[i,i+1,i+2].map(index => getUpcommingMoviesBlock(index))}
+          {[i,i+1,i+2].map((index, idx) => getUpcommingMoviesBlock(index, idx))}
         </div>
       )
     }

@@ -4,10 +4,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import './RandomGifGenerator.scss'
 import { fetchRandomGif, clearRandomGif } from 'actions/RadnomGifGeneratorActions'
+import { withRouter } from 'react-router-dom'
 
 
-const WARNING_MODAL_TITLE = 'Caution! Enter at you own risk.'
+const WARNING_MODAL_TITLE = 'Caution! Enter at your own risk.'
 const WARNING_MODAL_CONTENT = 'This site is using random words provided by Urbandictionary, they might be controversial. Generated images can be blunt. If you are not OK with it please leave.'
+const { confirm } = Modal;
 
 class RandomGifGenerator extends React.Component {
   componentDidMount() {
@@ -19,9 +21,14 @@ class RandomGifGenerator extends React.Component {
   }
   
   showWarning = () => {
-    Modal.warning({
+    confirm({
       title: WARNING_MODAL_TITLE,
       content: WARNING_MODAL_CONTENT,
+      okText: 'Continue',
+      cancelText: 'Leave',
+      onCancel: () => {
+        this.props.history.push("/home")
+      }
     });
   };
 
@@ -74,4 +81,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   clearRandomGif
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(RandomGifGenerator);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(RandomGifGenerator));
