@@ -16,6 +16,7 @@ import {
 import './LayoutHeader.scss';
 import { withRouter } from 'react-router-dom'
 import SearchInput from '../SearchInput/SearchInput'
+import UserUtil from 'utils/UserUtil'
 
 const SEARCH_BAR_WIDTH = '300px';
 const { Header } = Layout;
@@ -81,11 +82,6 @@ function LayoutHeader (props) {
     return renderSubMenu('Hyde Park',<SmileOutlined />, menuItems)
   }
 
-  const logOut = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userName');
-  }
-  
   const renderYouProfileMenu = () => {
     const menuItems = [{
       title: 'My Ratings',
@@ -96,7 +92,7 @@ function LayoutHeader (props) {
     },{
       title: 'Log Out',
       url:"/",
-      onClick: () => { logOut() }
+      onClick: () => { UserUtil.logOut() }
     }]
 
     const guestMenuItems = [{
@@ -104,7 +100,7 @@ function LayoutHeader (props) {
       url:"/",
     }]
 
-    if (!localStorage.getItem("token")) {
+    if (UserUtil.isUserLogged()) {
       return renderSubMenu("Guest", <UserOutlined />, guestMenuItems)
     } else {
       const userName = localStorage.getItem("userName") ?  localStorage.getItem("userName") : "Guest";
@@ -117,7 +113,6 @@ function LayoutHeader (props) {
       <div className='home-header'>
         <Menu className ='nav-bar-menu__title' theme="dark" mode="horizontal" >  
           <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
-          {/* <Menu.Item key="1" > */}
             <Link to ="/home" > Movie Lounge</Link>
           </Menu.Item>
         </Menu>

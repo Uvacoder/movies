@@ -6,6 +6,7 @@ import UserVote from 'components/UserVote/UserVote'
 import { Tooltip } from 'antd';
 import { withRouter } from 'react-router-dom'
 import { getUserRating, saveUserRating } from 'actions/UserActions'
+import UserUtil from 'utils/UserUtil'
 
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_DISPLAY_PERCENT = false;
@@ -40,7 +41,7 @@ const MovieHeader = (props) => {
   };
 
   const displayUserVote = () => {
-    if (!localStorage.getItem('token')) {
+    if (!UserUtil.isUserLogged()) {
       return (
       <Tooltip placement="left" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
         <div className='movie-header__user-vote'>

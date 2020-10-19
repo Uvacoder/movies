@@ -4,6 +4,7 @@ import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import { Modal, Button, notification } from 'antd';
 import UserRate from 'components/UserRate/UserRate'
 import UserComment from 'components/UserComment/UserComment'
+import UserUtil from 'utils/UserUtil'
 
 const USER_VOTE_MAX_VALUE = 10;
 const USER_VOTE_DISPLAY_PERCENT = false;
@@ -31,7 +32,7 @@ class UserVote extends React.Component {
 
   displayModal = () => { 
     return (
-      localStorage.getItem('token') ? () => this.changeModalVisibility(true) : null
+      UserUtil.isUserLogged() ? () => this.changeModalVisibility(true) : null
     );
   };
 

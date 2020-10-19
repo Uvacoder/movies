@@ -1,7 +1,6 @@
 $input-color-alpha: rgba(0,0,0,0.5);
 
 .registration{
-
 	.registration__title {
 		color: white ;
 		padding-bottom: 20px;
@@ -21,9 +20,9 @@ $input-color-alpha: rgba(0,0,0,0.5);
 		margin-left: 12px;
 		width: 333px;
 
-		.ant-form-item-control-input{
-			width: 330px;
-		}
+		.ant-form-item-control-input .ant-btn-primary {
+			width: 333px;
+		};
 	};
 
 	.ant-input,
@@ -62,6 +61,7 @@ $input-color-alpha: rgba(0,0,0,0.5);
     flex-direction: column;
 		align-items: center;
 		width: 100%;
+		align-items: flex-end;
 		
 		.ant-btn-primary{
 			width: 405px;
@@ -80,8 +80,25 @@ $input-color-alpha: rgba(0,0,0,0.5);
 		};
 	};
 
-	.registration__footer a {
-		color: aqua;
+	.registration__footer {
+		.registration__footer-login {
+			width: 333px;
+			display: flex;
+			justify-content: flex-start;
+
+			.registration__footer-login-label {
+				color: white;
+				font-size: 14px;
+				cursor: pointer;
+				text-align: center;
+				transition: transform .2s;
+			}
+			
+			.registration__footer-login-label:hover {
+				color: yellow; 
+				transform: scale(1.05);  
+			};
+		};
 	};
 };
 

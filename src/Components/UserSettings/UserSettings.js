@@ -4,6 +4,7 @@ import { Button, Divider, Modal, notification} from 'antd';
 import { withRouter } from 'react-router-dom'
 import { deleteUserAccount } from 'actions/UserActions'
 import { useDispatch } from 'react-redux'
+import UserUtil from 'utils/UserUtil'
 
 const ACCOUNT_DELETED_MESSAGE = "Account deleted.";
 const ACCOUNT_DELETED_MESSAGE_POSITION = "topRight";
@@ -22,10 +23,9 @@ function UserSettings (props) {
   };
 
   const deleteAccount = () => {
-    if (localStorage.getItem("token")) {
+    if (UserUtil.isUserLogged) {
       dispatch(deleteUserAccount());
-      localStorage.removeItem('token');
-      localStorage.removeItem('userName');
+      UserUtil.logOut();
       setVisible(false)
       notification.info({
         message: ACCOUNT_DELETED_MESSAGE,

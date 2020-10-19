@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { register, login } from 'actions/UserActions'
 import { Button } from 'antd';
 import { withRouter } from 'react-router-dom'
+import UserUtil from 'utils/UserUtil'
 
 class WelcomePage extends React.Component {
   constructor (props) {
@@ -23,8 +24,7 @@ class WelcomePage extends React.Component {
   }
 
   logOut = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userName');
+    UserUtil.logOut();
     this.setState({loginForm: true})
   }
   renderContent = () => {

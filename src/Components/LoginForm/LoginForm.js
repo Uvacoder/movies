@@ -2,6 +2,7 @@ import React from 'react';
 import "./LoginForm.scss"
 import { withRouter } from 'react-router-dom'
 import { Form, Input, Button, Tooltip } from 'antd';
+import UserUtil from 'utils/UserUtil'
 
 const TOOTLTIP_TEXT = "By continuing as a guest you won't be able to use all of Movie Lounge features.";
 const TOOTLTIP_COLOR = '#1890ff';
@@ -33,8 +34,7 @@ class LoginForm extends React.Component {
   };
 
   continueAsGuest = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userName');
+    UserUtil.logOut()
     this.props.history.push('/home')    
   }
 
