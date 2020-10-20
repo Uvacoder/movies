@@ -4,7 +4,7 @@ import {
   Form,
   Input,
   Button,
-  notification ,
+  notification,
 } from 'antd';
 
 const REGISTRATION_NICKNAME_MIN_LENGHT = 3;
@@ -41,8 +41,8 @@ const Registration = (props) => {
           duration: REGISTRATION_SUCCES_MESSAGE_DURATION,
         });
         props.goToLogin()
-      }
-    })
+      };
+    });
   };
 
   return (
@@ -126,7 +126,7 @@ const Registration = (props) => {
             </Button>
           </Form.Item>
           <div className="registration__footer-login"> 
-            <div className="registration__footer-login-label" onClick={ props.goToLogin }>Already a user? Click here to log in.</div>
+            <div className="registration__footer-login-label" onClick={ props.goToLogin }>Already a user? Click here to Log In.</div>
           </div>
         </div>
       </Form>

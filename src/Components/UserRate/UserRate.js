@@ -22,13 +22,13 @@ const UserRate = (props) => {
         setRateValue(value)
       }}
     />
-  )
+  );
 };
 
 UserRate.defaultProps = {
   count: 10,
   defaultValue: 0,
   tooltips: [],
-}
+};
 
 export default UserRate

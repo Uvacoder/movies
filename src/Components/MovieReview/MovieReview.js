@@ -26,7 +26,7 @@ MovieReview.defaultProps = {
     author: 'no one yet :(',
     content: 'This movie has no reviews'
   }
-}
+};
 
 export default MovieReview
 

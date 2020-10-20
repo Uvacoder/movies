@@ -6,7 +6,7 @@
   .movie-details-container__overwiev{
     display: flex;
     flex-direction: column;
-  }
+  };
 
   .movie-details-container__header {
     display: flex;
@@ -14,14 +14,14 @@
     position: relative;
     height: 400px;
     margin: -24px -24px 24px;  
-  }
+  };
 
   .movie-details-container__review {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     margin-left: 20px;
-  }
+  };
 
   .movie-details-container__divider{
     color:white;
@@ -29,12 +29,12 @@
     font-size: large;
     text-transform: uppercase;
     margin-top: 24px;
-  }
+  };
 
   .ant-card {
     margin-right: 12px;
     margin-bottom: 12px;
-  }
+  };
   
   .react-multiple-carousel__arrow{
     background: rgba(0,30,36,0.9);

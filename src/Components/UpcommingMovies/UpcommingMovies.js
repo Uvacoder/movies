@@ -2,8 +2,9 @@ import React from 'react';
 import "./UpcommingMovies.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import ImgPlaceholder from '../../Images/imgPlaceholder.svg'
+import TMDBApi from 'utils/TMDBApi';
 
-const IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
+const IMG_SIZE = 500;
 const UpcommingMovie = (props) => {
   const {
     item
@@ -13,7 +14,7 @@ const UpcommingMovie = (props) => {
     <div className='upcomming-container'>
       <img 
         className='upcomming-container__image routed-image' 
-        src={ item.poster_path ? `${IMAGE_URL}${ item.poster_path }` : ImgPlaceholder} 
+        src={ item.poster_path ? `${TMDBApi.getImgURL(IMG_SIZE)}${ item.poster_path }` : ImgPlaceholder} 
         onClick={props.routeToMovieDetails}
         alt=""
       />
@@ -38,11 +39,11 @@ const UpcommingMovie = (props) => {
         </div>
       </div> 
     </div>   
-  )
-}
+  );
+};
 
 UpcommingMovie.defaultProps = {
-   item:{}
-}
+  item:{}
+};
 
 export default UpcommingMovie

@@ -25,8 +25,8 @@ const MovieSocial = (props) => {
           alt={`${ imgPath }`} 
         />
       </a>
-    )
-  }
+    );
+  };
 
   return (
     <div className='movie-social'>
@@ -40,11 +40,11 @@ const MovieSocial = (props) => {
 };
 
 MovieSocial.defaultProps = {
-    movieHomePage: '',
-    facebookPage: '',
-    InstagramPage: '',
-    TwitterPage: '',
-    IMDBPage: ''
-}
+  movieHomePage: '',
+  facebookPage: '',
+  InstagramPage: '',
+  TwitterPage: '',
+  IMDBPage: ''
+};
 
 export default MovieSocial

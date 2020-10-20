@@ -12,7 +12,7 @@ class LoginForm extends React.Component {
     super(props);
 
     this.formRef = React.createRef();
-  }
+  };
 
   onFinish = values => {
     this.props.login({
@@ -36,7 +36,7 @@ class LoginForm extends React.Component {
   continueAsGuest = () => {
     UserUtil.logOut()
     this.props.history.push('/home')    
-  }
+  };
 
   render() {
     return (
@@ -96,7 +96,7 @@ class LoginForm extends React.Component {
                 </div>
               </Form.Item>
               <div className="registration-form"> 
-                <div  className="registration-form__label" onClick={ this.props.goTo }>Not registered yet? Click here to Sign Up!</div>
+                <div className="registration-form__label" onClick={ this.props.goToRegistration }>Not registered yet? Click here to Sign Up!</div>
               </div>
           </Form>
         </div>

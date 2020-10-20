@@ -10,9 +10,6 @@ import UserUtil from 'utils/UserUtil'
 
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_DISPLAY_PERCENT = false;
-const VOTE_AVERAGE_CHART_COLOR_CHANGE_VALUE = 7;
-const VOTE_AVERAGE_CHART_COLOR_HIGH = 'lightgreen';
-const VOTE_AVERAGE_CHART_COLOR_LOW = 'Aquamarine';
 const POPULARITY_MAX_VALUE = 100;
 const POPULARITY_DISPLAY_PERCENT = true;
 const TOOTLTIP_TEXT = 'To use all Movie Lounge features like voting or commenting, please register.'
@@ -37,7 +34,7 @@ const MovieHeader = (props) => {
 
   const renderBackdropImage = () => {
     if (!backDropPath) {
-      return <div className='movie-header_image-wrapper-placeholder'/>
+      return <div className='movie-header__image-wrapper-placeholder'/>
     };
     return <img src={backDropPath} alt=''/>
   };
@@ -65,9 +62,8 @@ const MovieHeader = (props) => {
 
   return (
     <div className='movie-header'>
-      <div className='movie-header_image-wrapper'>
+      <div className='movie-header__image-wrapper'>
         {renderBackdropImage()}
-        {/* <img src={backDropPath} alt=''/> */}
       </div>
       <div className='movie-header__wrapper'>
         <div className='movie-header__wrapper-title'>
@@ -83,7 +79,6 @@ const MovieHeader = (props) => {
               data={voteAverage} 
               maxValue={VOTE_AVERAGE_MAX_VALUE} 
               percent={VOTE_AVERAGE_DISPLAY_PERCENT} 
-              chartColor= {{voteAverage} > VOTE_AVERAGE_CHART_COLOR_CHANGE_VALUE ? VOTE_AVERAGE_CHART_COLOR_HIGH : VOTE_AVERAGE_CHART_COLOR_LOW }
             />
           </div>
           <div className='movie-header-votes-popularity'>

@@ -23,6 +23,7 @@ class AppLayout extends React.Component {
 //   componentDidMount() {
 //     this.renderParticles(); //TODO use callback with not on mount
 //   }
+
   renderLayoutContent = () => {
     if (this.props.location.pathname === '/contact') {
       return <Contact />
@@ -30,15 +31,14 @@ class AppLayout extends React.Component {
       return <UserSettings />
     } else {
       return <LayoutContent />
-    }
-  }
+    };
+  };
 
   render() {
     return (
       <div className='app-layout'>
         <Layout>
            <LayoutHeader handleSearch={this.props.fetchSearched} />
-           {/* {this.props.location.pathname === '/contact' ? <Contact /> : <LayoutContent />} */}
            {this.renderLayoutContent()}
         </Layout>
       </div>

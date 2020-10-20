@@ -52,8 +52,8 @@ function HomePage () {
           { item?.title || item?.orginal_title || item?.original_name}
         </div>
       </div>
-      )
-  }
+    );
+  };
 
   const renderTrending = () => {
     const availableMovies = trendingList.filter(movie => movie.title || movie.orginal_title)
@@ -69,7 +69,7 @@ function HomePage () {
           { availableMovies.slice(0, NO_OF_TRENDING_ITEMS).map((item) => renderTrendingMovieBlock(item)) }
         </Carousel>
       </div> 
-    )
+    );
   };
 
   const renderUpcomming = () => {

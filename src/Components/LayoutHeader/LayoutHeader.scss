@@ -4,16 +4,15 @@ $on-hover-color: rgb(255,215,0);
 .nav-bar-menu {
   display: flex;
   justify-content: center;
-}
+};
 
 .ant-input-wrapper {
   top: 25%
-}
+};
 
 .nav-bar-menu__your-profile-bttn {
   justify-content: flex-end
- 
-}
+};
 
 .ant-layout-header {
   display: flex;
@@ -22,29 +21,30 @@ $on-hover-color: rgb(255,215,0);
   .ant-menu {
     .ant-menu-item-selected {
       background-color: transparent;
-    }
-  }
+    };
+  };
 
   .ant-menu-item:hover {
     svg{
       fill:$on-hover-color;
-    }
-  }
+    };
+  };
    
   .ant-btn-primary {
-      background:  $search-bar-color;
-      border-color: $search-bar-color;
-      color: black;
-  }
+    background:  $search-bar-color;
+    border-color: $search-bar-color;
+    color: black;
+  };
 
   .nav-bar-menu__title .ant-menu-item a  {
     font-size: 1.1em;
     color: $search-bar-color ;
-  }
+  };
+
   .nav-bar-menu__title .ant-menu-item:hover a {
     color: $on-hover-color ;
-  }
-}
+  };
+};
 
 .home-header {
   display: flex;
@@ -55,27 +55,27 @@ $on-hover-color: rgb(255,215,0);
 
     svg {
       color: $search-bar-color;
-    }
-  }
+    };
+  };
 
   .ant-menu-item{
     display: flex;
     align-items: center;
     padding-right: 0;
     padding-left: 0;
-  }
-}
+  };
+};
 
 .nav-bar-menu {
   .ant-menu-submenu-title:hover {
     color: #1890ff
-  }
+  };
 
   .ant-menu-submenu-title {
     color:white
-  }
-}
+  };
+};
 
 .your-profile {
   text-overflow: ellipsis;
-}
+};

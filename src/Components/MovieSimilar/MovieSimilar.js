@@ -10,7 +10,7 @@ const CAROUSEL_AUTOPLAY_DURATION = 5000;
 
 const MovieSimilar = (props) => {
   const {
-      similarMovies
+    similarMovies
   } = props;
 
   const SimilarMoviesCarouselResponsive = {
@@ -38,8 +38,8 @@ const MovieSimilar = (props) => {
           { item?.title}
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className='movie-similar'>
@@ -59,8 +59,7 @@ const MovieSimilar = (props) => {
 };
 
 MovieSimilar.defaultProps = {
-    similarMovies: []
-}
+  similarMovies: []
+};
 
 export default MovieSimilar
-

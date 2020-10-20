@@ -32,9 +32,9 @@ function UserSettings (props) {
         placement: ACCOUNT_DELETED_MESSAGE_POSITION,
         duration: ACCOUNT_DELETED_MESSAGE_DURATION,
       });
-    } 
+    };
     props.history.push('/')  
-  }
+  };
 
   return (
     <>

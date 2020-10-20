@@ -6,54 +6,54 @@ export const FETCH_TOP_LIST = 'toplist/FETCH_TOP_LIST';
 export const FETCH_NEXT_PAGE_OF_TOP_LIST = 'toplist/FETCH_NEXT_PAGE_OF_TOP_LIST';
 
 export const fetchTopList = (type) => {
-	return async dispatch => {
-		try {
-			const searched = await Communication.get(TMDBApi.get(`${getTopListTypeUrl(type)}`, {
-				language:'en-US',
-				page: '1',
-				region: 'US',
-			}));
+  return async dispatch => {
+    try {
+      const searched = await Communication.get(TMDBApi.get(`${getTopListTypeUrl(type)}`, {
+        language:'en-US',
+        page: '1',
+        region: 'US',
+      }));
 
-			await Promise.all(searched.results.map(async item => {
-				const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
-					append_to_response: 'credits'
-				}));	
-				item.details = searchedDetails; 
-			}));
+      await Promise.all(searched.results.map(async item => {
+        const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
+          append_to_response: 'credits'
+        }));	
+        item.details = searchedDetails; 
+      }));
 
-			dispatch({ 
-				type: FETCH_TOP_LIST,
-				topRatedMovies: searched.results,
-				numberOfPages: searched.total_pages
-			});
-		} catch (error) {
-			console.error("TMDB API - fetching top list", error)
-		}
-	};  
+      dispatch({ 
+        type: FETCH_TOP_LIST,
+        topRatedMovies: searched.results,
+        numberOfPages: searched.total_pages
+      });
+    } catch (error) {
+      console.error("TMDB API - fetching top list", error)
+    }
+  };  
 };
 
 export const fetchNextPageOfTopList = (type, page) => {
-	return async dispatch => {
-		try {
-			const searched = await Communication.get(TMDBApi.get(`${getTopListTypeUrl(type)}`, {
-				language:'en-US',
-				page,
-				region: 'US',
-			}));
-	
-			await Promise.all(searched.results.map(async item => {
-				const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
-					append_to_response: 'credits'
-				}));	
-				item.details = searchedDetails; 
-			}));
-	
-			dispatch({ 
-				type: FETCH_NEXT_PAGE_OF_TOP_LIST,
-				topRatedMovies: searched.results,
-			});
-		} catch (error) {
-			console.error("TMDB API - fetching top list", error)
-		};
-	};  
+  return async dispatch => {
+    try {
+      const searched = await Communication.get(TMDBApi.get(`${getTopListTypeUrl(type)}`, {
+        language:'en-US',
+        page,
+        region: 'US',
+      }));
+  
+      await Promise.all(searched.results.map(async item => {
+        const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
+          append_to_response: 'credits'
+        }));	
+        item.details = searchedDetails; 
+      }));
+  
+      dispatch({ 
+        type: FETCH_NEXT_PAGE_OF_TOP_LIST,
+        topRatedMovies: searched.results,
+      });
+    } catch (error) {
+      console.error("TMDB API - fetching top list", error)
+    };
+  };  
 }; 

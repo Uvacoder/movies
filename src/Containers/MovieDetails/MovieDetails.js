@@ -27,21 +27,21 @@ const THUMBNAIL_HEIGHT = 250;
 class MovieDetails extends React.Component {
   componentDidMount() {
     this.props.fetchMovieDetails(this.props.match.params.id);
-  }
+  };
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
       this.props.fetchMovieDetails(this.props.match.params.id);
-    }
-  }
+    };
+  };
 
   filterDirector = () => {
     return this.props.details.credits?.crew?.filter((item) => item.job === "Director")?.[0]?.name
-  }
+  };
 
   filterWriters = () => {
     return this.props.details.credits?.crew?.filter((item) => item.department === "Writing")?.map((item) => item.name).join(', ')
-  }
+  };
 
   createImagesObject = (backdrop) => {
     return {
@@ -49,17 +49,17 @@ class MovieDetails extends React.Component {
       thumbnail: `${BACKDROP_API_PATH}${backdrop.file_path}`,
       thumbnailWidth: Math.min(backdrop.width/THUMBNAIL_WIDTH_DIVIDER_VALUE, THUMBNAIL_WIDTH_MAX_VALUE ),
       thumbnailHeight: THUMBNAIL_HEIGHT,
-    }
-  }
+    };;
+  };
 
   getCurrencyNotation = (number) => {
     return number?.toLocaleString('en', { style: 'currency', currency: 'USD' })
-  }  
+  }; 
 
   renderReviews = () => {
     if (this.props.reviews.length === 0) {
       return null 
-    }
+    };
 
     return (
       <>
@@ -69,12 +69,12 @@ class MovieDetails extends React.Component {
         </div>
       </>
     );
-  }
+  };
 
   renderPhotos = () => {
     if (this.props.details.images?.backdrops?.length === 0) {
       return null 
-    }
+    };
 
     return (
       <>
@@ -84,12 +84,12 @@ class MovieDetails extends React.Component {
         </div>
       </>
     );
-  }
+  };
 
   renderSimilar = () => {
     if (this.props.similarMovies.length === 0) {
       return null 
-    }
+    };
 
     return (
       <>
@@ -102,12 +102,12 @@ class MovieDetails extends React.Component {
         </div>
       </>
     );
-  }
+  };
 
   renderTrailer = () => {
     if (this.props.details.videos?.results.length === 0) {
       return null 
-    }
+    };
 
     return (
       <>
@@ -117,12 +117,12 @@ class MovieDetails extends React.Component {
         </div>
       </>
     );
-  }
+  };
 
   renderCast = () => {
     if (this.props.details.credits?.cast.length === 0) {
       return null 
-    }
+    };
 
     return (
       <>
@@ -132,41 +132,46 @@ class MovieDetails extends React.Component {
         </div>
       </>
     );
-  }
-    
-  render() {
+  };
+
+  renderOverview = () => {
     return (
-      <div className='movie-details-container'>
-        <div className='movie-details-container__header'> 
-          <MovieHeader 
-            backDropPath={this.props.details.backdrop_path ? `${BACKDROP_API_PATH}${this.props.details.backdrop_path}` : null} 
-            title={this.props.details.title || this.props.details.original_title} 
-            tagline={this.props.details.tagline ? this.props.details.tagline : this.props.details.original_title}
-            voteAverage={this.props.details.vote_average}
-            popularity={this.props.details.popularity}
-          />
-        </div>
-        <div className='movie-details-container__overwiev'> 
-          <MovieOverwiev
-            poster={this.props.details.poster_path ? `${TMDBApi.getImgURL(POSTER_WIDTH)}${this.props.details.poster_path}` : ImgPlaceholder}
-            description={this.props.details.overview}
-            realeaseDate={this.props.details.release_date}
-            genres={this.props.details.genres?.map((item) => item.name).join(', ')}
-            runtime={this.props.details.runtime}
-            country={this.props.details.production_countries?.map((item) => item.name).join(', ')}
-            director={this.filterDirector()}
-            writers={this.filterWriters()}
-            budget={this.getCurrencyNotation(this.props.details.budget)}
-            revenue={this.getCurrencyNotation(this.props.details.revenue)}
-            languages={this.props.details.spoken_languages?.map((item) => item.name).join(', ')}
-            companies={this.props.details.production_companies?.slice(0, 5).map((item) => item.name).join(', ')}
-          />
-        </div>
-        {this.renderCast()}
-        {this.renderTrailer()}
-        {this.renderPhotos()}
-        {this.renderSimilar()}
-        {this.renderReviews()}
+      <div className='movie-details-container__overwiev'> 
+        <MovieOverwiev
+          poster={this.props.details.poster_path ? `${TMDBApi.getImgURL(POSTER_WIDTH)}${this.props.details.poster_path}` : ImgPlaceholder}
+          description={this.props.details.overview}
+          realeaseDate={this.props.details.release_date}
+          genres={this.props.details.genres?.map((item) => item.name).join(', ')}
+          runtime={this.props.details.runtime}
+          country={this.props.details.production_countries?.map((item) => item.name).join(', ')}
+          director={this.filterDirector()}
+          writers={this.filterWriters()}
+          budget={this.getCurrencyNotation(this.props.details.budget)}
+          revenue={this.getCurrencyNotation(this.props.details.revenue)}
+          languages={this.props.details.spoken_languages?.map((item) => item.name).join(', ')}
+          companies={this.props.details.production_companies?.slice(0, 5).map((item) => item.name).join(', ')}
+        />
+      </div>
+    );
+  };
+
+  renderHeader = () => {
+    return (
+      <div className='movie-details-container__header'> 
+        <MovieHeader 
+          backDropPath={this.props.details.backdrop_path ? `${BACKDROP_API_PATH}${this.props.details.backdrop_path}` : null} 
+          title={this.props.details.title || this.props.details.original_title} 
+          tagline={this.props.details.tagline ? this.props.details.tagline : this.props.details.original_title}
+          voteAverage={this.props.details.vote_average}
+          popularity={this.props.details.popularity}
+        />
+      </div>
+    );
+  };
+
+  renderSocial = () => {
+    return (
+      <>
         <Divider className='movie-details-container__divider' orientation='left'>SOCIAL</Divider>
         <div> 
           <MovieSocial 
@@ -177,6 +182,21 @@ class MovieDetails extends React.Component {
             IMDBPage={this.props.externalIds.imdb_id && `https://www.imdb.com/title/${this.props.externalIds.imdb_id}`}
           />
         </div>
+      </>
+    );
+  };
+    
+  render() {
+    return (
+      <div className='movie-details-container'>
+        { this.renderHeader() }
+        { this.renderOverview() }
+        { this.renderCast() }
+        { this.renderTrailer() }
+        { this.renderPhotos() }
+        { this.renderSimilar() }
+        { this.renderReviews() }
+        { this.renderSocial() }
       </div> 
     );
   };

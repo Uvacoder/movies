@@ -1,65 +1,63 @@
 $content-width: 1056px;
 
 @media only screen and (max-width: $content-width) {
-    .ant-layout .site-layout .site-layout__container { 
-        display: flex ;
+  .ant-layout .site-layout .site-layout__container { 
+    display: flex;
 
-        .site-layout__container-margin-left, 
-        .site-layout__container-margin-right {
-            display:none;     
-        }
-
-        .site-layout__container-margin-main {
-            width: 100%;
-        };
+    .site-layout__container-margin-left, 
+    .site-layout__container-margin-right {
+      display:none;     
     };
+
+    .site-layout__container-margin-main {
+      width: 100%;
+    };
+  };
 };
   
 .site-layout {
-    
-    .site-layout__container {
-        background: #032646;
-        height: 100%;
-        display: grid;
-        grid-template-columns: minmax(0,1.5fr) $content-width minmax(0,1.5fr);
-        background-image: url("../../Images/sidespicture.jpg");
-        background-size: 100% auto;
-        transform: translate3d(0,0,0);
-        
-    }
+  .site-layout__container {
+    background: #032646;
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(0,1.5fr) $content-width minmax(0,1.5fr);
+    background-image: url("../../Images/sidespicture.jpg");
+    background-size: 100% auto;
+    transform: translate3d(0,0,0);
+  };
 
-    .site-layout__container-margin-right {
-        background-position: top;
-    }
+  .site-layout__container-margin-right {
+    background-position: top;
+  };
 
-    .site-layout__container-main {
-        color: white;
-        background-color: rgb(3,38,70);
+  .site-layout__container-main {
+    color: white;
+    background-color: rgb(3,38,70);
 
-        .routed-image {
-            cursor: pointer;
-            transition: transform .2s;
-        }
-
-        .routed-image:hover {
-            filter:grayscale(40%);
-            transform: scale(1.05);
-        }
-
-        .routed-image-carousel {
-            cursor: pointer;
-        }
-        
-        .routed-image-carousel:hover {
-            filter: sepia(80%);
-        }
-
-        .routed-text{
-            cursor: pointer;
-        }
-
-        .routed-text:hover {
-            color: rgb(255,215,0);
-        }
+    .routed-image {
+      cursor: pointer;
+      transition: transform .2s;
     };
+
+    .routed-image:hover {
+      filter:grayscale(40%);
+      transform: scale(1.05);
+    };
+
+    .routed-image-carousel {
+      cursor: pointer;
+    };
+    
+    .routed-image-carousel:hover {
+      filter: sepia(80%);
+    };
+
+    .routed-text{
+      cursor: pointer;
+    };
+
+    .routed-text:hover {
+      color: rgb(255,215,0);
+    };
+  };
 };

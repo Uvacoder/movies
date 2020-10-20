@@ -26,21 +26,21 @@ const MovieCast = (props) => {
       return AvatarPlaceholderWoman
     }
     return AvatarPlaceholderMan
-  }
+  };
 
   const renderCastBlock = (item, idx) => {
-  return (
-    <div className='movie-cast__container' key={idx}>
-      <img 
-          className='movie-cast__container-image' 
-          src={ item.profile_path ? `${TMDBApi.getImgURL(IMG_SIZE)}${ item.profile_path }` : renderPlaceholder(item.gender) } 
-          alt=''
-      />
-      <div className='movie-cast__container-name'>{ item.name}</div>
-      <div className='movie-cast__container-character'>{ item.character}</div>
-    </div>
-    )
-  }
+    return (
+      <div className='movie-cast__container' key={idx}>
+        <img 
+            className='movie-cast__container-image' 
+            src={ item.profile_path ? `${TMDBApi.getImgURL(IMG_SIZE)}${ item.profile_path }` : renderPlaceholder(item.gender) } 
+            alt=''
+        />
+        <div className='movie-cast__container-name'>{ item.name}</div>
+        <div className='movie-cast__container-character'>{ item.character}</div>
+      </div>
+    );
+  };
 
   return (
     <div className='movie-cast'>
@@ -60,7 +60,7 @@ const MovieCast = (props) => {
 
 MovieCast.defaultProps = {
     castItems: []
-}
+};
 
 export default MovieCast
 

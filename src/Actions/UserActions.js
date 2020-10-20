@@ -66,7 +66,7 @@ export const getUserRating = (movieID) => {
       };
     };
   };
-};  
+};
 
 export const saveUserRating = (body) => {
 	return async (dispatch, getState) => {
@@ -98,7 +98,7 @@ export const saveUserRating = (body) => {
       };
     }; 
   };
-};  
+};
 
 export const deleteUserAccount = () => {
 	return async () => {
@@ -142,4 +142,4 @@ export const getAllUserRatings = () => {
       errors: true,
     };
   } 
-};  
+};

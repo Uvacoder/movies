@@ -30,7 +30,7 @@ class WelcomePage extends React.Component {
   renderContent = () => {
     if (!localStorage.getItem("token")) {
       if (this.state.loginForm) {
-        return <LoginForm login={this.props.login} goTo={this.goToRegistration} />
+        return <LoginForm login={this.props.login} goToRegistration={this.goToRegistration} />
       } else {
         return <Registration register={this.props.register} goToLogin={this.goToLogin}/>
       };

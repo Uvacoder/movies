@@ -76,19 +76,18 @@ const MovieOverview = (props) => {
 };
 
 MovieOverview.defaultProps = {
-    poster:'–',
-    description:'–',
-    genres:'–',
-    realeaseDate:'–',
-    runtime:'–',
-    country:'–',
-    director:'–',
-    writers:'–',
-    budget: '–',
-    revenue: '–',
-    languages:'–',
-    companies:'–'
-}
+  poster:'–',
+  description:'–',
+  genres:'–',
+  realeaseDate:'–',
+  runtime:'–',
+  country:'–',
+  director:'–',
+  writers:'–',
+  budget: '–',
+  revenue: '–',
+  languages:'–',
+  companies:'–'
+};
 
 export default MovieOverview
-

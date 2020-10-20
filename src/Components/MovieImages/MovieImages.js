@@ -1,5 +1,4 @@
 import React from 'react';
-import "./MovieImages.scss"
 import Gallery from 'react-grid-gallery';
 
 const MOVIE_IMAGES_GALERY_MAX_ROWS = 2;

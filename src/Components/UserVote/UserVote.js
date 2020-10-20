@@ -11,6 +11,9 @@ const USER_VOTE_DISPLAY_PERCENT = false;
 const USER_VOTE_CHART_COLOR = 'lightgreen';
 const USER_COMMENT_PLACEHOLDER = 'Leave a comment so you can remember what you liked or disliked about this film.';
 const USER_RATE_TOOLTIPS = ['Misunderstanding','Very bad', 'Bad', 'Weak', 'Average', 'Decent', 'Good', 'Very Good', 'Fantastic', 'Masterpiece!' ];
+const VOTE_NOT_PRESENT_MESSAGE = "Please leave a vote before submiting!";
+const VOTE_NOT_PRESENT_MESSAGE_PLACEMENT = "topRight";
+const VOTE_NOT_PRESENT_MESSAGE_DURATION = 3.2;
 
 class UserVote extends React.Component {
   constructor(props) {
@@ -45,9 +48,9 @@ class UserVote extends React.Component {
     });
     if (!votePresentInStore && !votePresentInState) {
       notification.info({
-        message: "Please leave a vote before submiting!",
-        placement: "topRight",
-        duration: 3.2,
+        message: VOTE_NOT_PRESENT_MESSAGE,
+        placement: VOTE_NOT_PRESENT_MESSAGE_PLACEMENT,
+        duration: VOTE_NOT_PRESENT_MESSAGE_DURATION,
       });
     } else {
       this.props.saveUserRating({
@@ -106,7 +109,6 @@ class UserVote extends React.Component {
     );
   };
 
- 
   render() {
     return (
       <>
@@ -126,4 +128,5 @@ class UserVote extends React.Component {
     );
   };
 };
+
 export default UserVote

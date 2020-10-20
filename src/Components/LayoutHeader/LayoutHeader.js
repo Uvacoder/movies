@@ -46,7 +46,7 @@ function LayoutHeader (props) {
     }]
   
     return renderSubMenu('Top Lists',<BarsOutlined />, menuItems)
-  }
+  };
   
   const renderNewMoviesSubMenu = () => {
     const menuItems = [{
@@ -58,7 +58,7 @@ function LayoutHeader (props) {
     }]
   
     return renderSubMenu('New',<ClockCircleOutlined />, menuItems)
-  }
+  };
   
   const renderAboutMenu = () => {
     const menuItems = [{
@@ -80,7 +80,7 @@ function LayoutHeader (props) {
     }]
   
     return renderSubMenu('Hyde Park',<SmileOutlined />, menuItems)
-  }
+  };
 
   const renderYouProfileMenu = () => {
     const menuItems = [{
@@ -103,17 +103,17 @@ function LayoutHeader (props) {
     if (!UserUtil.isUserLogged()) {
       return renderSubMenu("Guest", <UserOutlined />, guestMenuItems)
     } else {
-      const userName = localStorage.getItem("userName") ?  localStorage.getItem("userName") : "Guest";
+      const userName = localStorage.getItem("userName") ? localStorage.getItem("userName") : "Guest";
       return renderSubMenu(userName, <UserOutlined />, menuItems)
-    }
-  }
+    };
+  };
   
   return (
     <Header style={{ position: 'fixed', zIndex: 1001, width: '100%' }}>
       <div className='home-header'>
         <Menu className ='nav-bar-menu__title' theme="dark" mode="horizontal" >  
           <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
-            <Link to ="/home" > Movie Lounge</Link>
+            <Link to ="/home">Movie Lounge</Link>
           </Menu.Item>
         </Menu>
       </div>

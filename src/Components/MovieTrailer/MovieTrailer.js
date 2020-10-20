@@ -23,8 +23,8 @@ const MovieTrailer = (props) => {
       <div className='movie-trailer__container' key={ idx }>
         <YouTube videoId={ item.key }  />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className='movie-trailer'>
@@ -44,7 +44,6 @@ const MovieTrailer = (props) => {
 
 MovieTrailer.defaultProps = {
   videoItems: []
-}
+};
 
 export default MovieTrailer
-

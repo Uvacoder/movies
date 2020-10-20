@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import "./UserComment.scss"
 import { Input } from 'antd';
 
 const { TextArea } = Input;
@@ -21,12 +20,12 @@ const UserComment = (props) => {
         props.updateCommentValue(e.target.value)
       }}
     />
-  )
+  );
 };
 
 UserComment.defaultProps = {
   placeholder: 'Please enter comment',
   rows: 4,
-}
+};
 
 export default UserComment
