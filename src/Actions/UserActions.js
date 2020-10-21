@@ -9,7 +9,11 @@ export const EDIT_USER_RATING = 'user/EDIT_USER_RATING';
 export const register = (body) => {
 	return async () => {
     try {
-      await Communication.post(DomainApi.get('user/signup'),body)
+      await Communication.post({
+        path: DomainApi.get('user/signup'),
+        useLoader: true,
+        body
+      })
 
       return {
         errors: false
@@ -26,7 +30,11 @@ export const register = (body) => {
 export const login = (body) => {
 	return async () => {
     try {
-      const response = await Communication.post(DomainApi.get('user/login'),body)
+      const response = await Communication.post({
+        path: DomainApi.get('user/login'),
+        useLoader: true,
+        body
+      })
       localStorage.setItem('token', response.token);
 
       return {
@@ -45,7 +53,10 @@ export const getUserRating = (movieID) => {
     const movieExists = getState().userRating.movies.some(item => item.movieId === Number(movieID))
     if(!movieExists) {
       try {
-        const results = await Communication.get(DomainApi.get(`user/vote?movieId=${movieID}`))
+        const results = await Communication.get({
+          path: DomainApi.get(`user/vote?movieId=${movieID}`),
+          useLoader: true
+        })
   
         dispatch({ 
           type: ADD_USER_RATING,
@@ -73,14 +84,23 @@ export const saveUserRating = (body) => {
     try {
       const movieExists = getState().userRating.movies.some(item => item.movieId === Number(body.movieId))
       if (movieExists) {
-        await Communication.post(DomainApi.get(`user/vote`), body)
+        await Communication.post({
+          path: DomainApi.get(`user/vote`),
+          useLoader: true,
+          body
+        })
+
         dispatch({ 
           type: EDIT_USER_RATING,
           movieRate: body,
           movieId: Number(body.movieId)
         });
       } else {
-        await Communication.post(DomainApi.get(`user/vote`), body)
+        await Communication.post({
+          path: DomainApi.get(`user/vote`),
+          useLoader: true,
+          body
+        })
 
         dispatch({ 
           type: ADD_USER_RATING,
@@ -103,7 +123,11 @@ export const saveUserRating = (body) => {
 export const deleteUserAccount = () => {
 	return async () => {
     try {
-      await Communication.delete(DomainApi.get('user'))
+      await Communication.delete({
+        path: DomainApi.get('user'),
+        useLoader: true
+      })
+      
       return {
         errors: false
       }
@@ -118,12 +142,18 @@ export const deleteUserAccount = () => {
 export const getAllUserRatings = () => {
 	return async (dispatch) => {
     try {
-      const results = await Communication.get(DomainApi.get(`user/myRates`))
+      const results = await Communication.get({
+        path: DomainApi.get(`user/myRates`),
+        useLoader: true
+      })
 
       await Promise.all(results.map(async item => {
-        const movieDetails = await	Communication.get(TMDBApi.get(`movie/${item.movieId}`,{
-          append_to_response: 'credits'
-        }));	
+        const movieDetails = await Communication.get({
+          path: TMDBApi.get(`movie/${item.movieId}`,{
+            append_to_response: 'credits'
+          }),
+          useLoader: true
+        });	
         item.details = movieDetails; 
       }));
 

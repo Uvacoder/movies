@@ -15,18 +15,51 @@ export function fetchMovieDetails(Id) {
         movieReviews, 
         externalIds
       ] = await Promise.all([
-        Communication.get(TMDBApi.get(`movie/${Id}`,{
-          append_to_response: 'videos,images,credits'
-        })),
-        Communication.get(TMDBApi.get(`movie/${Id}/recommendations`,{
-          language: MOVIE_DETAILS_LANGUAGE,
-          page: MOVIE_DETAILS_PAGE
-        })),
-        Communication.get(TMDBApi.get(`movie/${Id}/reviews`,{
-          language: MOVIE_DETAILS_LANGUAGE,
-          page: MOVIE_DETAILS_PAGE
-        })),
-        Communication.get(TMDBApi.get(`movie/${Id}/external_ids`))
+//TODO
+// Communication.get({
+//   path: TMDBApi.get(`movie/${Id}`, {
+//     append_to_response: 'videos,images,credits'
+//   }),
+//   useLoader: true,
+// }),
+
+        // Communication.get(TMDBApi.get(`movie/${Id}`,{
+        //   append_to_response: 'videos,images,credits'
+        // })),
+        // Communication.get(TMDBApi.get(`movie/${Id}/recommendations`,{
+        //   language: MOVIE_DETAILS_LANGUAGE,
+        //   page: MOVIE_DETAILS_PAGE
+        // })),
+        // Communication.get(TMDBApi.get(`movie/${Id}/reviews`,{
+        //   language: MOVIE_DETAILS_LANGUAGE,
+        //   page: MOVIE_DETAILS_PAGE
+        // })),
+        // Communication.get(TMDBApi.get(`movie/${Id}/external_ids`))
+        // ]);
+        Communication.get({
+          path: TMDBApi.get(`movie/${Id}`,{
+            append_to_response: 'videos,images,credits'
+          }),
+          useLoader: true
+        }),
+        Communication.get({
+          path: TMDBApi.get(`movie/${Id}/recommendations`,{
+            language: MOVIE_DETAILS_LANGUAGE,
+            page: MOVIE_DETAILS_PAGE
+          }),
+          useLoader: true
+        }),
+        Communication.get({
+          path: TMDBApi.get(`movie/${Id}/reviews`,{
+            language: MOVIE_DETAILS_LANGUAGE,
+            page: MOVIE_DETAILS_PAGE
+          }),
+          useLoader: true
+        }),
+        Communication.get({
+          path: TMDBApi.get(`movie/${Id}/external_ids`),
+          useLoader: true
+        })
       ]);
 
       return dispatch({ 

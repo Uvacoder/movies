@@ -1,7 +1,10 @@
 // TO DO figure out how to add store outisde react component
 
 // import { store }  from '../../store';
-// import { changeLoadingStatus } from 'actions/GlobalActions';
+// import { getStore }  from '../../store';
+// import {getStore} from './store'
+import { changeLoadingStatus } from 'actions/GlobalActions';
+import storeRegistry from '../../Store/storeRegistry';
 import { notification } from 'antd';
 
 const COMMUNICATION_ERROR_MESSAGE = "Ups! Something went wrong :(";
@@ -20,7 +23,8 @@ class ApiError extends Error {
 };
 
 function getMethod(type) {
-  return async (url,body) => {
+  return async ({path, useLoader, body}) => {
+    console.log(path, useLoader)
     const fetchParams = {
       method: type,
       body: JSON.stringify(body),
@@ -29,15 +33,21 @@ function getMethod(type) {
         'Content-Type': 'application/json',
       }
     };  
-    const URLObject = new URL('', url)
+    const URLObject = new URL('', path)
+    // const URLObject = new URL('', url)
     
     if (URLObject.hostname === COMMUNICATION_LOCAL_HOSTNAME || URLObject.hostname === COMMUNICATION_WEB_PAGE_HOSTNAME) {  
       fetchParams.headers.token = localStorage.getItem('token');
     };
 
     try {
-      // store.dispatch(changeLoadingStatus()) // TO DO
-      const response = await fetch(url, fetchParams);
+      // getStore().dispatch(changeLoadingStatus()) // TO DO
+      if (useLoader) { // useLoader
+        storeRegistry.getStore().dispatch(changeLoadingStatus(true)) // TO DO
+      }
+      
+      const response = await fetch(path, fetchParams);
+      // const response = await fetch(url, fetchParams);
 
       return response.json().then(json => {
         if (response.status >= 400) {
@@ -55,7 +65,11 @@ function getMethod(type) {
         });
       }
       throw err;
-    };
+    } finally {
+      if (useLoader) { // useLoader
+        storeRegistry.getStore().dispatch(changeLoadingStatus(false)) // TO DO
+      }
+    }
   };
 };
 

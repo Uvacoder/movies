@@ -8,16 +8,22 @@ export const FETCH_NEXT_PAGE_OF_RECENT_MOVIES = 'recent/FETCH_NEXT_PAGE_OF_RECEN
 export const fetchRecentMovies = (type) => {
   return async dispatch => {
     try {
-      const searched = await Communication.get(TMDBApi.get(`${getRecentMoviesTypeUrl(type)}`, {
-        language:'en-US',
-        page: '1',
-        region:'US'
-      }));
+      const searched = await Communication.get({
+        path: TMDBApi.get(`${getRecentMoviesTypeUrl(type)}`, {
+          language:'en-US',
+          page: '1',
+          region:'US'
+        }),
+        useLoader: true
+      });
   
       await Promise.all(searched.results.map(async item => {
-        const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
-          append_to_response: 'credits'
-        }));	
+        const searchedDetails = await	Communication.get({
+          path: TMDBApi.get(`movie/${item.id}`,{
+            append_to_response: 'credits'
+          }),
+          useLoader: true
+        });	
         item.details = searchedDetails; 
       }));
   
@@ -35,16 +41,22 @@ export const fetchRecentMovies = (type) => {
 export const fetchNextPageOfRecentMovies = (type, page) => {
   return async dispatch => {
     try {
-      const searched = await Communication.get(TMDBApi.get(`${getRecentMoviesTypeUrl(type)}`, {
-        language:'en-US',
-        page,
-        region:'US'
-      }));
+      const searched = await Communication.get({
+        path: TMDBApi.get(`${getRecentMoviesTypeUrl(type)}`, {
+          language:'en-US',
+          page,
+          region:'US'
+        }),
+        useLoader: true
+      });
   
       await Promise.all(searched.results.map(async item => {
-          const searchedDetails = await	Communication.get(TMDBApi.get(`movie/${item.id}`,{
-            append_to_response: 'credits'
-          }));	
+          const searchedDetails = await	Communication.get({
+            path: TMDBApi.get(`movie/${item.id}`,{
+              append_to_response: 'credits'
+            }),
+            useLoader: true
+          });	
           item.details = searchedDetails; 
         }));
   

@@ -15,8 +15,11 @@ const LAST_MOVIE_TO_DRAW = 20;
 export const fetchTrending = () => {
   return async dispatch => {
     try {
-      const movies = await Communication.get(TMDBApi.get('trending/all/day'))
-
+      const movies = await Communication.get({
+        path: TMDBApi.get('trending/all/day'),
+        useLoader: true
+      })
+      // const movies = await Communication.get(TMDBApi.get('trending/all/day'))
       dispatch({ 
         type: FETCH_TRENDING,
         trending: {
@@ -32,11 +35,14 @@ export const fetchTrending = () => {
 export const fetchUpcomming = () => {
   return  async dispatch => {
     try {
-      const movies = await Communication.get(TMDBApi.get('movie/upcoming',{
-        language: 'en-US',
-        page: '1',
-        region:'US'
-      }));
+      const movies = await Communication.get({
+        path: TMDBApi.get('movie/upcoming',{
+          language: 'en-US',
+          page: '1',
+          region:'US'
+        }),
+        useLoader: true
+      });
 
       dispatch({ 
         type: FETCH_UPCOMMING,
@@ -56,16 +62,22 @@ export const fetchUpcomming = () => {
 
   return async dispatch => {
     try {
-      const movies = await Communication.get(TMDBApi.get('discover/movie',{
-        language: 'en-US',
-        sort_by: 'vote_count.desc',
-        include_adult: 'false',
-        include_video: 'true',
-        page: randomMoviePage
-      }));
-      const videoKeyResult = await Communication.get(TMDBApi.get(`movie/${movies.results[randomMovie].id}/videos`, {
+      const movies = await Communication.get({
+        path: TMDBApi.get('discover/movie',{
           language: 'en-US',
-        }));	
+          sort_by: 'vote_count.desc',
+          include_adult: 'false',
+          include_video: 'true',
+          page: randomMoviePage
+        }),
+        useLoader: true
+      });
+      const videoKeyResult = await Communication.get({
+        path: TMDBApi.get(`movie/${movies.results[randomMovie].id}/videos`, {
+          language: 'en-US',
+        }),
+        useLoader: true
+      });	
       const shuffledMovie = movies.results[randomMovie];
 
       shuffledMovie.videoKey = videoKeyResult.results[0];

@@ -15,9 +15,15 @@ const getGifApiUrl = (word) => {
 export const fetchRandomGif = () => {
   return async dispatch => {
     try {
-      const wordsList = await Communication.get(RANDOM_WORD_API)
+      const wordsList = await Communication.get({
+        path: RANDOM_WORD_API,
+        useLoader: true
+      })
       const randomWord = wordsList.list[Calculation.randomInt(NO_OF_FIRST_WORD_SEARCHED, NO_OF_LAST_WORD_SEARCHED)]
-      const gif = await Communication.get(getGifApiUrl(randomWord.word))
+      const gif = await Communication.get({
+        path: getGifApiUrl(randomWord.word),
+        useLoader: true
+      })
 
       dispatch({ 
         type: FETCH_RANDOM_GIF,
