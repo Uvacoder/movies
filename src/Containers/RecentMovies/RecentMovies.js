@@ -49,7 +49,7 @@ class TopList extends React.Component {
 
       if (!item) {
         return null;
-      }
+      };
 
       return (
         <UpcommingMovies 
@@ -57,16 +57,16 @@ class TopList extends React.Component {
           routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}
           key={idx}
         />
-      )
-    }
+      );
+    };
 
     for (let i = 0; i < this.props.recentMovies.length; i+=3) {
       results.push(
         <div className='recent-movies__item'>
           {[i,i+1,i+2].map((index, idx) => getUpcommingMoviesBlock(index, idx))}
         </div>
-      )
-    }
+      );
+    };
 
     return (
       <InfiniteScroll
@@ -110,8 +110,8 @@ const mapStateToProps = (state) => {
   return {
     recentMovies: state.recentMovies.results,
     numberOfPages: state.recentMovies.numberOfPages
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   routeToMovieDetails,

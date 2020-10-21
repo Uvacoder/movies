@@ -19,6 +19,6 @@ const allReducers = (history) => combineReducers({
 	randomGifGenerator,
 	userRating,
 	router: connectRouter(history),
-})
+});
 
 export default allReducers;

@@ -1,7 +1,7 @@
 .recent-movies {
   .recent-movies__container {
     .infinite-scroll-component {
-      overflow: hidden !important; // to overwrite bugged inline style
+      overflow: hidden !important; // to overwrite bugged inline style of inifite scroll component
     };
 
     .infinite-scroll-component > :first-child {
@@ -22,30 +22,30 @@
       justify-content: center;
       align-items: center;
       margin-bottom: 10px;
-    }
+    };
   
     .upcomming-container {
       margin-top: 0;
 
       .upcomming-container__image{
         margin-right: auto;
-      }
-    }  
-  }
+      };
+    };
+  };
 
   .recent-movies__title{
     margin-top: 0px;
-  }
+  };
 
   .recent-movies__title :nth-child(1){
     color:rgb(175, 171, 171);
     font-size: x-large;
-  }
+  };
   
   .recent-movies__title :nth-child(2){
     color: white;
     font-weight: bold;
     text-transform: uppercase;
     font-size: x-large;
-  }
-}
+  };
+};

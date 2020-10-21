@@ -6,7 +6,7 @@ import {
 const initialState = {
   results: [],
   numberOfPages: 0
-}
+};
 
 export function recentMovies (state = initialState, action) {
   switch(action.type) {

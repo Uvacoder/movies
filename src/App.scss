@@ -3,8 +3,8 @@
 #root {
   min-height: 100%;
   display: grid;
-}
+};
 
 .particles-js-canvas-el {
   height: calc(100% - 10px) !important; // Workaround ro fix particlesJS library bug
-}
+};

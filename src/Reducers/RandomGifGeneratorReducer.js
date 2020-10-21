@@ -6,7 +6,7 @@ import {
 const initialState = {
   word: "",
   gif: ""
-}
+};
 
 export function randomGifGenerator (state = initialState, action) {
   switch (action.type) {

@@ -9,8 +9,8 @@ import { Divider } from 'antd'
 
 function UserRatings () {
   const movieList = useSelector(state => state.userRating.movies);
-  const dispatch = useDispatch();
   const reversedMovieList = [...movieList].reverse();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllUserRatings());
@@ -21,7 +21,8 @@ function UserRatings () {
       return reversedMovieList.map((item) => {
         if (!item.details) {
           return null
-        }
+        };
+
         return (
           <div className='user-ratings__item'>
             <UserVote 
@@ -42,15 +43,15 @@ function UserRatings () {
             />
           </div>
         );
-      })
+      });
     } else {
       return (
         <div className='user-ratings__empty'>
           You haven't rated any movies yet.
         </div>
-      )
-    }
-  }
+      );
+    };
+  };
  
   return (
     <div className='user-ratings'>

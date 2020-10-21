@@ -6,8 +6,7 @@ export function changeLoading (state = {isLoading: false},action) {
       return Object.assign({}, state, {
         isLoading: action.isLoading
       })
-      default:
-        return state   
-  }
-}
-
+    default:
+      return state   
+  };
+};

@@ -31,7 +31,7 @@ function getMethod(type) {
     };  
     const URLObject = new URL('', url)
     
-    if(URLObject.hostname === COMMUNICATION_LOCAL_HOSTNAME || URLObject.hostname === COMMUNICATION_WEB_PAGE_HOSTNAME) {  
+    if (URLObject.hostname === COMMUNICATION_LOCAL_HOSTNAME || URLObject.hostname === COMMUNICATION_WEB_PAGE_HOSTNAME) {  
       fetchParams.headers.token = localStorage.getItem('token');
     };
 

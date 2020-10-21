@@ -76,7 +76,7 @@ class SearchResults extends React.Component {
           <span className ='search-results__failed'>Unfortunately, we couldn't find any movie with that name</span>
           <span className ='search-results__failed'>Make sure you haven't made any typos</span>
         </>
-      )
+      );
     };
   };
 
@@ -100,8 +100,8 @@ const mapStateToProps = (state) => {
     searchResults: state.searchResults.results,
     phrase: state.searchResults.phrase,
     numberOfPages: state.searchResults.numberOfPages
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchSearched,

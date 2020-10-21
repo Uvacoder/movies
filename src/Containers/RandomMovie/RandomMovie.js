@@ -85,7 +85,7 @@ const RandomMovie = () => {
 
   if (!randomMovie || !randomMovie.videoKey) {
     return null;
-  }
+  };
 
   return (
     <div className='random-movie'>

@@ -1,12 +1,12 @@
 import {
   ADD_USER_RATING,
-  ADD_ALL_USER_RATINGS,
+  FETCH_ALL_USER_RATINGS,
   EDIT_USER_RATING
 } from 'actions/UserActions';
 
 const initialState = {
   movies: []
-}
+};
 
 export function userRating (state = initialState, action) {
   switch(action.type) {
@@ -28,7 +28,7 @@ export function userRating (state = initialState, action) {
     return Object.assign({}, state, {
       movies: newMovies
     })
-  case ADD_ALL_USER_RATINGS: // fetchalluser ratings
+  case FETCH_ALL_USER_RATINGS:
     return Object.assign({}, state, {
       movies: action.movieRates
     })

@@ -21,12 +21,13 @@ class WelcomePage extends React.Component {
 
   componentDidMount() {
     window.particlesJS.load('particles-js', './particles.json');
-  }
+  };
 
   logOut = () => {
     UserUtil.logOut();
     this.setState({loginForm: true})
-  }
+  };
+
   renderContent = () => {
     if (!localStorage.getItem("token")) {
       if (this.state.loginForm) {
@@ -51,8 +52,8 @@ class WelcomePage extends React.Component {
   goToRegistration = () => {
     this.setState({
       loginForm: false
-    })
-  }
+    });
+  };
 
   goToLogin = () => {
     this.setState({

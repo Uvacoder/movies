@@ -6,7 +6,6 @@ import './RandomGifGenerator.scss'
 import { fetchRandomGif, clearRandomGif } from 'actions/RadnomGifGeneratorActions'
 import { withRouter } from 'react-router-dom'
 
-
 const WARNING_MODAL_TITLE = 'Caution! Enter at your own risk.'
 const WARNING_MODAL_CONTENT = 'This site is using random words provided by Urbandictionary, they might be controversial. Generated images can be blunt. If you are not OK with it please leave.'
 const { confirm } = Modal;
@@ -14,11 +13,11 @@ const { confirm } = Modal;
 class RandomGifGenerator extends React.Component {
   componentDidMount() {
     this.showWarning()
-  }
+  };
 
   componentWillUnmount() {
     this.props.clearRandomGif()
-  }
+  };
   
   showWarning = () => {
     confirm({
@@ -34,8 +33,8 @@ class RandomGifGenerator extends React.Component {
 
   renderGif = () => {
     if (!this.props.gif) {
-        return null;
-    } 
+      return null;
+    };
 
     return ( 
       <div className='rnd-gif-container__content'>

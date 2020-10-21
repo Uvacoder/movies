@@ -1,19 +1,15 @@
-
 @font-face {
   font-family: 'Opens Sans';
   src: local('Opens Sans'), url(./Fonts/Poppins-Light.ttf) format('woff');
-}
-
+};
 
 html body {
   margin: 0;
   font-family: 'Opens Sans';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+};
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+};

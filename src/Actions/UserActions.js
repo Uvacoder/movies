@@ -3,7 +3,7 @@ import DomainApi from 'utils/DomainAPI';
 import TMDBApi from 'utils/TMDBApi';
 
 export const ADD_USER_RATING = 'user/ADD_USER_RATING';
-export const ADD_ALL_USER_RATINGS = 'user/ADD_ALL_USER_RATINGS';
+export const FETCH_ALL_USER_RATINGS = 'user/FETCH_ALL_USER_RATINGS';
 export const EDIT_USER_RATING = 'user/EDIT_USER_RATING';
 
 export const register = (body) => {
@@ -128,7 +128,7 @@ export const getAllUserRatings = () => {
       }));
 
       dispatch({ 
-        type: ADD_ALL_USER_RATINGS,
+        type: FETCH_ALL_USER_RATINGS,
         movieRates: [...results]
       });
       return {

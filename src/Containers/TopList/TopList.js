@@ -54,7 +54,7 @@ class TopList extends React.Component {
       items = this.props.topListOfMovies.filter((item) => item.vote_count > MIN_NUM_OF_VOTES);
     } else {
       items = this.props.topListOfMovies;
-    }
+    };
 
     const results = items.map((item, idx) => {
       return(
@@ -117,8 +117,8 @@ const mapStateToProps = (state) => {
   return {
     topListOfMovies: state.topListOfMovies.results,
     numberOfPages: state.topListOfMovies.numberOfPages
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   routeToMovieDetails,
