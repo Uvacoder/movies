@@ -47,7 +47,7 @@ export const fetchNextPageOfTopList = (type, page) => {
           page,
           region: 'US',
         }),
-        useLoader: true
+        useLoader: false
       });
   
       await Promise.all(searched.results.map(async item => {
@@ -55,7 +55,7 @@ export const fetchNextPageOfTopList = (type, page) => {
           path: TMDBApi.get(`movie/${item.id}`,{
             append_to_response: 'credits'
           }),
-          useLoader: true
+          useLoader: false
         });	
         item.details = searchedDetails; 
       }));

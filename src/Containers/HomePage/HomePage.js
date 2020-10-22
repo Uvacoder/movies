@@ -21,12 +21,15 @@ const CAROUSEL_AUTOPLAY_DURATION = 5000;
 function HomePage () {
   const trendingList = useSelector(state => state.homePage.trending.items);
   const upcommingList = useSelector(state => state.homePage.upcomming.items);
+  const isLoading = useSelector(state => state.global.isLoading);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTrending());
     dispatch(fetchUpcomming());
   },[dispatch]);
+
+  console.log(isLoading)
 
   const trendingCarouselResponsive = {
     all: {

@@ -8,3 +8,36 @@
 .particles-js-canvas-el {
   height: calc(100% - 10px) !important; // Workaround ro fix particlesJS library bug
 };
+
+.ant-spin-nested-loading {
+  background-color: #40a9ff;
+
+  .ant-spin-container {
+    height: 100%;
+  };
+
+  .ant-spin-blur::after {
+    opacity: 0;
+  };
+
+  .ant-spin-blur {
+    opacity: 0.8;
+  };
+
+  #camera-body,
+  #reel-1,
+  #reel-2 {
+    // fill: #fff;
+    fill: #4dd6ff;
+    // fill-opacity: 0.95;
+    stroke: none;
+  };
+
+  .ant-spin-lg .ant-spin-dot {
+    font-size: 100px;
+  };
+};
+
+.ant-spin-nested-loading > div > .ant-spin {
+  max-height: 800px;
+};

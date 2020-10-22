@@ -1,8 +1,3 @@
-// TO DO figure out how to add store outisde react component
-
-// import { store }  from '../../store';
-// import { getStore }  from '../../store';
-// import {getStore} from './store'
 import { changeLoadingStatus } from 'actions/GlobalActions';
 import storeRegistry from '../../Store/storeRegistry';
 import { notification } from 'antd';
@@ -24,7 +19,6 @@ class ApiError extends Error {
 
 function getMethod(type) {
   return async ({path, useLoader, body}) => {
-    console.log(path, useLoader)
     const fetchParams = {
       method: type,
       body: JSON.stringify(body),
@@ -34,20 +28,17 @@ function getMethod(type) {
       }
     };  
     const URLObject = new URL('', path)
-    // const URLObject = new URL('', url)
     
     if (URLObject.hostname === COMMUNICATION_LOCAL_HOSTNAME || URLObject.hostname === COMMUNICATION_WEB_PAGE_HOSTNAME) {  
       fetchParams.headers.token = localStorage.getItem('token');
     };
 
     try {
-      // getStore().dispatch(changeLoadingStatus()) // TO DO
-      if (useLoader) { // useLoader
-        storeRegistry.getStore().dispatch(changeLoadingStatus(true)) // TO DO
+      if (useLoader) { 
+        storeRegistry.getStore().dispatch(changeLoadingStatus(true)) 
       }
       
       const response = await fetch(path, fetchParams);
-      // const response = await fetch(url, fetchParams);
 
       return response.json().then(json => {
         if (response.status >= 400) {

@@ -6,17 +6,17 @@ import WelcomePage from 'containers/WelcomePage/WelcomePage'
 import AppLayout from 'containers/AppLayout/AppLayout'
 import { history } from './Store/store';
 import { Spin } from 'antd';
-import { LoadingOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
-
-const antIcon = <LoadingOutlined style={{ fontSize: 100 }} spin />;
+import { ReactComponent as Loader } from "./Images/loader.svg"
 
 function App() {
-  const isLoading = useSelector(state => state.changeLoading.isLoading);
+  const isLoading = useSelector(state => state.global.isLoading);
 
   return (
     <ConnectedRouter history={history}>
-      <Spin indicator={antIcon} spinning={isLoading} size={'large'} delay={100}>
+      {/* <Spin indicator={antIcon} spinning={isLoading} size={'large'} delay={100}> */}
+      {/* <Spin indicator={myConst()} spinning={true} size={'large'} delay={150}> */}
+      <Spin indicator={<Loader />} spinning={isLoading} size={'large'} delay={150}>
         <Switch>
           <Route exact path="/">
             <WelcomePage />
