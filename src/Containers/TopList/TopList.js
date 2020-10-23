@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { Divider } from 'antd'
 import SearchedMovies from 'components/SearchedMovies/SearchedMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
-import { fetchTopList, fetchNextPageOfTopList } from 'actions/TopListActions'
+import { fetchTopList, fetchNextPageOfTopList, clearTopList } from 'actions/TopListActions'
 import { withRouter } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spin } from 'antd';
@@ -34,10 +34,15 @@ class TopList extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.type !== this.props.match.params.type) {
+      this.props.clearTopList()
       this.setState({ currentPage: 1 });
       this.props.fetchTopList(this.props.match.params.type);
     };
   };
+
+  componentWillUnmount() {
+    this.props.clearTopList()
+  }
 
   fetchData = () => {
     this.setState({ currentPage: this.state.currentPage + 1})
@@ -98,18 +103,22 @@ class TopList extends React.Component {
   };
 
   render() {
-    return (
-      <div className='top-list'>
-        <Divider className='top-list__title' orientation='center'>
-          <span>
-            {TOP_LIST_TYPES_NAMES[this.props.match.params.type]}
-          </span>
-        </Divider>
-        <div className='top-list__content'>
-          {this.renderResults()}
-        </div> 
-      </div>
-    );
+    if (this.props.topListOfMovies.length === 0) {
+      return null
+    } else {
+      return (
+        <div className='top-list'>
+          <Divider className='top-list__title' orientation='center'>
+            <span>
+              {TOP_LIST_TYPES_NAMES[this.props.match.params.type]}
+            </span>
+          </Divider>
+          <div className='top-list__content'>
+            {this.renderResults()}
+          </div> 
+        </div>
+      );
+    }
   };
 };
 
@@ -124,6 +133,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   routeToMovieDetails,
   fetchTopList,
   fetchNextPageOfTopList,
+  clearTopList
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TopList));

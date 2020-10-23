@@ -21,7 +21,7 @@ const MovieHeader = (props) => {
     title,
     tagline,
     voteAverage,
-    popularity
+    popularity,
   } = props;
   const dispatch = useDispatch();
   const movieList = useSelector(state => state.userRating.movies);
@@ -97,11 +97,11 @@ const MovieHeader = (props) => {
 };
 
 MovieHeader.defaultProps = {
-    backDropPath: 'path',
-    title: 'movie title',
-    tagline: 'tagline',
-    voteAverage: 1,
-    popularity: 1
+    backDropPath: '',
+    title: '',
+    tagline: '',
+    voteAverage: 0,
+    popularity: 0
 };
 
 export default withRouter(MovieHeader)

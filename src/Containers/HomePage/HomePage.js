@@ -29,7 +29,7 @@ function HomePage () {
     dispatch(fetchUpcomming());
   },[dispatch]);
 
-  console.log(isLoading)
+  // console.log(isLoading)
 
   const trendingCarouselResponsive = {
     all: {
@@ -77,9 +77,10 @@ function HomePage () {
 
   const renderUpcomming = () => {
     const availableMovies = upcommingList.filter(movie => movie.poster_path && (movie.title || movie.orginal_title))
-    const shuffledArray = Calculation.shuffleArray(availableMovies)
+    // const shuffledArray = Calculation.shuffleArray(availableMovies)
 
-    return shuffledArray.slice(0, NO_OF_UPCOMMING_ITEMS).map((item, idx) => {
+    return availableMovies.slice(0, NO_OF_UPCOMMING_ITEMS).map((item, idx) => {
+    // return shuffledArray.slice(0, NO_OF_UPCOMMING_ITEMS).map((item, idx) => {
       return (
         <UpcommingMovies 
           item={item} 

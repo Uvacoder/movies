@@ -1,4 +1,7 @@
-import { FETCH_MOVIE_DETAILS } from '../Actions/MovieActions';
+import { 
+  FETCH_MOVIE_DETAILS,
+  CLEAR_MOVIE_DETAILS
+ } from '../Actions/MovieActions';
   
 const initialState = {
   details: {},
@@ -16,6 +19,8 @@ export function movieDetails (state = initialState, action) {
       reviews: action.movieReviews.results,
       externalIds: action.externalIds
     })
+  case CLEAR_MOVIE_DETAILS:
+    return Object.assign({}, state, initialState)
   default:
     return state
   };

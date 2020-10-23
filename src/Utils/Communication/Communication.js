@@ -1,6 +1,7 @@
 import { changeLoadingStatus } from 'actions/GlobalActions';
 import storeRegistry from '../../Store/storeRegistry';
 import { notification } from 'antd';
+import { v4 as uuidv4 } from 'uuid';
 
 const COMMUNICATION_ERROR_MESSAGE = "Ups! Something went wrong :(";
 const COMMUNICATION_ERROR_DESCRIPTION = "Please, try again later.";
@@ -8,6 +9,7 @@ const COMMUNICATION_ERROR_PLACEMENT = "topRight";
 const COMMUNICATION_ERROR_DURATION = 3.2;
 const COMMUNICATION_LOCAL_HOSTNAME = "localhost";
 const COMMUNICATION_WEB_PAGE_HOSTNAME = "movielounge.com";
+const ApiRequestIdTable = [];
 
 class ApiError extends Error {
   constructor(message, text) {
@@ -28,7 +30,8 @@ function getMethod(type) {
       }
     };  
     const URLObject = new URL('', path)
-    
+    let requestId = null
+
     if (URLObject.hostname === COMMUNICATION_LOCAL_HOSTNAME || URLObject.hostname === COMMUNICATION_WEB_PAGE_HOSTNAME) {  
       fetchParams.headers.token = localStorage.getItem('token');
     };
@@ -36,6 +39,8 @@ function getMethod(type) {
     try {
       if (useLoader) { 
         storeRegistry.getStore().dispatch(changeLoadingStatus(true)) 
+        requestId = uuidv4()
+        ApiRequestIdTable.push(requestId)
       }
       
       const response = await fetch(path, fetchParams);
@@ -57,10 +62,15 @@ function getMethod(type) {
       }
       throw err;
     } finally {
-      if (useLoader) { // useLoader
-        storeRegistry.getStore().dispatch(changeLoadingStatus(false)) // TO DO
-      }
-    }
+      if (useLoader) {
+        const index = ApiRequestIdTable.indexOf(requestId)
+        ApiRequestIdTable.splice(index, 1)
+        if (ApiRequestIdTable.length === 0) {
+          storeRegistry.getStore().dispatch(changeLoadingStatus(false))
+        };
+        console.log(storeRegistry.getStore().getState().global.isLoading)
+      };
+    };
   };
 };
 

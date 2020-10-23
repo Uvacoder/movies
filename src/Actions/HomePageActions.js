@@ -43,11 +43,13 @@ export const fetchUpcomming = () => {
         }),
         useLoader: true
       });
+      const shuffledArray = Calculation.shuffleArray(movies.results)
 
       dispatch({ 
         type: FETCH_UPCOMMING,
         upcomming: {
-          items: movies.results,
+          items: shuffledArray,
+          // items: movies.results,
         }
       })
     } catch (error) {

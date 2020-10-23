@@ -2,7 +2,7 @@ import React from 'react';
 import './MovieDetails.scss';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { fetchMovieDetails } from 'actions/MovieActions'
+import { fetchMovieDetails, clearMovieDetails } from 'actions/MovieActions'
 import { getUserRating } from 'actions/UserActions'
 import { Divider } from 'antd'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
@@ -31,8 +31,13 @@ class MovieDetails extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.props.clearMovieDetails();
       this.props.fetchMovieDetails(this.props.match.params.id);
     };
+  };
+
+  componentWillUnmount() {
+    this.props.clearMovieDetails();
   };
 
   filterDirector = () => {
@@ -215,6 +220,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   fetchMovieDetails,
   routeToMovieDetails,
   getUserRating,
+  clearMovieDetails
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)((withRouter(MovieDetails)));

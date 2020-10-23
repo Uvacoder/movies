@@ -4,6 +4,7 @@ import { getTopListTypeUrl } from 'actions/TopListActionsUtil'
 
 export const FETCH_TOP_LIST = 'toplist/FETCH_TOP_LIST';
 export const FETCH_NEXT_PAGE_OF_TOP_LIST = 'toplist/FETCH_NEXT_PAGE_OF_TOP_LIST';
+export const CLEAR_TOP_LIST = 'toplist/CLEAR_TOP_LIST';
 
 export const fetchTopList = (type) => {
   return async dispatch => {
@@ -69,3 +70,11 @@ export const fetchNextPageOfTopList = (type, page) => {
     };
   };  
 }; 
+
+export const clearTopList = () => {
+  return dispatch => {
+    dispatch({
+      type: CLEAR_TOP_LIST
+    });
+  };
+};

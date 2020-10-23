@@ -1,5 +1,4 @@
 export const getTopListTypeUrl = (type) => {
-  debugger;
   switch (type) {
     case 'top_rated':
       return 'movie/top_rated'

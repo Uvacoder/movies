@@ -17,6 +17,7 @@ import storeRegistry from './Store/storeRegistry';
 //   myDiv.innerHTML = "Please use modern browser like Chrome or Firefox" 
 //   root.appendChild(myDiv)
 // } else {
+window.store = storeRegistry.getStore()
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={ storeRegistry.getStore() }>
