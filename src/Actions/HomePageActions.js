@@ -65,7 +65,7 @@ export const fetchUpcomming = () => {
 
   return async dispatch => {
     try {
-      dispatch(changeLoadingStatus(true));
+      // dispatch(changeLoadingStatus(true));
       const movies = await Communication.get({
         path: TMDBApi.get('discover/movie',{
           language: 'en-US',
@@ -74,7 +74,7 @@ export const fetchUpcomming = () => {
           include_video: 'true',
           page: randomMoviePage
         }),
-        useLoader: false
+        useLoader: true
       });
       const videoKeyResult = await Communication.get({
         path: TMDBApi.get(`movie/${movies.results[randomMovie].id}/videos`, {

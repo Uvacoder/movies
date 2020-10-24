@@ -10,6 +10,7 @@ const COMMUNICATION_ERROR_DURATION = 3.2;
 const COMMUNICATION_LOCAL_HOSTNAME = "localhost";
 const COMMUNICATION_WEB_PAGE_HOSTNAME = "movielounge.com";
 const ApiRequestIdTable = [];
+let loaderTimerId = null;
 
 class ApiError extends Error {
   constructor(message, text) {
@@ -38,8 +39,9 @@ function getMethod(type) {
 
     try {
       if (useLoader) { 
+        clearTimeout(loaderTimerId);
         storeRegistry.getStore().dispatch(changeLoadingStatus(true)) 
-        console.log('loading-TRUE', path, body)
+        // console.log('loading-TRUE', path, body)
         requestId = uuidv4()
         ApiRequestIdTable.push(requestId)
       }
@@ -67,10 +69,12 @@ function getMethod(type) {
         const index = ApiRequestIdTable.indexOf(requestId)
         ApiRequestIdTable.splice(index, 1)
         if (ApiRequestIdTable.length === 0) {
-          storeRegistry.getStore().dispatch(changeLoadingStatus(false))
-          console.log('loading-FALSE', path, body)
+          loaderTimerId = setTimeout(() => {
+            storeRegistry.getStore().dispatch(changeLoadingStatus(false))
+          }, 50);
+          // console.log('loading-FALSE', path, body)
         };
-        console.log(storeRegistry.getStore().getState().global.isLoading)
+        // console.log(storeRegistry.getStore().getState().global.isLoading)
       };
     };
   };

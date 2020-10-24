@@ -10,8 +10,6 @@ history.listen(() => {
   window.scrollTo(0, 0)
 });
 
-
-console.log('createStore')
 const store = createStore(
   allReducers(history),
   compose(
