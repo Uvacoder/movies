@@ -6,7 +6,7 @@ import AvatarPlaceholderMan from '../../Images/avatarPlaceholderMan.svg'
 import AvatarPlaceholderWoman from '../../Images/avatarPlaceholderWoman.svg'
 
 const MOVIE_CAST_NO_OF_CAROUSEL_ITEMS = 6;
-const IMG_SIZE = 500;
+const IMG_SIZE = 185;
 const CAROUSEL_SLIDES_TO_SLIDE = 3;
 
 const MovieCast = (props) => {

@@ -8,7 +8,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { routeToMovieDetails } from 'utils/Routing/Routing'
 import TMDBApi from 'utils/TMDBApi';
 
-const IMG_SIZE = 500;
+const IMG_SIZE = 342;
 const VOTE_AVERAGE_MAX_VALUE = 10;
 
 const RandomMovie = () => {

@@ -12,6 +12,8 @@
     margin-top: 12px;
     width: 100%;
 
+
+
     .infinite-scroll-component {
       overflow: hidden !important; // to overwrite bugged inline style of inifnite scroll component
     };
@@ -48,5 +50,11 @@
   .top-list__spin{
     display: flex;
     justify-content: center;
+    min-height: 50px;
+    align-items: center;
+
+    .ant-spin-dot-spin {
+      font-size: 32px;
+    }
   };
 };

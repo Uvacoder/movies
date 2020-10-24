@@ -14,7 +14,7 @@ import TMDBApi from 'utils/TMDBApi';
 const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table length.
 const NO_OF_UPCOMMING_ITEMS = 3;
 const NO_OF_ITEMS_TRENDING_CAROUSEL = 5;
-const IMG_SIZE = 500;
+const IMG_SIZE = 342;
 const CAROUSEL_SLIDES_TO_SLIDE = 2
 const CAROUSEL_AUTOPLAY_DURATION = 5000;
 
@@ -28,8 +28,6 @@ function HomePage () {
     dispatch(fetchTrending());
     dispatch(fetchUpcomming());
   },[dispatch]);
-
-  // console.log(isLoading)
 
   const trendingCarouselResponsive = {
     all: {

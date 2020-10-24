@@ -36,7 +36,7 @@ const MovieHeader = (props) => {
     if (!backDropPath) {
       return <div className='movie-header__image-wrapper-placeholder'/>
     };
-    return <img src={backDropPath} alt=''/>
+    return <img src={backDropPath} alt='' loading='lazy'/>
   };
 
   const displayUserVote = () => {
@@ -98,8 +98,8 @@ const MovieHeader = (props) => {
 
 MovieHeader.defaultProps = {
     backDropPath: '',
-    title: '',
-    tagline: '',
+    title: ' ',
+    tagline: ' ',
     voteAverage: 0,
     popularity: 0
 };

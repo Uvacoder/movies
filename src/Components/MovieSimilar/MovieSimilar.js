@@ -4,7 +4,7 @@ import Carousel from 'react-multi-carousel';
 import TMDBApi from 'utils/TMDBApi';
 
 const NO_OF_ITEMS_SIMILAR_MOVIES = 6;
-const IMG_SIZE = 500;
+const IMG_SIZE = 185;
 const CAROUSEL_SLIDES_TO_SLIDE = 2;
 const CAROUSEL_AUTOPLAY_DURATION = 5000;
 

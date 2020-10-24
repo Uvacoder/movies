@@ -18,8 +18,9 @@ import MovieSimilar from 'components/MovieSimilar/MovieSimilar'
 import MovieReview from 'components/MovieReview/MovieReview'
 import MovieSocial from 'components/MovieSocial/MovieSocial'
 
-const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
-const POSTER_WIDTH = 500;
+// const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
+const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/w780'
+const POSTER_WIDTH = 342; // note to self: to get other sizes use API /configuration
 const THUMBNAIL_WIDTH_DIVIDER_VALUE = 3;
 const THUMBNAIL_WIDTH_MAX_VALUE = 400;
 const THUMBNAIL_HEIGHT = 250;
