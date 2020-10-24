@@ -1,6 +1,7 @@
 import Communication from 'communication/Communication';
 import TMDBApi from 'utils/TMDBApi';
 import { getTopListTypeUrl } from 'actions/TopListActionsUtil'
+import { changeLoadingStatus } from 'actions/GlobalActions';
 
 export const FETCH_TOP_LIST = 'toplist/FETCH_TOP_LIST';
 export const FETCH_NEXT_PAGE_OF_TOP_LIST = 'toplist/FETCH_NEXT_PAGE_OF_TOP_LIST';
@@ -9,13 +10,14 @@ export const CLEAR_TOP_LIST = 'toplist/CLEAR_TOP_LIST';
 export const fetchTopList = (type) => {
   return async dispatch => {
     try {
+      dispatch(changeLoadingStatus(true));
       const searched = await Communication.get({
         path: TMDBApi.get(`${getTopListTypeUrl(type)}`, {
           language:'en-US',
           page: '1',
           region: 'US',
         }),
-        useLoader: true
+        useLoader: false
       });
 
       await Promise.all(searched.results.map(async item => {

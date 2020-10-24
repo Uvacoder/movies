@@ -1,5 +1,6 @@
 import Communication from 'communication/Communication';
 import Calculation from 'utils/Calculation';
+import { changeLoadingStatus } from 'actions/GlobalActions';
 
 export const FETCH_RANDOM_GIF = "RGG/FETCH_RANDOM_GIF"
 export const CLEAR_RANDOM_GIF = "RGG/CLEAR_RANDOM_GIF"
@@ -15,9 +16,10 @@ const getGifApiUrl = (word) => {
 export const fetchRandomGif = () => {
   return async dispatch => {
     try {
+      dispatch(changeLoadingStatus(true));
       const wordsList = await Communication.get({
         path: RANDOM_WORD_API,
-        useLoader: true
+        useLoader: false
       })
       const randomWord = wordsList.list[Calculation.randomInt(NO_OF_FIRST_WORD_SEARCHED, NO_OF_LAST_WORD_SEARCHED)]
       const gif = await Communication.get({

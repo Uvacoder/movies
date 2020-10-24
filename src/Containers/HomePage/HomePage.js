@@ -27,6 +27,7 @@ function HomePage () {
   useEffect(() => {
     dispatch(fetchTrending());
     dispatch(fetchUpcomming());
+    dispatch(fetchRandom());
   },[dispatch]);
 
   const trendingCarouselResponsive = {

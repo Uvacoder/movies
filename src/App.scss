@@ -9,8 +9,16 @@
   height: calc(100% - 10px) !important; // Workaround ro fix particlesJS library bug
 };
 
-.ant-spin-nested-loading {
+.ant-spin__wrapper--spinning {
   background-color: #40a9ff;
+
+  .ant-spin-blur {
+    opacity: 0.8 !important;
+  }
+}
+
+.ant-spin-nested-loading {
+  // background-color: #40a9ff;
 
   .ant-spin-container {
     height: 100%;
@@ -21,7 +29,8 @@
   };
 
   .ant-spin-blur {
-    opacity: 0.8;
+    // opacity: 0.8;
+    opacity: 1;
   };
 
   #camera-body,

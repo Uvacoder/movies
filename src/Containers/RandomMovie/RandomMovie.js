@@ -15,9 +15,9 @@ const RandomMovie = () => {
   const randomMovie = useSelector(state => state.homePage.random);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchRandom());
-  },[dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchRandom());
+  // },[dispatch]);
 
   const renderImage = (imgPath) => {
     return (

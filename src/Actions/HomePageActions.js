@@ -1,6 +1,7 @@
 import Communication from 'communication/Communication';
 import TMDBApi from 'utils/TMDBApi';
 import Calculation from 'utils/Calculation';
+import { changeLoadingStatus } from 'actions/GlobalActions';
 
 export const FETCH_TRENDING = 'homePage/FETCH_TRENDING';
 export const FETCH_UPCOMMING ='homePage/FETCH_UPCOMMING';
@@ -64,6 +65,7 @@ export const fetchUpcomming = () => {
 
   return async dispatch => {
     try {
+      dispatch(changeLoadingStatus(true));
       const movies = await Communication.get({
         path: TMDBApi.get('discover/movie',{
           language: 'en-US',
@@ -72,7 +74,7 @@ export const fetchUpcomming = () => {
           include_video: 'true',
           page: randomMoviePage
         }),
-        useLoader: true
+        useLoader: false
       });
       const videoKeyResult = await Communication.get({
         path: TMDBApi.get(`movie/${movies.results[randomMovie].id}/videos`, {
@@ -86,7 +88,7 @@ export const fetchUpcomming = () => {
 
       dispatch({ 
         type: FETCH_RANDOM,
-      random: shuffledMovie
+        random: shuffledMovie
     });
     } catch (error) {
       console.error('TBMD API random movie', error)

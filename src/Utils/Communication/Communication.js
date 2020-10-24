@@ -39,6 +39,7 @@ function getMethod(type) {
     try {
       if (useLoader) { 
         storeRegistry.getStore().dispatch(changeLoadingStatus(true)) 
+        console.log('loading-TRUE', path, body)
         requestId = uuidv4()
         ApiRequestIdTable.push(requestId)
       }
@@ -67,6 +68,7 @@ function getMethod(type) {
         ApiRequestIdTable.splice(index, 1)
         if (ApiRequestIdTable.length === 0) {
           storeRegistry.getStore().dispatch(changeLoadingStatus(false))
+          console.log('loading-FALSE', path, body)
         };
         console.log(storeRegistry.getStore().getState().global.isLoading)
       };
