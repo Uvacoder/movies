@@ -81,6 +81,10 @@ class SearchResults extends React.Component {
   };
 
   render() {
+    if (this.props.isLoading) {
+      return null
+    };
+
     return (
       <div className='search-results'>
         <Divider className='search-results__title' orientation='center'>
@@ -99,7 +103,8 @@ const mapStateToProps = (state) => {
   return {
     searchResults: state.searchResults.results,
     phrase: state.searchResults.phrase,
-    numberOfPages: state.searchResults.numberOfPages
+    numberOfPages: state.searchResults.numberOfPages,
+    isLoading: state.global.isLoading
   };
 };
 

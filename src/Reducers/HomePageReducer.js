@@ -2,6 +2,8 @@ import {
   FETCH_TRENDING,
   FETCH_UPCOMMING,
   FETCH_RANDOM,
+  CLEAR_RANDOM,
+  CLEAR_UPCOMMING
 } from '../Actions/HomePageActions';
 
 const initialState = {
@@ -27,6 +29,14 @@ export function homePage (state = initialState,action) {
   case FETCH_RANDOM:
     return Object.assign({}, state, {
       random: action.random,
+    })
+  case CLEAR_RANDOM:
+    return Object.assign({}, state, {
+      random: initialState.random
+    })
+  case CLEAR_UPCOMMING:
+    return Object.assign({}, state, {
+      upcomming: initialState.upcomming
     })
   default:
     return state;

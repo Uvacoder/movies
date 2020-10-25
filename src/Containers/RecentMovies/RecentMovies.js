@@ -91,6 +91,10 @@ class TopList extends React.Component {
   };
 
   render() {
+    if (this.props.isLoading) {
+      return null
+    }
+
     return (
       <div className='recent-movies'>
         <Divider className='recent-movies__title' orientation='center'>
@@ -109,7 +113,8 @@ class TopList extends React.Component {
 const mapStateToProps = (state) => {
   return {
     recentMovies: state.recentMovies.results,
-    numberOfPages: state.recentMovies.numberOfPages
+    numberOfPages: state.recentMovies.numberOfPages,
+    isLoading: state.global.isLoading
   };
 };
 

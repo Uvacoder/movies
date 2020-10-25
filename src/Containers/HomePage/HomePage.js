@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
 import "./HomePage.scss"
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchTrending, fetchUpcomming, fetchRandom } from 'actions/HomePageActions'
+import { 
+  fetchTrending, 
+  fetchUpcomming, 
+  fetchRandom, 
+  clearRandom, 
+  clearUpcomming 
+} from 'actions/HomePageActions'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Divider } from 'antd'
-import RandomMovie from '../RandomMovie/RandomMovie'
+import RandomMovie from 'components/RandomMovie/RandomMovie'
 import UpcommingMovies from 'components/UpcommingMovies/UpcommingMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
-import Calculation from 'utils/Calculation';
 import TMDBApi from 'utils/TMDBApi';
 
 const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table length.
@@ -21,7 +26,7 @@ const CAROUSEL_AUTOPLAY_DURATION = 5000;
 function HomePage () {
   const trendingList = useSelector(state => state.homePage.trending.items);
   const upcommingList = useSelector(state => state.homePage.upcomming.items);
-  const isLoading = useSelector(state => state.global.isLoading);
+  const randomMovie = useSelector(state => state.homePage.random);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,6 +34,13 @@ function HomePage () {
     dispatch(fetchUpcomming());
     dispatch(fetchRandom());
   },[dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearRandom())
+      dispatch(clearUpcomming())
+    }
+  },[]);
 
   const trendingCarouselResponsive = {
     all: {
@@ -76,10 +88,8 @@ function HomePage () {
 
   const renderUpcomming = () => {
     const availableMovies = upcommingList.filter(movie => movie.poster_path && (movie.title || movie.orginal_title))
-    // const shuffledArray = Calculation.shuffleArray(availableMovies)
 
     return availableMovies.slice(0, NO_OF_UPCOMMING_ITEMS).map((item, idx) => {
-    // return shuffledArray.slice(0, NO_OF_UPCOMMING_ITEMS).map((item, idx) => {
       return (
         <UpcommingMovies 
           item={item} 
@@ -96,7 +106,7 @@ function HomePage () {
         <Divider className='home-page-container__main-title' orientation='center'>
           Consider this movie or draw <a onClick={ () => dispatch(fetchRandom()) }>another one</a>
         </Divider>
-        <RandomMovie />
+        <RandomMovie randomMovie = {randomMovie} routeToMovieDetails={(id) => dispatch(routeToMovieDetails(id))}/>
       </div> 
       <div className='home-page-container__trending' > 
       <Divider className='home-page-container-trending-title' orientation='left'>Trending today</Divider>

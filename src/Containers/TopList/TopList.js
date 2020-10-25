@@ -72,7 +72,7 @@ class TopList extends React.Component {
             release_date={item.release_date}
             runtime={item.details.runtime}
             genres={item.details.genres.length !== 0 ? item.details.genres.map((item) => item.name).join(', ') : '–'}
-            director={item.details.credits.crew.find((item) => item.job === "Director").name}
+            director={item.details.credits.crew.find((item) => item.job === "Director")?.name}
             vote_average={item.details.vote_average}
             popularity={item.details.popularity}
           />

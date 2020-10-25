@@ -1,23 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import "./RandomMovie.scss"
 import DoughnutChart from 'components/DoughnutChart/DoughnutChart'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchRandom } from 'actions/HomePageActions';
 import YouTube from 'react-youtube';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { routeToMovieDetails } from 'utils/Routing/Routing'
 import TMDBApi from 'utils/TMDBApi';
 
 const IMG_SIZE = 342;
 const VOTE_AVERAGE_MAX_VALUE = 10;
 
-const RandomMovie = () => {
-  const randomMovie = useSelector(state => state.homePage.random);
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchRandom());
-  // },[dispatch]);
+const RandomMovie = (props) => {
+  const {
+    randomMovie 
+  } = props;
 
   const renderImage = (imgPath) => {
     return (
@@ -25,7 +19,7 @@ const RandomMovie = () => {
         className='random-movie__image routed-image' 
         src={imgPath} 
         alt='poster'
-        onClick={() => dispatch(routeToMovieDetails(randomMovie.id))}
+        onClick={() => props.routeToMovieDetails(randomMovie.id)}
       />
     );
   };
@@ -35,7 +29,7 @@ const RandomMovie = () => {
       <>
         <div 
         className='random-movie__details-title routed-text'
-        onClick={() => dispatch(routeToMovieDetails(movie.id))}>
+        onClick={() => props.routeToMovieDetails(movie.id)}>
           {movie.title}
         </div> 
         <div className='random-movie__details-overwiev'>

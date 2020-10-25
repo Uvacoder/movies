@@ -9,6 +9,7 @@ import { Divider } from 'antd'
 
 function UserRatings () {
   const movieList = useSelector(state => state.userRating.movies);
+  const isLoading = useSelector(state => state.global.isLoading);
   const reversedMovieList = [...movieList].reverse();
   const dispatch = useDispatch();
 
@@ -51,6 +52,10 @@ function UserRatings () {
         </div>
       );
     };
+  };
+
+  if (isLoading) {
+    return null
   };
  
   return (

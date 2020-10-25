@@ -6,7 +6,8 @@ import { changeLoadingStatus } from 'actions/GlobalActions';
 export const FETCH_TRENDING = 'homePage/FETCH_TRENDING';
 export const FETCH_UPCOMMING ='homePage/FETCH_UPCOMMING';
 export const FETCH_RANDOM ='homePage/FETCH_RANDOM';
-export const CLEANUP_RANDOM ='homePage/CLEANUP_RANDOM';
+export const CLEAR_RANDOM ='homePage/CLEAR_RANDOM';
+export const CLEAR_UPCOMMING ='homePage/CLEAR_UPCOMMING';
 
 const FIRST_PAGE_TO_DRAW = 1;
 const LAST_PAGE_TO_DRAW = 100;
@@ -59,7 +60,7 @@ export const fetchUpcomming = () => {
   };
 }; 
 
-  export const fetchRandom = () => {
+export const fetchRandom = () => {
   const randomMoviePage = Calculation.randomInt(FIRST_PAGE_TO_DRAW, LAST_PAGE_TO_DRAW);
   const randomMovie = Calculation.randomInt(FIRST_MOVIE_TO_DRAW, LAST_MOVIE_TO_DRAW);
 
@@ -94,4 +95,20 @@ export const fetchUpcomming = () => {
       console.error('TBMD API random movie', error)
     };
   };  
+};
+
+export const clearRandom = () => {
+  return dispatch => {
+    dispatch({
+      type: CLEAR_RANDOM
+    });
+  };
+};
+
+export const clearUpcomming= () => {
+  return dispatch => {
+    dispatch({
+      type: CLEAR_UPCOMMING
+    });
+  };
 };
