@@ -4,8 +4,8 @@ import {
 } from '../Actions/RadnomGifGeneratorActions';
 
 const initialState = {
-  word: "",
-  gif: ""
+  word: undefined,
+  gif: undefined
 };
 
 export function randomGifGenerator (state = initialState, action) {

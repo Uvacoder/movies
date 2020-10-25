@@ -31,8 +31,11 @@ class RandomGifGenerator extends React.Component {
     });
   };
 
-  renderGif = () => {
+
+  renderContent = () => {
     if (!this.props.gif) {
+      // this.props.clearRandomGif()
+      // this.props.fetchRandomGif()
       return null;
     };
 
@@ -58,7 +61,7 @@ class RandomGifGenerator extends React.Component {
       <div className='rnd-gif-container'>
         <div className='rnd-gif-container__data'>
           <Button type='primary' onClick={() => this.props.fetchRandomGif()}>Get Random Gif</Button>
-          {this.renderGif()}
+          {this.renderContent ()}
         </div>
         <div className='rnd-gif-container__footer'>
           Random words generated from <a href='https://www.urbandictionary.com/'>Urbandictionary</a>, GIFs provided by <a href='https://www.giphy.com'>GIPHY</a>
