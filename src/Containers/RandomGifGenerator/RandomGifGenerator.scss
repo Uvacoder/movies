@@ -21,18 +21,35 @@
     padding-top: 10px;
   };
 
-  .rnd-gif-container__content-word {
-    font-weight: bold;
-    font-size: x-large;
-  };
+  .rnd-gif-container__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  .rnd-gif-container__content-definition-title,
-  .rnd-gif-container__content-found,
-  .rnd-gif-container__content-example {
-    color: rgb(212, 245, 170);
-  };
-
-  .rnd-gif-container__content-divider{
-    border-color: black;
+    .rnd-gif-container__content-word {
+      font-weight: bold;
+      font-size: 3em;
+      margin-bottom: 0;
+    };
+  
+    .rnd-gif-container__content-definition-title,
+    .rnd-gif-container__content-found,
+    .rnd-gif-container__content-example {
+      color: rgb(212, 245, 170);
+    };
+  
+    .rnd-gif-container__content-gif-placeholder,
+    .rnd-gif-container__content-placeholder-hidden {
+      display: none;
+    }
+  
+    .rnd-gif-container__content-placeholder-visible {
+      width: 250px;
+      text-align: center;
+    }
+  
+    .rnd-gif-container__content-divider{
+      border-color: black;
+    };
   };
 };

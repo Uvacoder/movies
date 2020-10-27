@@ -24,14 +24,20 @@ export const fetchRandomGif = () => {
       const randomWord = wordsList.list[Calculation.randomInt(NO_OF_FIRST_WORD_SEARCHED, NO_OF_LAST_WORD_SEARCHED)]
       const gif = await Communication.get({
         path: getGifApiUrl(randomWord.word),
-        useLoader: true
+        useLoader: false
       })
+      const gifData = gif.data[0];
 
-      dispatch({ 
-        type: FETCH_RANDOM_GIF,
-        word: randomWord,
-        gif: gif.data[0]
-      })
+      if (gifData) {
+        dispatch(changeLoadingStatus(false));
+        dispatch({ 
+          type: FETCH_RANDOM_GIF,
+          word: randomWord,
+          gif: gifData
+        })
+      } else {
+        dispatch(fetchRandomGif())
+      }
     } catch (error) {
       console.error('random gif generator', error)
     };

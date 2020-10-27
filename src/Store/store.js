@@ -21,5 +21,7 @@ const store = createStore(
 storeRegistry.setStore(store)
 
 
+window.STORE = store;
+
 
 

@@ -51,7 +51,7 @@ export const fetchNextPageOfSearched = (phrase, page) => {
           page,
           include_adult: 'false',
         }),
-        useLoader: true
+        useLoader: false
       })
       const items = searched.results
   
@@ -60,7 +60,7 @@ export const fetchNextPageOfSearched = (phrase, page) => {
           path: TMDBApi.get(`movie/${item.id}`,{
             append_to_response: 'credits'
           }),
-          useLoader: true
+          useLoader: false
         });	
         item.details = searchedDetails; 
       }));

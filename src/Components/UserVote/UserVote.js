@@ -5,6 +5,7 @@ import { Modal, Button, notification } from 'antd';
 import UserRate from 'components/UserRate/UserRate'
 import UserComment from 'components/UserComment/UserComment'
 import UserUtil from 'utils/UserUtil'
+import { withRouter } from 'react-router-dom'
 
 const USER_VOTE_MAX_VALUE = 10;
 const USER_VOTE_DISPLAY_PERCENT = false;
@@ -24,6 +25,15 @@ class UserVote extends React.Component {
       visible: false,
       rateValue: null,
       commentValue: "",
+    };
+  };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.setState({
+        rateValue: null,
+        commentValue: "",
+      })
     };
   };
   
@@ -96,8 +106,8 @@ class UserVote extends React.Component {
           <UserRate 
             updateRateValue={this.updateRateValue}
             tooltips={ USER_RATE_TOOLTIPS }
-            userRateValue={this.props.currentMovieRating?.rateValue}
-            />
+            userRateValue={this.props.currentMovieRating?.rateValue || 0}
+          />
           <p className='user-vote__modal-body-comment'>Your comment:</p>
           <UserComment 
             placeholder={ USER_COMMENT_PLACEHOLDER }
@@ -129,4 +139,4 @@ class UserVote extends React.Component {
   };
 };
 
-export default UserVote
+export default withRouter(UserVote)

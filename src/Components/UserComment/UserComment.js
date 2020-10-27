@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Input } from 'antd';
+import { withRouter } from 'react-router-dom'
 
 const { TextArea } = Input;
 
@@ -9,6 +10,10 @@ const UserComment = (props) => {
     rows,
   } = props;
   const [inputValue, setInputValue] = useState('')
+
+  useEffect(() => {
+    setInputValue('')
+  },[props.match.params.id]);
 
   return (
     <TextArea 
@@ -28,4 +33,4 @@ UserComment.defaultProps = {
   rows: 4,
 };
 
-export default UserComment
+export default withRouter(UserComment)

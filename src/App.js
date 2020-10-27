@@ -14,7 +14,14 @@ function App() {
     // console.log('isLoading',isLoading)
   return (
     <ConnectedRouter history={history}>
-      <Spin indicator={<Loader />} spinning={isLoading} size={'large'} delay={0} wrapperClassName={isLoading ? 'ant-spin__wrapper--spinning' : ''}> {/* TO DO Change delay to 1000ms */}
+      <Spin 
+        indicator={<Loader />} 
+        spinning={isLoading} 
+        size={'large'} 
+        delay={0} 
+        wrapperClassName={isLoading ? 'ant-spin__wrapper--spinning' : ''}
+        className='ant-spin__global'
+      > {/* TO DO Change delay to 1000ms */}
         <Switch>
           <Route exact path="/">
             <WelcomePage />

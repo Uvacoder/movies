@@ -5,12 +5,21 @@ import { bindActionCreators } from 'redux';
 import './RandomGifGenerator.scss'
 import { fetchRandomGif, clearRandomGif } from 'actions/RadnomGifGeneratorActions'
 import { withRouter } from 'react-router-dom'
+import GifPlaceholder from "../../Images/gifPlaceholder.svg"
 
 const WARNING_MODAL_TITLE = 'Caution! Enter at your own risk.'
 const WARNING_MODAL_CONTENT = 'This site is using random words provided by Urbandictionary, they might be controversial. Generated images can be blunt. If you are not OK with it please leave.'
 const { confirm } = Modal;
 
 class RandomGifGenerator extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      isGifLoaded: false
+    }
+  };
+  
   componentDidMount() {
     this.showWarning()
   };
@@ -31,11 +40,35 @@ class RandomGifGenerator extends React.Component {
     });
   };
 
+  gifLoaded = () => {
+    this.setState({
+      isGifLoaded: true
+    });
+  };
+
+  renderGif = () => {
+    return (
+      <>
+       <img 
+          src={this.props.gif.images.downsized_medium.url } 
+          className={this.state.isGifLoaded ? 'rnd-gif-container__content-gif' : 'rnd-gif-container__content-gif-placeholder'}
+          alt={this.props.shuffledWord.word} 
+          onLoad={() => this.gifLoaded()}
+        />
+        <img 
+          className={ this.state.isGifLoaded ? 'rnd-gif-container__content-placeholder-hidden' : 'rnd-gif-container__content-placeholder-visible' } 
+          src={ GifPlaceholder } 
+          alt={`${GifPlaceholder}`} 
+        />
+        <div className={ this.state.isGifLoaded ? 'rnd-gif-container__content-placeholder-hidden' : 'rnd-gif-container__content-placeholder-visible' } >
+          Gif is loading...
+        </div>
+      </>
+    );
+  };
 
   renderContent = () => {
     if (!this.props.gif) {
-      // this.props.clearRandomGif()
-      // this.props.fetchRandomGif()
       return null;
     };
 
@@ -51,7 +84,7 @@ class RandomGifGenerator extends React.Component {
         <p className='rnd-gif-container__content-example'>Usage example:</p>
         <p className='rnd-gif-container__content-example-content'>{this.props.shuffledWord.example}</p>
         <Divider/>
-        <img src={this.props.gif.images.original.url} className='rnd-gif-container__content-gif' alt={this.props.shuffledWord.word}/>
+        {this.renderGif()}
       </div>
     );
   };
@@ -60,7 +93,17 @@ class RandomGifGenerator extends React.Component {
     return (
       <div className='rnd-gif-container'>
         <div className='rnd-gif-container__data'>
-          <Button type='primary' onClick={() => this.props.fetchRandomGif()}>Get Random Gif</Button>
+          <Button 
+            type='primary' 
+            onClick={() => {
+              this.props.fetchRandomGif()
+              this.setState({
+                isGifLoaded: false
+              });
+            }}
+          >
+            Get Random Gif
+          </Button>
           {this.renderContent ()}
         </div>
         <div className='rnd-gif-container__footer'>
