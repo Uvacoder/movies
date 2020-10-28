@@ -10,6 +10,7 @@ const MOVIE_DETAILS_PAGE = "1";
 export function fetchMovieDetails(Id) {
   return async dispatch => {
     try {
+      //TODO - unreadable code
       const [
         movieDetails, 
         similarMovies, 
