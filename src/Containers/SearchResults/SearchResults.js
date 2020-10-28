@@ -48,6 +48,16 @@ class SearchResults extends React.Component {
     });
   };
 
+  calculateNumberOfResults = (pages) => {
+    if (pages > 1) {
+      return `(${((pages - 1) * 20)}+)`
+    } else if (pages === 1) {
+      return `(${this.props.searchResults.length})`
+    } else {
+      return null
+    };
+  };
+
   renderResults = () => {
     if (this.props.searchResults.length !== 0) {
       return (
@@ -88,8 +98,10 @@ class SearchResults extends React.Component {
     return (
       <div className='search-results'>
         <Divider className='search-results__title' orientation='center'>
-          <span>Search results for:</span>
+          <span>Results for:</span>
+          {/* <span>Search results for:</span> */}
           <span>{this.props.phrase}</span>
+          <span>{this.calculateNumberOfResults(this.props.numberOfPages)}</span>
         </Divider>
         <div className='search-results__content'>
           {this.renderResults()}

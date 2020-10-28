@@ -12,11 +12,9 @@ const UserRate = (props) => {
   const [rateValue, setRateValue] = useState(0)
   
   useEffect(() => {
-    debugger;
     setRateValue(0)
-    
   },[props.match.params.id]);
-    console.log(rateValue , props.userRateValue)
+
   return (
     <Rate
       className='user-rate' 

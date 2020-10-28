@@ -1,7 +1,6 @@
 import Communication from 'communication/Communication';
 import TMDBApi from 'utils/TMDBApi';
 import Calculation from 'utils/Calculation';
-import { changeLoadingStatus } from 'actions/GlobalActions';
 
 export const FETCH_TRENDING = 'homePage/FETCH_TRENDING';
 export const FETCH_UPCOMMING ='homePage/FETCH_UPCOMMING';
@@ -21,7 +20,6 @@ export const fetchTrending = () => {
         path: TMDBApi.get('trending/all/day'),
         useLoader: true
       })
-      // const movies = await Communication.get(TMDBApi.get('trending/all/day'))
       dispatch({ 
         type: FETCH_TRENDING,
         trending: {
@@ -51,7 +49,6 @@ export const fetchUpcomming = () => {
         type: FETCH_UPCOMMING,
         upcomming: {
           items: shuffledArray,
-          // items: movies.results,
         }
       })
     } catch (error) {
@@ -66,7 +63,6 @@ export const fetchRandom = () => {
 
   return async dispatch => {
     try {
-      // dispatch(changeLoadingStatus(true));
       const movies = await Communication.get({
         path: TMDBApi.get('discover/movie',{
           language: 'en-US',

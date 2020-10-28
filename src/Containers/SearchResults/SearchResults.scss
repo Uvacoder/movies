@@ -22,17 +22,25 @@
     width: 100%;
   };
 
-  .search-results__title :nth-child(1){
-    color:rgb(175, 171, 171);
-    margin-right: 12px;
-    font-size: x-large;
-  };
+  .search-results__title{
+    .ant-divider-inner-text :nth-child(1){
+      color:rgb(175, 171, 171);
+      margin-right: 8px;
+      font-size: x-large;
+    };
 
-  .search-results__title :nth-child(2){
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: x-large;
+    .ant-divider-inner-text :nth-child(2){
+      color: white;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: x-large;
+      margin-right: 6px;
+    };
+
+    .ant-divider-inner-text :nth-child(3){
+      font-size: 1em;
+      color:rgb(175, 171, 171);
+    };
   };
 
   .search-results__failed{

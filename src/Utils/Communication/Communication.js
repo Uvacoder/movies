@@ -41,7 +41,6 @@ function getMethod(type) {
       if (useLoader) { 
         clearTimeout(loaderTimerId);
         storeRegistry.getStore().dispatch(changeLoadingStatus(true)) 
-        // console.log('loading-TRUE', path, body)
         requestId = uuidv4()
         ApiRequestIdTable.push(requestId)
       }
@@ -71,10 +70,8 @@ function getMethod(type) {
         if (ApiRequestIdTable.length === 0) {
           loaderTimerId = setTimeout(() => {
             storeRegistry.getStore().dispatch(changeLoadingStatus(false))
-          }, 50);
-          // console.log('loading-FALSE', path, body)
+          }, 10);
         };
-        // console.log(storeRegistry.getStore().getState().global.isLoading)
       };
     };
   };

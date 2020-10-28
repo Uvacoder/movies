@@ -4,7 +4,7 @@ import Roots from '../../Roots/Roots'
 import { Layout } from 'antd';
 
 const LAYOUT_CONTENT_MARGIN_TOP = 64;
-const LAYOUT_CONTENT_PADDING = 24;
+const LAYOUT_CONTENT_PADDING = '18px 12px';
 const { Content } = Layout;
 
 function LayoutContent () {

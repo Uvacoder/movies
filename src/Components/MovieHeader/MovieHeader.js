@@ -48,8 +48,7 @@ const MovieHeader = (props) => {
         </div>
       </Tooltip>
       )
-    } else
-    console.log("rerender MH")
+    }
     return (
       <div className='movie-header__user-vote'>
         <UserVote 

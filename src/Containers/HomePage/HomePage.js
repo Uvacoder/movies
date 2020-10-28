@@ -40,7 +40,7 @@ function HomePage () {
       dispatch(clearRandom())
       dispatch(clearUpcomming())
     }
-  },[]);
+  },[dispatch]);
 
   const trendingCarouselResponsive = {
     all: {

@@ -112,7 +112,7 @@ class UserVote extends React.Component {
           <UserComment 
             placeholder={ USER_COMMENT_PLACEHOLDER }
             updateCommentValue={this.updateCommentValue}
-            commentValue ={this.props.currentMovieRating?.comment}
+            commentValue ={this.props.currentMovieRating?.comment || ''} 
           />
         </div>
       </Modal>
