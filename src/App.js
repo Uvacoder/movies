@@ -11,13 +11,14 @@ import { ReactComponent as Loader } from "./Images/loader.svg"
 
 function App() {
   const isLoading = useSelector(state => state.global.isLoading);
+  
   return (
     <ConnectedRouter history={history}>
       <Spin 
         indicator={<Loader />} 
         spinning={isLoading} 
         size={'large'} 
-        delay={0}  // to do think about delay time.
+        // delay={1000}  // to do think about delay time.
         wrapperClassName={isLoading ? 'ant-spin__wrapper--spinning' : ''}
         className='ant-spin__global'
       >
