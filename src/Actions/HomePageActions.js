@@ -13,6 +13,7 @@ const FIRST_PAGE_TO_DRAW = 1;
 const LAST_PAGE_TO_DRAW = 100;
 const FIRST_MOVIE_TO_DRAW = 1;
 const LAST_MOVIE_TO_DRAW = 20;
+const MOVIE_DOWNLOAD_LANGUAGE = 'en-US';
 
 export const fetchTrending = () => {
   return async dispatch => {
@@ -38,7 +39,7 @@ export const fetchUpcomming = () => {
     try {
       const movies = await Communication.get({
         path: TMDBApi.get('movie/upcoming',{
-          language: 'en-US',
+          language: MOVIE_DOWNLOAD_LANGUAGE,
           page: '1',
           region:'US'
         }),
@@ -67,7 +68,7 @@ export const fetchRandom = () => {
       dispatch(changeLoadingStatus(true));
       const movies = await Communication.get({
         path: TMDBApi.get('discover/movie',{
-          language: 'en-US',
+          language: MOVIE_DOWNLOAD_LANGUAGE,
           sort_by: 'vote_count.desc',
           include_adult: 'false',
           include_video: 'true',
@@ -77,7 +78,7 @@ export const fetchRandom = () => {
       });
       const videoKeyResult = await Communication.get({
         path: TMDBApi.get(`movie/${movies.results[randomMovie].id}/videos`, {
-          language: 'en-US',
+          language: MOVIE_DOWNLOAD_LANGUAGE,
         }),
         useLoader: false
       });	

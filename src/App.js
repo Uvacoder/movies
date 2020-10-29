@@ -17,10 +17,10 @@ function App() {
         indicator={<Loader />} 
         spinning={isLoading} 
         size={'large'} 
-        delay={0} 
+        delay={0}  // to do think about delay time.
         wrapperClassName={isLoading ? 'ant-spin__wrapper--spinning' : ''}
         className='ant-spin__global'
-      > {/* TO DO Change delay to 1000ms */}
+      >
         <Switch>
           <Route exact path="/">
             <WelcomePage />

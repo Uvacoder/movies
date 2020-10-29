@@ -36,7 +36,7 @@ const MovieHeader = (props) => {
     if (!backDropPath) {
       return <div className='movie-header__image-wrapper-placeholder'/>
     };
-    return <img src={backDropPath} alt='' loading='lazy'/>
+    return <img src={backDropPath} alt=''/>
   };
 
   const displayUserVote = () => {

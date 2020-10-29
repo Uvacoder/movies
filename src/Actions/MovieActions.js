@@ -10,38 +10,36 @@ const MOVIE_DETAILS_PAGE = "1";
 export function fetchMovieDetails(Id) {
   return async dispatch => {
     try {
-      //TODO - unreadable code
+      const movieDetailsPromise = Communication.get({
+        path: TMDBApi.get(`movie/${Id}`,{
+          append_to_response: 'videos,images,credits'
+        }),
+        useLoader: true
+      });
+      const similarMoviesPromise = Communication.get({
+        path: TMDBApi.get(`movie/${Id}/recommendations`,{
+          language: MOVIE_DETAILS_LANGUAGE,
+          page: MOVIE_DETAILS_PAGE
+        }),
+        useLoader: true
+      });
+      const movieReviewsPromise = Communication.get({
+        path: TMDBApi.get(`movie/${Id}/reviews`,{
+          language: MOVIE_DETAILS_LANGUAGE,
+          page: MOVIE_DETAILS_PAGE
+        }),
+        useLoader: true
+      });
+      const externalIdsPromise = Communication.get({
+        path: TMDBApi.get(`movie/${Id}/external_ids`),
+        useLoader: true
+      });
       const [
         movieDetails, 
         similarMovies, 
         movieReviews, 
         externalIds
-      ] = await Promise.all([
-        Communication.get({
-          path: TMDBApi.get(`movie/${Id}`,{
-            append_to_response: 'videos,images,credits'
-          }),
-          useLoader: true
-        }),
-        Communication.get({
-          path: TMDBApi.get(`movie/${Id}/recommendations`,{
-            language: MOVIE_DETAILS_LANGUAGE,
-            page: MOVIE_DETAILS_PAGE
-          }),
-          useLoader: true
-        }),
-        Communication.get({
-          path: TMDBApi.get(`movie/${Id}/reviews`,{
-            language: MOVIE_DETAILS_LANGUAGE,
-            page: MOVIE_DETAILS_PAGE
-          }),
-          useLoader: true
-        }),
-        Communication.get({
-          path: TMDBApi.get(`movie/${Id}/external_ids`),
-          useLoader: true
-        })
-      ]);
+      ] = await Promise.all([movieDetailsPromise, similarMoviesPromise, movieReviewsPromise, externalIdsPromise]);
 
       return dispatch({ 
         type: FETCH_MOVIE_DETAILS,

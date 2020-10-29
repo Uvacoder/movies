@@ -43,7 +43,7 @@ const MovieSimilar = (props) => {
 
   return (
     <div className='movie-similar'>
-      <div style={{width: '100%'}}>
+      <div style={{width: '100%'}}> {/* Carousel component bug workaround */}
         <Carousel 
           responsive={SimilarMoviesCarouselResponsive}
           infinite={true}

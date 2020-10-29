@@ -44,7 +44,7 @@ const MovieCast = (props) => {
 
   return (
     <div className='movie-cast'>
-      <div style={{width: '100%'}}>
+      <div style={{width: '100%'}}> {/* Carousel component bug workaround */}
         <Carousel 
           responsive={movieCastCarouseleResponsive}
           infinite={false}

@@ -28,7 +28,7 @@ const MovieTrailer = (props) => {
 
   return (
     <div className='movie-trailer'>
-      <div style={{width: '100%'}}>
+      <div style={{width: '100%'}}> {/* Carousel component bug workaround */}
         <Carousel 
           responsive={responsive}
           infinite={false}

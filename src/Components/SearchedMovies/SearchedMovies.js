@@ -4,7 +4,7 @@ import TMDBApi from 'utils/TMDBApi';
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import ImgPlaceholder from '../../Images/imgPlaceholder.svg'
 
-const POSTER_WIDTH = 500;
+const POSTER_WIDTH = 154;
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_DISPLAY_PERCENT = false;
 const POPULARITY_MAX_VALUE = 100;

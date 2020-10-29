@@ -7,15 +7,19 @@ export const FETCH_TOP_LIST = 'toplist/FETCH_TOP_LIST';
 export const FETCH_NEXT_PAGE_OF_TOP_LIST = 'toplist/FETCH_NEXT_PAGE_OF_TOP_LIST';
 export const CLEAR_TOP_LIST = 'toplist/CLEAR_TOP_LIST';
 
+const MOVIE_DOWNLOAD_LANGUAGE = 'en-US';
+const MOVIE_DOWNLOAD_REGION = 'US';
+const MOVIE_ADDITIONAL_INFORMATIONS = 'credits';
+
 export const fetchTopList = (type) => {
   return async dispatch => {
     try {
       dispatch(changeLoadingStatus(true));
       const searched = await Communication.get({
         path: TMDBApi.get(`${getTopListTypeUrl(type)}`, {
-          language:'en-US',
+          language: MOVIE_DOWNLOAD_LANGUAGE,
           page: '1',
-          region: 'US',
+          region: MOVIE_DOWNLOAD_REGION,
         }),
         useLoader: false
       });
@@ -23,7 +27,7 @@ export const fetchTopList = (type) => {
       await Promise.all(searched.results.map(async item => {
         const searchedDetails = await	Communication.get({
           path: TMDBApi.get(`movie/${item.id}`,{
-            append_to_response: 'credits'
+            append_to_response: MOVIE_ADDITIONAL_INFORMATIONS
           }),
           useLoader: true
         });	
@@ -46,9 +50,9 @@ export const fetchNextPageOfTopList = (type, page) => {
     try {
       const searched = await Communication.get({
         path: TMDBApi.get(`${getTopListTypeUrl(type)}`, {
-          language:'en-US',
+          language: MOVIE_DOWNLOAD_LANGUAGE,
           page,
-          region: 'US',
+          region: MOVIE_DOWNLOAD_REGION,
         }),
         useLoader: false
       });
@@ -56,7 +60,7 @@ export const fetchNextPageOfTopList = (type, page) => {
       await Promise.all(searched.results.map(async item => {
         const searchedDetails = await	Communication.get({
           path: TMDBApi.get(`movie/${item.id}`,{
-            append_to_response: 'credits'
+            append_to_response: MOVIE_ADDITIONAL_INFORMATIONS
           }),
           useLoader: false
         });	

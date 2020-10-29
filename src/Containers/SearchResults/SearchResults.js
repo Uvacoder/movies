@@ -99,7 +99,6 @@ class SearchResults extends React.Component {
       <div className='search-results'>
         <Divider className='search-results__title' orientation='center'>
           <span>Results for:</span>
-          {/* <span>Search results for:</span> */}
           <span>{this.props.phrase}</span>
           <span>{this.calculateNumberOfResults(this.props.numberOfPages)}</span>
         </Divider>

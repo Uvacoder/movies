@@ -18,12 +18,13 @@ import MovieSimilar from 'components/MovieSimilar/MovieSimilar'
 import MovieReview from 'components/MovieReview/MovieReview'
 import MovieSocial from 'components/MovieSocial/MovieSocial'
 
-// const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/original'
-const BACKDROP_API_PATH = 'https://image.tmdb.org/t/p/w780'
-const POSTER_WIDTH = 342; // note to self: to get other sizes use API /configuration
+const POSTER_WIDTH = 342;
+const BACKDROP_WIDTH = 780;
 const THUMBNAIL_WIDTH_DIVIDER_VALUE = 3;
 const THUMBNAIL_WIDTH_MAX_VALUE = 400;
 const THUMBNAIL_HEIGHT = 250;
+const MAX_NUMBER_OF_REVIEWS = 9;
+const MAX_NUMBER_OF_COMPANIES_SHOWN = 5;
 
 class MovieDetails extends React.Component {
   componentDidMount() {
@@ -51,8 +52,8 @@ class MovieDetails extends React.Component {
 
   createImagesObject = (backdrop) => {
     return {
-      src:`${BACKDROP_API_PATH}${backdrop.file_path}`,
-      thumbnail: `${BACKDROP_API_PATH}${backdrop.file_path}`,
+      src:`${TMDBApi.getImgURL(BACKDROP_WIDTH)}${ backdrop.file_path }`,
+      thumbnail: `${TMDBApi.getImgURL(BACKDROP_WIDTH)}${ backdrop.file_path }`,
       thumbnailWidth: Math.min(backdrop.width/THUMBNAIL_WIDTH_DIVIDER_VALUE, THUMBNAIL_WIDTH_MAX_VALUE ),
       thumbnailHeight: THUMBNAIL_HEIGHT,
     };;
@@ -71,7 +72,7 @@ class MovieDetails extends React.Component {
       <>
         <Divider className='movie-details-container__divider' orientation='left'>USER REVIEWS</Divider>
         <div className='movie-details-container__review'> 
-          { this.props.reviews.slice(0,6).map(review => <MovieReview className='movie-details-container__review-item' review={review} />) }
+          { this.props.reviews.slice(0, MAX_NUMBER_OF_REVIEWS).map(review => <MovieReview className='movie-details-container__review-item' review={review} />) }
         </div>
       </>
     );
@@ -155,7 +156,7 @@ class MovieDetails extends React.Component {
           budget={this.getCurrencyNotation(this.props.details.budget)}
           revenue={this.getCurrencyNotation(this.props.details.revenue)}
           languages={this.props.details.spoken_languages?.map((item) => item.name).join(', ')}
-          companies={this.props.details.production_companies?.slice(0, 5).map((item) => item.name).join(', ')}
+          companies={this.props.details.production_companies?.slice(0, MAX_NUMBER_OF_COMPANIES_SHOWN).map((item) => item.name).join(', ')}
         />
       </div>
     );
@@ -165,7 +166,7 @@ class MovieDetails extends React.Component {
     return (
       <div className='movie-details-container__header'> 
         <MovieHeader 
-          backDropPath={this.props.details.backdrop_path ? `${BACKDROP_API_PATH}${this.props.details.backdrop_path}` : null} 
+          backDropPath={this.props.details.backdrop_path ? `${TMDBApi.getImgURL(BACKDROP_WIDTH)}${this.props.details.backdrop_path}` : null} 
           title={this.props.details.title || this.props.details.original_title} 
           tagline={this.props.details.tagline ? this.props.details.tagline : this.props.details.original_title}
           voteAverage={this.props.details.vote_average}

@@ -50,9 +50,6 @@ class TopList extends React.Component {
   };
   
   renderResults = () => {
-    // if (isLoading) { // TO DO 
-    //   return null; 
-    // }
     let items = [];
 
     if (this.props.match.params.type === 'top_rated' && this.state.currentPage < NO_OF_PAGE_TO_VOID_MIN_NUM_OF_VOTES) {

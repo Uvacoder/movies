@@ -70,7 +70,7 @@ function getMethod(type) {
         if (ApiRequestIdTable.length === 0) {
           loaderTimerId = setTimeout(() => {
             storeRegistry.getStore().dispatch(changeLoadingStatus(false))
-          }, 10);
+          }, 0);
         };
       };
     };

@@ -1,6 +1,7 @@
 import Communication from 'communication/Communication';
 import DomainApi from 'utils/DomainAPI';
 import TMDBApi from 'utils/TMDBApi';
+import { changeLoadingStatus } from 'actions/GlobalActions';
 
 export const ADD_USER_RATING = 'user/ADD_USER_RATING';
 export const FETCH_ALL_USER_RATINGS = 'user/FETCH_ALL_USER_RATINGS';
@@ -13,7 +14,7 @@ export const register = (body) => {
         path: DomainApi.get('user/signup'),
         useLoader: true,
         body
-      })
+      });
 
       return {
         errors: false
@@ -142,9 +143,10 @@ export const deleteUserAccount = () => {
 export const getAllUserRatings = () => {
 	return async (dispatch) => {
     try {
+      dispatch(changeLoadingStatus(true));
       const results = await Communication.get({
         path: DomainApi.get(`user/myRates`),
-        useLoader: true
+        useLoader: false
       })
 
       await Promise.all(results.map(async item => {
@@ -152,7 +154,7 @@ export const getAllUserRatings = () => {
           path: TMDBApi.get(`movie/${item.movieId}`,{
             append_to_response: 'credits'
           }),
-          useLoader: true
+          useLoader: false
         });	
         item.details = movieDetails; 
       }));
@@ -161,6 +163,7 @@ export const getAllUserRatings = () => {
         type: FETCH_ALL_USER_RATINGS,
         movieRates: [...results]
       });
+      dispatch(changeLoadingStatus(false));
       return {
         errors: false
       }
@@ -171,5 +174,5 @@ export const getAllUserRatings = () => {
     return {
       errors: true,
     };
-  } 
+  };
 };
