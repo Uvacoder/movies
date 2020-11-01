@@ -1,6 +1,7 @@
 import {
   FETCH_RECENT_MOVIES,
-  FETCH_NEXT_PAGE_OF_RECENT_MOVIES
+  FETCH_NEXT_PAGE_OF_RECENT_MOVIES,
+  CLEAR_RECENT_MOVIES
 } from 'actions/RecentMoviesActions';
 
 const initialState = {
@@ -19,6 +20,8 @@ export function recentMovies (state = initialState, action) {
     return Object.assign({}, state, {
       results: [...state.results, ...action.recentMovies]
     })
+  case CLEAR_RECENT_MOVIES:
+    return Object.assign({}, state, initialState)
   default:
     return state
   };

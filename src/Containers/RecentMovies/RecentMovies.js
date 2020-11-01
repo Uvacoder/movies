@@ -5,7 +5,11 @@ import { bindActionCreators } from 'redux';
 import { Divider } from 'antd'
 import UpcommingMovies from 'components/UpcommingMovies/UpcommingMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
-import { fetchRecentMovies, fetchNextPageOfRecentMovies } from 'actions/RecentMoviesActions'
+import { 
+  fetchRecentMovies, 
+  fetchNextPageOfRecentMovies, 
+  clearRecentMovies 
+} from 'actions/RecentMoviesActions'
 import { withRouter } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spin } from 'antd';
@@ -31,9 +35,14 @@ class TopList extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.type !== this.props.match.params.type) {
+      this.props.clearRecentMovies()
       this.setState({ currentPage: 1 });
       this.props.fetchRecentMovies(this.props.match.params.type);
     };
+  };
+
+  componentWillUnmount() {
+    this.props.clearRecentMovies()
   };
 
   fetchData = () => {
@@ -91,7 +100,7 @@ class TopList extends React.Component {
   };
 
   render() {
-    if (this.props.isLoading) {
+    if (this.props.recentMovies.length === 0) {
       return null
     }
 
@@ -121,7 +130,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => bindActionCreators({
   routeToMovieDetails,
   fetchRecentMovies,
-  fetchNextPageOfRecentMovies 
+  fetchNextPageOfRecentMovies,
+  clearRecentMovies
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TopList));

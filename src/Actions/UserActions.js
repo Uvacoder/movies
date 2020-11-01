@@ -72,8 +72,6 @@ export const getUserRating = (movieID) => {
           errors: false
         }
       } catch(error) {
-        console.error('getting user vote error', error)
-
         return {
           errors: true
         };

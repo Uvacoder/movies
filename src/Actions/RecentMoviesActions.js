@@ -5,6 +5,7 @@ import { changeLoadingStatus } from 'actions/GlobalActions';
 
 export const FETCH_RECENT_MOVIES = 'recent/FETCH_RECENT_MOVIES';
 export const FETCH_NEXT_PAGE_OF_RECENT_MOVIES = 'recent/FETCH_NEXT_PAGE_OF_RECENT_MOVIES';
+export const CLEAR_RECENT_MOVIES = 'recent/CLEAR_RECENT_MOVIES';
 
 const RECENT_MOVIES_DOWNLOAD_LANGUAGE = 'en-US';
 const RECENT_MOVIES_DOWNLOAD_REGION = 'US';
@@ -75,3 +76,11 @@ export const fetchNextPageOfRecentMovies = (type, page) => {
     };
   };  
 }; 
+
+export const clearRecentMovies = () => {
+  return dispatch => {
+    dispatch({
+      type: CLEAR_RECENT_MOVIES
+    });
+  };
+};

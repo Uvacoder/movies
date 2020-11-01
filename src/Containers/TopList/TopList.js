@@ -5,7 +5,11 @@ import { bindActionCreators } from 'redux';
 import { Divider } from 'antd'
 import SearchedMovies from 'components/SearchedMovies/SearchedMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
-import { fetchTopList, fetchNextPageOfTopList, clearTopList } from 'actions/TopListActions'
+import { 
+  fetchTopList, 
+  fetchNextPageOfTopList, 
+  clearTopList 
+} from 'actions/TopListActions'
 import { withRouter } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spin } from 'antd';
