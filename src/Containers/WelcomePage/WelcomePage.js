@@ -41,7 +41,7 @@ class WelcomePage extends React.Component {
           <Button onClick={() => this.props.history.push('/home')}>
             <span>Continue as <b>{localStorage.getItem('userName')}</b></span>
           </Button>
-          <Button onClick={ () => {this.logOut()} }>
+          <Button onClick={ this.logOut }>
             Switch to a diffrent account
           </Button>
         </div>

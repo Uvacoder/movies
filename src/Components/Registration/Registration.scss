@@ -1,31 +1,31 @@
 $input-color-alpha: rgba(0,0,0,0.5);
 
 .registration{
-	.registration__title {
-		color: white ;
-		padding-bottom: 20px;
-		font-size: 30px;
-		text-align: center;
-	};
-	
-	.ant-form-horizontal label {
-		color: white;
-	};
-	
-	.ant-form-item-extra{
-		color: lightgrey;
-	};
-	
-	.ant-form-item-control{
-		margin-left: 12px;
-		width: 333px;
+  .registration__title {
+    color: white ;
+    padding-bottom: 20px;
+    font-size: 30px;
+    text-align: center;
+  };
+  
+  .ant-form-horizontal label {
+    color: white;
+  };
+  
+  .ant-form-item-extra{
+    color: lightgrey;
+  };
+  
+  .ant-form-item-control{
+    margin-left: 12px;
+    width: 333px;
 
-		.ant-form-item-control-input .ant-btn-primary {
-			width: 333px;
-		};
-	};
+    .ant-form-item-control-input .ant-btn-primary {
+      width: 333px;
+    };
+  };
 
-	.ant-input,
+  .ant-input,
   .ant-input-password,
   .ant-input-affix-wrapper,
   .ant-input-affix-wrapper:hover,
@@ -34,20 +34,20 @@ $input-color-alpha: rgba(0,0,0,0.5);
     color: white;
     border: none;
     border-bottom: solid 1px rgba(255,255,255,1);
-	};
-	
-	#register{
-		display: flex;
+  };
+  
+  #register{
+    display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
-	};
+  };
 
-	#register_password,
-	#register_confirm {
+  #register_password,
+  #register_confirm {
     background-color: rgba(0,0,0,0);
-	};
-	
+  };
+  
   .ant-input-password svg{
     fill: white;
   };
@@ -56,48 +56,48 @@ $input-color-alpha: rgba(0,0,0,0.5);
     background-color: $input-color-alpha;
   };
 
-	.registration__footer{
-		display: flex;
+  .registration__footer{
+    display: flex;
     flex-direction: column;
-		align-items: center;
-		width: 100%;
-		align-items: flex-end;
-		
-		.ant-btn-primary{
-			width: 405px;
-			background-color: rgba(0,0,0,0.7);
-			border: none;
-			transition: transform .2s;
-		};
+    align-items: center;
+    width: 100%;
+    align-items: flex-end;
+    
+    .ant-btn-primary{
+      width: 405px;
+      background-color: rgba(0,0,0,0.7);
+      border: none;
+      transition: transform .2s;
+    };
 
-		.ant-checkbox-wrapper{
-			width:416px;
-		};
+    .ant-checkbox-wrapper{
+      width:416px;
+    };
 
-		.ant-btn-primary:hover{
-			color: rgb(250, 250, 174);
-			transform: scale(1.05);
-		};
-	};
+    .ant-btn-primary:hover{
+      color: rgb(250, 250, 174);
+      transform: scale(1.05);
+    };
+  };
 
-	.registration__footer {
-		.registration__footer-login {
-			width: 333px;
-			display: flex;
-			justify-content: flex-start;
+  .registration__footer {
+    .registration__footer-login {
+      width: 333px;
+      display: flex;
+      justify-content: flex-start;
 
-			.registration__footer-login-label {
-				color: white;
-				font-size: 14px;
-				cursor: pointer;
-				text-align: center;
-				transition: transform .2s;
-			}
-			
-			.registration__footer-login-label:hover {
-				color: yellow; 
-				transform: scale(1.05);  
-			};
-		};
-	};
+      .registration__footer-login-label {
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        transition: transform .2s;
+      }
+      
+      .registration__footer-login-label:hover {
+        color: yellow; 
+        transform: scale(1.05);  
+      };
+    };
+  };
 };

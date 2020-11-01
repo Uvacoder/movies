@@ -87,7 +87,7 @@ class LoginForm extends React.Component {
                   </Button>
                   <Tooltip placement="bottom" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
                     <Button 
-                      onClick={ () => { this.continueAsGuest()} }
+                      onClick={ this.continueAsGuest } 
                       className='login-form__container-buttons-guest'
                     >
                       Continue as a Guest

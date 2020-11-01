@@ -5,7 +5,7 @@ export const FETCH_MOVIE_DETAILS = 'movie/FETCH_MOVIE_DETAILS';
 export const CLEAR_MOVIE_DETAILS = 'movie/CLEAR_MOVIE_DETAILS';
 
 const MOVIE_DETAILS_LANGUAGE = 'en-US';
-const MOVIE_DETAILS_PAGE = "1";
+const MOVIE_DETAILS_PAGE = '1';
 
 export function fetchMovieDetails(Id) {
   return async dispatch => {

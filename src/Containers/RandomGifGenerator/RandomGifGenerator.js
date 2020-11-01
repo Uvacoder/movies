@@ -46,23 +46,30 @@ class RandomGifGenerator extends React.Component {
     });
   };
 
+  renderGifPlaceholder = () => {
+    return (
+      <div className={ this.state.isGifLoaded ? 'rnd-gif-container__content-placeholder--hidden' : 'rnd-gif-container__content-placeholder--visible' } >
+        <img 
+          src={ GifPlaceholder } 
+          alt={`${GifPlaceholder}`} 
+        />
+        <div>
+          Gif is loading...
+        </div>
+      </div>
+    );
+  };
+
   renderGif = () => {
     return (
       <>
        <img 
           src={this.props.gif.images.downsized_medium.url } 
-          className={this.state.isGifLoaded ? 'rnd-gif-container__content-gif' : 'rnd-gif-container__content-gif-placeholder'}
+          className={this.state.isGifLoaded ? 'rnd-gif-container__content-gif' : 'rnd-gif-container__content-gif--hidden'}
           alt={this.props.shuffledWord.word} 
           onLoad={() => this.gifLoaded()}
         />
-        <img 
-          className={ this.state.isGifLoaded ? 'rnd-gif-container__content-placeholder-hidden' : 'rnd-gif-container__content-placeholder-visible' } 
-          src={ GifPlaceholder } 
-          alt={`${GifPlaceholder}`} 
-        />
-        <div className={ this.state.isGifLoaded ? 'rnd-gif-container__content-placeholder-hidden' : 'rnd-gif-container__content-placeholder-visible' } >
-          Gif is loading...
-        </div>
+        {this.renderGifPlaceholder()}
       </>
     );
   };

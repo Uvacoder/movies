@@ -16,6 +16,8 @@ $content-width: 1056px;
 };
   
 .site-layout {
+  margin-top: 64px;
+
   .site-layout__container {
     background: #032646;
     height: 100%;
@@ -32,7 +34,8 @@ $content-width: 1056px;
 
   .site-layout__container-main {
     color: white;
-    background-color: rgb(3,38,70);
+    background-color:#032646;
+    padding: 18px 12px;
 
     .routed-image {
       cursor: pointer;
@@ -57,7 +60,7 @@ $content-width: 1056px;
     };
 
     .routed-text:hover {
-      color: rgb(255,215,0);
+      color: #FFD700;
     };
   };
 };

@@ -92,7 +92,7 @@ function LayoutHeader (props) {
     },{
       title: 'Log Out',
       url:"/",
-      onClick: () => { UserUtil.logOut() }
+      onClick: UserUtil.logOut
     }]
 
     const guestMenuItems = [{

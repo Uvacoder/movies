@@ -38,15 +38,21 @@
       color: rgb(212, 245, 170);
     };
   
-    .rnd-gif-container__content-gif-placeholder,
-    .rnd-gif-container__content-placeholder-hidden {
+    .rnd-gif-container__content-gif--hidden,
+    .rnd-gif-container__content-placeholder--hidden {
       display: none;
     }
   
-    .rnd-gif-container__content-placeholder-visible {
-      width: 250px;
+    .rnd-gif-container__content-placeholder--visible {
+      display: flex;
+      flex-direction: column;
+      width: 230px;
       text-align: center;
-    }
+
+      img {
+        height: 250px;
+      };
+    };
   
     .rnd-gif-container__content-divider{
       border-color: black;

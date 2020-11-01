@@ -1,4 +1,4 @@
-$contnet-width: 1056px;
+$content-width: 1056px;
 $content-padding: 12px;
 
 %display-items {
@@ -54,7 +54,7 @@ $content-padding: 12px;
 
   .home-page-container__trending-carousel{
     width: 100%;
-    max-width: ($contnet-width - 2 * $content-padding); // carousel bug in firefox workaround
+    max-width: ($content-width - 2 * $content-padding); // carousel bug in firefox workaround
   };
 
   .home-page-container-trending-title{

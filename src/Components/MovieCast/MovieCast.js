@@ -25,6 +25,7 @@ const MovieCast = (props) => {
     if (gender === 1) {
       return AvatarPlaceholderWoman
     }
+    
     return AvatarPlaceholderMan
   };
 
