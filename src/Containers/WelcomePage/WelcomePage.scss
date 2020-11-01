@@ -1,69 +1,64 @@
 @media only screen and (max-width: 1600px) {
-    .welcome-page {
-        .welcome-page__title-wrapper {    
-            .welcome-page__title-wrapper-main {
-                font-size: 6em; 
-            }
-            
-            .welcome-page__title-wrapper-quote {
-                font-size: 1em;
-            }
-        }    
-    }
-
-}
+  .welcome-page {
+    .welcome-page__title-wrapper {    
+      .welcome-page__title-wrapper-main {
+        font-size: 6em; 
+      };
+      
+      .welcome-page__title-wrapper-quote {
+        font-size: 1em;
+      };
+    }; 
+  };
+};
 
 .welcome-page {
-    background-image: url("../../Images/welcomepage.jpg");
-    height: 100vh;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
+  background-image: url("../../Images/welcomepage.jpg");
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
 
-.welcome-page__action-form {
+  .welcome-page__action-form {
     position: absolute;
     right: 10%;
     top: 10%;
 
     .welcome-page__action-form-logged {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 300px;
 
-        .ant-btn {
-            background-color: #165a9ab0;
-            border-radius: 8px;
-            font-size: 1.1em;
-            border: none;
-            color: white;
-            transition: transform .2s;
-            width: 300px;
-            height: 70px;
-          }
+      .ant-btn {
+        background-color: #165a9ab0;
+        border-radius: 8px;
+        font-size: 1.1em;
+        border: none;
+        color: white;
+        transition: transform .2s;
+        width: 300px;
+        height: 70px;
+      };
 
-        .ant-btn:hover {
-            color: rgb(250, 250, 174);
-            transform: scale(1.05);
-        }
-    }
-}
+      .ant-btn:hover {
+        color: rgb(250, 250, 174);
+        transform: scale(1.05);
+      };
+    };
+  };
 
-.welcome-page__footer {
+  .welcome-page__footer {
     position: absolute;
     left: 2%;
     bottom: 2%;
     color: white;
     font-family: monospace;
     font-size: 15px;
-}
+  };
 
-#particles-js {
-    height: 100%
-}
-.welcome-page__title-wrapper {
+  .welcome-page__title-wrapper {
     position: absolute;
     left: 5%;
     top: 20%;
@@ -72,12 +67,17 @@
     align-items: center;
 
     .welcome-page__title-wrapper-main {
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 9em; 
-    }
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 9em; 
+    };
     
     .welcome-page__title-wrapper-quote {
-        color: rgba(255, 255, 255, 0.6);
-        font-size: 1.5em;
-    }
-}
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.5em;
+    };
+  };
+};
+
+#particles-js {
+  height: 100%
+};

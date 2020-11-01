@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "./UserRate.scss"
 import { Rate } from 'antd';
+import { withRouter } from 'react-router-dom'
 
 const UserRate = (props) => {
   const {
@@ -10,6 +11,10 @@ const UserRate = (props) => {
   } = props;
   const [rateValue, setRateValue] = useState(0)
   
+  useEffect(() => {
+    setRateValue(0)
+  },[props.match.params.id]);
+
   return (
     <Rate
       className='user-rate' 
@@ -22,13 +27,13 @@ const UserRate = (props) => {
         setRateValue(value)
       }}
     />
-  )
+  );
 };
 
 UserRate.defaultProps = {
   count: 10,
   defaultValue: 0,
   tooltips: [],
-}
+};
 
-export default UserRate
+export default  withRouter(UserRate)

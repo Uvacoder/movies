@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import "./UserComment.scss"
+import React, { useState,useEffect } from 'react';
 import { Input } from 'antd';
+import { withRouter } from 'react-router-dom'
 
 const { TextArea } = Input;
 
@@ -10,6 +10,10 @@ const UserComment = (props) => {
     rows,
   } = props;
   const [inputValue, setInputValue] = useState('')
+
+  useEffect(() => {
+    setInputValue('')
+  },[props.match.params.id]);
 
   return (
     <TextArea 
@@ -21,12 +25,12 @@ const UserComment = (props) => {
         props.updateCommentValue(e.target.value)
       }}
     />
-  )
+  );
 };
 
 UserComment.defaultProps = {
   placeholder: 'Please enter comment',
   rows: 4,
-}
+};
 
-export default UserComment
+export default withRouter(UserComment)

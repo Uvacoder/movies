@@ -18,15 +18,15 @@ const MovieSocial = (props) => {
 
   const renderSocialTag = (propName, imgPath) => {
     return (
-      <a href={propName}>
+      <a href={ propName ? propName : undefined }>
         <img 
-          className={ !propName && 'img-disabled' } 
+          className={ !propName ? 'img-disabled' : undefined } 
           src={ imgPath } 
           alt={`${ imgPath }`} 
         />
       </a>
-    )
-  }
+    );
+  };
 
   return (
     <div className='movie-social'>
@@ -40,11 +40,11 @@ const MovieSocial = (props) => {
 };
 
 MovieSocial.defaultProps = {
-    movieHomePage: '',
-    facebookPage: '',
-    InstagramPage: '',
-    TwitterPage: '',
-    IMDBPage: ''
-}
+  movieHomePage: '',
+  facebookPage: '',
+  InstagramPage: '',
+  TwitterPage: '',
+  IMDBPage: ''
+};
 
 export default MovieSocial

@@ -18,24 +18,24 @@ const MovieTrailer = (props) => {
     }
   };  
 
-  const renderMovieTrailerBlock = (item) => {
+  const renderMovieTrailerBlock = (item, idx) => {
     return (
-      <div className='movie-trailer__container'>
+      <div className='movie-trailer__container' key={ idx }>
         <YouTube videoId={ item.key }  />
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className='movie-trailer'>
-      <div style={{width: '100%'}}>
+      <div style={{width: '100%'}}> {/* Carousel component bug workaround */}
         <Carousel 
           responsive={responsive}
           infinite={false}
           autoPlay={false}
           keyBoardControl={false}
         >
-          { videoItems.filter((item) => item.site === NAME_OF_SEARCHED_SITE).map((item) => renderMovieTrailerBlock(item)) }
+          { videoItems.filter((item) => item.site === NAME_OF_SEARCHED_SITE).map((item, idx) => renderMovieTrailerBlock(item, idx)) }
         </Carousel>
       </div>   
     </div>
@@ -44,7 +44,6 @@ const MovieTrailer = (props) => {
 
 MovieTrailer.defaultProps = {
   videoItems: []
-}
+};
 
 export default MovieTrailer
-

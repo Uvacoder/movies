@@ -4,13 +4,13 @@ import Carousel from 'react-multi-carousel';
 import TMDBApi from 'utils/TMDBApi';
 
 const NO_OF_ITEMS_SIMILAR_MOVIES = 6;
-const IMG_SIZE = 500;
+const IMG_SIZE = 185;
 const CAROUSEL_SLIDES_TO_SLIDE = 2;
 const CAROUSEL_AUTOPLAY_DURATION = 5000;
 
 const MovieSimilar = (props) => {
   const {
-      similarMovies
+    similarMovies
   } = props;
 
   const SimilarMoviesCarouselResponsive = {
@@ -20,9 +20,13 @@ const MovieSimilar = (props) => {
     }
   };  
 
-  const renderCastBlock = (item) => {
+  const renderCastBlock = (item, idx) => {
     return (
-      <div className='movie-similar__container routed-image-carousel' onClick={() => props.routeToMovieDetails(item.id)}>
+      <div 
+        className='movie-similar__container routed-image-carousel' 
+        onClick={() => props.routeToMovieDetails(item.id)}
+        key={idx}
+      >
         <img 
             className='movie-similar__container-image ' 
             src={ `${TMDBApi.getImgURL(IMG_SIZE)}${ item.poster_path }`} 
@@ -34,12 +38,12 @@ const MovieSimilar = (props) => {
           { item?.title}
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className='movie-similar'>
-      <div style={{width: '100%'}}>
+      <div style={{width: '100%'}}> {/* Carousel component bug workaround */}
         <Carousel 
           responsive={SimilarMoviesCarouselResponsive}
           infinite={true}
@@ -47,7 +51,7 @@ const MovieSimilar = (props) => {
           slidesToSlide={CAROUSEL_SLIDES_TO_SLIDE}
           autoPlaySpeed={CAROUSEL_AUTOPLAY_DURATION}
         >
-        { similarMovies.filter((item) => item.poster_path).map((item) => renderCastBlock(item)) }
+        { similarMovies.filter((item) => item.poster_path).map((item, idx) => renderCastBlock(item, idx)) }
         </Carousel>
       </div>   
     </div>
@@ -55,8 +59,7 @@ const MovieSimilar = (props) => {
 };
 
 MovieSimilar.defaultProps = {
-    similarMovies: []
-}
+  similarMovies: []
+};
 
 export default MovieSimilar
-

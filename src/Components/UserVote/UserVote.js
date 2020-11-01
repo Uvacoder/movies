@@ -4,12 +4,17 @@ import DoughnutChart from '../DoughnutChart/DoughnutChart'
 import { Modal, Button, notification } from 'antd';
 import UserRate from 'components/UserRate/UserRate'
 import UserComment from 'components/UserComment/UserComment'
+import UserUtil from 'utils/UserUtil'
+import { withRouter } from 'react-router-dom'
 
 const USER_VOTE_MAX_VALUE = 10;
 const USER_VOTE_DISPLAY_PERCENT = false;
 const USER_VOTE_CHART_COLOR = 'lightgreen';
 const USER_COMMENT_PLACEHOLDER = 'Leave a comment so you can remember what you liked or disliked about this film.';
 const USER_RATE_TOOLTIPS = ['Misunderstanding','Very bad', 'Bad', 'Weak', 'Average', 'Decent', 'Good', 'Very Good', 'Fantastic', 'Masterpiece!' ];
+const VOTE_NOT_PRESENT_MESSAGE = "Please leave a vote before submiting!";
+const VOTE_NOT_PRESENT_MESSAGE_PLACEMENT = "topRight";
+const VOTE_NOT_PRESENT_MESSAGE_DURATION = 3.2;
 
 class UserVote extends React.Component {
   constructor(props) {
@@ -22,6 +27,15 @@ class UserVote extends React.Component {
       commentValue: "",
     };
   };
+
+  componentDidUpdate(prevProps) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.setState({
+        rateValue: null,
+        commentValue: "",
+      })
+    };
+  };
   
   changeModalVisibility = (visible) => {
     this.setState({
@@ -31,7 +45,7 @@ class UserVote extends React.Component {
 
   displayModal = () => { 
     return (
-      localStorage.getItem('token') !== "null" ? () => this.changeModalVisibility(true) : null
+      UserUtil.isUserLogged() ? () => this.changeModalVisibility(true) : null
     );
   };
 
@@ -44,9 +58,9 @@ class UserVote extends React.Component {
     });
     if (!votePresentInStore && !votePresentInState) {
       notification.info({
-        message: "Please leave a vote before submiting!",
-        placement: "topRight",
-        duration: 5,
+        message: VOTE_NOT_PRESENT_MESSAGE,
+        placement: VOTE_NOT_PRESENT_MESSAGE_PLACEMENT,
+        duration: VOTE_NOT_PRESENT_MESSAGE_DURATION,
       });
     } else {
       this.props.saveUserRating({
@@ -92,20 +106,19 @@ class UserVote extends React.Component {
           <UserRate 
             updateRateValue={this.updateRateValue}
             tooltips={ USER_RATE_TOOLTIPS }
-            userRateValue={this.props.currentMovieRating?.rateValue}
-            />
+            userRateValue={this.props.currentMovieRating?.rateValue || 0}
+          />
           <p className='user-vote__modal-body-comment'>Your comment:</p>
           <UserComment 
             placeholder={ USER_COMMENT_PLACEHOLDER }
             updateCommentValue={this.updateCommentValue}
-            commentValue ={this.props.currentMovieRating?.comment}
+            commentValue ={this.props.currentMovieRating?.comment || ''} 
           />
         </div>
       </Modal>
     );
   };
 
- 
   render() {
     return (
       <>
@@ -125,4 +138,5 @@ class UserVote extends React.Component {
     );
   };
 };
-export default UserVote
+
+export default withRouter(UserVote)

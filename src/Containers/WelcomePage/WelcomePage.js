@@ -8,6 +8,7 @@ import { bindActionCreators } from 'redux';
 import { register, login } from 'actions/UserActions'
 import { Button } from 'antd';
 import { withRouter } from 'react-router-dom'
+import UserUtil from 'utils/UserUtil'
 
 class WelcomePage extends React.Component {
   constructor (props) {
@@ -20,37 +21,39 @@ class WelcomePage extends React.Component {
 
   componentDidMount() {
     window.particlesJS.load('particles-js', './particles.json');
-  }
+  };
+
+  logOut = () => {
+    UserUtil.logOut();
+    this.setState({loginForm: true})
+  };
+
   renderContent = () => {
-    if (localStorage.getItem("token") !== "null") {
+    if (!localStorage.getItem("token")) {
+      if (this.state.loginForm) {
+        return <LoginForm login={this.props.login} goToRegistration={this.goToRegistration} />
+      } else {
+        return <Registration register={this.props.register} goToLogin={this.goToLogin}/>
+      };
+    } else {
       return (
         <div className="welcome-page__action-form-logged">
           <Button onClick={() => this.props.history.push('/home')}>
             <span>Continue as <b>{localStorage.getItem('userName')}</b></span>
           </Button>
-          <Button onClick={ () => {
-            localStorage.setItem('token', "null");
-            localStorage.setItem('userName', "");
-            this.setState({loginForm: true})
-          }}>
+          <Button onClick={ this.logOut }>
             Switch to a diffrent account
           </Button>
         </div>
-      )
-    } else {
-      if (this.state.loginForm) {
-        return <LoginForm login={this.props.login} goTo={this.goToRegistration} />
-      } else {
-        return <Registration register={this.props.register} goToLogin={this.goToLogin}/>
-      };
+      );
     };
   };
-  
+
   goToRegistration = () => {
     this.setState({
       loginForm: false
-    })
-  }
+    });
+  };
 
   goToLogin = () => {
     this.setState({

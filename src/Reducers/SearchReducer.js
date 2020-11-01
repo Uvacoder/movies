@@ -8,7 +8,7 @@ const initialState = {
   results: [],
   phrase: '',
   numberOfPages: 0
-}
+};
 
 export function searchResults (state = initialState, action) {
   switch(action.type) {
@@ -30,5 +30,5 @@ export function searchResults (state = initialState, action) {
     })
   default:
     return state
-  }
-}
+  };
+};

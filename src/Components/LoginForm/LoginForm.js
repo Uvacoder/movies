@@ -2,8 +2,9 @@ import React from 'react';
 import "./LoginForm.scss"
 import { withRouter } from 'react-router-dom'
 import { Form, Input, Button, Tooltip } from 'antd';
+import UserUtil from 'utils/UserUtil'
 
-const TOOTLTIP_TEXT = <span>By continuing as a guest you won't be able to use all of Movie Lounge features.</span>;
+const TOOTLTIP_TEXT = "By continuing as a guest you won't be able to use all of Movie Lounge features.";
 const TOOTLTIP_COLOR = '#1890ff';
 
 class LoginForm extends React.Component {
@@ -11,7 +12,7 @@ class LoginForm extends React.Component {
     super(props);
 
     this.formRef = React.createRef();
-  }
+  };
 
   onFinish = values => {
     this.props.login({
@@ -30,6 +31,11 @@ class LoginForm extends React.Component {
        ]);
       };
     });
+  };
+
+  continueAsGuest = () => {
+    UserUtil.logOut()
+    this.props.history.push('/home')    
   };
 
   render() {
@@ -81,11 +87,7 @@ class LoginForm extends React.Component {
                   </Button>
                   <Tooltip placement="bottom" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
                     <Button 
-                      onClick={ () => {
-                        localStorage.setItem('userName', "");
-                        localStorage.setItem('token', null);
-                        this.props.history.push('/home')    
-                      }}
+                      onClick={ this.continueAsGuest } 
                       className='login-form__container-buttons-guest'
                     >
                       Continue as a Guest
@@ -94,7 +96,7 @@ class LoginForm extends React.Component {
                 </div>
               </Form.Item>
               <div className="registration-form"> 
-                <div  className="registration-form__label" onClick={ this.props.goTo }>Not registered yet? Click here to Sign Up!</div>
+                <div className="registration-form__label" onClick={ this.props.goToRegistration }>Not registered yet? Click here to Sign Up!</div>
               </div>
           </Form>
         </div>

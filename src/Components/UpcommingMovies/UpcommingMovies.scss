@@ -1,8 +1,8 @@
 %display-items {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+};
 
 .upcomming-container {
   display: flex;
@@ -14,11 +14,12 @@
   border-radius: 8px;
   
   .upcomming-container__image {
-  width: 200px;
-  height: 280px;
-  margin-right: 20px;
-  border-radius: 8px;
-  }
+    max-width: 187px;
+    height: 280px;
+    margin-right: 20px;
+    border-radius: 8px;
+    margin-right: 5px;
+  };
 
   .upcomming-container__details {
     display: flex;
@@ -31,7 +32,11 @@
     .upcomming-container__details-title {
       font-size: large;
       font-weight: bold;
-    }    
+      max-height: 84px;
+      max-width: 122px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }; 
 
     .upcomming-container__details-popularity {
       display: flex;
@@ -40,18 +45,18 @@
 
       .upcomming-container__details-popularity-text {
         font-style: italic;
-      }
+      };
 
       .upcomming-container__details-popularity-chart {
         width:100px;
         height:100px;
         margin-top: 10px;
-      }
-    }
+      };
+    };
 
     .upcomming-container__details-release {
       display: flex;
       flex-direction: column;
-    }
-  }  
-}
+    };
+  };
+};

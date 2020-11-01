@@ -5,7 +5,11 @@ import { bindActionCreators } from 'redux';
 import { Divider } from 'antd'
 import UpcommingMovies from 'components/UpcommingMovies/UpcommingMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
-import { fetchRecentMovies, fetchNextPageOfRecentMovies } from 'actions/RecentMoviesActions'
+import { 
+  fetchRecentMovies, 
+  fetchNextPageOfRecentMovies, 
+  clearRecentMovies 
+} from 'actions/RecentMoviesActions'
 import { withRouter } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spin } from 'antd';
@@ -31,9 +35,14 @@ class TopList extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.type !== this.props.match.params.type) {
+      this.props.clearRecentMovies()
       this.setState({ currentPage: 1 });
       this.props.fetchRecentMovies(this.props.match.params.type);
     };
+  };
+
+  componentWillUnmount() {
+    this.props.clearRecentMovies()
   };
 
   fetchData = () => {
@@ -44,23 +53,29 @@ class TopList extends React.Component {
   renderResults = () => {
     let results = [];
 
-    const getUpcommingMoviesBlock = (index) => {
+    const getUpcommingMoviesBlock = (index, idx) => {
       const item = this.props.recentMovies[index];
 
       if (!item) {
         return null;
-      }
+      };
 
-      return <UpcommingMovies item={item} routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}/>
-    }
+      return (
+        <UpcommingMovies 
+          item={item} 
+          routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}
+          key={idx}
+        />
+      );
+    };
 
     for (let i = 0; i < this.props.recentMovies.length; i+=3) {
       results.push(
         <div className='recent-movies__item'>
-          {[i,i+1,i+2].map(index => getUpcommingMoviesBlock(index))}
+          {[i,i+1,i+2].map((index, idx) => getUpcommingMoviesBlock(index, idx))}
         </div>
-      )
-    }
+      );
+    };
 
     return (
       <InfiniteScroll
@@ -85,6 +100,10 @@ class TopList extends React.Component {
   };
 
   render() {
+    if (this.props.recentMovies.length === 0) {
+      return null
+    }
+
     return (
       <div className='recent-movies'>
         <Divider className='recent-movies__title' orientation='center'>
@@ -103,14 +122,16 @@ class TopList extends React.Component {
 const mapStateToProps = (state) => {
   return {
     recentMovies: state.recentMovies.results,
-    numberOfPages: state.recentMovies.numberOfPages
-  }
-}
+    numberOfPages: state.recentMovies.numberOfPages,
+    isLoading: state.global.isLoading
+  };
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   routeToMovieDetails,
   fetchRecentMovies,
-  fetchNextPageOfRecentMovies 
+  fetchNextPageOfRecentMovies,
+  clearRecentMovies
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TopList));

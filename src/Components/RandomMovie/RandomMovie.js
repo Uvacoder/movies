@@ -1,28 +1,17 @@
-import React, { useState,useEffect } from 'react';
+import React from 'react';
 import "./RandomMovie.scss"
 import DoughnutChart from 'components/DoughnutChart/DoughnutChart'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchRandom } from 'actions/HomePageActions';
 import YouTube from 'react-youtube';
-import Calculation from 'utils/Calculation';
 import { Scrollbars } from 'react-custom-scrollbars';
-import { routeToMovieDetails } from 'utils/Routing/Routing'
+import TMDBApi from 'utils/TMDBApi';
 
-const NO_OF_FIRST_RANDOM_ITEM = 0;
-const NO_OF_LAST_LAST_ITEM = 20; // No more than 20, <- maximum TMDB API table length.
-const API_PATH = 'https://image.tmdb.org/t/p/w500'
+const IMG_SIZE = 342;
 const VOTE_AVERAGE_MAX_VALUE = 10;
-const VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE = 7;
 
 const RandomMovie = (props) => {
-  const randomMovie = useSelector(state => state.homePage.random.items);
-  const [randomMovieId] = useState(Calculation.randomInt(NO_OF_FIRST_RANDOM_ITEM, NO_OF_LAST_LAST_ITEM));
-  const dispatch = useDispatch();
-  const currentMovie = randomMovie[randomMovieId];
-
-  useEffect(() => {
-    dispatch(fetchRandom(randomMovieId));
-  },[dispatch, randomMovieId]);
+  const {
+    randomMovie 
+  } = props;
 
   const renderImage = (imgPath) => {
     return (
@@ -30,7 +19,7 @@ const RandomMovie = (props) => {
         className='random-movie__image routed-image' 
         src={imgPath} 
         alt='poster'
-        onClick={() => dispatch(routeToMovieDetails(currentMovie.id))}
+        onClick={() => props.routeToMovieDetails(randomMovie.id)}
       />
     );
   };
@@ -40,7 +29,7 @@ const RandomMovie = (props) => {
       <>
         <div 
         className='random-movie__details-title routed-text'
-        onClick={() => dispatch(routeToMovieDetails(movie.id))}>
+        onClick={() => props.routeToMovieDetails(movie.id)}>
           {movie.title}
         </div> 
         <div className='random-movie__details-overwiev'>
@@ -76,7 +65,6 @@ const RandomMovie = (props) => {
             data={movie.vote_average} 
             maxValue={VOTE_AVERAGE_MAX_VALUE} 
             percent={false} 
-            chartColor= {movie.vote_average > VOTE_AVERAGE_VALUE_OF_CHART_COLOR_CHANGE ? 'lightgreen' : 'Aquamarine' }
           />
         </div>
         <div className='random-movie__details-vote-wrapper-popularity'>
@@ -89,21 +77,21 @@ const RandomMovie = (props) => {
     );
   };
 
-  if (!currentMovie || !currentMovie.videoKey[0]) {
+  if (!randomMovie || !randomMovie.videoKey) {
     return null;
-  }
+  };
 
   return (
     <div className='random-movie'>
-      {renderImage(`${API_PATH}${currentMovie.poster_path}`)}
+      {renderImage(`${TMDBApi.getImgURL(IMG_SIZE)}${randomMovie.poster_path}`)}
       <div className='random-movie__details'> 
-        {renderDetails(currentMovie)}
+        {renderDetails(randomMovie)}
         <div className='random-movie__details-vote-wrapper'>
-          {renderVoteCharts(currentMovie)}
+          {renderVoteCharts(randomMovie)}
         </div>
       </div>
       <div className='random-movie__trailer'>
-        <YouTube videoId={ currentMovie.videoKey[0].key }  />
+        <YouTube videoId={ randomMovie.videoKey.key }  />
       </div>   
     </div>
   );

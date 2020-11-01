@@ -17,7 +17,7 @@ class SearchResults extends React.Component {
     super(props);
 
     this.state = {
-        currentPage: 1
+      currentPage: 1
     };
   };
 
@@ -48,6 +48,16 @@ class SearchResults extends React.Component {
     });
   };
 
+  calculateNumberOfResults = (pages) => {
+    if (pages > 1) {
+      return `(${((pages - 1) * 20)}+)`
+    } else if (pages === 1) {
+      return `(${this.props.searchResults.length})`
+    } else {
+      return null
+    };
+  };
+
   renderResults = () => {
     if (this.props.searchResults.length !== 0) {
       return (
@@ -76,16 +86,21 @@ class SearchResults extends React.Component {
           <span className ='search-results__failed'>Unfortunately, we couldn't find any movie with that name</span>
           <span className ='search-results__failed'>Make sure you haven't made any typos</span>
         </>
-      )
+      );
     };
   };
 
   render() {
+    if (this.props.isLoading) {
+      return null
+    };
+
     return (
       <div className='search-results'>
         <Divider className='search-results__title' orientation='center'>
-          <span>Search results for:</span>
+          <span>Results for:</span>
           <span>{this.props.phrase}</span>
+          <span>{this.calculateNumberOfResults(this.props.numberOfPages)}</span>
         </Divider>
         <div className='search-results__content'>
           {this.renderResults()}
@@ -99,9 +114,10 @@ const mapStateToProps = (state) => {
   return {
     searchResults: state.searchResults.results,
     phrase: state.searchResults.phrase,
-    numberOfPages: state.searchResults.numberOfPages
-  }
-}
+    numberOfPages: state.searchResults.numberOfPages,
+    isLoading: state.global.isLoading
+  };
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   fetchSearched,

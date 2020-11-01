@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+};
 
 .top-list {
   @extend %display-results;
@@ -13,7 +13,7 @@
     width: 100%;
 
     .infinite-scroll-component {
-      overflow: hidden !important; // to overwrite bugged inline style
+      overflow: hidden !important; // to overwrite bugged inline style of inifnite scroll component
     };
 
     .infinite-scroll-component > :first-child {
@@ -48,5 +48,7 @@
   .top-list__spin{
     display: flex;
     justify-content: center;
+    min-height: 50px;
+    align-items: center;
   };
 };

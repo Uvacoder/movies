@@ -9,7 +9,7 @@ const CONTACT_MAIL_ADRESS = 'patrykbura@gmail.com'
 const CONTACT_LINKEDIN_ADRESS = 'https://www.linkedin.com/in/patryk-bura-901107177'
 const CONTACT_BITBUCKET_ADRESS = 'https://bitbucket.org/patrykbura'
 
-const Contact = (props) => {
+const Contact = () => {
   return (
     <div className='contact'>
       <div className='contact__content'>

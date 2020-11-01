@@ -28,6 +28,6 @@ const SearchInput = (props) => {
 
 SearchInput.defaultProps = {
   searchBarWidth: 300
-}
+};
 
 export default SearchInput

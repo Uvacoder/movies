@@ -1,30 +1,45 @@
 import React, { useEffect } from 'react';
 import "./HomePage.scss"
 import { useSelector, useDispatch } from 'react-redux'
-import { fetchTrending,fetchUpcomming } from 'actions/HomePageActions'
+import { 
+  fetchTrending, 
+  fetchUpcomming, 
+  fetchRandom, 
+  clearRandom, 
+  clearUpcomming 
+} from 'actions/HomePageActions'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { Divider } from 'antd'
-import RandomMovie from '../RandomMovie/RandomMovie'
+import RandomMovie from 'components/RandomMovie/RandomMovie'
 import UpcommingMovies from 'components/UpcommingMovies/UpcommingMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
-import Calculation from 'utils/Calculation';
+import TMDBApi from 'utils/TMDBApi';
 
 const NO_OF_TRENDING_ITEMS = 20; // No more than 20, <- maximum TMDB API table length.
 const NO_OF_UPCOMMING_ITEMS = 3;
 const NO_OF_ITEMS_TRENDING_CAROUSEL = 5;
-const IMG_URL = 'https://image.tmdb.org/t/p/w500'
+const IMG_SIZE = 342;
 const CAROUSEL_SLIDES_TO_SLIDE = 2
-const CAROUSEL_AUTOPLAY_DURATION =  5000;
+const CAROUSEL_AUTOPLAY_DURATION = 5000;
 
 function HomePage () {
   const trendingList = useSelector(state => state.homePage.trending.items);
   const upcommingList = useSelector(state => state.homePage.upcomming.items);
+  const randomMovie = useSelector(state => state.homePage.random);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchTrending());
     dispatch(fetchUpcomming());
+    dispatch(fetchRandom());
+  },[dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearRandom())
+      dispatch(clearUpcomming())
+    }
   },[dispatch]);
 
   const trendingCarouselResponsive = {
@@ -36,10 +51,14 @@ function HomePage () {
 
   const renderTrendingMovieBlock = (item) => {
     return (
-      <div className='home-page-container__trending-item routed-image-carousel' onClick={() => dispatch(routeToMovieDetails(item.id))} >
+      <div 
+        className='home-page-container__trending-item routed-image-carousel' 
+        onClick={() => dispatch(routeToMovieDetails(item.id))} 
+        key={ item.id }
+      >
         <img 
           className='home-page-container__trending-item-image' 
-          src={ `${IMG_URL}${ item?.poster_path }`} 
+          src={ `${TMDBApi.getImgURL(IMG_SIZE)}${ item.poster_path }`} 
           alt=''  
         />
         <div 
@@ -47,14 +66,13 @@ function HomePage () {
           { item?.title || item?.orginal_title || item?.original_name}
         </div>
       </div>
-      )
-  }
+    );
+  };
 
   const renderTrending = () => {
     const availableMovies = trendingList.filter(movie => movie.title || movie.orginal_title)
-
     return (
-      <div style={{width: '100%'}}>
+      <div className="home-page-container__trending-carousel">
         <Carousel 
           responsive={trendingCarouselResponsive}
           infinite={true}
@@ -64,19 +82,19 @@ function HomePage () {
         >
           { availableMovies.slice(0, NO_OF_TRENDING_ITEMS).map((item) => renderTrendingMovieBlock(item)) }
         </Carousel>
-      </div>   
-    )
+      </div> 
+    );
   };
 
   const renderUpcomming = () => {
     const availableMovies = upcommingList.filter(movie => movie.poster_path && (movie.title || movie.orginal_title))
-    const shuffledArray = Calculation.shuffleArray(availableMovies)
 
-    return shuffledArray.slice(0, NO_OF_UPCOMMING_ITEMS).map((item) => {
+    return availableMovies.slice(0, NO_OF_UPCOMMING_ITEMS).map((item, idx) => {
       return (
         <UpcommingMovies 
           item={item} 
           routeToMovieDetails={() => dispatch(routeToMovieDetails(item.id))}
+          key={idx}
         /> 
       );
     });
@@ -85,11 +103,13 @@ function HomePage () {
   return (
     <div className='home-page-container'>
       <div className='home-page-container__random'>
-        <Divider className='home-page-container__main-title' orientation='left'>Don't know what to watch? Consider this title:</Divider>
-        <RandomMovie />
+        <Divider className='home-page-container__main-title' orientation='center'>
+          Consider this movie or draw <a onClick={ () => dispatch(fetchRandom()) }>another one</a>
+        </Divider>
+        <RandomMovie randomMovie = {randomMovie} routeToMovieDetails={(id) => dispatch(routeToMovieDetails(id))}/>
       </div> 
       <div className='home-page-container__trending' > 
-        <Divider className='home-page-container-trending-title' orientation='left'>Trending today</Divider>
+      <Divider className='home-page-container-trending-title' orientation='left'>Trending today</Divider>
         { renderTrending() }
       </div>
       <div className='home-page-container__upcomming'>

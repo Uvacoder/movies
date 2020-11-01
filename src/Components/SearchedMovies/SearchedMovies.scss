@@ -1,7 +1,7 @@
 %display-title {
   color: wheat;
   font-weight: bold;
-}
+};
 
 .searched-movies {
   display: grid;
@@ -12,6 +12,7 @@
   border-radius: 12px;
   margin-bottom: 24px;
   width: 80%;
+  min-width: 800px;
 
   .searched-movies__poster{
     grid-column-start: 1;
@@ -23,8 +24,8 @@
       height: 200px;
       width: 133px;
       border-radius: 12px;
-    }
-  }
+    };
+  };
 
   .searched-movies__title{
     grid-column-start: 2;
@@ -32,7 +33,7 @@
     grid-row-start: 1;
     font-size: xx-large;
     font-weight: bold;
-  }
+  };
 
   .searched-movies__first-container{
     grid-column-start: 2;
@@ -51,9 +52,9 @@
       .searched-movies__first-container-runtime-title{
         @extend %display-title;
         margin-right: 10px;
-      }
-    }
-  }
+      };
+    };
+  };
 
   .searched-movies__second-container{
     grid-column-start: 2;
@@ -67,14 +68,14 @@
       display:flex;
       justify-content: space-evenly;
       margin-right: 20px;
-    }
+    };
 
     .searched-movies__second-container-genres-title,
     .searched-movies__second-container-director-title{
       @extend %display-title;
       margin-right: 10px;
-    }
-  }
+    };
+  };
 
   .searched-movies__votes{
     grid-column-start: 3;
@@ -93,13 +94,12 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-    }
+    };
 
     .searched-movies__votes-popularity-title,
     .searched-movies__votes-average-title{
       margin-bottom: 10px;
       @extend %display-title
-    }
-  }
-
-}
+    };
+  };
+};

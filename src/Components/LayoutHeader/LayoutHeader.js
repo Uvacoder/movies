@@ -16,9 +16,9 @@ import {
 import './LayoutHeader.scss';
 import { withRouter } from 'react-router-dom'
 import SearchInput from '../SearchInput/SearchInput'
+import UserUtil from 'utils/UserUtil'
 
 const SEARCH_BAR_WIDTH = '300px';
-const NUMBER_OF_FIRST_API_PAGE = 1;
 const { Header } = Layout;
 
 function LayoutHeader (props) {
@@ -46,7 +46,7 @@ function LayoutHeader (props) {
     }]
   
     return renderSubMenu('Top Lists',<BarsOutlined />, menuItems)
-  }
+  };
   
   const renderNewMoviesSubMenu = () => {
     const menuItems = [{
@@ -58,7 +58,7 @@ function LayoutHeader (props) {
     }]
   
     return renderSubMenu('New',<ClockCircleOutlined />, menuItems)
-  }
+  };
   
   const renderAboutMenu = () => {
     const menuItems = [{
@@ -80,8 +80,8 @@ function LayoutHeader (props) {
     }]
   
     return renderSubMenu('Hyde Park',<SmileOutlined />, menuItems)
-  }
-  
+  };
+
   const renderYouProfileMenu = () => {
     const menuItems = [{
       title: 'My Ratings',
@@ -92,10 +92,7 @@ function LayoutHeader (props) {
     },{
       title: 'Log Out',
       url:"/",
-      onClick: () => {
-        localStorage.setItem('userName', "");
-        localStorage.setItem('token', null);
-      }
+      onClick: UserUtil.logOut
     }]
 
     const guestMenuItems = [{
@@ -103,20 +100,20 @@ function LayoutHeader (props) {
       url:"/",
     }]
 
-    if (localStorage.getItem("token") === "null") {
+    if (!UserUtil.isUserLogged()) {
       return renderSubMenu("Guest", <UserOutlined />, guestMenuItems)
     } else {
-      const userName = localStorage.getItem("userName") !== "" ?  localStorage.getItem("userName") : "Guest";
+      const userName = localStorage.getItem("userName") ? localStorage.getItem("userName") : "Guest";
       return renderSubMenu(userName, <UserOutlined />, menuItems)
-    }
-  }
+    };
+  };
   
   return (
     <Header style={{ position: 'fixed', zIndex: 1001, width: '100%' }}>
       <div className='home-header'>
         <Menu className ='nav-bar-menu__title' theme="dark" mode="horizontal" >  
           <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
-            <Link to ="/home" > Movie Lounge</Link>
+            <Link to ="/home">Movie Lounge</Link>
           </Menu.Item>
         </Menu>
       </div>

@@ -6,12 +6,10 @@ import UserVote from 'components/UserVote/UserVote'
 import { Tooltip } from 'antd';
 import { withRouter } from 'react-router-dom'
 import { getUserRating, saveUserRating } from 'actions/UserActions'
+import UserUtil from 'utils/UserUtil'
 
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_DISPLAY_PERCENT = false;
-const VOTE_AVERAGE_CHART_COLOR_CHANGE_VALUE = 7;
-const VOTE_AVERAGE_CHART_COLOR_HIGH = 'lightgreen';
-const VOTE_AVERAGE_CHART_COLOR_LOW = 'Aquamarine';
 const POPULARITY_MAX_VALUE = 100;
 const POPULARITY_DISPLAY_PERCENT = true;
 const TOOTLTIP_TEXT = 'To use all Movie Lounge features like voting or commenting, please register.'
@@ -23,18 +21,26 @@ const MovieHeader = (props) => {
     title,
     tagline,
     voteAverage,
-    popularity
+    popularity,
   } = props;
   const dispatch = useDispatch();
   const movieList = useSelector(state => state.userRating.movies);
 
   useEffect(() => {
-    dispatch(getUserRating(props.match.params.id));
+    if (UserUtil.isUserLogged()) {
+      dispatch(getUserRating(props.match.params.id));
+    }
   },[dispatch, props.match.params.id]);
 
+  const renderBackdropImage = () => {
+    if (!backDropPath) {
+      return <div className='movie-header__image-wrapper-placeholder'/>
+    };
+    return <img src={backDropPath} alt=''/>
+  };
 
   const displayUserVote = () => {
-    if (localStorage.getItem('token') === "null") {
+    if (!UserUtil.isUserLogged()) {
       return (
       <Tooltip placement="left" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
         <div className='movie-header__user-vote'>
@@ -42,7 +48,7 @@ const MovieHeader = (props) => {
         </div>
       </Tooltip>
       )
-    } else
+    }
     return (
       <div className='movie-header__user-vote'>
         <UserVote 
@@ -56,8 +62,8 @@ const MovieHeader = (props) => {
 
   return (
     <div className='movie-header'>
-      <div className='movie-header_image-wrapper'>
-        <img src={backDropPath} alt=''/>
+      <div className='movie-header__image-wrapper'>
+        {renderBackdropImage()}
       </div>
       <div className='movie-header__wrapper'>
         <div className='movie-header__wrapper-title'>
@@ -73,7 +79,6 @@ const MovieHeader = (props) => {
               data={voteAverage} 
               maxValue={VOTE_AVERAGE_MAX_VALUE} 
               percent={VOTE_AVERAGE_DISPLAY_PERCENT} 
-              chartColor= {{voteAverage} > VOTE_AVERAGE_CHART_COLOR_CHANGE_VALUE ? VOTE_AVERAGE_CHART_COLOR_HIGH : VOTE_AVERAGE_CHART_COLOR_LOW }
             />
           </div>
           <div className='movie-header-votes-popularity'>
@@ -92,11 +97,11 @@ const MovieHeader = (props) => {
 };
 
 MovieHeader.defaultProps = {
-    backDropPath: 'path',
-    title: 'movie title',
-    tagline: 'tagline',
-    voteAverage: 1,
-    popularity: 1
+    backDropPath: '',
+    title: ' ',
+    tagline: ' ',
+    voteAverage: 0,
+    popularity: 0
 };
 
 export default withRouter(MovieHeader)

@@ -5,7 +5,11 @@ import { bindActionCreators } from 'redux';
 import { Divider } from 'antd'
 import SearchedMovies from 'components/SearchedMovies/SearchedMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'
-import { fetchTopList, fetchNextPageOfTopList } from 'actions/TopListActions'
+import { 
+  fetchTopList, 
+  fetchNextPageOfTopList, 
+  clearTopList 
+} from 'actions/TopListActions'
 import { withRouter } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { Spin } from 'antd';
@@ -34,10 +38,15 @@ class TopList extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.type !== this.props.match.params.type) {
+      this.props.clearTopList()
       this.setState({ currentPage: 1 });
       this.props.fetchTopList(this.props.match.params.type);
     };
   };
+
+  componentWillUnmount() {
+    this.props.clearTopList()
+  }
 
   fetchData = () => {
     this.setState({ currentPage: this.state.currentPage + 1})
@@ -45,20 +54,17 @@ class TopList extends React.Component {
   };
   
   renderResults = () => {
-    // if (isLoading) { // TO DO 
-    //   return null; 
-    // }
     let items = [];
 
     if (this.props.match.params.type === 'top_rated' && this.state.currentPage < NO_OF_PAGE_TO_VOID_MIN_NUM_OF_VOTES) {
       items = this.props.topListOfMovies.filter((item) => item.vote_count > MIN_NUM_OF_VOTES);
     } else {
       items = this.props.topListOfMovies;
-    }
+    };
 
-    const results = items.map((item,idx) => {
+    const results = items.map((item, idx) => {
       return(
-        <div className='top-list__content-item'>
+        <div className='top-list__content-item' key={idx}>
           <span>{idx + 1}</span>
           <SearchedMovies 
             routeToMovieDetails={() => this.props.routeToMovieDetails(item.id)}
@@ -67,7 +73,7 @@ class TopList extends React.Component {
             release_date={item.release_date}
             runtime={item.details.runtime}
             genres={item.details.genres.length !== 0 ? item.details.genres.map((item) => item.name).join(', ') : '–'}
-            director={item.details.credits.crew.find((item) => item.job === "Director").name}
+            director={item.details.credits.crew.find((item) => item.job === "Director")?.name}
             vote_average={item.details.vote_average}
             popularity={item.details.popularity}
           />
@@ -98,18 +104,22 @@ class TopList extends React.Component {
   };
 
   render() {
-    return (
-      <div className='top-list'>
-        <Divider className='top-list__title' orientation='center'>
-          <span>
-            {TOP_LIST_TYPES_NAMES[this.props.match.params.type]}
-          </span>
-        </Divider>
-        <div className='top-list__content'>
-          {this.renderResults()}
-        </div> 
-      </div>
-    );
+    if (this.props.topListOfMovies.length === 0) {
+      return null
+    } else {
+      return (
+        <div className='top-list'>
+          <Divider className='top-list__title' orientation='center'>
+            <span>
+              {TOP_LIST_TYPES_NAMES[this.props.match.params.type]}
+            </span>
+          </Divider>
+          <div className='top-list__content'>
+            {this.renderResults()}
+          </div> 
+        </div>
+      );
+    }
   };
 };
 
@@ -117,13 +127,14 @@ const mapStateToProps = (state) => {
   return {
     topListOfMovies: state.topListOfMovies.results,
     numberOfPages: state.topListOfMovies.numberOfPages
-  }
-}
+  };
+};
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   routeToMovieDetails,
   fetchTopList,
   fetchNextPageOfTopList,
+  clearTopList
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(TopList));
