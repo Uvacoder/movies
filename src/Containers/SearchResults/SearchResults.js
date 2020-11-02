@@ -59,34 +59,43 @@ class SearchResults extends React.Component {
   };
 
   renderResults = () => {
-    if (this.props.searchResults.length !== 0) {
+    if (this.props.numberOfPages > 0) {
       return (
-        <InfiniteScroll
-          dataLength={this.props.searchResults.length}
-          next={this.fetchData}
-          hasMore={this.state.currentPage < this.props.numberOfPages} 
-          loader={
-            <Spin 
-              size="large"
-              className='search-results__spin'
-            />
-          }
-          endMessage={
-            <p style={{ textAlign: 'center' }}>
-              <b>{INFINITY_SCROLL_END_MESSAGE}</b>
-            </p>
-          }
-        >
-          {this.getResults()}
-        </InfiniteScroll>
+        <div className='search-results__content'>
+          <Divider className='search-results__title' orientation='center'>
+            <span>Results for:</span>
+            <span>{this.props.phrase}</span>
+            <span>{this.calculateNumberOfResults(this.props.numberOfPages)}</span>
+          </Divider>
+          <InfiniteScroll
+            dataLength={this.props.searchResults.length}
+            next={this.fetchData}
+            hasMore={this.state.currentPage < this.props.numberOfPages} 
+            loader={
+              <Spin 
+                size="large"
+                className='search-results__spin'
+              />
+            }
+            endMessage={
+              <p style={{ textAlign: 'center' }}>
+                <b>{INFINITY_SCROLL_END_MESSAGE}</b>
+              </p>
+            }
+          >
+            {this.getResults()}
+          </InfiniteScroll>
+        </div> 
       );
-    } else {
+    } else if (this.props.numberOfPages === 0) {
       return (
-        <>
+        <div className='search-results__content--failed'>
           <span className ='search-results__failed'>Unfortunately, we couldn't find any movie with that name</span>
           <span className ='search-results__failed'>Make sure you haven't made any typos</span>
-        </>
+        </div>
       );
+    } else {
+      return null
     };
   };
 
@@ -97,14 +106,7 @@ class SearchResults extends React.Component {
 
     return (
       <div className='search-results'>
-        <Divider className='search-results__title' orientation='center'>
-          <span>Results for:</span>
-          <span>{this.props.phrase}</span>
-          <span>{this.calculateNumberOfResults(this.props.numberOfPages)}</span>
-        </Divider>
-        <div className='search-results__content'>
-          {this.renderResults()}
-        </div> 
+        {this.renderResults()}
       </div>
     );
   };

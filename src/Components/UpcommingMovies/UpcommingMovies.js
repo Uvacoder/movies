@@ -5,6 +5,7 @@ import ImgPlaceholder from '../../Images/imgPlaceholder.svg'
 import TMDBApi from 'utils/TMDBApi';
 
 const IMG_SIZE = 185;
+
 const UpcommingMovie = (props) => {
   const {
     item
