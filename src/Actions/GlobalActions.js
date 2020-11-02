@@ -1,7 +1,7 @@
 export const LOADING = 'global/LOADING'
 
 let displayLoadingDelayTimer;
-const LOADING_DISPLAY_DELAY = 700;
+const LOADING_DISPLAY_DELAY = 800;
 
 export const changeLoadingStatus = (status) => {
   return dispatch => { 
