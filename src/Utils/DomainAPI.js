@@ -2,7 +2,7 @@ const getDomainType = () => {
   if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
     return 'http://localhost:9000/api/'
   } else {
-    return 'http://www.movielounge.pl/api/'
+    return 'https://www.movielounge.pl/api/'
   };
 };
 

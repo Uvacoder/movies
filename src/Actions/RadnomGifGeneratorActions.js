@@ -5,12 +5,12 @@ import { changeLoadingStatus } from 'actions/GlobalActions';
 export const FETCH_RANDOM_GIF = "RGG/FETCH_RANDOM_GIF"
 export const CLEAR_RANDOM_GIF = "RGG/CLEAR_RANDOM_GIF"
 
-const RANDOM_WORD_API = "http://api.urbandictionary.com/v0/random" // "https://random-word-api.herokuapp.com/word?number=1" alternative API
+const RANDOM_WORD_API = "https://api.urbandictionary.com/v0/random" // "https://random-word-api.herokuapp.com/word?number=1" alternative API
 const NO_OF_FIRST_WORD_SEARCHED = 1;
 const NO_OF_LAST_WORD_SEARCHED = 10;
 
 const getGifApiUrl = (word) => {
-  return `http://api.giphy.com/v1/gifs/search?q=${word}&api_key=${process.env.REACT_APP_GIPHY_API_KEY}&limit=1`
+  return `https://api.giphy.com/v1/gifs/search?q=${word}&api_key=${process.env.REACT_APP_GIPHY_API_KEY}&limit=1`
 };
 
 export const fetchRandomGif = () => {
