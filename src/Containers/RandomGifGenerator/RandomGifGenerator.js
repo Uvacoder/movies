@@ -6,6 +6,7 @@ import './RandomGifGenerator.scss'
 import { fetchRandomGif, clearRandomGif } from 'actions/RadnomGifGeneratorActions'
 import { withRouter } from 'react-router-dom'
 import GifPlaceholder from "../../Images/gifPlaceholder.svg"
+import { RedoOutlined } from '@ant-design/icons';
 
 const WARNING_MODAL_TITLE = 'Caution! Enter at your own risk.'
 const WARNING_MODAL_CONTENT = 'This site is using random words provided by Urbandictionary, they might be controversial. Generated images can be blunt. If you are not OK with it please leave.'
@@ -87,7 +88,6 @@ class RandomGifGenerator extends React.Component {
 
     return ( 
       <div className='rnd-gif-container__content'>
-        <Divider className='rnd-gif-container__content-divider'/>
         <p className='rnd-gif-container__content-found'>Word found for you by The Great Lord of Internet:</p>
         <p className='rnd-gif-container__content-word'>{this.props.shuffledWord.word}</p>
         <Divider/>
@@ -108,6 +108,10 @@ class RandomGifGenerator extends React.Component {
         <div className='rnd-gif-container__data'>
           <Button 
             type='primary' 
+            loading={!this.state.isGifLoaded}
+            icon={<RedoOutlined />}
+            ghost={true}
+            shape='round'
             onClick={() => {
               this.props.fetchRandomGif()
               this.setState({
@@ -115,7 +119,7 @@ class RandomGifGenerator extends React.Component {
               });
             }}
           >
-            Get Random Gif
+            Get another Gif
           </Button>
           {this.renderContent ()}
         </div>

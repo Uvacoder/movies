@@ -19,6 +19,7 @@ import SearchInput from '../SearchInput/SearchInput'
 import UserUtil from 'utils/UserUtil'
 
 const SEARCH_BAR_WIDTH = '300px';
+const SERACH_BAR_PLACEHOLDER = 'Find your favorite movies';
 const { Header } = Layout;
 
 function LayoutHeader (props) {
@@ -57,7 +58,7 @@ function LayoutHeader (props) {
       url:'/new/now_playing'
     }]
   
-    return renderSubMenu('New',<ClockCircleOutlined />, menuItems)
+    return renderSubMenu('Recent',<ClockCircleOutlined />, menuItems)
   };
   
   const renderAboutMenu = () => {
@@ -82,11 +83,21 @@ function LayoutHeader (props) {
     return renderSubMenu('Hyde Park',<SmileOutlined />, menuItems)
   };
 
-  const renderYouProfileMenu = () => {
+  const renderUserVotesMenu = () => {
     const menuItems = [{
       title: 'My Ratings',
-      url: '/user-ratings'
-    },{
+      url:"/user-ratings"
+    }]
+
+    if (UserUtil.isUserLogged()) {
+      return renderSubMenu('My Lounge',<PlaySquareOutlined />, menuItems)
+    } else {
+      return null
+    };
+  };
+
+  const renderYouProfileMenu = () => {
+    const menuItems = [{
       title: 'Account Settings',
       url:"/settings",
     },{
@@ -107,35 +118,50 @@ function LayoutHeader (props) {
       return renderSubMenu(userName, <UserOutlined />, menuItems)
     };
   };
+
+  const renderSearchBar = () => {
+    return (
+      <SearchInput
+        onSearch={value => { 
+          if (value) {
+            props.handleSearch(value);
+            props.history.push('/search-results');
+        }}}
+        placeholder={SERACH_BAR_PLACEHOLDER}
+        enterButton={true}
+        defaultValue=''
+        searchBarWidth={SEARCH_BAR_WIDTH}
+      />
+    );
+  };
+
+  const renderMovieLoungeLogo = () => {
+    return (
+      <Menu className ='nav-bar-menu__title' theme="dark" mode="horizontal" >  
+        <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
+          <Link to ="/home">Movie Lounge</Link>
+        </Menu.Item>
+      </Menu>
+    )
+  };
   
   return (
     <Header style={{ position: 'fixed', zIndex: 1001, width: '100%' }}>
       <div className='home-header'>
-        <Menu className ='nav-bar-menu__title' theme="dark" mode="horizontal" >  
-          <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
-            <Link to ="/home">Movie Lounge</Link>
-          </Menu.Item>
-        </Menu>
+        {renderMovieLoungeLogo()}
       </div>
-      <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
-        {renderTopListsMenu()}
-        {renderNewMoviesSubMenu()}
-        <SearchInput
-          onSearch={value => { 
-            if (value) {
-              props.handleSearch(value);
-              props.history.push('/search-results');
-          }}}
-          placeholder='Find your favorite movies'
-          enterButton={true}
-          defaultValue=''
-          searchBarWidth={SEARCH_BAR_WIDTH}
-        />
+      <div className='main-menu'>
+        <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
+          {renderTopListsMenu()}
+          {renderNewMoviesSubMenu()}
+          {renderSearchBar()}
           {renderHydeParkMenu()}
           {renderAboutMenu()}
-      </Menu>
+        </Menu>
+      </div>
       <div className="your-profile">
         <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
+          {renderUserVotesMenu()}
           {renderYouProfileMenu()}
         </Menu>
       </div>
