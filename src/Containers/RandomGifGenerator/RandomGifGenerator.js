@@ -36,6 +36,12 @@ class RandomGifGenerator extends React.Component {
       cancelText: 'Leave',
       onCancel: () => {
         this.props.history.push("/home")
+      },
+      onOk: () => {
+        this.props.fetchRandomGif()
+        this.setState({
+          isGifLoaded: false
+        });
       }
     });
   };
