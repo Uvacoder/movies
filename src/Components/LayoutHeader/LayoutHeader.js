@@ -25,7 +25,7 @@ const { Header } = Layout;
 function LayoutHeader (props) {
  const renderSubMenu = (title, icon, menuItems) => {
     return (
-      <SubMenu key={ title } icon={ icon } title={ title }>
+      <SubMenu key={ title } icon={ icon } title={ title } popupClassName='ant-menu-dark'>
         {menuItems.map((item, idx) => 
         <Menu.Item key={ idx } onClick={item.onClick}>
           <Link to={ item.url }>{ item.title }</Link>
@@ -151,7 +151,12 @@ function LayoutHeader (props) {
         {renderMovieLoungeLogo()}
       </div>
       <div className='main-menu'>
-        <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
+        <Menu 
+          className ='nav-bar-menu' 
+          theme="dark" 
+          mode="horizontal" 
+          selectedKeys={[]}
+        >
           {renderTopListsMenu()}
           {renderNewMoviesSubMenu()}
           {renderSearchBar()}
@@ -160,7 +165,12 @@ function LayoutHeader (props) {
         </Menu>
       </div>
       <div className="your-profile">
-        <Menu className ='nav-bar-menu' theme="dark" mode="horizontal" >
+        <Menu 
+          className ='nav-bar-menu' 
+          theme="dark" 
+          mode="horizontal" 
+          selectedKeys={[]}
+        >
           {renderUserVotesMenu()}
           {renderYouProfileMenu()}
         </Menu>
