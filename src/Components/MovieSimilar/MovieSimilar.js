@@ -51,7 +51,7 @@ const MovieSimilar = (props) => {
           slidesToSlide={CAROUSEL_SLIDES_TO_SLIDE}
           autoPlaySpeed={CAROUSEL_AUTOPLAY_DURATION}
         >
-        { similarMovies.filter((item) => item.poster_path).map((item, idx) => renderCastBlock(item, idx)) }
+          { similarMovies.filter((item) => item.poster_path).map((item, idx) => renderCastBlock(item, idx)) }
         </Carousel>
       </div>   
     </div>

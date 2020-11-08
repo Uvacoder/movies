@@ -40,4 +40,3 @@ const Contact = () => {
 };
 
 export default withRouter(Contact)
-

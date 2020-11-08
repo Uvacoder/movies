@@ -47,8 +47,9 @@ const MovieHeader = (props) => {
           <UserVote />
         </div>
       </Tooltip>
-      )
-    }
+      );
+    };
+
     return (
       <div className='movie-header__user-vote'>
         <UserVote 
@@ -105,4 +106,3 @@ MovieHeader.defaultProps = {
 };
 
 export default withRouter(MovieHeader)
-

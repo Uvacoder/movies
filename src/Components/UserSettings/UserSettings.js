@@ -41,7 +41,9 @@ function UserSettings (props) {
       <div className="user-settings">
         <Divider className='user-settings__divider' orientation='center'>ACCOUNT SETTINGS</Divider>
         <div className="user-settings__header">
-          <span>Hi <b>{localStorage.getItem("userName")}</b>, here you can manage your account.</span>
+          <span>
+            Hi <b>{localStorage.getItem("userName")}</b>, here you can manage your account.
+          </span>
         </div>
         <div className="user-settings__items">
           <Button className={"user-settings__items-button"} onClick={showModal}>

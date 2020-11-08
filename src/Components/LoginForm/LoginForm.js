@@ -1,7 +1,12 @@
 import React from 'react';
 import "./LoginForm.scss"
 import { withRouter } from 'react-router-dom'
-import { Form, Input, Button, Tooltip } from 'antd';
+import { 
+  Form, 
+  Input, 
+  Button, 
+  Tooltip 
+} from 'antd';
 import UserUtil from 'utils/UserUtil'
 
 const TOOTLTIP_TEXT = "By continuing as a guest you won't be able to use all of Movie Lounge features.";
@@ -85,7 +90,11 @@ class LoginForm extends React.Component {
                   >
                     Sign In
                   </Button>
-                  <Tooltip placement="bottom" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
+                  <Tooltip 
+                    placement="bottom" 
+                    title={TOOTLTIP_TEXT} 
+                    color={TOOTLTIP_COLOR}
+                  >
                     <Button 
                       onClick={ this.continueAsGuest } 
                       className='login-form__container-buttons-guest'
@@ -96,7 +105,9 @@ class LoginForm extends React.Component {
                 </div>
               </Form.Item>
               <div className="registration-form"> 
-                <div className="registration-form__label" onClick={ this.props.goToRegistration }>Not registered yet? Click here to Sign Up!</div>
+                <div className="registration-form__label" onClick={ this.props.goToRegistration }>
+                  Not registered yet? Click here to Sign Up!
+                </div>
               </div>
           </Form>
         </div>

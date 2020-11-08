@@ -105,7 +105,7 @@ export const clearRandom = () => {
   };
 };
 
-export const clearUpcomming= () => {
+export const clearUpcomming = () => {
   return dispatch => {
     dispatch({
       type: CLEAR_UPCOMMING

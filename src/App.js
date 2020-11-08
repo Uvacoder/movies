@@ -17,8 +17,7 @@ function App() {
       <Spin 
         indicator={<Loader />} 
         spinning={isLoading} 
-        size={'large'} 
-        // delay={1000}  // to do think about delay time.
+        size={'large'}
         wrapperClassName={isLoading ? 'ant-spin__wrapper--spinning' : ''}
         className='ant-spin__global'
       >

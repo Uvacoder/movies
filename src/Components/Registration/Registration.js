@@ -126,7 +126,9 @@ const Registration = (props) => {
             </Button>
           </Form.Item>
           <div className="registration__footer-login"> 
-            <div className="registration__footer-login-label" onClick={ props.goToLogin }>Already a user? Click here to Log In.</div>
+            <div className="registration__footer-login-label" onClick={ props.goToLogin }>
+              Already a user? Click here to Log In.
+            </div>
           </div>
         </div>
       </Form>

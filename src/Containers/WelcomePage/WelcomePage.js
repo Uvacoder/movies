@@ -10,6 +10,8 @@ import { Button } from 'antd';
 import { withRouter } from 'react-router-dom'
 import UserUtil from 'utils/UserUtil'
 
+const QUOTE_TEXT = '"The true formula to happines is binge watching movies" ~ Albert Einstein'
+
 class WelcomePage extends React.Component {
   constructor (props) {
     super(props);
@@ -70,16 +72,13 @@ class WelcomePage extends React.Component {
           </div>
         <div className='welcome-page__title-wrapper'>
           <div className='welcome-page__title-wrapper-main'>Movie Lounge</div>
-          <div className='welcome-page__title-wrapper-quote'>"The true formula to happines is binge watching movies" ~ Albert Einstein</div>
+          <div className='welcome-page__title-wrapper-quote'>
+            { QUOTE_TEXT }
+          </div>
         </div>    
         <div className="welcome-page__footer">Created by Patryk Bura</div>
       </div>
     );
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
   };
 };
 
@@ -88,4 +87,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   login,
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(WelcomePage));
+export default connect(null, mapDispatchToProps)(withRouter(WelcomePage));

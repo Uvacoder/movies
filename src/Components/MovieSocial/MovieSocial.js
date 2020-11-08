@@ -15,7 +15,6 @@ const MovieSocial = (props) => {
     IMDBPage
   } = props;
 
-
   const renderSocialTag = (propName, imgPath) => {
     return (
       <a 

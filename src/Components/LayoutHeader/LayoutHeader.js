@@ -91,7 +91,7 @@ function LayoutHeader (props) {
   ]
   
     return renderSubMenu('About',<InfoCircleOutlined />, menuItems)
-  }
+  };
   
   const renderHydeParkMenu = () => {
     const menuItems = [{
@@ -166,7 +166,7 @@ function LayoutHeader (props) {
           <Link to ="/home">Movie Lounge</Link>
         </Menu.Item>
       </Menu>
-    )
+    );
   };
   
   return (

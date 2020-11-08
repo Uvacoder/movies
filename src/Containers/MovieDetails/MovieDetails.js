@@ -70,7 +70,9 @@ class MovieDetails extends React.Component {
 
     return (
       <>
-        <Divider className='movie-details-container__divider' orientation='left'>USER REVIEWS</Divider>
+        <Divider className='movie-details-container__divider' orientation='left'>
+          USER REVIEWS
+        </Divider>
         <div className='movie-details-container__review'> 
           { this.props.reviews.slice(0, MAX_NUMBER_OF_REVIEWS).map(review => <MovieReview className='movie-details-container__review-item' review={review} />) }
         </div>
@@ -85,7 +87,9 @@ class MovieDetails extends React.Component {
 
     return (
       <>
-        <Divider className='movie-details-container__divider' orientation='left'>PHOTOS ({this.props.details.images?.backdrops?.length})</Divider>
+        <Divider className='movie-details-container__divider' orientation='left'>
+          PHOTOS ({this.props.details.images?.backdrops?.length})
+        </Divider>
         <div className='movie-details-container__images'> 
             <MovieImages pictures={ this.props.details.images?.backdrops?.map((backdrop) => this.createImagesObject(backdrop)) } />
         </div>
@@ -100,7 +104,9 @@ class MovieDetails extends React.Component {
 
     return (
       <>
-        <Divider className='movie-details-container__divider' orientation='left'>MOVIES SIMILAR TO {this.props.details.title || this.props.details.original_title}</Divider>
+        <Divider className='movie-details-container__divider' orientation='left'>
+          MOVIES SIMILAR TO {this.props.details.title || this.props.details.original_title}
+        </Divider>
         <div className='movie-details-container__similar'> 
           <MovieSimilar 
             similarMovies={ this.props.similarMovies } 
@@ -118,7 +124,9 @@ class MovieDetails extends React.Component {
 
     return (
       <>
-        <Divider className='movie-details-container__divider' orientation='left'>{this.props.details.title || this.props.details.original_title}  TRAILERS</Divider>
+        <Divider className='movie-details-container__divider' orientation='left'>
+          {this.props.details.title || this.props.details.original_title} TRAILERS
+        </Divider>
         <div className='movie-details-container__trailer'>
             <MovieTrailer videoItems={ this.props.details?.videos?.results.slice(0, 3) } />
         </div>

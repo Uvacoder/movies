@@ -65,7 +65,9 @@ function UserRatings () {
 
   return (
     <div className='user-ratings'>
-      <Divider className='user-ratings__divider' orientation='center'>Your ratings {movieList.length !== 0 ? `(${movieList.length})` : null}</Divider>
+      <Divider className='user-ratings__divider' orientation='center'>
+        Your ratings {movieList.length !== 0 ? `(${movieList.length})` : null}
+      </Divider>
       {renderUserRatings()}
     </div>
   );

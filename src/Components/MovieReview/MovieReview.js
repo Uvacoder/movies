@@ -7,14 +7,20 @@ const MOVIE_REVIEW_CARD_WIDTH = 315;
 
 const MovieReview = (props) => {
   const {
-      review
+    review
   } = props;
 
   return (
     <div className='movie-review'>
-      <Card title={`Review by: ${review.author}`} bordered={false} style={{ width: MOVIE_REVIEW_CARD_WIDTH }}>
+      <Card 
+        title={`Review by: ${review.author}`} 
+        bordered={false} 
+        style={{ width: MOVIE_REVIEW_CARD_WIDTH }}
+      >
         <Scrollbars autoHeight >
-          <div className='movie-review__content'>{review.content}</div>
+          <div className='movie-review__content'>
+            {review.content}
+          </div>
         </Scrollbars>
       </Card>
     </div>
@@ -29,4 +35,3 @@ MovieReview.defaultProps = {
 };
 
 export default MovieReview
-
