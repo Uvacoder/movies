@@ -91,3 +91,15 @@ $on-hover-color: rgb(255,215,0);
   display: flex;
   justify-content: flex-end;
 };
+
+.ant-menu-submenu{
+  .ant-menu-item:hover a {
+    color: #1890ff !important;
+  };
+
+  .ant-menu-item:hover {
+    svg {
+      fill: #1890ff;
+    }
+  }
+};

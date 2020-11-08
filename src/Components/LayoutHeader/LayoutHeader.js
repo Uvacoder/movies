@@ -11,7 +11,19 @@ import {
   InfoCircleOutlined,
   ClockCircleOutlined,
   SmileOutlined,
-  UserOutlined
+  UserOutlined,
+  FireOutlined,
+  RiseOutlined,
+  CalendarOutlined,
+  DesktopOutlined,
+  GifOutlined,
+  QuestionCircleOutlined,
+  MailOutlined,
+  PieChartOutlined,
+  SettingOutlined,
+  LoginOutlined,
+  LogoutOutlined,
+  TrophyOutlined 
 } from '@ant-design/icons';
 import './LayoutHeader.scss';
 import { withRouter } from 'react-router-dom'
@@ -27,7 +39,7 @@ function LayoutHeader (props) {
     return (
       <SubMenu key={ title } icon={ icon } title={ title } popupClassName='ant-menu-dark'>
         {menuItems.map((item, idx) => 
-        <Menu.Item key={ idx } onClick={item.onClick}>
+        <Menu.Item key={ idx } onClick={item.onClick} icon={item.icon}>
           <Link to={ item.url }>{ item.title }</Link>
         </Menu.Item>)}
       </SubMenu>
@@ -37,13 +49,16 @@ function LayoutHeader (props) {
   const renderTopListsMenu = () => {
     const menuItems = [{
       title: 'Top Rated',
-      url:'/toplist/top_rated'
+      url:'/toplist/top_rated',
+      icon: <TrophyOutlined />
     },{
       title: 'Trending Today',
-      url:'/toplist/trending_daily'
+      url:'/toplist/trending_daily',
+      icon: <FireOutlined />
     },{
       title: 'Trending Weekly',
-      url:'/toplist/trending_weekly'
+      url:'/toplist/trending_weekly',
+      icon: <RiseOutlined />
     }]
   
     return renderSubMenu('Top Lists',<BarsOutlined />, menuItems)
@@ -52,10 +67,12 @@ function LayoutHeader (props) {
   const renderNewMoviesSubMenu = () => {
     const menuItems = [{
       title: 'Upcomming',
-      url:'/new/upcomming'
+      url:'/new/upcomming',
+      icon: <CalendarOutlined />
     },{
       title: 'Now Playing',
-      url:'/new/now_playing'
+      url:'/new/now_playing',
+      icon: <DesktopOutlined />
     }]
   
     return renderSubMenu('Recent',<ClockCircleOutlined />, menuItems)
@@ -64,10 +81,12 @@ function LayoutHeader (props) {
   const renderAboutMenu = () => {
     const menuItems = [{
       title: 'Informations',
-      url:'/about'
+      url:'/about',
+      icon: <QuestionCircleOutlined />
     },{
       title: 'Contact',
-      url:'/contact'
+      url:'/contact',
+      icon: <MailOutlined />
     }
   ]
   
@@ -77,7 +96,8 @@ function LayoutHeader (props) {
   const renderHydeParkMenu = () => {
     const menuItems = [{
       title: 'Random Gif Generator',
-      url:"/random-gif-generator"
+      url:"/random-gif-generator",
+      icon: <GifOutlined />
     }]
   
     return renderSubMenu('Hyde Park',<SmileOutlined />, menuItems)
@@ -86,7 +106,8 @@ function LayoutHeader (props) {
   const renderUserVotesMenu = () => {
     const menuItems = [{
       title: 'My Ratings',
-      url:"/user-ratings"
+      url:"/user-ratings",
+      icon: <PieChartOutlined />
     }]
 
     if (UserUtil.isUserLogged()) {
@@ -100,15 +121,18 @@ function LayoutHeader (props) {
     const menuItems = [{
       title: 'Account Settings',
       url:"/settings",
+      icon: <SettingOutlined />
     },{
       title: 'Log Out',
       url:"/",
-      onClick: UserUtil.logOut
+      onClick: UserUtil.logOut,
+      icon: <LogoutOutlined />
     }]
 
     const guestMenuItems = [{
       title: 'Log in or Register',
       url:"/",
+      icon: <LoginOutlined />
     }]
 
     if (!UserUtil.isUserLogged()) {

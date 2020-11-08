@@ -169,6 +169,7 @@ export const getAllUserRatings = () => {
       }
     } catch(error) {
         console.error('getting user votes error', error)
+        dispatch(changeLoadingStatus(false));
       };
         
     return {
