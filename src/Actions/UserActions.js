@@ -150,7 +150,6 @@ export const getAllUserRatings = () => {
       })
 
       await Promise.allSettled(results.map(async item => {
-        debugger;
         const movieDetails = await Communication.get({
           path: TMDBApi.get(`movie/${item.movieId}`,{
             append_to_response: 'credits'
@@ -158,7 +157,6 @@ export const getAllUserRatings = () => {
           useLoader: false
         });	
         item.details = movieDetails;
-        console.log(item.status)
       }));
 
       dispatch({ 

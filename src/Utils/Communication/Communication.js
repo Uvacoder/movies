@@ -44,7 +44,7 @@ function getMethod(type) {
         requestId = uuidv4()
         ApiRequestIdTable.push(requestId)
       }
-      debugger;
+
       const response = await fetch(path, fetchParams);
 
       return response.json().then(json => {
