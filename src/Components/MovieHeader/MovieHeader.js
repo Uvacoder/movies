@@ -42,11 +42,15 @@ const MovieHeader = (props) => {
   const displayUserVote = () => {
     if (!UserUtil.isUserLogged()) {
       return (
-      <Tooltip placement="left" title={TOOTLTIP_TEXT} color={TOOTLTIP_COLOR}>
-        <div className='movie-header__user-vote'>
-          <UserVote />
-        </div>
-      </Tooltip>
+        <Tooltip 
+          placement="left" 
+          title={TOOTLTIP_TEXT} 
+          color={TOOTLTIP_COLOR}
+        >
+          <div className='movie-header__user-vote'>
+            <UserVote />
+          </div>
+        </Tooltip>
       );
     };
 

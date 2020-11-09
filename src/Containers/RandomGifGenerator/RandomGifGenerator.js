@@ -18,7 +18,7 @@ class RandomGifGenerator extends React.Component {
 
     this.state = {
       isGifLoaded: false
-    }
+    };
   };
   
   componentDidMount() {

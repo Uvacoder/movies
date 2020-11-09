@@ -15,14 +15,14 @@ const UpcommingMovie = (props) => {
     <div className='upcomming-container'>
       <img 
         className='upcomming-container__image routed-image' 
-        src={ item.poster_path ? `${TMDBApi.getImgURL(IMG_SIZE)}${ item.poster_path }` : ImgPlaceholder} 
+        src={ item.poster_path ? `${TMDBApi.getImgURL(IMG_SIZE)}${ item.poster_path }` : ImgPlaceholder } 
         onClick={props.routeToMovieDetails}
         alt=""
       />
       <div className='upcomming-container__details'>
         <div 
           className='upcomming-container__details-title routed-text'
-          onClick={props.routeToMovieDetails}
+          onClick={ props.routeToMovieDetails }
         >
           { item.title || item.orginal_title }
         </div>
@@ -44,7 +44,7 @@ const UpcommingMovie = (props) => {
 };
 
 UpcommingMovie.defaultProps = {
-  item:{}
+  item: {}
 };
 
 export default UpcommingMovie

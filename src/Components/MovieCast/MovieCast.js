@@ -60,7 +60,7 @@ const MovieCast = (props) => {
 };
 
 MovieCast.defaultProps = {
-    castItems: []
+  castItems: []
 };
 
 export default MovieCast

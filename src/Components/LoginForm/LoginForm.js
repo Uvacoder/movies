@@ -62,8 +62,8 @@ class LoginForm extends React.Component {
                 size="large"
                 rules={[
                 {
-                    required: true,
-                    message: 'Please input your username!',
+                  required: true,
+                  message: 'Please input your username!',
                 },
                 ]}
               >
@@ -116,4 +116,4 @@ class LoginForm extends React.Component {
   };
 };
 
-export default withRouter(LoginForm) ;
+export default withRouter(LoginForm);

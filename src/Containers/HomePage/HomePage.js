@@ -10,7 +10,7 @@ import {
 } from 'actions/HomePageActions'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Divider, Button } from 'antd'
+import { Divider } from 'antd'
 import RandomMovie from 'components/RandomMovie/RandomMovie'
 import UpcommingMovies from 'components/UpcommingMovies/UpcommingMovies'
 import { routeToMovieDetails } from 'utils/Routing/Routing'

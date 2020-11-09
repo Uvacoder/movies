@@ -17,12 +17,12 @@ const Contact = () => {
         <div className='contact__content-items'>
           <div className='contact__content-items-item'>
             <a href={`mailto:${CONTACT_MAIL_ADRESS}`}>
-              <img src={Mail} alt="e-mail"/>
+              <img src={ Mail } alt="e-mail"/>
             </a>
           </div>
           <div className='contact__content-items-item'>
             <a href={CONTACT_LINKEDIN_ADRESS}>
-              <img src={Linkedin} alt="linkedin"/>
+              <img src={ Linkedin } alt="linkedin"/>
             </a>
           </div>
         </div>
@@ -30,7 +30,7 @@ const Contact = () => {
           <span>Check out my code:</span>
           <div className='contact__content-bitbucket-img'>
             <a href={CONTACT_BITBUCKET_ADRESS}>
-              <img src={Bitbucket} alt="bitbucket"/>
+              <img src={ Bitbucket } alt="bitbucket"/>
             </a>
           </div>
         </div>

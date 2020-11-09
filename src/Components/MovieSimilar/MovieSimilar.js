@@ -33,9 +33,8 @@ const MovieSimilar = (props) => {
             alt='poster'
             
         />
-        <div 
-          className='movie-similar__container-title routed-text'>
-          { item?.title}
+        <div className='movie-similar__container-title routed-text'>
+          { item?.title }
         </div>
       </div>
     );
