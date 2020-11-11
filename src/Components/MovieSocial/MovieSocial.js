@@ -15,10 +15,12 @@ const MovieSocial = (props) => {
     IMDBPage
   } = props;
 
-
   const renderSocialTag = (propName, imgPath) => {
     return (
-      <a href={ propName ? propName : undefined }>
+      <a 
+        href={ propName ? propName : undefined } 
+        className={ !propName ? 'img-disabled' : undefined } 
+      >
         <img 
           className={ !propName ? 'img-disabled' : undefined } 
           src={ imgPath } 

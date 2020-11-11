@@ -33,4 +33,3 @@ MovieImages.defaultProps = {
 };
 
 export default MovieImages
-

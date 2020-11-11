@@ -69,7 +69,7 @@ const RandomMovie = (props) => {
         </div>
         <div className='random-movie__details-vote-wrapper-popularity'>
           <div className='random-movie__details-vote-wrapper-popularity-name'>
-              Popularity:
+            Popularity:
           </div>
           <DoughnutChart data={ Math.floor(movie.popularity) }/>
         </div>
@@ -98,4 +98,3 @@ const RandomMovie = (props) => {
 };
 
 export default RandomMovie
-  

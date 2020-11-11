@@ -8,7 +8,7 @@ const COMMUNICATION_ERROR_DESCRIPTION = "Please, try again later.";
 const COMMUNICATION_ERROR_PLACEMENT = "topRight";
 const COMMUNICATION_ERROR_DURATION = 3.2;
 const COMMUNICATION_LOCAL_HOSTNAME = "localhost";
-const COMMUNICATION_WEB_PAGE_HOSTNAME = "patrykbura.kamilkazmierczak.usermd.net";
+const COMMUNICATION_WEB_PAGE_HOSTNAME = "www.movielounge.pl";
 const ApiRequestIdTable = [];
 let loaderTimerId = null;
 
@@ -44,7 +44,7 @@ function getMethod(type) {
         requestId = uuidv4()
         ApiRequestIdTable.push(requestId)
       }
-      
+
       const response = await fetch(path, fetchParams);
 
       return response.json().then(json => {

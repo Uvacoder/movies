@@ -1,39 +1,44 @@
 $search-bar-color: #09C5D6;
 $on-hover-color: rgb(255,215,0);
 
-.nav-bar-menu {
-  display: flex;
-  justify-content: center;
-};
+.rnd-gif-container__content {
+  margin-top: 24px;
+}
 
-.ant-input-wrapper {
-  top: 25%
-};
+.ant-input-search {
+  padding-left: 15px;
+
+  .ant-input-wrapper {
+    top: 25%
+  };
+}
 
 .nav-bar-menu__your-profile-bttn {
   justify-content: flex-end
 };
 
 .ant-layout-header {
-  display: flex;
-  justify-content: space-between;
+  position: fixed;
+  z-index: 1001;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  padding: 0 20px;
 
   .ant-menu {
     .ant-menu-item-selected {
       background-color: transparent;
     };
+
+    .ant-menu-submenu-title {
+      padding-right: 0px;
+    }
   };
 
   .ant-menu-item:hover {
     svg{
       fill:$on-hover-color;
     };
-  };
-   
-  .ant-btn-primary {
-    background:  $search-bar-color;
-    border-color: $search-bar-color;
-    color: black;
   };
 
   .nav-bar-menu__title .ant-menu-item a  {
@@ -49,6 +54,7 @@ $on-hover-color: rgb(255,215,0);
 .home-header {
   display: flex;
   padding-right: 0;
+  justify-content: flex-start;
 
   .anticon {
     font-size: 25px;
@@ -67,6 +73,9 @@ $on-hover-color: rgb(255,215,0);
 };
 
 .nav-bar-menu {
+  display: flex;
+  justify-content: center;
+
   .ant-menu-submenu-title:hover {
     color: #1890ff
   };
@@ -77,5 +86,18 @@ $on-hover-color: rgb(255,215,0);
 };
 
 .your-profile {
-  text-overflow: ellipsis;
+  display: flex;
+  justify-content: flex-end;
+};
+
+.ant-menu-submenu{
+  .ant-menu-item:hover a {
+    color: #1890ff !important;
+  };
+
+  .ant-menu-item:hover {
+    svg {
+      fill: #1890ff;
+    };
+  };
 };

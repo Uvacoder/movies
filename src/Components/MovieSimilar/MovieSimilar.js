@@ -33,9 +33,8 @@ const MovieSimilar = (props) => {
             alt='poster'
             
         />
-        <div 
-          className='movie-similar__container-title routed-text'>
-          { item?.title}
+        <div className='movie-similar__container-title routed-text'>
+          { item?.title }
         </div>
       </div>
     );
@@ -51,7 +50,7 @@ const MovieSimilar = (props) => {
           slidesToSlide={CAROUSEL_SLIDES_TO_SLIDE}
           autoPlaySpeed={CAROUSEL_AUTOPLAY_DURATION}
         >
-        { similarMovies.filter((item) => item.poster_path).map((item, idx) => renderCastBlock(item, idx)) }
+          { similarMovies.filter((item) => item.poster_path).map((item, idx) => renderCastBlock(item, idx)) }
         </Carousel>
       </div>   
     </div>

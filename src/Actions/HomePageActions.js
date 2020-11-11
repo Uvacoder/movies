@@ -22,6 +22,7 @@ export const fetchTrending = () => {
         path: TMDBApi.get('trending/all/day'),
         useLoader: true
       })
+
       dispatch({ 
         type: FETCH_TRENDING,
         trending: {
@@ -35,7 +36,7 @@ export const fetchTrending = () => {
 }; 
 
 export const fetchUpcomming = () => {
-  return  async dispatch => {
+  return async dispatch => {
     try {
       const movies = await Communication.get({
         path: TMDBApi.get('movie/upcoming',{
@@ -105,7 +106,7 @@ export const clearRandom = () => {
   };
 };
 
-export const clearUpcomming= () => {
+export const clearUpcomming = () => {
   return dispatch => {
     dispatch({
       type: CLEAR_UPCOMMING

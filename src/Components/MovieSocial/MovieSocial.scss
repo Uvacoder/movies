@@ -1,14 +1,16 @@
-.movie-social {
-  display: flex;
-  justify-content: space-evenly;
-
-  img  {
-    width: 60px;
-    height: 60px;
-  };
-
-  .img-disabled {
-    filter: grayscale(100%);
-    pointer-events: none;
+.movie-details-container{
+  .movie-social {
+    display: flex;
+    justify-content: space-evenly;
+  
+    img  {
+      width: 60px;
+      height: 60px;
+    };
+  
+    .img-disabled {
+      filter: grayscale(100%);
+      pointer-events: none;
+    };
   };
 };

@@ -9,6 +9,7 @@ import { Divider } from 'antd'
 
 function UserRatings () {
   const movieList = useSelector(state => state.userRating.movies);
+  const moviesFetched = useSelector(state => state.userRating.moviesFetched);
   const isLoading = useSelector(state => state.global.isLoading);
   const reversedMovieList = [...movieList].reverse();
   const dispatch = useDispatch();
@@ -18,6 +19,14 @@ function UserRatings () {
   },[dispatch]);
 
   const renderUserRatings = () => {
+    if (isLoading) {
+      return null
+    };
+
+    if (!moviesFetched) {
+      return null;
+    };
+
     if (movieList.length !== 0) {
       return reversedMovieList.map((item) => {
         if (!item.details) {
@@ -54,13 +63,11 @@ function UserRatings () {
     };
   };
 
-  if (isLoading) {
-    return null
-  };
- 
   return (
     <div className='user-ratings'>
-      <Divider className='user-ratings__divider' orientation='center'>Your ratings ({movieList.length}):</Divider>
+      <Divider className='user-ratings__divider' orientation='center'>
+        Your ratings {movieList.length !== 0 ? `(${movieList.length})` : null}
+      </Divider>
       {renderUserRatings()}
     </div>
   );

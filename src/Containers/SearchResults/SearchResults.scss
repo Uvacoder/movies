@@ -43,7 +43,12 @@
     };
   };
 
-  .search-results__failed{
-    font-size: x-large;
+  .search-results__content--failed {
+    @extend %display-results;
+    margin-top: 48px;
+
+    .search-results__failed{
+      font-size: x-large;
+    };
   };
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import "./DoughnutChart.scss"
 import { PieChart } from 'react-minimal-pie-chart';
 import { getColor } from './DoughnutChartUtil'
 
@@ -45,5 +44,6 @@ DoughnutChart.defaultProps = {
   fontColor: 'rgb(9, 197, 214)',
   percent: true,
   background: "#a9ae9e26",
-}
+};
+
 export default DoughnutChart

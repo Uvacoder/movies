@@ -5,7 +5,8 @@ import {
 } from 'actions/UserActions';
 
 const initialState = {
-  movies: []
+  movies: [],
+  moviesFetched: false
 };
 
 export function userRating (state = initialState, action) {
@@ -30,7 +31,8 @@ export function userRating (state = initialState, action) {
     })
   case FETCH_ALL_USER_RATINGS:
     return Object.assign({}, state, {
-      movies: action.movieRates
+      movies: action.movieRates,
+      moviesFetched: true
     })
   default:
     return state

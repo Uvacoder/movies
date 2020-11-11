@@ -1,12 +1,12 @@
-.about{
-  .about__divider{
+.about {
+  .about__divider {
     color: wheat;
     font-size: 1.8em;
   };
 
   .about__author,
   .about__faq,
-  .about__movie-lounge{
+  .about__movie-lounge {
     span{
       clear: both;
       display: inline-block;
@@ -15,7 +15,7 @@
       line-height: 1.5em;
     };
 
-    .about__movie-lounge-list{
+    .about__movie-lounge-list {
       display: flex;
       justify-content: center;
       text-align: center;
@@ -23,12 +23,12 @@
     };
   };
 
-  .about__faq{
-    .about__faq-question{
+  .about__faq {
+    .about__faq-question {
       margin-bottom: 18px;
     };
 
-    .about__faq-header{
+    .about__faq-header {
       margin-bottom: 1em;
       font-size: 1.3em;
       font-style: italic;

@@ -86,11 +86,6 @@ export const clearSearched = () => {
   return dispatch => {
     dispatch({
       type: CLEAR_SEARCHED,
-      searchResults: [],
-      phrase: '',
-      numberOfPages: 0
     });
   };
 };
-
-

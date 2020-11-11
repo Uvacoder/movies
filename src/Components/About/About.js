@@ -51,4 +51,3 @@ const About = (props) => {
 };
 
 export default withRouter(About)
-

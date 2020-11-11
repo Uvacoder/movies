@@ -7,7 +7,7 @@ import {
 const initialState = {
   results: [],
   phrase: '',
-  numberOfPages: 0
+  numberOfPages: null
 };
 
 export function searchResults (state = initialState, action) {
@@ -23,11 +23,7 @@ export function searchResults (state = initialState, action) {
       results: [...state.results, ...action.searchResults],
     })
   case CLEAR_SEARCHED:
-    return Object.assign({}, state, {
-      results: action.searchResults,
-      phrase: action.phrase,
-      numberOfPages: action.numberOfPages
-    })
+    return Object.assign({}, state, initialState)
   default:
     return state
   };

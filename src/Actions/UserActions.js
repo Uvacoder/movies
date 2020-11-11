@@ -149,14 +149,14 @@ export const getAllUserRatings = () => {
         useLoader: false
       })
 
-      await Promise.all(results.map(async item => {
+      await Promise.allSettled(results.map(async item => {
         const movieDetails = await Communication.get({
           path: TMDBApi.get(`movie/${item.movieId}`,{
             append_to_response: 'credits'
           }),
           useLoader: false
         });	
-        item.details = movieDetails; 
+        item.details = movieDetails;
       }));
 
       dispatch({ 
@@ -169,6 +169,7 @@ export const getAllUserRatings = () => {
       }
     } catch(error) {
         console.error('getting user votes error', error)
+        dispatch(changeLoadingStatus(false));
       };
         
     return {
