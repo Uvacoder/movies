@@ -5,11 +5,6 @@ $on-hover-color: rgb(255,215,0);
   margin-top: 24px;
 }
 
-.nav-bar-menu {
-  display: flex;
-  justify-content: center;
-};
-
 .ant-input-search {
   padding-left: 15px;
 
@@ -78,6 +73,9 @@ $on-hover-color: rgb(255,215,0);
 };
 
 .nav-bar-menu {
+  display: flex;
+  justify-content: center;
+
   .ant-menu-submenu-title:hover {
     color: #1890ff
   };
