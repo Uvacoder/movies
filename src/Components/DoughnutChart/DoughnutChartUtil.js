@@ -4,10 +4,11 @@ const COLOR_OF_30_PERCENT = '#FF7F50B3'
 const COLOR_OF_40_PERCENT = '#FFA500B3'
 const COLOR_OF_50_PERCENT = '#FFFF00B3'
 const COLOR_OF_60_PERCENT = '#9ACD32B3'
-const COLOR_OF_70_PERCENT = '#7CFC00B3'
-const COLOR_OF_80_PERCENT = '#00FF7FB3'
-const COLOR_OF_90_PERCENT = '#00FF00B3'
-const COLOR_OF_100_PERCENT = '#00BFFFB3'
+const COLOR_OF_70_PERCENT = '#96FF00B3'
+const COLOR_OF_80_PERCENT = '#7CFC00B3'
+const COLOR_OF_90_PERCENT = '#00FF7FB3'
+const COLOR_OF_100_PERCENT = '#00FF00B3'
+const COLOR_OF_EQUAL_100_PERCENT = '#00BFFFB3'
 
 export const getColor = (data, maxValue) => {
   if (data <= (0.1 * maxValue)) {
@@ -37,7 +38,10 @@ export const getColor = (data, maxValue) => {
   if (data <= (0.9 * maxValue)) {
     return COLOR_OF_90_PERCENT
   }
-  if (data >=  maxValue) {
+  if (data < maxValue) {
     return COLOR_OF_100_PERCENT
+  }
+  if (data >=  maxValue) {
+    return COLOR_OF_EQUAL_100_PERCENT
   };
 };
