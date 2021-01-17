@@ -8,7 +8,7 @@ const About = (props) => {
     <div className='about'>
       <Divider className='about__divider' orientation='center'>About Movie Lounge</Divider>
       <div className='about__movie-lounge'>
-        <span>The puprose of this website is to help you find information about your favorite movies.</span>
+        <span>The purpose of this website is to help you find information about your favorite movies.</span>
         <span>Movie Lounge is a non profit Single Page Application made to be a portfolio.</span>
         <span>It uses <a href='https://developers.themoviedb.org/3/getting-started'>TMDB (The Movie Database) </a> API to get all the information about movies, aswell pictures and ratings.</span>
         <span>This website was created to acquire programming skills and it's using:</span>
