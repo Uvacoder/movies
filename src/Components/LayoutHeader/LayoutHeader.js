@@ -131,7 +131,7 @@ function LayoutHeader (props) {
 
     const guestMenuItems = [{
       title: 'Log in or Register',
-      url:"/",
+      url:'/register',
       icon: <LoginOutlined />
     }]
 
@@ -163,7 +163,7 @@ function LayoutHeader (props) {
     return (
       <Menu className ='nav-bar-menu__title' theme="dark" mode="horizontal" >  
         <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
-          <Link to ="/home">Movie Lounge</Link>
+          <Link to ="/">Movie Lounge</Link>
         </Menu.Item>
       </Menu>
     );

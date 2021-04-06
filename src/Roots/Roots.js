@@ -12,9 +12,6 @@ import UserRatings from 'containers/UserRatings/UserRatings'
 function Roots() {
   return ( 
     <>
-      <Route path="/home">
-        <HomePage />
-      </Route>
       <Route path="/random-gif-generator">
         <RandomGifGenerator />
       </Route>
@@ -35,6 +32,9 @@ function Roots() {
       </Route>
       <Route path="/user-ratings">
         <UserRatings />
+      </Route>
+      <Route exact path="/">
+        <HomePage />
       </Route>
     </>
   );   

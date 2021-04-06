@@ -26,7 +26,7 @@ class LoginForm extends React.Component {
     }).then(({errors} = {}) => {
       if (errors === false) {
         localStorage.setItem('userName', values.username);
-        this.props.history.push('/home');
+        this.props.history.push('/');
       } else {
         this.formRef.current.setFields([
           {
@@ -40,7 +40,7 @@ class LoginForm extends React.Component {
 
   continueAsGuest = () => {
     UserUtil.logOut()
-    this.props.history.push('/home')    
+    this.props.history.push('/')    
   };
 
   render() {
