@@ -9,11 +9,11 @@ function LayoutContent () {
   return (
     <Content className="site-layout">
       <div className='site-layout__container'>
-        <div id='particles-left' className='site-layout__container-margin-left'/>
+        <div className='site-layout__container-margin-left'/>
           <div className="site-layout__container-main">
             <Roots />
           </div>
-        <div id='particles-right' className='site-layout__container-margin-right'/>  
+        <div className='site-layout__container-margin-right'/>  
       </div> 
     </Content>
   );

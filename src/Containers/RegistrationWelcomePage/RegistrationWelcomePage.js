@@ -34,8 +34,8 @@ class RegistrationWelcomePage extends React.Component {
       };
     } else {
       return (
-        <div className="welcome-page__action-form-logged">
-          <Button onClick={() => this.props.history.push('/')}>
+        <div className="registration-welcome-page__action-form-logged">
+          <Button onClick={() => this.props.history.push('/home')}>
             <span>Continue as <b>{localStorage.getItem('userName')}</b></span>
           </Button>
           <Button onClick={ this.logOut }>
@@ -60,17 +60,17 @@ class RegistrationWelcomePage extends React.Component {
 
   render() {
     return (
-      <div className="welcome-page">
-        <div className="welcome-page__action-form">
+      <div className="registration-welcome-page">
+        <div className="registration-welcome-page__action-form">
           {this.renderContent()}
         </div>
-        <div className='welcome-page__title-wrapper'>
-          <div className='welcome-page__title-wrapper-main'>Movie Lounge</div>
-          <div className='welcome-page__title-wrapper-quote'>
+        <div className='registration-welcome-page__title-wrapper'>
+          <div className='registration-welcome-page__title-wrapper-main'>Movie Lounge</div>
+          <div className='registration-welcome-page__title-wrapper-quote'>
             { QUOTE_TEXT }
           </div>
         </div>    
-        <div className="welcome-page__footer">Created by Patryk Bura</div>
+        <div className="registration-welcome-page__footer">Created by Patryk Bura</div>
       </div>
     );
   };
