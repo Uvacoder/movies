@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 import { getColor } from './DoughnutChartUtil'
 
@@ -13,9 +13,21 @@ const DoughnutChart = (props) => {
     fontSize,
     fontColor,
     percent,
-    background
+    background,
+    ignoreZeroValue
   } = props;
-console.log(props)
+
+  if (data === 0) {
+    console.log('ALARM')
+  }
+
+
+  // if (ignoreZeroValue && data === 0) {
+  //   return null;
+  // }
+
+
+
   return (
     <PieChart
       data={[{ 
@@ -46,6 +58,7 @@ DoughnutChart.defaultProps = {
   fontColor: 'rgb(9, 197, 214)',
   percent: true,
   background: "#a9ae9e26",
+  ignoreZeroValue: false
 };
 
 export default DoughnutChart

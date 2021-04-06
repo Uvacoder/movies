@@ -65,6 +65,13 @@ const MovieHeader = (props) => {
     );
   };
 
+  // const fakeProps = JSON.parse('{"data":7.8,"maxValue":10,"percent":false,"fontSize":"25px","fontColor":"rgb(9, 197, 214)","background":"#a9ae9e26"}');
+
+  // console.log(voteAverage)
+  // fakeProps.data = voteAverage;
+  // fakeProps.maxValue = VOTE_AVERAGE_MAX_VALUE;
+  // fakeProps.percent = VOTE_AVERAGE_DISPLAY_PERCENT;
+
   return (
     <div className='movie-header'>
       <div className='movie-header__image-wrapper'>
@@ -81,9 +88,12 @@ const MovieHeader = (props) => {
           <div className='movie-header-votes-average'>
             <span className='movie-header-votes-average-title'>Vote average:</span>
             <DoughnutChart 
+              // {...fakeProps}
+
               data={voteAverage} 
               maxValue={VOTE_AVERAGE_MAX_VALUE} 
-              percent={VOTE_AVERAGE_DISPLAY_PERCENT} 
+              percent={VOTE_AVERAGE_DISPLAY_PERCENT}
+              ignoreZeroValue={true}
             />
           </div>
           <div className='movie-header-votes-popularity'>
@@ -92,6 +102,7 @@ const MovieHeader = (props) => {
               data={Math.floor(popularity)} 
               maxValue={POPULARITY_MAX_VALUE} 
               percent={POPULARITY_DISPLAY_PERCENT} 
+              ignoreZeroValue={true}
             />
           </div> 
         </div>
