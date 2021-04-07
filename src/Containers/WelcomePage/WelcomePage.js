@@ -1,5 +1,6 @@
 import React from 'react';
-import "./RegistrationWelcomePage.scss"
+import Particles from 'particles.js'; // to do -> move to app js
+import "./WelcomePage.scss"
 import LoginForm from '../../Components/LoginForm/LoginForm';
 import Registration from '../../Components/Registration/Registration'
 import { connect } from 'react-redux'
@@ -11,7 +12,7 @@ import UserUtil from 'utils/UserUtil'
 
 const QUOTE_TEXT = '"The true formula to happines is binge watching movies" ~ Albert Einstein'
 
-class RegistrationWelcomePage extends React.Component {
+class WelcomePage extends React.Component {
   constructor (props) {
     super(props);
 
@@ -34,7 +35,7 @@ class RegistrationWelcomePage extends React.Component {
       };
     } else {
       return (
-        <div className="registration-welcome-page__action-form-logged">
+        <div className="welcome-page__action-form-logged">
           <Button onClick={() => this.props.history.push('/home')}>
             <span>Continue as <b>{localStorage.getItem('userName')}</b></span>
           </Button>
@@ -60,13 +61,13 @@ class RegistrationWelcomePage extends React.Component {
 
   render() {
     return (
-      <div className="registration-welcome-page">
-        <div className="registration-welcome-page__action-form">
-          {this.renderContent()}
-        </div>
-        <div className='registration-welcome-page__title-wrapper'>
-          <div className='registration-welcome-page__title-wrapper-main'>Movie Lounge</div>
-          <div className='registration-welcome-page__title-wrapper-quote'>
+      <div className="welcome-page">
+          <div className="welcome-page__action-form">
+            {this.renderContent()}
+          </div>
+        <div className='welcome-page__title-wrapper'>
+          <div className='welcome-page__title-wrapper-main'>Movie Lounge</div>
+          <div className='welcome-page__title-wrapper-quote'>
             { QUOTE_TEXT }
           </div>
         </div>    
@@ -81,4 +82,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   login,
 }, dispatch)
 
-export default connect(null, mapDispatchToProps)(withRouter(RegistrationWelcomePage));
+export default connect(null, mapDispatchToProps)(withRouter(WelcomePage));
