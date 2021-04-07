@@ -41,7 +41,8 @@ const DoughnutChart = (props) => {
 
   return (
     <PieChart
-      ref={inputEl}
+      animate= { true }
+      delay = { 1400 }
       data={[{ 
         value: Math.min(data, maxValue), 
         color: getColor(data, maxValue)
