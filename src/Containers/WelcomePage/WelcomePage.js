@@ -62,16 +62,16 @@ class WelcomePage extends React.Component {
   render() {
     return (
       <div className="welcome-page">
-          <div className="welcome-page__action-form">
-            {this.renderContent()}
-          </div>
+        <div className="welcome-page__action-form">
+          {this.renderContent()}
+        </div>
         <div className='welcome-page__title-wrapper'>
           <div className='welcome-page__title-wrapper-main'>Movie Lounge</div>
           <div className='welcome-page__title-wrapper-quote'>
             { QUOTE_TEXT }
           </div>
         </div>    
-        <div className="registration-welcome-page__footer">Created by Patryk Bura</div>
+        <div className="welcome-page__footer">Created by Patryk Bura</div>
       </div>
     );
   };

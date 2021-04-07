@@ -57,8 +57,6 @@ const DoughnutChart = (props) => {
       background={background}
       startAngle={DOUGHNUT_CHART_START_ANGLE}
       onClick={ props.onClick }
-      animate={ true }
-      animationDuration = { 2000 }
     />     
   );
 };
