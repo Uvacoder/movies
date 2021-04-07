@@ -1,11 +1,16 @@
 @font-face {
-  font-family: 'Opens Sans';
-  src: local('Opens Sans'), url(./Fonts/Poppins-Light.ttf) format('woff');
+  font-family: 'Roboto-Regular';
+  src: local('Roboto-Regular'), url(./Fonts/Roboto-Regular.ttf) format('woff');
+};
+
+@font-face {
+  font-family: 'Poppins-Light';
+  src: local('Poppins-Light'), url(./Fonts/Poppins-Light.ttf) format('woff');
 };
 
 html body {
   margin: 0;
-  font-family: 'Opens Sans';
+  font-family: 'Poppins-Light';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: black;

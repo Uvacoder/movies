@@ -32,22 +32,19 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    grid-column-start: 2;
-    grid-row-start: 1;
   
     .random-movie__details-vote-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
       width: 100%;
-      height: 100%;
+      // height: 100%;
+      align-items: flex-end;
     };
   
     .random-movie__details-title {
       font-size: 2em;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       font-weight: bold;
       color: wheat;
-      min-height: 88px;
       cursor: pointer;
     };
     
@@ -64,26 +61,29 @@
     };
   
     .random-movie__details-overwiev {
-      margin-bottom: 30px;
-      min-height: 175px;
+      margin-bottom: 10px;
+      //tmp
+      // flex-grow: 1;
+      // background-color: red;
       
       .random-movie__details-overwiev-content{
         padding-right: 20px;
-        height: 175px;
       };
   
       .random-movie__details-overwiev-title{
         font-weight: bold;
+        color: wheat;
       };
     };
   
     .random-movie__details-date {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       display: flex;
       
       .random-movie__details-date-title{
         font-weight: bold;
         margin-right: 5px;
+        color: wheat;
       };
     };
   

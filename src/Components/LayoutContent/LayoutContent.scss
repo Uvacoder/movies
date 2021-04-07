@@ -19,12 +19,15 @@ $content-width: 1056px;
   margin-top: 64px;
 
   .site-layout__container {
+    background-attachment: fixed !important; // to do
+    background-repeat: no-repeat;
     background: #032646;
     height: 100%;
     display: grid;
     grid-template-columns: minmax(0,1.5fr) $content-width minmax(0,1.5fr);
     background-image: url("../../Images/sidespicture.jpg");
-    background-size: 100% auto;
+    background-size: 100% 100%;
+    // background-size: 100% auto;
     transform: translate3d(0,0,0);
     width: 100%;
   };
