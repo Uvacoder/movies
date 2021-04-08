@@ -64,7 +64,9 @@ $input-color-alpha: rgba(0,0,0,0.4);
     };
 
     .login-form__container-buttons-guest{
-      background-color: rgba(0,0,0,0.6);
+      background-color: #FFC30B;
+      color: black;
+      font-weight: bold
     };
 
     .login-form__container-buttons-login:hover,
