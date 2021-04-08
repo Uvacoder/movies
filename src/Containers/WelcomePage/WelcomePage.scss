@@ -7,7 +7,7 @@
         };
         
         .welcome-page__title-wrapper-quote {
-          font-size: 0.9em;
+          font-size: 1em;
         };
       }; 
     };
@@ -51,35 +51,39 @@
     };
   };
 
-  .welcome-page__footer {
-    position: absolute;
-    left: 2%;
-    bottom: 2%;
-    color: white;
-    font-family: 'Roboto-Regular';
-    font-size: 15px;
-  };
-
   .welcome-page__title-wrapper {
     position: absolute;
     left: 5%;
-    top: 20%;
+    top: 7%;
     font-family: 'Roboto-Regular';
     pointer-events: none;
     align-items: center;
 
     .welcome-page__title-wrapper-main {
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 255, 255, 0.8);
       font-size: 9em; 
     };
     
-    .welcome-page__title-wrapper-quote {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 1.5em;
+    .welcome-page__title-wrapper-description {
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-left: 10px;
+
+        svg {
+          width: 40px;
+          height: 40px;
+          fill: white;
+          margin-right: 20px;
+          
+        }
+
+        p {
+          font-size: 1.5em;
+          margin-bottom: 0;
+          color: rgba(255, 255, 255, 0.8);
+        }
     };
   };
-};
-
-#particles-js {
-  height: 100%
 };

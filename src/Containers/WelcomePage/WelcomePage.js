@@ -9,8 +9,10 @@ import { register, login } from 'actions/UserActions'
 import { Button } from 'antd';
 import { withRouter } from 'react-router-dom'
 import UserUtil from 'utils/UserUtil'
-
-const QUOTE_TEXT = '"The true formula to happines is binge watching movies" ~ Albert Einstein'
+import {ReactComponent as MovieReel} from '../../Images/moviereel.svg';
+import {ReactComponent as Rate} from '../../Images/rate.svg';
+import {ReactComponent as Review} from '../../Images/book.svg';
+import {ReactComponent as List} from '../../Images/list.svg';
 
 class WelcomePage extends React.Component {
   constructor (props) {
@@ -19,6 +21,15 @@ class WelcomePage extends React.Component {
     this.state = {
       loginForm: true
     };
+  };
+
+  renderDescription = (descriptionText, imgPath) => {
+    return (
+      <div className="welcome-page__title-wrapper-description">
+        { imgPath }
+        <p>{ descriptionText }</p>
+      </div>
+    );
   };
 
   logOut = () => {
@@ -67,11 +78,11 @@ class WelcomePage extends React.Component {
         </div>
         <div className='welcome-page__title-wrapper'>
           <div className='welcome-page__title-wrapper-main'>Movie Lounge</div>
-          <div className='welcome-page__title-wrapper-quote'>
-            { QUOTE_TEXT }
-          </div>
+          {this.renderDescription('Discover movies', <MovieReel/>)}
+          {this.renderDescription('Rate and comment', <Rate/>)}
+          {this.renderDescription('Read reviews', <Review/>)}
+          {this.renderDescription('Browse toplists', <List/>)}
         </div>    
-        <div className="welcome-page__footer">Created by Patryk Bura</div>
       </div>
     );
   };
