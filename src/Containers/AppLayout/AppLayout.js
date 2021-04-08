@@ -3,7 +3,6 @@ import { Layout } from 'antd';
 import './AppLayout.scss';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import Particles from 'particles.js';
 import LayoutHeader from 'components/LayoutHeader/LayoutHeader'
 import LayoutContent from 'components/LayoutContent/LayoutContent'
 import { fetchSearched } from 'actions/SearchActions'
@@ -26,6 +25,11 @@ class AppLayout extends React.Component {
   };
 
   renderGithubLink = () => {
+    console.log(this.props)
+    if (this.props.location.pathname === '/contact') {
+      return null
+    }
+
     return (
       <a href={ GITHUB_LINK }>
         <Github className="app-layout__github"/>
