@@ -10,6 +10,9 @@ import { fetchSearched } from 'actions/SearchActions'
 import {withRouter} from 'react-router-dom';
 import Contact from 'components/Contact/Contact'
 import UserSettings from 'components/UserSettings/UserSettings'
+import {ReactComponent as Github} from '../../Images/github.svg';
+
+const GITHUB_LINK = "https://github.com/patrykbura"
 
 class AppLayout extends React.Component {
   renderLayoutContent = () => {
@@ -22,13 +25,22 @@ class AppLayout extends React.Component {
     };
   };
 
+  renderGithubLink = () => {
+    return (
+      <a href={ GITHUB_LINK }>
+        <Github className="app-layout__github"/>
+      </a>
+    );
+  };
+
   render() {
     return (
       <div className='app-layout'>
         <Layout>
-           <LayoutHeader handleSearch={this.props.fetchSearched} />
-           {this.renderLayoutContent()}
+          <LayoutHeader handleSearch={this.props.fetchSearched} />
+          {this.renderLayoutContent()}
         </Layout>
+        { this.renderGithubLink() }
       </div>
     );
   };

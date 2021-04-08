@@ -82,7 +82,7 @@ class WelcomePage extends React.Component {
           {this.renderDescription('Rate and comment', <Rate/>)}
           {this.renderDescription('Read reviews', <Review/>)}
           {this.renderDescription('Browse toplists', <List/>)}
-        </div>    
+        </div>
       </div>
     );
   };
