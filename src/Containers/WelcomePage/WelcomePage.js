@@ -6,7 +6,7 @@ import Registration from '../../Components/Registration/Registration'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { register, login } from 'actions/UserActions'
-import { Button } from 'antd';
+import { Button, Popover } from 'antd';
 import { withRouter } from 'react-router-dom'
 import UserUtil from 'utils/UserUtil'
 import {ReactComponent as MovieReel} from '../../Images/moviereel.svg';
@@ -69,6 +69,12 @@ class WelcomePage extends React.Component {
       loginForm: true
     });
   };
+
+  renderOverlay = () => {
+    return (
+      <div className="welcome-page__overlay" />
+    )
+  }
 
   render() {
     return (
