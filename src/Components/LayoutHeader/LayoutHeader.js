@@ -10,14 +10,11 @@ import {
   BarsOutlined,
   InfoCircleOutlined,
   ClockCircleOutlined,
-  SmileOutlined,
   UserOutlined,
   FireOutlined,
   RiseOutlined,
   CalendarOutlined,
   DesktopOutlined,
-  GifOutlined,
-  QuestionCircleOutlined,
   MailOutlined,
   PieChartOutlined,
   SettingOutlined,
@@ -37,7 +34,7 @@ const { Header } = Layout;
 function LayoutHeader (props) {
  const renderSubMenu = (title, icon, menuItems) => {
     return (
-      <SubMenu key={ title } icon={ icon } title={ title } popupClassName='ant-menu-dark'>
+      <SubMenu key={ title } icon={ icon } title={ title } popupClassName='ant-menu-dark' popupOffset={[0, 0]}>
         {menuItems.map((item, idx) => 
         <Menu.Item key={ idx } onClick={item.onClick} icon={item.icon}>
           <Link to={ item.url }>{ item.title }</Link>
@@ -76,31 +73,6 @@ function LayoutHeader (props) {
     }]
   
     return renderSubMenu('Recent',<ClockCircleOutlined />, menuItems)
-  };
-  
-  const renderAboutMenu = () => {
-    const menuItems = [{
-      title: 'Informations',
-      url:'/about',
-      icon: <QuestionCircleOutlined />
-    },{
-      title: 'Contact',
-      url:'/contact',
-      icon: <MailOutlined />
-    }
-  ]
-  
-    return renderSubMenu('About',<InfoCircleOutlined />, menuItems)
-  };
-  
-  const renderHydeParkMenu = () => {
-    const menuItems = [{
-      title: 'Random Gif Generator',
-      url:"/random-gif-generator",
-      icon: <GifOutlined />
-    }]
-  
-    return renderSubMenu('Hyde Park',<SmileOutlined />, menuItems)
   };
 
   const renderUserVotesMenu = () => {
@@ -161,11 +133,27 @@ function LayoutHeader (props) {
 
   const renderMovieLoungeLogo = () => {
     return (
-      <Menu className ='nav-bar-menu__title' theme="dark" mode="horizontal" >  
+      <Menu className ='nav-bar-menu__title' theme="dark" mode="horizontal">  
         <Menu.Item key="1" icon={<PlaySquareOutlined/>}>
-          <Link to ="/home">Movie Lounge</Link>
+          <Link to ='/home'>Movie Lounge</Link>
         </Menu.Item>
       </Menu>
+    );
+  };
+
+  const renderAboutItem = () => {
+    return (
+      <Menu.Item className="main-menu__right-from-searchbar" key={ 'about' } icon={<InfoCircleOutlined/>}>
+        <Link to='/about'>About</Link>
+      </Menu.Item>
+    );
+  };
+  
+  const renderContactItem = () => {
+    return (
+      <Menu.Item className="main-menu__right-from-searchbar" key={ 'contact' } icon={<MailOutlined />}>
+        <Link to='/contact'>Contact</Link>
+      </Menu.Item>
     );
   };
   
@@ -181,11 +169,11 @@ function LayoutHeader (props) {
           mode="horizontal" 
           selectedKeys={[]}
         >
-          {renderTopListsMenu()}
-          {renderNewMoviesSubMenu()}
-          {renderSearchBar()}
-          {renderHydeParkMenu()}
-          {renderAboutMenu()}
+          { renderTopListsMenu() }
+          { renderNewMoviesSubMenu()}
+          { renderSearchBar() }
+          { renderAboutItem() }
+          { renderContactItem() }
         </Menu>
       </div>
       <div className="your-profile">

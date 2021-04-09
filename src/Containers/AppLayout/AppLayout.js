@@ -25,7 +25,6 @@ class AppLayout extends React.Component {
   };
 
   renderGithubLink = () => {
-    console.log(this.props)
     if (this.props.location.pathname === '/contact') {
       return null
     }

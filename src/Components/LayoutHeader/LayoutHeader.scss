@@ -91,6 +91,8 @@ $on-hover-color: rgb(255,215,0);
 };
 
 .ant-menu-submenu{
+  // margin-top: -17px;
+
   .ant-menu-item:hover a {
     color: #1890ff !important;
   };
@@ -101,3 +103,29 @@ $on-hover-color: rgb(255,215,0);
     };
   };
 };
+
+.ant-menu-item.main-menu__right-from-searchbar {
+  padding-right: 0;
+  
+  span a{
+    color:white;
+    transition-duration: 0ms;
+  }
+
+  .anticon {
+    color:white;
+    animation: 0;
+  }
+
+  &.ant-menu-item-active {
+    span a {
+      color:#1890ff !important;
+    }
+
+    svg {
+      fill:#1890ff;
+    }
+  }
+}
+
+
