@@ -1,5 +1,6 @@
 import Communication from 'communication/Communication';
 import TMDBApi from 'utils/TMDBApi';
+import { changeLoadingStatus } from 'actions/GlobalActions';
 
 export const FETCH_MOVIE_DETAILS = 'movie/FETCH_MOVIE_DETAILS';
 export const CLEAR_MOVIE_DETAILS = 'movie/CLEAR_MOVIE_DETAILS';
@@ -10,29 +11,27 @@ const MOVIE_DETAILS_PAGE = '1';
 export function fetchMovieDetails(Id) {
   return async dispatch => {
     try {
+      debugger;
+      dispatch(changeLoadingStatus(true));
       const movieDetailsPromise = Communication.get({
         path: TMDBApi.get(`movie/${Id}`,{
           append_to_response: 'videos,images,credits'
         }),
-        useLoader: true
       });
       const similarMoviesPromise = Communication.get({
         path: TMDBApi.get(`movie/${Id}/recommendations`,{
           language: MOVIE_DETAILS_LANGUAGE,
           page: MOVIE_DETAILS_PAGE
         }),
-        useLoader: true
       });
       const movieReviewsPromise = Communication.get({
         path: TMDBApi.get(`movie/${Id}/reviews`,{
           language: MOVIE_DETAILS_LANGUAGE,
           page: MOVIE_DETAILS_PAGE
         }),
-        useLoader: true
       });
       const externalIdsPromise = Communication.get({
         path: TMDBApi.get(`movie/${Id}/external_ids`),
-        useLoader: true
       });
       const [
         movieDetails, 
@@ -41,13 +40,15 @@ export function fetchMovieDetails(Id) {
         externalIds
       ] = await Promise.all([movieDetailsPromise, similarMoviesPromise, movieReviewsPromise, externalIdsPromise]);
 
+      debugger;
+      dispatch(changeLoadingStatus(false));
       return dispatch({ 
         type: FETCH_MOVIE_DETAILS,
         details: movieDetails,
         similarMovies,
         movieReviews,
         externalIds
-      });	
+      });
     } catch (error) {
       console.error('TBMD API fetching movie details', error)
     };

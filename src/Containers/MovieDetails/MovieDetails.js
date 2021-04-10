@@ -171,6 +171,7 @@ class MovieDetails extends React.Component {
   };
 
   renderHeader = () => {
+    debugger;
     return (
       <div className='movie-details-container__header'> 
         <MovieHeader 

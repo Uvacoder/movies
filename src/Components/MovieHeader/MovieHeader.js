@@ -7,6 +7,7 @@ import { Tooltip } from 'antd';
 import { withRouter } from 'react-router-dom'
 import { getUserRating, saveUserRating } from 'actions/UserActions'
 import UserUtil from 'utils/UserUtil'
+import withSkeleton from 'utils/withSkeleton';
 
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_DISPLAY_PERCENT = false;
@@ -64,6 +65,7 @@ const MovieHeader = (props) => {
       </div>
     );
   };
+  
 
   // TO DO FIX  ANIMATION IN DOUGHNUT CHART
 
@@ -81,10 +83,10 @@ const MovieHeader = (props) => {
       </div>
       <div className='movie-header__wrapper'>
         <div className='movie-header__wrapper-title'>
-          {title}
+          {withSkeleton(title, { width: 500, height: 38 })}
         </div>
         <div className='movie-header__wrapper-tagline'>
-          "{tagline}"
+          {withSkeleton(tagline, { width: 300, height: 22 })}
         </div>
         <div className='movie-header-votes'>
           <div className='movie-header-votes-average'>
@@ -116,8 +118,8 @@ const MovieHeader = (props) => {
 
 MovieHeader.defaultProps = {
     backDropPath: '',
-    title: ' ',
-    tagline: ' ',
+    title: '–',
+    tagline: '–',
     voteAverage: 0,
     popularity: 0
 };
