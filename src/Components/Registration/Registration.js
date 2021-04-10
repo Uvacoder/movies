@@ -40,6 +40,7 @@ const Registration = (props) => {
           placement: REGISTRATION_SUCCES_POSITION,
           duration: REGISTRATION_SUCCES_MESSAGE_DURATION,
         });
+        localStorage.setItem('welcomePageTooltopVisited', true);
         props.goToLogin()
       };
     });

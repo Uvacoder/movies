@@ -9,14 +9,7 @@ import {
 } from 'antd';
 import UserUtil from 'utils/UserUtil'
 
-// const TOOTLTIP_TEXT = () =><> <p>First time?</p><p>Click here!</p></>;
-const TOOTLTIP_COLOR = '#1890ff';
-// const content = (
-//   <div>
-//     <p>Content</p>
-//     <p>Content</p>
-//   </div>
-// );
+const TOOTLTIP_COLOR = '#f5f5f5';
 
 class LoginForm extends React.Component {
   constructor (props) {
@@ -30,9 +23,15 @@ class LoginForm extends React.Component {
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({ showLoginTooltip: true })
-    }, 3000)
+    // if (!this.getWelcomePageTootlipVisited()) {
+      setTimeout(() => {
+        this.setState({ showLoginTooltip: true })
+      }, 1500)
+    // }
+  }
+
+  getWelcomePageTootlipVisited = () => {
+    return JSON.parse(localStorage.getItem('welcomePageTooltopVisited'))
   }
 
   onFinish = values => {
@@ -42,6 +41,7 @@ class LoginForm extends React.Component {
     }).then(({errors} = {}) => {
       if (errors === false) {
         localStorage.setItem('userName', values.username);
+        localStorage.setItem('welcomePageTooltopVisited', true);
         this.props.history.push('/home');
       } else {
         this.formRef.current.setFields([
@@ -57,42 +57,35 @@ class LoginForm extends React.Component {
   continueAsGuest = () => {
     UserUtil.logOut()
     this.props.history.push('/home')    
+    localStorage.setItem('welcomePageTooltopVisited', true);
   };
 
   renderTooltipText = () => {
     return (
-      <div>
-        <p>First time?</p>
+      <div 
+        className="login-form__tooltip-text" 
+        onClick={() => this.setState({showLoginTooltip: false})}
+      >
+        <p>First time here?</p>
         <p>Try out as Guest!</p>
       </div>
     );
   };
 
   renderWithTooltip = (component) => {
+    // debugger;
     return (
       <Tooltip 
-        placement="right"
+        placement="rightTop"
         title={this.renderTooltipText} 
         color={TOOTLTIP_COLOR}
         visible="true"
-        mouseEnterDelay="511"
-        arrowPointAtCenter="true"
+        overlayClassName="login-form__tooltip-overlay"
       >
         { component }
       </Tooltip>
     )
   }
-
-  // renderGuestButton = () => {
-  //   return this.renderTooltip(
-  //     <Button 
-  //       onClick={ this.continueAsGuest } 
-  //       className='login-form__container-buttons-guest'
-  //     >
-  //       Continue as a Guest
-  //     </Button>
-  //   )
-  // }
 
   renderGuestButton() {
     const button = (
@@ -103,19 +96,16 @@ class LoginForm extends React.Component {
         Continue as a Guest
       </Button>
     )
-
-    if (!this.state.showLoginTooltip) {
+    if (!this.state.showLoginTooltip && this.getWelcomePageTootlipVisited()) {
       return button;
     } else {
       return this.renderWithTooltip(button);
     }
   }
 
-  render
-
   render() {
     return (
-      <div className="login-form">
+      <div className="login-form" >
         <div className="login-form__welcome">Sign In</div>
           <div className="login-form__container">
            <Form
@@ -160,21 +150,6 @@ class LoginForm extends React.Component {
                   >
                     Sign In
                   </Button>
-                  {/* <Tooltip 
-                    placement="right"
-                    title={this.renderTooltipText} 
-                    color={TOOTLTIP_COLOR}
-                    visible="true"
-                    mouseEnterDelay="511"
-                    arrowPointAtCenter="true"
-                  >
-                    <Button 
-                      onClick={ this.continueAsGuest } 
-                      className='login-form__container-buttons-guest'
-                    >
-                      Continue as a Guest
-                    </Button>
-                  </Tooltip> */}
                   { this.renderGuestButton() }
                 </div>
               </Form.Item>
