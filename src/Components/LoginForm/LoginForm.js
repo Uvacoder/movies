@@ -23,11 +23,11 @@ class LoginForm extends React.Component {
   };
 
   componentDidMount() {
-    // if (!this.getWelcomePageTootlipVisited()) {
+    if (!this.getWelcomePageTootlipVisited()) {
       setTimeout(() => {
         this.setState({ showLoginTooltip: true })
       }, 1500)
-    // }
+    }
   }
 
   getWelcomePageTootlipVisited = () => {
@@ -73,7 +73,6 @@ class LoginForm extends React.Component {
   };
 
   renderWithTooltip = (component) => {
-    // debugger;
     return (
       <Tooltip 
         placement="rightTop"
@@ -96,7 +95,7 @@ class LoginForm extends React.Component {
         Continue as a Guest
       </Button>
     )
-    if (!this.state.showLoginTooltip && this.getWelcomePageTootlipVisited()) {
+    if (!this.state.showLoginTooltip || this.getWelcomePageTootlipVisited()) {
       return button;
     } else {
       return this.renderWithTooltip(button);
