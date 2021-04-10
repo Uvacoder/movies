@@ -67,6 +67,8 @@ export const fetchRandom = () => {
   return async dispatch => {
     try {
       dispatch(changeLoadingStatus(true));
+      const externalRequestId = Communication.addExternalRequestId();
+
       const movies = await Communication.get({
         path: TMDBApi.get('discover/movie',{
           language: MOVIE_DOWNLOAD_LANGUAGE,
@@ -81,8 +83,10 @@ export const fetchRandom = () => {
         path: TMDBApi.get(`movie/${movies.results[randomMovie].id}/videos`, {
           language: MOVIE_DOWNLOAD_LANGUAGE,
         }),
-        useLoader: false
-      });	
+        useLoader: false,
+      });
+
+      Communication.removeExternalRequestId(externalRequestId);
       const shuffledMovie = movies.results[randomMovie];
 
       shuffledMovie.videoKey = videoKeyResult.results[0];
@@ -91,7 +95,6 @@ export const fetchRandom = () => {
         type: FETCH_RANDOM,
         random: shuffledMovie
       });
-      dispatch(changeLoadingStatus(false));
     } catch (error) {
       console.error('TBMD API random movie', error)
     };

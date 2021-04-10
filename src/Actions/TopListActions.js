@@ -15,6 +15,8 @@ export const fetchTopList = (type) => {
   return async dispatch => {
     try {
       dispatch(changeLoadingStatus(true));
+      const externalRequestId = Communication.addExternalRequestId();
+
       const searched = await Communication.get({
         path: TMDBApi.get(`${getTopListTypeUrl(type)}`, {
           language: MOVIE_DOWNLOAD_LANGUAGE,
@@ -29,10 +31,12 @@ export const fetchTopList = (type) => {
           path: TMDBApi.get(`movie/${item.id}`,{
             append_to_response: MOVIE_ADDITIONAL_INFORMATIONS
           }),
-          useLoader: true
+          useLoader: false
         });	
         item.details = searchedDetails; 
       }));
+
+      Communication.removeExternalRequestId(externalRequestId);
 
       dispatch({ 
         type: FETCH_TOP_LIST,

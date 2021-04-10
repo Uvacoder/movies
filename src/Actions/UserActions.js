@@ -144,6 +144,8 @@ export const getAllUserRatings = () => {
 	return async (dispatch) => {
     try {
       dispatch(changeLoadingStatus(true));
+      const externalRequestId = Communication.addExternalRequestId();
+
       const results = await Communication.get({
         path: DomainApi.get(`user/myRates`),
         useLoader: false
@@ -159,17 +161,17 @@ export const getAllUserRatings = () => {
         item.details = movieDetails;
       }));
 
+      Communication.removeExternalRequestId(externalRequestId);
+
       dispatch({ 
         type: FETCH_ALL_USER_RATINGS,
         movieRates: [...results]
       });
-      dispatch(changeLoadingStatus(false));
       return {
         errors: false
       }
     } catch(error) {
         console.error('getting user votes error', error)
-        dispatch(changeLoadingStatus(false));
       };
         
     return {

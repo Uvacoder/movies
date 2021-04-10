@@ -14,6 +14,8 @@ export const fetchRecentMovies = (type) => {
   return async dispatch => {
     try {
       dispatch(changeLoadingStatus(true));
+      const externalRequestId = Communication.addExternalRequestId();
+
       const searched = await Communication.get({
         path: TMDBApi.get(`${getRecentMoviesTypeUrl(type)}`, {
           language: RECENT_MOVIES_DOWNLOAD_LANGUAGE,
@@ -28,17 +30,18 @@ export const fetchRecentMovies = (type) => {
           path: TMDBApi.get(`movie/${item.id}`,{
             append_to_response: 'credits'
           }),
-          useLoader: false
+          useLoader: false,
         });	
         item.details = searchedDetails; 
       }));
+
+      Communication.removeExternalRequestId(externalRequestId);
   
       dispatch({ 
         type: FETCH_RECENT_MOVIES,
         recentMovies: searched.results,
         numberOfPages: searched.total_pages
       });
-      dispatch(changeLoadingStatus(false));
     } catch (error) {
       console.error('TBMD API fetching recent movies', error)
     };
