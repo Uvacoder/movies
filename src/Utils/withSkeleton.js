@@ -1,13 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import Skeleton from 'react-loading-skeleton';
-
+//TODO
+// import { PLACEHOLDER } from 'utils/text';
 const ROWS_4_WIDTHS = [350, 250, 300, 120]
 
-export default (component, { width, height = 14, rows = 1} = {}) => {
+const PLACEHOLDER = '–'
+
+export default (text, { width, height = 14, rows = 1} = {}) => {
   class WithSkeleton extends React.Component {
     render() {
-      if (this.props.isLoading) {
+      const isEmptyText = text === PLACEHOLDER || !text?.length
+
+      if (this.props.isLoading && isEmptyText) {
         if (rows === 1) {
           return <Skeleton height={height} width={width} />
         } else if (rows === 4) {
@@ -21,7 +26,7 @@ export default (component, { width, height = 14, rows = 1} = {}) => {
         }   
       }
 
-      return component;
+      return text;
     }
   }
 
