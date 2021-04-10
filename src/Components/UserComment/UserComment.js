@@ -8,6 +8,7 @@ const UserComment = (props) => {
   const {
     placeholder,
     rows,
+    commentValue
   } = props;
   const [inputValue, setInputValue] = useState('')
 
@@ -15,11 +16,15 @@ const UserComment = (props) => {
     setInputValue('')
   },[props.match.params.id]);
 
+  useEffect(() => {
+    setInputValue(commentValue);
+  },[commentValue]);
+
   return (
     <TextArea 
       rows={rows}
       placeholder={placeholder}
-      value={inputValue || props.commentValue}
+      value={inputValue}
       onChange={e => {
         setInputValue(e.target.value)
         props.updateCommentValue(e.target.value)

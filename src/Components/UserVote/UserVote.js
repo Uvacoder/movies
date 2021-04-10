@@ -19,7 +19,7 @@ const VOTE_NOT_PRESENT_MESSAGE_DURATION = 3.2;
 class UserVote extends React.Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       loading: false,
       visible: false,
