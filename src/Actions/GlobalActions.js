@@ -6,7 +6,6 @@ const LOADING_DISPLAY_DELAY = 800;
 
 export const changeLoadingStatus = (status) => {
   return dispatch => { 
-    debugger;
     const dispatchLoadingStatus = () => {
       dispatch({
         type: LOADING,

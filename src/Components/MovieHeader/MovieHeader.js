@@ -83,10 +83,10 @@ const MovieHeader = (props) => {
       </div>
       <div className='movie-header__wrapper'>
         <div className='movie-header__wrapper-title'>
-          {withSkeleton(title, { width: 500, height: 38 })}
+          {withSkeleton(title, { width: 500, height: 30 })}
         </div>
         <div className='movie-header__wrapper-tagline'>
-          {withSkeleton(tagline, { width: 300, height: 22 })}
+          {withSkeleton(tagline, { width: 300, height: 15 })}
         </div>
         <div className='movie-header-votes'>
           <div className='movie-header-votes-average'>

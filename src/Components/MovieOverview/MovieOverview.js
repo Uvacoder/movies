@@ -20,17 +20,23 @@ const MovieOverview = (props) => {
     companies
   } = props;
 
-  return (
-    <div className='movie-overview'>
-      <div className='movie-overview__poster'>
-        <img src={poster} alt='poster'/>
-      </div>
+  const renderDescription = () => {
+    return (
       <div className='movie-overview__description'>
         <div className='movie-overview__description-title'>Overview:</div>
         <Scrollbars autoHeight>
           <div className='movie-overview__description-text'>{withSkeleton(description, { width: 250, rows: 4 })}</div>   
         </Scrollbars>  
       </div>
+    )
+  }
+
+  return (
+    <div className='movie-overview'>
+      <div className='movie-overview__poster'>
+        <img src={poster} alt='poster'/>
+      </div>
+      { renderDescription() }
       <div className='movie-overview__release'>
         <div className='movie-overview__release-title'>Release date:</div>
         <div className='movie-overview__release-text'>{withSkeleton(realeaseDate, { width: 150 })}</div>
@@ -70,7 +76,7 @@ const MovieOverview = (props) => {
         </div>
         <div className='movie-overview__extra-production-companies'>
           <div className='movie-overview__extra-production-companies-title'>Production companies:</div>
-          <div className='movie-overview__extra-production-companies-text'>{withSkeleton(companies, { width: 260 })}</div>
+          <div className='movie-overview__extra-production-companies-text'>{withSkeleton(companies, { width: 210 })}</div>
         </div>
       </div>
     </div>

@@ -11,7 +11,6 @@ const MOVIE_DETAILS_PAGE = '1';
 export function fetchMovieDetails(Id) {
   return async dispatch => {
     try {
-      debugger;
       dispatch(changeLoadingStatus(true));
       const movieDetailsPromise = Communication.get({
         path: TMDBApi.get(`movie/${Id}`,{
@@ -40,7 +39,6 @@ export function fetchMovieDetails(Id) {
         externalIds
       ] = await Promise.all([movieDetailsPromise, similarMoviesPromise, movieReviewsPromise, externalIdsPromise]);
 
-      debugger;
       dispatch(changeLoadingStatus(false));
       return dispatch({ 
         type: FETCH_MOVIE_DETAILS,
