@@ -13,7 +13,7 @@ const LOADER_SPIN_SIZE = 'large';
 
 function App() {
   const isLoading = useSelector(state => state.global.isLoading);
-  
+
   return (
     <ConnectedRouter history={ history }>
       <Spin 

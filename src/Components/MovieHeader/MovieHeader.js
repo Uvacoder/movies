@@ -13,7 +13,7 @@ const VOTE_AVERAGE_DISPLAY_PERCENT = false;
 const POPULARITY_MAX_VALUE = 100;
 const POPULARITY_DISPLAY_PERCENT = true;
 const TOOTLTIP_TEXT = 'To use all Movie Lounge features like voting or commenting, please register.'
-const TOOTLTIP_COLOR = '#1890ff';
+const TOOTLTIP_COLOR = '#044251';
 
 const MovieHeader = (props) => {
   const {
@@ -64,6 +64,8 @@ const MovieHeader = (props) => {
       </div>
     );
   };
+
+  // TO DO FIX  ANIMATION IN DOUGHNUT CHART
 
   // const fakeProps = JSON.parse('{"data":7.8,"maxValue":10,"percent":false,"fontSize":"25px","fontColor":"rgb(9, 197, 214)","background":"#a9ae9e26"}');
 
