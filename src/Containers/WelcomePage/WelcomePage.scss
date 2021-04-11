@@ -1,6 +1,10 @@
 @media only screen and (max-width: 1600px) {
   .ant-spin-container {
     .welcome-page {
+      .welcome-page__action-form {
+        right: 15%;
+      }
+
       .welcome-page__title-wrapper {    
         .welcome-page__title-wrapper-main {
           font-size: 5em;
