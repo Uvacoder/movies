@@ -68,7 +68,6 @@ function getMethod(type) {
       }
 
       const response = await fetch(path, fetchParams);
-      console.log('aaa')
       let json = null;
 
       try {

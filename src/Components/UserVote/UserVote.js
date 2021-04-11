@@ -45,7 +45,6 @@ class UserVote extends React.Component {
   };
 
   displayModal = () => { 
-    console.log('display modal')
     return (
       UserUtil.isUserLogged() ? () => this.changeModalVisibility(true) : null
     );

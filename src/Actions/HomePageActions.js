@@ -86,8 +86,11 @@ export const fetchRandom = () => {
         useLoader: false,
       });
 
-      Communication.removeExternalRequestId(externalRequestId);
       const shuffledMovie = movies.results[randomMovie];
+      Communication.removeExternalRequestId(externalRequestId);
+      if (shuffledMovie.length === 0) {
+        fetchRandom()
+      }
 
       shuffledMovie.videoKey = videoKeyResult.results[0];
 
