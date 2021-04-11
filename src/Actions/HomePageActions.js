@@ -88,16 +88,17 @@ export const fetchRandom = () => {
 
       const shuffledMovie = movies.results[randomMovie];
       Communication.removeExternalRequestId(externalRequestId);
+      
       if (shuffledMovie.length === 0) {
-        fetchRandom()
+        dispatch(fetchRandom())
+      } else {
+        shuffledMovie.videoKey = videoKeyResult.results[0];
+
+        dispatch({ 
+          type: FETCH_RANDOM,
+          random: shuffledMovie
+        });
       }
-
-      shuffledMovie.videoKey = videoKeyResult.results[0];
-
-      dispatch({ 
-        type: FETCH_RANDOM,
-        random: shuffledMovie
-      });
     } catch (error) {
       console.error('TBMD API random movie', error)
     };

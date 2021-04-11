@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom'
 import { getUserRating, saveUserRating } from 'actions/UserActions'
 import UserUtil from 'utils/UserUtil'
 import withSkeleton from 'utils/withSkeleton';
+import { PLACEHOLDER } from 'utils/Consts/Text';
 
 const VOTE_AVERAGE_MAX_VALUE = 10;
 const VOTE_AVERAGE_DISPLAY_PERCENT = false;
@@ -73,7 +74,6 @@ const MovieHeader = (props) => {
     return (
       <div className='movie-header__user-vote' onClick={ onClick }>
         <UserVote 
-          key="kot"
           onClick={onClick}
           currentMovieId={Number(props.match.params.id)} 
           currentMovieRating = {movieList.find( item => item.movieId === Number(props.match.params.id))}
@@ -153,8 +153,8 @@ const MovieHeader = (props) => {
 
 MovieHeader.defaultProps = {
     backDropPath: '',
-    title: '–',
-    tagline: '–',
+    title: PLACEHOLDER,
+    tagline: PLACEHOLDER,
     voteAverage: 0,
     popularity: 0
 };

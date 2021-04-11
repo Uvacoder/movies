@@ -5,7 +5,7 @@ import Registration from '../../Components/Registration/Registration'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { register, login } from 'actions/UserActions'
-import { Button, Popover } from 'antd';
+import { Button } from 'antd';
 import { withRouter } from 'react-router-dom'
 import UserUtil from 'utils/UserUtil'
 import {ReactComponent as MovieReel} from '../../Images/moviereel.svg';

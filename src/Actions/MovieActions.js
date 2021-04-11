@@ -1,6 +1,5 @@
 import Communication from 'communication/Communication';
 import TMDBApi from 'utils/TMDBApi';
-import { changeLoadingStatus } from 'actions/GlobalActions';
 
 export const FETCH_MOVIE_DETAILS = 'movie/FETCH_MOVIE_DETAILS';
 export const CLEAR_MOVIE_DETAILS = 'movie/CLEAR_MOVIE_DETAILS';
