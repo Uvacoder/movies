@@ -1,6 +1,9 @@
 ## Movie Lounge
+Browse, rate and comment your favourite movies.
 
-Created by Patryk Bura, 2020.
+![example-gif](gif/example.gif)
+
+Created by Patryk Bura, 2021.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

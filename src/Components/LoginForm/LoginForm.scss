@@ -64,7 +64,8 @@ $input-color-alpha: rgba(0,0,0,0.4);
     };
 
     .login-form__container-buttons-guest{
-      background-color: rgba(0,0,0,0.6);
+      background-color: #FFC30B;
+      color: black;
     };
 
     .login-form__container-buttons-login:hover,
@@ -97,4 +98,28 @@ $input-color-alpha: rgba(0,0,0,0.4);
 .registration-form__label:hover {
   color: yellow; 
   transform: scale(1.05);  
+};
+
+.login-form__tooltip-overlay {
+  animation-duration: 1s;
+
+  .ant-tooltip-arrow {
+    transform: scale(1.5);
+    margin-left: -3px;
+  }
+
+  .ant-tooltip-inner{ 
+    padding: 0;
+  
+    .login-form__tooltip-text {
+      height: 100%;
+      cursor: pointer;
+      padding: 4px 10px;
+    
+      p {
+        color: black;
+        margin-bottom: 0;
+      };
+    };
+  };
 };

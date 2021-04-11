@@ -9,7 +9,9 @@ import { fetchSearched } from 'actions/SearchActions'
 import {withRouter} from 'react-router-dom';
 import Contact from 'components/Contact/Contact'
 import UserSettings from 'components/UserSettings/UserSettings'
-import RegistrationWelcomePage from 'containers/RegistrationWelcomePage/RegistrationWelcomePage'
+import {ReactComponent as Github} from '../../Images/github.svg';
+
+const GITHUB_LINK = "https://github.com/patrykbura"
 
 class AppLayout extends React.Component {
   renderLayoutContent = () => {
@@ -17,30 +19,31 @@ class AppLayout extends React.Component {
       return <Contact />
     } else if (this.props.location.pathname === '/settings') {
       return <UserSettings />
-    } else if (this.props.location.pathname === '/register') {
-      return <RegistrationWelcomePage />
     } else {
-      console.log('here')
       return <LayoutContent />
     };
   };
 
-  checkAndRenderLayout = () => {
-    if (this.props.location.pathname === '/register') {
-      return <RegistrationWelcomePage />
+  renderGithubLink = () => {
+    if (this.props.location.pathname === '/contact') {
+      return null
     }
+
     return (
-      <Layout>
-        <LayoutHeader handleSearch={this.props.fetchSearched} />
-        {this.renderLayoutContent()}
-      </Layout>
-    )
-  }
+      <a href={ GITHUB_LINK }>
+        <Github className="app-layout__github"/>
+      </a>
+    );
+  };
 
   render() {
     return (
       <div className='app-layout'>
-        {this.checkAndRenderLayout()}
+        <Layout>
+          <LayoutHeader handleSearch={this.props.fetchSearched} />
+          {this.renderLayoutContent()}
+        </Layout>
+        { this.renderGithubLink() }
       </div>
     );
   };

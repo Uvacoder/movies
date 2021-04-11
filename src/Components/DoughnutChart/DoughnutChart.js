@@ -14,24 +14,30 @@ const DoughnutChart = (props) => {
     fontColor,
     percent,
     background,
-    ignoreZeroValue
   } = props;
+  const [dataChanged, setDataChanged] = useState(false);
+  const [finalData, setFinalData] = useState(data);
 
-  if (data === 0) {
-    console.log('ALARM')
+  useEffect(() => {
+    // Due to https://github.com/toomuchdesign/react-minimal-pie-chart/issues/186
+    setFinalData(0);
+    setDataChanged(true);
+    requestAnimationFrame(() => {
+      setFinalData(data);
+      setDataChanged(false);
+    })
+  }, [data]);
+
+  if (dataChanged) {
+    return null;
   }
-
-
-  // if (ignoreZeroValue && data === 0) {
-  //   return null;
-  // }
-
-
 
   return (
     <PieChart
+      animate= { true }
+      delay = { 1400 }
       data={[{ 
-        value: Math.min(data, maxValue), 
+        value: Math.min(finalData, maxValue), 
         color: getColor(data, maxValue)
       }]}
       totalValue={maxValue}
@@ -45,8 +51,6 @@ const DoughnutChart = (props) => {
       background={background}
       startAngle={DOUGHNUT_CHART_START_ANGLE}
       onClick={ props.onClick }
-      animate={ true }
-      animationDuration = { 2000 }
     />     
   );
 };

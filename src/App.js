@@ -2,19 +2,18 @@ import React from 'react';
 import './App.scss';
 import { ConnectedRouter } from 'connected-react-router'
 import {Switch,Route} from "react-router-dom";
-// import WelcomePage from 'containers/WelcomePage/WelcomePage'
+import WelcomePage from 'containers/WelcomePage/WelcomePage'
 import AppLayout from 'containers/AppLayout/AppLayout'
 import { history } from './Store/store';
 import { Spin } from 'antd';
 import { useSelector } from 'react-redux';
 import { ReactComponent as Loader } from "./Images/loader.svg"
-// import HomePage from 'containers/HomePage/HomePage'
 
 const LOADER_SPIN_SIZE = 'large';
 
 function App() {
   const isLoading = useSelector(state => state.global.isLoading);
-  
+
   return (
     <ConnectedRouter history={ history }>
       <Spin 
@@ -25,12 +24,9 @@ function App() {
         className='ant-spin__global'
       >
         <Switch>
-          {/* <Route exact path="/">
-            <HomePage />
-          </Route> */}
-          {/* <Route exact path="/register">
+          <Route exact path="/">
             <WelcomePage />
-          </Route> */}
+          </Route>
           <AppLayout />
         </Switch>
       </Spin>

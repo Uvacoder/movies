@@ -43,10 +43,16 @@ class MovieDetails extends React.Component {
   };
 
   filterDirector = () => {
+    if (this.props.details.credits?.crew?.length === 0) {
+      return undefined
+    } 
     return this.props.details.credits?.crew?.filter((item) => item.job === "Director")?.[0]?.name
   };
 
   filterWriters = () => {
+    if (this.props.details.credits?.crew?.length === 0) {
+      return undefined
+    } 
     return this.props.details.credits?.crew?.filter((item) => item.department === "Writing")?.map((item) => item.name).join(', ')
   };
 
@@ -60,6 +66,9 @@ class MovieDetails extends React.Component {
   };
 
   getCurrencyNotation = (number) => {
+    if (!number) {
+      return undefined
+    }
     return number?.toLocaleString('en', { style: 'currency', currency: 'USD' })
   }; 
 
@@ -81,7 +90,7 @@ class MovieDetails extends React.Component {
   };
 
   renderPhotos = () => {
-    if (this.props.details.images?.backdrops?.length === 0) {
+    if (!this.props.details.images || this.props.details.images.backdrops.length === 0) {
       return null 
     };
 
@@ -118,7 +127,7 @@ class MovieDetails extends React.Component {
   };
 
   renderTrailer = () => {
-    if (this.props.details.videos?.results.length === 0) {
+    if (!this.props.details.videos || this.props.details.videos.results.length === 0) {
       return null 
     };
 
@@ -135,7 +144,7 @@ class MovieDetails extends React.Component {
   };
 
   renderCast = () => {
-    if (this.props.details.credits?.cast.length === 0) {
+    if (!this.props.details.credits || this.props.details.credits?.cast.length === 0) {
       return null 
     };
 
@@ -149,22 +158,29 @@ class MovieDetails extends React.Component {
     );
   };
 
+  getText = (text) => {
+    return text?.length !== 0 ? text : undefined
+  }
+
   renderOverview = () => {
+    const poster = this.props.details.poster_path ? `${TMDBApi.getImgURL(POSTER_WIDTH)}${this.props.details.poster_path}` : ImgPlaceholder
+    const companies = this.props.details.production_companies?.slice(0, MAX_NUMBER_OF_COMPANIES_SHOWN).map((item) => item.name).join(', ')
+
     return (
       <div className='movie-details-container__overwiev'> 
         <MovieOverwiev
-          poster={this.props.details.poster_path ? `${TMDBApi.getImgURL(POSTER_WIDTH)}${this.props.details.poster_path}` : ImgPlaceholder}
-          description={this.props.details.overview}
-          realeaseDate={this.props.details.release_date}
-          genres={this.props.details.genres?.map((item) => item.name).join(', ')}
-          runtime={this.props.details.runtime}
-          country={this.props.details.production_countries?.map((item) => item.name).join(', ')}
+          poster={ poster }
+          description={this.getText(this.props.details.overview)}
+          realeaseDate={this.getText(this.props.details.release_date)}
+          genres={this.getText(this.props.details.genres?.map((item) => item.name).join(', '))}
+          runtime={this.getText(this.props.details.runtime !== 0 ? this.props.details.runtime?.toString() : undefined)}
+          country={this.getText(this.props.details.production_countries?.map((item) => item.name).join(', '))}
           director={this.filterDirector()}
           writers={this.filterWriters()}
           budget={this.getCurrencyNotation(this.props.details.budget)}
           revenue={this.getCurrencyNotation(this.props.details.revenue)}
-          languages={this.props.details.spoken_languages?.map((item) => item.name).join(', ')}
-          companies={this.props.details.production_companies?.slice(0, MAX_NUMBER_OF_COMPANIES_SHOWN).map((item) => item.name).join(', ')}
+          languages={this.getText(this.props.details.spoken_languages?.map((item) => item.name).join(', '))}
+          companies={this.getText(companies)}
         />
       </div>
     );

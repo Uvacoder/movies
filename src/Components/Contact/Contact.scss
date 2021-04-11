@@ -1,7 +1,6 @@
 .contact{
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 100%;
   width: 100%; 
   background-image: url("../../Images/welcomepage.jpg");
@@ -11,34 +10,33 @@
   .contact__content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    margin-top: 48px;
+    position: absolute;
+    top: 150px;
+
+    svg {
+      fill: white;
+      width: 100px;
+      height: 100px;
+    }
     
     span {
       font-size: 54px;
       font-weight: bold;
     };
 
-    .contact__content-bitbucket {
-      height: auto;
+    .contact__content-github {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       margin-top: 12px;
     
-      .contact__content-bitbucket-img img {
-        width: 400px;
-        justify-self: center;    
-      };
-
-      .contact__content-bitbucket-img {
+      .contact__content-github-img {
+        margin-top: 24px;
         transition: transform .2s;
       };
 
-      .contact__content-bitbucket-img:hover {
-        filter: sepia(100%);
+      .contact__content-github-img:hover {
         transform: scale(1.3);
       };
     };
@@ -51,15 +49,9 @@
 
       .contact__content-items-item {
         transition: transform .2s;
-
-        img {
-          width: 100px;
-          height: 100px;  
-        };
       };
 
       .contact__content-items-item:hover {
-        filter: sepia(100%);
         transform: scale(1.3);
       };
     };

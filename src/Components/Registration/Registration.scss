@@ -64,7 +64,7 @@ $input-color-alpha: rgba(0,0,0,0.5);
     
     .ant-btn-primary{
       width: 405px;
-      background-color: rgba(0,0,0,0.7);
+      background-color: #165a9ab0;
       border: none;
       transition: transform .2s;
     };
@@ -83,7 +83,7 @@ $input-color-alpha: rgba(0,0,0,0.5);
     .registration__footer-login {
       width: 333px;
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
 
       .registration__footer-login-label {
         color: white;

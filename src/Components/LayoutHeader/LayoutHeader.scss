@@ -63,6 +63,10 @@ $on-hover-color: rgb(255,215,0);
       color: $search-bar-color;
     };
   };
+  
+  .nav-bar-menu__title {
+    height: 98%;
+  }
 
   .ant-menu-item{
     display: flex;
@@ -88,6 +92,10 @@ $on-hover-color: rgb(255,215,0);
 .your-profile {
   display: flex;
   justify-content: flex-end;
+
+  .nav-bar-menu {
+    height: 98%;
+  }
 };
 
 .ant-menu-submenu{
@@ -101,3 +109,29 @@ $on-hover-color: rgb(255,215,0);
     };
   };
 };
+
+.ant-menu-item.main-menu__right-from-searchbar {
+  padding-right: 0;
+  
+  span a{
+    color:white;
+    transition-duration: 0ms;
+  }
+
+  .anticon {
+    color:white;
+    animation: 0;
+  }
+
+  &.ant-menu-item-active {
+    span a {
+      color:#1890ff !important;
+    }
+
+    svg {
+      fill:#1890ff;
+    }
+  }
+}
+
+

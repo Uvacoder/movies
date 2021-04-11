@@ -20,6 +20,28 @@ class ApiError extends Error {
   };
 };
 
+function addExternalRequestId() {
+  const externalRequestId = uuidv4();
+
+  ApiRequestIdTable.push(externalRequestId);
+  return externalRequestId;
+}
+
+function removeExternalRequestId(requestId) {
+  handleQueueOnFinish(requestId);
+}
+
+function handleQueueOnFinish(requestId) {
+  const index = ApiRequestIdTable.indexOf(requestId);
+
+  ApiRequestIdTable.splice(index, 1)
+  if (ApiRequestIdTable.length === 0) {
+    loaderTimerId = setTimeout(() => {
+      storeRegistry.getStore().dispatch(changeLoadingStatus(false))
+    }, 0);
+  };
+}
+
 function getMethod(type) {
   return async ({path, useLoader, body}) => {
     const fetchParams = {
@@ -46,13 +68,20 @@ function getMethod(type) {
       }
 
       const response = await fetch(path, fetchParams);
+      let json = null;
 
-      return response.json().then(json => {
+      try {
+        json = await response.json();
+      } catch (err) {
+        // Do nothing
+      }
+     
+      return Promise.resolve(json).then(json => {
         if (response.status >= 400) {
           throw new ApiError(response.statusText, json);
         }
         return json;
-      });
+      })
     } catch (err) {
       if (!(err instanceof ApiError)) {
         notification.error({
@@ -65,14 +94,8 @@ function getMethod(type) {
       throw err;
     } finally {
       if (useLoader) {
-        const index = ApiRequestIdTable.indexOf(requestId)
-        ApiRequestIdTable.splice(index, 1)
-        if (ApiRequestIdTable.length === 0) {
-          loaderTimerId = setTimeout(() => {
-            storeRegistry.getStore().dispatch(changeLoadingStatus(false))
-          }, 0);
-        };
-      };
+        handleQueueOnFinish(requestId);
+      }
     };
   };
 };
@@ -80,5 +103,7 @@ function getMethod(type) {
 export default {
   get: getMethod('GET'),
   post: getMethod('POST'),
-  delete: getMethod('DELETE')
+  delete: getMethod('DELETE'),
+  addExternalRequestId,
+  removeExternalRequestId
 };

@@ -1,0 +1,101 @@
+@media only screen and (max-width: 1600px) {
+  .ant-spin-container {
+    .welcome-page {
+      .welcome-page__title-wrapper {
+        .welcome-page__title-wrapper-main {
+          margin-bottom: 20px;
+        }
+
+        .welcome-page__title-wrapper-description {
+          padding-left: 5px;
+        }
+      }
+      .welcome-page__action-form {
+        right: 12%;
+      }
+
+      .welcome-page__title-wrapper {    
+        .welcome-page__title-wrapper-main {
+          font-size: 5em;
+        };
+        
+        .welcome-page__title-wrapper-quote {
+          font-size: 1em;
+        };
+      }; 
+    };
+  };
+};
+
+.welcome-page {
+  background-image: url("../../Images/welcomepage.jpg");
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .welcome-page__action-form {
+    position: absolute;
+    right: 10%;
+    top: 10%;
+
+    .welcome-page__action-form-logged {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 300px;
+
+      .ant-btn {
+        background-color: #165a9ab0;
+        border-radius: 8px;
+        font-size: 1.1em;
+        border: none;
+        color: white;
+        transition: transform .2s;
+        width: 300px;
+        height: 70px;
+      };
+
+      .ant-btn:hover {
+        color: rgb(250, 250, 174);
+        transform: scale(1.05);
+      };
+    };
+  };
+
+  .welcome-page__title-wrapper {
+    position: absolute;
+    left: 5%;
+    top: 7%;
+    font-family: 'Roboto-Regular';
+    pointer-events: none;
+    align-items: center;
+
+    .welcome-page__title-wrapper-main {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 9em; 
+    };
+    
+    .welcome-page__title-wrapper-description {
+      font-size: 1.2em;
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-left: 10px;
+
+        svg {
+          width: 40px;
+          height: 40px;
+          fill: white;
+          margin-right: 20px;  
+        }
+
+        p {
+          font-size: 1.5em;
+          margin-bottom: 0;
+          color: rgba(255, 255, 255, 0.8);
+        }
+    };
+  };
+};

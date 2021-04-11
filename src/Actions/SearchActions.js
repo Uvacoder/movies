@@ -14,6 +14,8 @@ export const fetchSearched = (phrase) => {
   return async dispatch => {
     try {
       dispatch(changeLoadingStatus(true));
+      const externalRequestId = Communication.addExternalRequestId();
+      
       const searched = await Communication.get({
         path: TMDBApi.get('search/movie', {
           language: MOVIE_DOWNLOAD_LANGUAGE,
@@ -34,6 +36,8 @@ export const fetchSearched = (phrase) => {
         });	
         item.details = searchedDetails; 
       }));
+
+      Communication.removeExternalRequestId(externalRequestId);
   
       dispatch({ 
         type: FETCH_SEARCHED,
@@ -41,7 +45,6 @@ export const fetchSearched = (phrase) => {
         phrase,
         numberOfPages: searched.total_pages
       });
-      dispatch(changeLoadingStatus(false));
     } catch (error) {
       console.error('TMBD API fetching searched', error)
     };
