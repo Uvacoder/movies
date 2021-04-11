@@ -32,15 +32,19 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+    position: relative;
   
     .random-movie__details-vote-wrapper {
       display: flex;
       width: 100%;
       align-items: flex-end;
+      // position: absolute;
+      margin-top:auto;
+      // bottom: 0;
     };
   
     .random-movie__details-title {
-      font-size: 2em;
+      font-size: 1.7em;
       margin-bottom: 10px;
       font-weight: bold;
       color: wheat;
@@ -51,8 +55,12 @@
     .random-movie__details-vote-wrapper-average {
       flex:1;
       width: 120px;
-      height: 120px;
-      padding-bottom: 20px;
+      // height: 120px;
+      // padding-bottom: 20px;
+
+      svg {
+        height: 100px;
+      }
     };
 
     .random-movie__details-overwiev > div > div:nth-child(3) > div {
