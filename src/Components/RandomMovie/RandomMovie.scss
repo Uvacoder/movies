@@ -30,14 +30,11 @@
   
   .random-movie__details {
     display: flex;
-    align-items: flex-start;
     flex-direction: column;
-    position: relative;
   
     .random-movie__details-vote-wrapper {
       display: flex;
       width: 100%;
-      align-items: flex-end;
       margin-top:auto;
     };
   
@@ -64,16 +61,18 @@
     };
   
     .random-movie__details-overwiev {
-      margin-bottom: 10px;
+      flex-grow: 1;
       
       .random-movie__details-overwiev-content{
         line-height: 1.9em;
         padding-right: 20px;
+        height: 100%;
       };
   
       .random-movie__details-overwiev-title{
         font-weight: bold;
         color: wheat;
+        margin-bottom: 5px;
       };
     };
   

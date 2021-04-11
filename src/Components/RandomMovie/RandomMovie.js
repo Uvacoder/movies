@@ -24,31 +24,30 @@ const RandomMovie = (props) => {
     );
   };
 
+  const getReleaseYear = (movie) => {
+    const date = new Date(movie.release_date)
+    const year = date.getFullYear()
+
+    return isNaN(year) ? '' : `(${year})`
+  }
+
   const renderDetails = (movie) => {
     return (
       <>
         <div 
         className='random-movie__details-title routed-text'
         onClick={() => props.routeToMovieDetails(movie.id)}>
-          {movie.title}
+          {`${movie.title} ${getReleaseYear(movie)}`}
         </div> 
         <div className='random-movie__details-overwiev'>
           <div className='random-movie__details-overwiev-title'>
             Overview: 
           </div >
-          <Scrollbars autoHeight>
-            <div className='random-movie__details-overwiev-content'>
+          <Scrollbars style={{height: 'calc(100% - 48px)'}}>
+            <div className='random-movie__details-overwiev-content'>   
                 {movie.overview} 
             </div >
-          </Scrollbars>
-        </div>
-        <div className='random-movie__details-date'>
-          <div className='random-movie__details-date-title'>
-            Release Date:
-          </div>
-          <div className='random-movie__details-date-content'>
-            {movie.release_date}
-          </div>
+            </Scrollbars>
         </div>
       </>
     );
