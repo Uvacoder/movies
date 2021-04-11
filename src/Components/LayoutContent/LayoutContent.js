@@ -10,13 +10,13 @@ function LayoutContent () {
   return (
     <Content className="site-layout">
       <div className='site-layout__container'>
-        <div id='particles-left' className='site-layout__container-margin-left'/>
+        <div className='site-layout__container-margin-left'/>
           <div className="site-layout__container-main">
             <SkeletonTheme color="#042d53" highlightColor="#444">
               <Roots />
             </SkeletonTheme>
           </div>
-        <div id='particles-right' className='site-layout__container-margin-right'/>  
+        <div className='site-layout__container-margin-right'/>  
       </div> 
     </Content>
   );

@@ -5,10 +5,6 @@
   display: grid;
 };
 
-.particles-js-canvas-el {
-  height: calc(100% - 10px) !important; // Workaround ro fix particlesJS library bug
-};
-
 .ant-spin__wrapper--spinning {
   background-color: #40a9ff;
 

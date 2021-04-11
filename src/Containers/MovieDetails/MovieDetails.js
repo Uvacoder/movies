@@ -144,7 +144,7 @@ class MovieDetails extends React.Component {
   };
 
   renderCast = () => {
-    if (!this.props.details.credits) {
+    if (!this.props.details.credits || this.props.details.credits?.cast.length === 0) {
       return null 
     };
 
