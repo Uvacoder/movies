@@ -31,7 +31,7 @@ class LoginForm extends React.Component {
   }
 
   getWelcomePageTootlipVisited = () => {
-    return JSON.parse(localStorage.getItem('welcomePageTooltopVisited'))
+    return JSON.parse(localStorage.getItem('welcomePageTooltipVisited'))
   }
 
   onFinish = values => {
@@ -41,7 +41,7 @@ class LoginForm extends React.Component {
     }).then(({errors} = {}) => {
       if (errors === false) {
         localStorage.setItem('userName', values.username);
-        localStorage.setItem('welcomePageTooltopVisited', true);
+        localStorage.setItem('welcomePageTooltipVisited', true);
         this.props.history.push('/home');
       } else {
         this.formRef.current.setFields([
@@ -57,7 +57,7 @@ class LoginForm extends React.Component {
   continueAsGuest = () => {
     UserUtil.logOut()
     this.props.history.push('/home')    
-    localStorage.setItem('welcomePageTooltopVisited', true);
+    localStorage.setItem('welcomePageTooltipVisited', true);
   };
 
   renderTooltipText = () => {

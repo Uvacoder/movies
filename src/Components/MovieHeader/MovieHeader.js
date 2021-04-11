@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import "./MovieHeader.scss"
 import DoughnutChart from '../DoughnutChart/DoughnutChart'
@@ -26,6 +26,14 @@ const MovieHeader = (props) => {
   } = props;
   const dispatch = useDispatch();
   const movieList = useSelector(state => state.userRating.movies);
+  const [voteTooltipVisible, setVoteTooltipVisible] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setVoteTooltipVisible(true)
+    }, 1500)
+    return () => tooltipSeenActions();
+  }, [])
 
   useEffect(() => {
     if (UserUtil.isUserLogged()) {
@@ -40,6 +48,41 @@ const MovieHeader = (props) => {
     return <img src={backDropPath} alt=''/>
   };
 
+  const getVoteTootlipVisited = () => {
+    return JSON.parse(localStorage.getItem('voteTooltipVisited'))
+  }
+
+  const tooltipSeenActions = () => {
+    localStorage.setItem('voteTooltipVisited', true)
+    setVoteTooltipVisible(false)
+  }
+
+  const renderTooltipText = () => {
+    return (
+      <div 
+        className="user-vote__tooltip-text" 
+        onClick={() => { tooltipSeenActions() }}
+      >
+        <p>{`Hello ${localStorage.getItem('userName')} !`}</p>
+        <p>Don't forget to rate and comment.</p>
+      </div>
+    );
+  };
+
+  const renderUserVote = (onClick) => {
+    return (
+      <div className='movie-header__user-vote' onClick={ onClick }>
+        <UserVote 
+          key="kot"
+          onClick={onClick}
+          currentMovieId={Number(props.match.params.id)} 
+          currentMovieRating = {movieList.find( item => item.movieId === Number(props.match.params.id))}
+          saveUserRating = {(...args) => dispatch(saveUserRating(...args))}
+        />
+      </div>
+    )
+  }
+
   const displayUserVote = () => {
     if (!UserUtil.isUserLogged()) {
       return (
@@ -52,29 +95,23 @@ const MovieHeader = (props) => {
             <UserVote />
           </div>
         </Tooltip>
-      );
-    };
+      )
+    } else {
+      const tooltipVisible = voteTooltipVisible && !getVoteTootlipVisited();
 
-    return (
-      <div className='movie-header__user-vote'>
-        <UserVote 
-          currentMovieId={Number(props.match.params.id)} 
-          currentMovieRating = {movieList.find( item => item.movieId === Number(props.match.params.id))}
-          saveUserRating = {(...args) => dispatch(saveUserRating(...args))}
-        />
-      </div>
-    );
+      return (
+        <Tooltip 
+          placement="bottom"
+          title={renderTooltipText} 
+          color={'#f5f5f5'}
+          visible={tooltipVisible}
+          overlayClassName="user-vote__tooltip-overlay"
+        >
+          { renderUserVote(tooltipVisible && tooltipSeenActions) }
+        </Tooltip>
+      )
+    }
   };
-  
-
-  // TO DO FIX  ANIMATION IN DOUGHNUT CHART
-
-  // const fakeProps = JSON.parse('{"data":7.8,"maxValue":10,"percent":false,"fontSize":"25px","fontColor":"rgb(9, 197, 214)","background":"#a9ae9e26"}');
-
-  // console.log(voteAverage)
-  // fakeProps.data = voteAverage;
-  // fakeProps.maxValue = VOTE_AVERAGE_MAX_VALUE;
-  // fakeProps.percent = VOTE_AVERAGE_DISPLAY_PERCENT;
 
   return (
     <div className='movie-header'>
@@ -92,8 +129,6 @@ const MovieHeader = (props) => {
           <div className='movie-header-votes-average'>
             <span className='movie-header-votes-average-title'>Vote average:</span>
             <DoughnutChart 
-              // {...fakeProps}
-
               data={voteAverage} 
               maxValue={VOTE_AVERAGE_MAX_VALUE} 
               percent={VOTE_AVERAGE_DISPLAY_PERCENT}
