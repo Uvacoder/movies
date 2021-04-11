@@ -63,8 +63,8 @@ const MovieHeader = (props) => {
         className="user-vote__tooltip-text" 
         onClick={() => { tooltipSeenActions() }}
       >
-        <p>{`Hello ${localStorage.getItem('userName')} !`}</p>
-        <p>Don't forget to rate and comment.</p>
+        <p>{`Hello ${localStorage.getItem('userName')}!`}</p>
+        <p>Don't forget to rate and comment</p>
       </div>
     );
   };
