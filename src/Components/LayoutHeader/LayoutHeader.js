@@ -76,14 +76,12 @@ function LayoutHeader (props) {
   };
 
   const renderUserVotesMenu = () => {
-    const menuItems = [{
-      title: 'My Ratings',
-      url:"/user-ratings",
-      icon: <PieChartOutlined />
-    }]
-
     if (UserUtil.isUserLogged()) {
-      return renderSubMenu('My Lounge',<PlaySquareOutlined />, menuItems)
+      return (
+        <Menu.Item className="main-menu__right-from-searchbar" key='user-ratings' icon={<PieChartOutlined/>}>
+          <Link to='/user-ratings'>My Ratings</Link>
+        </Menu.Item>
+      )
     } else {
       return null
     };
