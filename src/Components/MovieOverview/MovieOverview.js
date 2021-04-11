@@ -2,8 +2,8 @@ import React from 'react';
 import "./MovieOverview.scss"
 import { Scrollbars } from 'react-custom-scrollbars';
 import withSkeleton from 'utils/withSkeleton';
+import { PLACEHOLDER } from 'utils/Consts/Text';
 
-const PLACEHOLDER = '–'
 const MovieOverview = (props) => {
   const {
     poster,

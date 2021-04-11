@@ -173,7 +173,7 @@ class MovieDetails extends React.Component {
           description={this.getText(this.props.details.overview)}
           realeaseDate={this.getText(this.props.details.release_date)}
           genres={this.getText(this.props.details.genres?.map((item) => item.name).join(', '))}
-          runtime={this.getText(this.props.details.runtime?.toString())}
+          runtime={this.getText(this.props.details.runtime !== 0 ? this.props.details.runtime?.toString() : undefined)}
           country={this.getText(this.props.details.production_countries?.map((item) => item.name).join(', '))}
           director={this.filterDirector()}
           writers={this.filterWriters()}
